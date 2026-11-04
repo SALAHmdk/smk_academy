@@ -49,16 +49,34 @@ Advisor sécurité Supabase : seules alertes = les 4 RPC volontairement ouvertes
 | Pages connectées (tableau de bord, formation, leçon, quiz, résultat, compte) en 393 px et 1366 px, clair et sombre, avec une session simulée | ✅ aucun débordement ; barre d'onglets et barre de validation du quiz vérifiées |
 | Flou « Liquid Glass » effectivement appliqué (style calculé `backdrop-filter`) | ✅ après correction de l'ordre des déclarations |
 
-## Parcours étudiant complet contre Supabase réel
+## Parcours étudiant complet en production (exécuté le 04/11/2026, 20:55)
 
-L'environnement de développement de Claude ne peut pas joindre `*.supabase.co` (liste d'accès réseau). Le parcours est donc prêt mais doit être exécuté sur le site déployé :
+Site : https://smk-academy.netlify.app (déploiement `fa4c477`), Supabase `smk-academy-dev`, navigateur Chrome réel.
+Compte de test dédié : `e2e@smktech.test` (email confirmé créé directement en base, mot de passe non versionné).
+
+| Scénario | Résultat |
+|---|---|
+| Accès au tableau de bord sans session → redirection vers /connexion | ✅ |
+| Connexion (mot de passe) → tableau de bord vide, profil créé automatiquement | ✅ |
+| Page formation : 5 modules ouverts sur 5, durée 11 h | ✅ |
+| « Commencer la formation » → inscription + ouverture de la leçon 1 | ✅ |
+| Lecture de la leçon, correction d'exercice repliable | ✅ |
+| « Terminer et continuer » → leçon 1 cochée, leçon 2 ouverte | ✅ |
+| Quiz module 1 : aucun corrigé présent dans le HTML avant soumission | ✅ |
+| 9 bonnes réponses sur 10 → **18/20**, « Module validé » | ✅ |
+| Correction détaillée : Q9 à 0/2 avec explication, les 9 autres à 2/2 | ✅ |
+| Fraude via l'API avec la session de l'étudiant : insérer un 20/20, modifier ou supprimer sa note, devenir admin, passer Premium | ✅ toutes refusées (403) |
+| Lecture des corrigés via l'API | ✅ table inexistante côté API (404) |
+| Un étudiant ne voit que ses propres tentatives | ✅ |
+| Thème sombre puis automatique depuis « Mon compte » | ✅ |
+| Déconnexion → espace privé de nouveau inaccessible | ✅ |
+| Reconnexion → moyenne 18/20, 1 leçon terminée, 1/15, « Prochaine étape : Variables et types de base », historique daté (heure de Paris) | ✅ |
+
+## Restant à tester
 
 | Scénario | État |
 |---|---|
-| Création de compte + email de confirmation | 🟡 |
-| Connexion / déconnexion / reconnexion | 🟡 `e2e/parcours-etudiant.spec.ts` |
-| Lecture d'une leçon, correction repliable | 🟡 |
-| Quiz → note /20 → correction | 🟡 (logique ✅ en SQL) |
-| Récupération de la progression après reconnexion | 🟡 (logique ✅ en SQL) |
-| Affichage mobile des pages connectées sur le site déployé | 🟡 (vérifié localement ✅) |
+| Inscription par le formulaire + clic sur l'email de confirmation | 🟡 à faire avec une vraie boîte mail (liens désormais construits depuis l'origine du site) |
+| Mot de passe oublié (email) | 🟡 idem |
+| Affichage téléphone en production | 🟡 vérifié en local (Chrome 393 px) ✅ ; fenêtre du navigateur réel non redimensionnable pendant le test |
 | Administration, Premium, paiements | ❌ jalons suivants |
