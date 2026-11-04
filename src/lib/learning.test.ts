@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   answersFromFormData,
   averageOfBest,
+  filterCatalog,
   formatDuration,
   formatScore,
   orderLessons,
@@ -95,5 +96,28 @@ describe("redirections", () => {
     expect(safeNextPath("//evil.example")).toBe("/tableau-de-bord");
     expect(safeNextPath("/\\evil.example")).toBe("/tableau-de-bord");
     expect(safeNextPath(null)).toBe("/tableau-de-bord");
+  });
+});
+
+describe("filtres du catalogue", () => {
+  const base = {
+    id: "x", subtitle: "", description: "", category_id: "c", cover_label: "", duration_minutes: 60,
+    objectives: [], prerequisites: [], is_premium: false, position: 1,
+  };
+  const courses = [
+    { ...base, slug: "python", title: "Python pour débutants", topic: "Python", level: "debutant", status: "published", categories: { slug: "programmation", name: "Programmation" } },
+    { ...base, slug: "sql", title: "SQL pour débutants", topic: "SQL", level: "debutant", status: "coming_soon", categories: { slug: "bases-de-donnees", name: "Bases de données" } },
+    { ...base, slug: "k8s", title: "Kubernetes", topic: "Kubernetes", level: "avance", status: "coming_soon", categories: { slug: "cloud-devops", name: "Cloud et DevOps" } },
+  ] as unknown as import("./learning").Course[];
+
+  it("recherche sans tenir compte des accents ni de la casse", () => {
+    expect(filterCatalog(courses, { q: "DEBUTANTS" }).map((c) => c.slug)).toEqual(["python", "sql"]);
+    expect(filterCatalog(courses, { q: "données" }).map((c) => c.slug)).toEqual(["sql"]);
+  });
+  it("filtre par catégorie, langage, niveau et disponibilité", () => {
+    expect(filterCatalog(courses, { categorie: "cloud-devops" }).map((c) => c.slug)).toEqual(["k8s"]);
+    expect(filterCatalog(courses, { langage: "SQL" }).map((c) => c.slug)).toEqual(["sql"]);
+    expect(filterCatalog(courses, { niveau: "avance" }).map((c) => c.slug)).toEqual(["k8s"]);
+    expect(filterCatalog(courses, { dispo: "1" }).map((c) => c.slug)).toEqual(["python"]);
   });
 });

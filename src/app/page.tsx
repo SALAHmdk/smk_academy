@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckIcon, ChevronIcon, CrossIcon } from "@/components/icons";
 import { formatDuration, LEVEL_LABEL } from "@/lib/learning";
-import { getCatalog } from "@/lib/queries";
+import { CourseCover } from "@/components/course-cover";
+import { getCatalog, getCategories } from "@/lib/queries";
 import { getCurrentUser } from "@/lib/supabase/server";
 
 /** Écran de leçon miniature, présenté dans un cadre de téléphone (visuel du héros). */
@@ -92,9 +93,8 @@ function ResultCard() {
 }
 
 export default async function HomePage() {
-  const [user, catalog] = await Promise.all([getCurrentUser(), getCatalog()]);
+  const [user, catalog, categories] = await Promise.all([getCurrentUser(), getCatalog(), getCategories()]);
   const featured = catalog.find((c) => c.status === "published");
-  const upcoming = catalog.filter((c) => c.status === "coming_soon");
 
   return (
     <>
@@ -213,6 +213,45 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Domaines du catalogue */}
+      <section className="px-5 pb-20">
+        <div className="mx-auto max-w-[1024px]">
+          <div className="mx-auto max-w-[800px] text-center">
+            <p className="eyebrow">Le catalogue</p>
+            <h2 className="t-display mt-2">Dix domaines, du premier programme à l&apos;IA.</h2>
+            <p className="subhead mx-auto mt-5 max-w-[34em]">
+              Les formations s&apos;ouvrent au fur et à mesure de leur rédaction. Chacune indique son niveau et sa durée.
+            </p>
+          </div>
+          <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {categories.map((cat) => {
+              const inCat = catalog.filter((c) => c.categories?.slug === cat.slug);
+              const open = inCat.filter((c) => c.status === "published").length;
+              const first = inCat[0];
+              return (
+                <li key={cat.id}>
+                  <Link
+                    href={`/formations?categorie=${cat.slug}`}
+                    className="block overflow-hidden rounded-[var(--radius-lg)] bg-surface transition-transform duration-300 hover:-translate-y-0.5"
+                  >
+                    <div className="h-20">
+                      <CourseCover label={first?.cover_label ?? ""} category={cat.slug} size="sm" />
+                    </div>
+                    <div className="p-4">
+                      <p className="font-semibold leading-tight">{cat.name}</p>
+                      <p className="mt-1 text-[13px] text-ink-2">
+                        {inCat.length} formation{inCat.length > 1 ? "s" : ""}
+                        {open > 0 ? `, ${open} disponible${open > 1 ? "s" : ""}` : ""}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
       {/* Formation phare */}
       {featured && (
         <section className="px-5 pb-6">
@@ -228,12 +267,10 @@ export default async function HomePage() {
               <Link href={`/formations/${featured.slug}`} className="btn btn-primary">
                 Découvrir la formation
               </Link>
-              {upcoming.length > 0 && (
-                <Link href="/formations" className="link-more">
-                  Bientôt : {upcoming.map((c) => c.title.split(" —")[0]).join(", ")}
-                  <ChevronIcon className="h-4 w-4" />
-                </Link>
-              )}
+              <Link href="/formations" className="link-more">
+                Parcourir les {catalog.length} formations du catalogue
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </section>

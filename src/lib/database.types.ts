@@ -7,9 +7,16 @@ export type Database = {
   __InternalSupabase: { PostgrestVersion: "14.18" };
   public: {
     Tables: {
+      categories: {
+        Row: { created_at: string; description: string; id: string; name: string; position: number; slug: string };
+        Insert: { created_at?: string; description?: string; id?: string; name: string; position?: number; slug: string };
+        Update: { created_at?: string; description?: string; id?: string; name?: string; position?: number; slug?: string };
+        Relationships: [];
+      };
       courses: {
         Row: {
-          category: string;
+          category_id: string;
+          cover_label: string;
           created_at: string;
           description: string;
           duration_minutes: number;
@@ -23,19 +30,59 @@ export type Database = {
           status: string;
           subtitle: string;
           title: string;
+          topic: string;
+          updated_at: string;
         };
-        Insert: never;
-        Update: never;
-        Relationships: [];
+        Insert: {
+          category_id: string;
+          cover_label?: string;
+          created_at?: string;
+          description?: string;
+          duration_minutes?: number;
+          id?: string;
+          is_premium?: boolean;
+          level: string;
+          objectives?: string[];
+          position?: number;
+          prerequisites?: string[];
+          slug: string;
+          status?: string;
+          subtitle?: string;
+          title: string;
+          topic?: string;
+          updated_at?: string;
+        };
+        Update: {
+          category_id?: string;
+          cover_label?: string;
+          created_at?: string;
+          description?: string;
+          duration_minutes?: number;
+          id?: string;
+          is_premium?: boolean;
+          level?: string;
+          objectives?: string[];
+          position?: number;
+          prerequisites?: string[];
+          slug?: string;
+          status?: string;
+          subtitle?: string;
+          title?: string;
+          topic?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "courses_category_id_fkey";
+            columns: ["category_id"];
+            isOneToOne: false;
+            referencedRelation: "categories";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       enrollments: {
-        Row: {
-          course_id: string;
-          created_at: string;
-          last_activity_at: string;
-          last_lesson_id: string | null;
-          user_id: string;
-        };
+        Row: { course_id: string; created_at: string; last_activity_at: string; last_lesson_id: string | null; user_id: string };
         Insert: never;
         Update: never;
         Relationships: [
@@ -80,8 +127,26 @@ export type Database = {
           summary: string;
           title: string;
         };
-        Insert: never;
-        Update: never;
+        Insert: {
+          content_md: string;
+          duration_minutes?: number;
+          id?: string;
+          module_id: string;
+          position: number;
+          slug: string;
+          summary?: string;
+          title: string;
+        };
+        Update: {
+          content_md?: string;
+          duration_minutes?: number;
+          id?: string;
+          module_id?: string;
+          position?: number;
+          slug?: string;
+          summary?: string;
+          title?: string;
+        };
         Relationships: [
           {
             foreignKeyName: "lessons_module_id_fkey";
@@ -94,8 +159,8 @@ export type Database = {
       };
       modules: {
         Row: { course_id: string; description: string; id: string; position: number; status: string; title: string };
-        Insert: never;
-        Update: never;
+        Insert: { course_id: string; description?: string; id?: string; position: number; status?: string; title: string };
+        Update: { course_id?: string; description?: string; id?: string; position?: number; status?: string; title?: string };
         Relationships: [
           {
             foreignKeyName: "modules_course_id_fkey";
@@ -138,8 +203,8 @@ export type Database = {
       };
       quiz_options: {
         Row: { id: string; label: string; position: number; question_id: string };
-        Insert: never;
-        Update: never;
+        Insert: { id?: string; label: string; position: number; question_id: string };
+        Update: { id?: string; label?: string; position?: number; question_id?: string };
         Relationships: [
           {
             foreignKeyName: "quiz_options_question_id_fkey";
@@ -151,17 +216,25 @@ export type Database = {
         ];
       };
       quiz_questions: {
-        Row: {
-          code: string | null;
-          id: string;
+        Row: { code: string | null; id: string; kind: string; points: number; position: number; prompt: string; quiz_id: string };
+        Insert: {
+          code?: string | null;
+          id?: string;
           kind: string;
-          points: number;
+          points?: number;
           position: number;
           prompt: string;
           quiz_id: string;
         };
-        Insert: never;
-        Update: never;
+        Update: {
+          code?: string | null;
+          id?: string;
+          kind?: string;
+          points?: number;
+          position?: number;
+          prompt?: string;
+          quiz_id?: string;
+        };
         Relationships: [
           {
             foreignKeyName: "quiz_questions_quiz_id_fkey";
@@ -174,8 +247,8 @@ export type Database = {
       };
       quizzes: {
         Row: { id: string; module_id: string; pass_mark: number; title: string };
-        Insert: never;
-        Update: never;
+        Insert: { id?: string; module_id: string; pass_mark?: number; title: string };
+        Update: { id?: string; module_id?: string; pass_mark?: number; title?: string };
         Relationships: [
           {
             foreignKeyName: "quizzes_module_id_fkey";
@@ -189,8 +262,22 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      admin_audit_log: {
+        Args: { p_limit?: number };
+        Returns: { action: string; actor_email: string; at: string; entity: string; entity_id: string; summary: Json }[];
+      };
+      admin_get_answer_keys: {
+        Args: { p_quiz_id: string };
+        Returns: { correct_option_ids: string[]; explanation: string; question_id: string }[];
+      };
+      admin_set_answer_key: {
+        Args: { p_correct: string[]; p_explanation: string; p_question_id: string };
+        Returns: undefined;
+      };
+      admin_stats: { Args: never; Returns: Json };
       complete_lesson: { Args: { p_lesson_id: string }; Returns: undefined };
       enroll_in_course: { Args: { p_course_id: string }; Returns: undefined };
+      my_role: { Args: never; Returns: string };
       submit_quiz: {
         Args: { p_answers: Json; p_quiz_id: string };
         Returns: Database["public"]["Tables"]["quiz_attempts"]["Row"];
@@ -202,4 +289,3 @@ export type Database = {
     CompositeTypes: { [_ in never]: never };
   };
 };
-

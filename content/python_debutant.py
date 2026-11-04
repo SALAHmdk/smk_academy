@@ -19,6 +19,9 @@ COURSE = {
         "sur 20 valide chaque module."
     ),
     "category": "Programmation",
+    "category_slug": "programmation",
+    "topic": "Python",
+    "cover_label": "Py",
     "level": "debutant",
     "duration_minutes": 660,
     "objectives": [

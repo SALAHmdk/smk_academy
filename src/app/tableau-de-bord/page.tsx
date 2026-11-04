@@ -19,7 +19,7 @@ export default async function DashboardPage({ searchParams }: Props) {
     supabase.from("profiles").select("full_name, plan").eq("id", user.id).single(),
     supabase
       .from("enrollments")
-      .select("course_id, last_lesson_id, last_activity_at, courses(id, slug, title, category)")
+      .select("course_id, last_lesson_id, last_activity_at, courses(id, slug, title, categories(name))")
       .order("last_activity_at", { ascending: false }),
     supabase
       .from("quiz_attempts")
@@ -48,7 +48,7 @@ export default async function DashboardPage({ searchParams }: Props) {
   const firstName = profile?.full_name?.split(" ")[0];
 
   const courses = (enrollments ?? []).map((e) => {
-    const course = e.courses as unknown as { id: string; slug: string; title: string; category: string };
+    const course = e.courses as unknown as { id: string; slug: string; title: string; categories: { name: string } | null };
     const mods = (modules ?? []).filter((m) => m.course_id === e.course_id);
     const ordered = orderLessons(mods, (lessons ?? []).filter((l) => mods.some((m) => m.id === l.module_id)));
     const done = ordered.filter((l) => completed.has(l.id)).length;
@@ -118,7 +118,7 @@ export default async function DashboardPage({ searchParams }: Props) {
               <li key={course.id} className="surface p-6 sm:p-7">
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm text-ink-3">{course.category}</p>
+                    <p className="text-sm text-ink-3">{course.categories?.name}</p>
                     <Link href={`/formations/${course.slug}`} className="t-3 mt-1 block hover:text-blue">
                       {course.title}
                     </Link>

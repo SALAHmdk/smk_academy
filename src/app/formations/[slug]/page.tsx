@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { enrollInCourse } from "@/app/actions/learning";
+import { CourseCover } from "@/components/course-cover";
 import { StatusDot } from "@/components/icons";
 import { formatDuration, formatScore, LEVEL_LABEL, percent } from "@/lib/learning";
 import { getCourseOutline, getUserCourseState, lessonHref, quizHref } from "@/lib/queries";
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CoursePage({ params }: Props) {
   const { slug } = await params;
   const [outline, user] = await Promise.all([getCourseOutline(slug), getCurrentUser()]);
-  if (!outline || outline.course.status !== "published") notFound();
+  if (!outline || outline.course.status === "draft") notFound();
+  const upcoming = outline.course.status !== "published";
 
   const { course, modules, lessons, quizzes } = outline;
-  const state = user
+  const state = user && !upcoming
     ? await getUserCourseState(
         course.id,
         lessons.map((l) => l.id),
@@ -46,7 +48,9 @@ export default async function CoursePage({ params }: Props) {
           Formations
         </Link>
         <span className="mx-2 text-ink-3">/</span>
-        <span>{course.category}</span>
+        <Link href={`/formations?categorie=${course.categories?.slug ?? ""}`} className="hover:text-ink">
+          {course.categories?.name}
+        </Link>
       </nav>
 
       <header className="mt-5 grid gap-8 md:grid-cols-[1.5fr_1fr] md:items-end">
@@ -55,14 +59,18 @@ export default async function CoursePage({ params }: Props) {
           <p className="mt-4 max-w-[58ch] text-lg text-ink-2">{course.description}</p>
         </div>
 
-        <div className="surface p-6">
+        <div className="surface overflow-hidden">
+          <div className="aspect-[16/7]">
+            <CourseCover label={course.cover_label} category={course.categories?.slug} size="lg" muted={upcoming} />
+          </div>
+          <div className="p-6">
           <dl className="grid grid-cols-3 gap-4 text-sm">
             <div>
               <dt className="text-ink-3">Niveau</dt>
               <dd className="mt-0.5 font-semibold">{LEVEL_LABEL[course.level]}</dd>
             </div>
             <div>
-              <dt className="text-ink-3">Durée</dt>
+              <dt className="text-ink-3">Durée estimée</dt>
               <dd className="mt-0.5 font-semibold">{formatDuration(course.duration_minutes)}</dd>
             </div>
             <div>
@@ -92,7 +100,17 @@ export default async function CoursePage({ params }: Props) {
           )}
 
           <div className="mt-5">
-            {!user ? (
+            {upcoming ? (
+              <div>
+                <span className="btn w-full cursor-default bg-surface-2 text-ink-2" aria-disabled="true">
+                  Bientôt disponible
+                </span>
+                <p className="mt-3 text-sm text-ink-2">
+                  Le programme est défini et le contenu est en cours de rédaction. La formation s&apos;ouvrira dès que
+                  ses premiers modules seront complets.
+                </p>
+              </div>
+            ) : !user ? (
               <Link href={`/inscription?suite=/formations/${slug}`} className="btn btn-primary w-full">
                 Créer un compte pour commencer
               </Link>
@@ -116,6 +134,7 @@ export default async function CoursePage({ params }: Props) {
                 {done === 0 ? "Commencer la première leçon" : "Reprendre ma formation"}
               </Link>
             ) : null}
+          </div>
           </div>
         </div>
       </header>
@@ -149,6 +168,7 @@ export default async function CoursePage({ params }: Props) {
         </section>
       </div>
 
+      {modules.length > 0 && (
       <section aria-labelledby="programme" className="mt-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="programme" className="t-2">
@@ -231,6 +251,7 @@ export default async function CoursePage({ params }: Props) {
           })}
         </ol>
       </section>
+      )}
     </div>
   );
 }

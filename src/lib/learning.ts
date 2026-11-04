@@ -5,13 +5,18 @@ export type CourseStatus = "draft" | "published" | "coming_soon";
 export type Level = "debutant" | "intermediaire" | "avance";
 export type QuestionKind = "single" | "multiple" | "true_false";
 
+export type Category = { id: string; slug: string; name: string; description: string; position: number };
+
 export type Course = {
   id: string;
   slug: string;
   title: string;
   subtitle: string;
   description: string;
-  category: string;
+  category_id: string;
+  topic: string;
+  cover_label: string;
+  categories: { slug: string; name: string } | null;
   level: Level;
   duration_minutes: number;
   objectives: string[];
@@ -49,6 +54,8 @@ export type Correction = {
   max_points: number;
   explanation: string;
 };
+
+export const LEVELS: Level[] = ["debutant", "intermediaire", "avance"];
 
 export const LEVEL_LABEL: Record<Level, string> = {
   debutant: "Débutant",
@@ -124,4 +131,31 @@ export function safeNextPath(raw: unknown, fallback = "/tableau-de-bord"): strin
   if (!raw.startsWith("/") || raw.startsWith("//") || raw.startsWith("/\\")) return fallback;
   if (/[\r\n]/.test(raw)) return fallback;
   return raw;
+}
+
+/** Normalise un texte pour la recherche (minuscules, sans accents). */
+export function normalize(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+export type CatalogFilters = { q?: string; categorie?: string; langage?: string; niveau?: string; dispo?: string };
+
+/** Filtre le catalogue côté serveur (recherche plein texte simple + filtres). */
+export function filterCatalog(courses: Course[], f: CatalogFilters): Course[] {
+  const words = normalize(f.q ?? "").split(/\s+/).filter(Boolean);
+  return courses.filter((c) => {
+    if (f.categorie && c.categories?.slug !== f.categorie) return false;
+    if (f.langage && c.topic !== f.langage) return false;
+    if (f.niveau && c.level !== f.niveau) return false;
+    if (f.dispo === "1" && c.status !== "published") return false;
+    if (words.length) {
+      const haystack = normalize([c.title, c.subtitle, c.description, c.topic, c.categories?.name ?? "", ...c.objectives].join(" "));
+      if (!words.every((w) => haystack.includes(w))) return false;
+    }
+    return true;
+  });
 }

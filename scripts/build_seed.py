@@ -1,6 +1,6 @@
 """Génère la migration SQL du contenu pédagogique à partir de content/*.py.
 
-Usage : python3 scripts/build_seed.py > supabase/migrations/<horodatage>_seed_python.sql
+Usage : python3 scripts/build_seed.py [--content python_debutant] [--modules 1,2] > supabase/migrations/<horodatage>_seed_x.sql
 
 Les identifiants sont déterministes (UUID v5 dérivés des slugs) : relancer la
 migration met à jour le contenu sans casser la progression des étudiants.
@@ -17,7 +17,9 @@ POINTS_PER_QUESTION = 2
 
 
 def load_content():
-    spec = importlib.util.spec_from_file_location("content", ROOT / "content" / "python_debutant.py")
+    """--content NOM charge content/NOM.py (par défaut python_debutant)."""
+    name = sys.argv[sys.argv.index("--content") + 1] if "--content" in sys.argv else "python_debutant"
+    spec = importlib.util.spec_from_file_location("content", ROOT / "content" / f"{name}.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -44,25 +46,34 @@ def arr(values) -> str:
     return "array[" + ", ".join(lit(v) for v in values) + "]::text[]" if values else "'{}'::text[]"
 
 
+CATEGORY_SLUGS = {
+    "Programmation": "programmation",
+    "Bases de données": "bases-de-donnees",
+    "Langues": "langues",
+}
+
+
 def course_sql(c) -> str:
+    """Insère ou met à jour une formation SANS toucher à son statut (géré à la fin, après les modules)."""
     cid = uid("course", c["slug"])
+    category = c.get("category_slug") or CATEGORY_SLUGS[c["category"]]
     return (
-        "insert into public.courses (id, slug, title, subtitle, description, category, level, "
+        "insert into public.courses (id, slug, title, subtitle, description, category_id, topic, cover_label, level, "
         "duration_minutes, objectives, prerequisites, status, is_premium, position) values ("
         f"'{cid}', {lit(c['slug'])}, {lit(c['title'])}, {lit(c['subtitle'])}, {lit(c['description'])}, "
-        f"{lit(c['category'])}, {lit(c['level'])}, {c['duration_minutes']}, {arr(c['objectives'])}, "
-        f"{arr(c['prerequisites'])}, {lit(c['status'])}, {lit(c['is_premium'])}, {c['position']})\n"
+        f"(select id from public.categories where slug = {lit(category)}), {lit(c.get('topic', ''))}, "
+        f"{lit(c.get('cover_label', ''))}, {lit(c['level'])}, {c['duration_minutes']}, {arr(c['objectives'])}, "
+        f"{arr(c['prerequisites'])}, 'coming_soon', {lit(c['is_premium'])}, {c['position']})\n"
         "on conflict (slug) do update set title = excluded.title, subtitle = excluded.subtitle, "
-        "description = excluded.description, category = excluded.category, level = excluded.level, "
+        "description = excluded.description, category_id = excluded.category_id, level = excluded.level, "
         "duration_minutes = excluded.duration_minutes, objectives = excluded.objectives, "
-        "prerequisites = excluded.prerequisites, status = excluded.status, "
-        "is_premium = excluded.is_premium, position = excluded.position;\n"
+        "prerequisites = excluded.prerequisites, is_premium = excluded.is_premium, position = excluded.position;\n"
     )
 
 
 TABLES = {
     "modules": ("public.modules", "id, course_id, title, description, position, status", "id",
-                "title = excluded.title, description = excluded.description, position = excluded.position, status = excluded.status"),
+                "title = excluded.title, description = excluded.description, position = excluded.position"),
     "lessons": ("public.lessons", "id, module_id, slug, title, summary, content_md, duration_minutes, position", "id",
                 "slug = excluded.slug, title = excluded.title, summary = excluded.summary, content_md = excluded.content_md, "
                 "duration_minutes = excluded.duration_minutes, position = excluded.position"),
@@ -92,10 +103,9 @@ def main() -> None:
     content = load_content()
     out = ["-- Généré par scripts/build_seed.py — ne pas modifier à la main."]
     rows = {k: [] for k in TABLES}
+    statuses = []
 
-    for c in [content.COURSE, *content.OTHER_COURSES]:
-        if only is None or c is content.COURSE:
-            out.append(course_sql(c))
+    out.append(course_sql(content.COURSE))
 
     slug = content.COURSE["slug"]
     cid = uid("course", slug)
@@ -103,7 +113,8 @@ def main() -> None:
         if only is not None and m["position"] not in only:
             continue
         mid = uid("module", slug, m["position"])
-        rows["modules"].append(f"'{mid}', '{cid}', {lit(m['title'])}, {lit(m['description'])}, {m['position']}, {lit(m['status'])}")
+        rows["modules"].append(f"'{mid}', '{cid}', {lit(m['title'])}, {lit(m['description'])}, {m['position']}, 'draft'")
+        statuses.append((mid, m["status"]))
         for pos, (lslug, title, summary, md, minutes) in enumerate(m["lessons"], start=1):
             lid = uid("lesson", slug, m["position"], lslug)
             rows["lessons"].append(f"'{lid}', '{mid}', {lit(lslug)}, {lit(title)}, {lit(summary)}, {lit(md.strip())}, {minutes}, {pos}")
@@ -126,6 +137,11 @@ def main() -> None:
                 rows["keys"].append(f"'{qqid}', array[{correct_ids}]::uuid[], {lit(explanation)}")
 
     emit(out, rows)
+    # Statuts appliqués en dernier : les garde-fous en base vérifient que chaque module publié est complet.
+    for mid, status in statuses:
+        out.append(f"update public.modules set status = {lit(status)} where id = '{mid}';")
+    c = content.COURSE
+    out.append(f"update public.courses set status = {lit(c['status'])} where slug = {lit(c['slug'])};")
     sys.stdout.write("\n".join(out) + "\n")
 
 

@@ -1,17 +1,24 @@
 import "server-only";
 import { cache } from "react";
-import type { Course, LessonSummary, Module } from "@/lib/learning";
+import type { Category, Course, LessonSummary, Module } from "@/lib/learning";
 import { orderLessons } from "@/lib/learning";
 import { createClient } from "@/lib/supabase/server";
 
 const COURSE_COLUMNS =
-  "id, slug, title, subtitle, description, category, level, duration_minutes, objectives, prerequisites, status, is_premium, position";
+  "id, slug, title, subtitle, description, category_id, topic, cover_label, level, duration_minutes, objectives, prerequisites, status, is_premium, position, categories(slug, name)";
+
+export async function getCategories(): Promise<Category[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("categories").select("id, slug, name, description, position").order("position");
+  if (error) throw new Error("Catégories indisponibles");
+  return data ?? [];
+}
 
 export async function getCatalog(): Promise<Course[]> {
   const supabase = await createClient();
   const { data, error } = await supabase.from("courses").select(COURSE_COLUMNS).order("position");
   if (error) throw new Error("Catalogue indisponible");
-  return (data ?? []) as Course[];
+  return (data ?? []) as unknown as Course[];
 }
 
 export type QuizSummary = { id: string; module_id: string; title: string; pass_mark: number };
@@ -49,7 +56,7 @@ export const getCourseOutline = cache(async (slug: string): Promise<CourseOutlin
 
   const mods = (modules ?? []) as Module[];
   return {
-    course: course as Course,
+    course: course as unknown as Course,
     modules: mods,
     lessons: orderLessons(mods, (lessonsRes.data ?? []) as LessonSummary[]),
     quizzes: ((quizzesRes.data ?? []) as QuizSummary[]).map((q) => ({ ...q, pass_mark: Number(q.pass_mark) })),
