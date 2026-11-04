@@ -1,0 +1,406 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   SMK Academy — design system
+   Couleurs issues du logo SMKTECH. Bleu = interaction ; vert = réussite uniquement.
+   ========================================================================== */
+
+:root {
+  --smk-blue: #0b4bd6;
+  --smk-blue-hover: #0a42bd;
+  --smk-blue-soft: #e8efff;
+  --smk-green: #00a87e;
+  --smk-green-soft: #e3f7f0;
+  --smk-red: #d7263d;
+  --smk-red-soft: #fdecee;
+  --smk-amber: #b25e00;
+
+  --ink: #0e1a33;
+  --ink-2: rgba(14, 26, 51, 0.66);
+  --ink-3: rgba(14, 26, 51, 0.42);
+  --line: rgba(14, 26, 51, 0.1);
+  --canvas: #f2f5fa;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --code-bg: #0e1a33;
+  --code-ink: #e6ecf7;
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --smk-blue: #3b7bff;
+    --smk-blue-hover: #5a90ff;
+    --smk-blue-soft: rgba(59, 123, 255, 0.16);
+    --smk-green: #2fd3a3;
+    --smk-green-soft: rgba(47, 211, 163, 0.14);
+    --smk-red: #ff5a6e;
+    --smk-red-soft: rgba(255, 90, 110, 0.14);
+    --smk-amber: #ffb35c;
+
+    --ink: #f2f4f8;
+    --ink-2: rgba(235, 239, 247, 0.68);
+    --ink-3: rgba(235, 239, 247, 0.4);
+    --line: rgba(235, 239, 247, 0.12);
+    --canvas: #000000;
+    --surface: #14171e;
+    --surface-2: #1c2029;
+    --code-bg: #0b0f18;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-blue: var(--smk-blue);
+  --color-blue-hover: var(--smk-blue-hover);
+  --color-blue-soft: var(--smk-blue-soft);
+  --color-green: var(--smk-green);
+  --color-green-soft: var(--smk-green-soft);
+  --color-red: var(--smk-red);
+  --color-red-soft: var(--smk-red-soft);
+  --color-amber: var(--smk-amber);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --radius-lg: var(--radius-lg);
+  --radius-md: var(--radius-md);
+  --radius-sm: var(--radius-sm);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv05", "cv11";
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--smk-blue);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--smk-blue-soft);
+  }
+}
+
+@layer components {
+  /* Titres : resserrement progressif à la manière des polices optiques */
+  .t-hero {
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .t-1 {
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+  }
+  .t-2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+    line-height: 1.18;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+  }
+  .t-3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.008em;
+  }
+
+  /* Boutons — capsules, pression = légère réduction, jamais d'ondulation */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s var(--ease), opacity 0.2s var(--ease), transform 0.2s var(--ease);
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .btn-primary {
+    background: var(--smk-blue);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--smk-blue-hover);
+  }
+  .btn-secondary {
+    background: var(--smk-blue-soft);
+    color: var(--smk-blue);
+  }
+  .btn-plain {
+    color: var(--smk-blue);
+    padding-inline: 0.75rem;
+  }
+  .btn-plain:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Champs de formulaire */
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.7rem 0.95rem;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 1rem;
+    transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--smk-blue);
+    box-shadow: 0 0 0 4px var(--smk-blue-soft);
+  }
+
+  .surface {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Barre flottante (verre) */
+  .glass {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: 0 8px 30px rgba(14, 26, 51, 0.08), inset 0 0 0 0.5px var(--line);
+  }
+
+  /* Barre de progression */
+  .progress {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .progress > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--smk-blue);
+    transition: width 0.6s var(--ease);
+  }
+  .progress[data-complete="true"] > span {
+    background: var(--smk-green);
+  }
+
+  /* ==========================================================================
+     Contenu des leçons (Markdown)
+     ========================================================================== */
+  .lesson {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+  .lesson > * + * {
+    margin-top: 1.1em;
+  }
+  .lesson h2 {
+    font-size: 1.55rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-top: 2.2em;
+  }
+  .lesson h3 {
+    font-size: 1.2rem;
+    font-weight: 650;
+    margin-top: 1.8em;
+  }
+  .lesson ul,
+  .lesson ol {
+    padding-left: 1.3em;
+  }
+  .lesson ul {
+    list-style: disc;
+  }
+  .lesson ol {
+    list-style: decimal;
+  }
+  .lesson li + li {
+    margin-top: 0.35em;
+  }
+  .lesson li::marker {
+    color: var(--ink-3);
+  }
+  .lesson strong {
+    font-weight: 650;
+  }
+  .lesson a {
+    color: var(--smk-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .lesson blockquote {
+    border-left: 3px solid var(--smk-blue);
+    background: var(--smk-blue-soft);
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .lesson :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 0.1em 0.38em;
+    border-radius: 6px;
+  }
+  .lesson table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .lesson th,
+  .lesson td {
+    text-align: left;
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .lesson th {
+    font-weight: 650;
+    color: var(--ink-2);
+  }
+
+  .code-block {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .code-block pre {
+    padding: 1rem 1.15rem;
+    margin: 0;
+  }
+  .code-block[data-lang="text"] {
+    background: var(--surface-2);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+
+  .solution {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  .solution > summary {
+    cursor: pointer;
+    list-style: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    color: var(--smk-blue);
+  }
+  .solution > summary::-webkit-details-marker {
+    display: none;
+  }
+  .solution > summary::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.2s var(--ease);
+  }
+  .solution[open] > summary::before {
+    transform: rotate(45deg);
+  }
+  .solution > .code-block {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  /* Coloration syntaxique (highlight.js) aux couleurs SMKTECH */
+  .hljs-keyword,
+  .hljs-built_in,
+  .hljs-literal {
+    color: #7fb0ff;
+  }
+  .hljs-string {
+    color: #4fe0b5;
+  }
+  .hljs-number {
+    color: #ffc27a;
+  }
+  .hljs-comment {
+    color: #8592ab;
+    font-style: italic;
+  }
+  .hljs-title,
+  .hljs-title.function_ {
+    color: #c7a6ff;
+  }
+  .hljs-subst,
+  .hljs-params {
+    color: inherit;
+  }
+  .code-block[data-lang="text"] [class^="hljs-"] {
+    color: inherit;
+    font-style: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

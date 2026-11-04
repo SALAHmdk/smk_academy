@@ -1,0 +1,16 @@
+# SMK Academy — déploiement Netlify (Next.js via l'adaptateur OpenNext, détecté automatiquement).
+# Ne pas épingler @netlify/plugin-nextjs : Netlify le met à jour à chaque build.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Variables à définir dans Netlify (Project configuration > Environment variables),
+# portées « Builds » + « Functions », puis redéployer :
+#   NEXT_PUBLIC_SUPABASE_URL
+#   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+#   NEXT_PUBLIC_SITE_URL   (URL publique du site, ex. https://smk-academy.netlify.app)
