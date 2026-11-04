@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { env } from "@/lib/env";
@@ -20,6 +21,17 @@ const signUpSchema = z.object({
   password,
   terms: z.literal("on", { error: "Vous devez accepter les conditions d'utilisation" }),
 });
+
+/**
+ * Origine publique du site pour les liens envoyés par email.
+ * Priorité à l'en-tête Origin de la requête (fonctionne aussi sur les prévisualisations Netlify) ;
+ * Supabase n'accepte de toute façon que les URL déclarées dans « Redirect URLs ».
+ */
+async function siteOrigin(): Promise<string> {
+  const origin = (await headers()).get("origin");
+  if (origin && /^https?:\/\/[a-z0-9.-]+(:\d+)?$/i.test(origin)) return origin;
+  return env.siteUrl;
+}
 
 function translateAuthError(message: string): string {
   const m = message.toLowerCase();
@@ -52,7 +64,7 @@ export async function signUp(_prev: FormState, form: FormData): Promise<FormStat
     password: parsed.data.password,
     options: {
       data: { full_name: parsed.data.fullName },
-      emailRedirectTo: `${env.siteUrl}/auth/confirm?suite=${encodeURIComponent(next)}`,
+      emailRedirectTo: `${await siteOrigin()}/auth/confirm?suite=${encodeURIComponent(next)}`,
     },
   });
   if (error) return { error: translateAuthError(error.message), fields };
@@ -91,7 +103,7 @@ export async function requestPasswordReset(_prev: FormState, form: FormData): Pr
 
   const supabase = await createClient();
   await supabase.auth.resetPasswordForEmail(parsed.data, {
-    redirectTo: `${env.siteUrl}/auth/confirm?suite=/compte/nouveau-mot-de-passe`,
+    redirectTo: `${await siteOrigin()}/auth/confirm?suite=/compte/nouveau-mot-de-passe`,
   });
   // Réponse identique que le compte existe ou non (pas d'énumération des comptes).
   return { message: "Si un compte existe pour cette adresse, un lien de réinitialisation vient d'être envoyé." };
