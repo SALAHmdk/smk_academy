@@ -2,57 +2,95 @@
 
 /* ==========================================================================
    SMK Academy — design system
-   Couleurs issues du logo SMKTECH. Bleu = interaction ; vert = réussite uniquement.
+   Structure et retenue inspirées des Human Interface Guidelines d'Apple (Liquid Glass),
+   avec l'identité SMKTECH : le bleu du logo est la seule teinte d'interaction,
+   le vert du logo est réservé aux réussites (leçon terminée, quiz validé).
+   Thème : automatique (système), ou forcé via <html data-theme="light|dark">.
    ========================================================================== */
 
 :root {
-  --smk-blue: #0b4bd6;
-  --smk-blue-hover: #0a42bd;
-  --smk-blue-soft: #e8efff;
-  --smk-green: #00a87e;
-  --smk-green-soft: #e3f7f0;
-  --smk-red: #d7263d;
-  --smk-red-soft: #fdecee;
-  --smk-amber: #b25e00;
-
-  --ink: #0e1a33;
-  --ink-2: rgba(14, 26, 51, 0.66);
-  --ink-3: rgba(14, 26, 51, 0.42);
-  --line: rgba(14, 26, 51, 0.1);
-  --canvas: #f2f5fa;
-  --surface: #ffffff;
-  --surface-2: #f7f9fc;
-  --code-bg: #0e1a33;
-  --code-ink: #e6ecf7;
-
+  --brand-gradient: linear-gradient(100deg, #0b4bd6 0%, #1f7ae0 45%, #00b386 100%);
+  --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 14px;
   --radius-sm: 10px;
   --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
-  color-scheme: light;
+}
+
+:root,
+:root[data-theme="light"] {
+    --smk-blue: #0b4bd6;
+    --smk-blue-hover: #0a43c2;
+    --smk-blue-soft: rgba(11, 75, 214, 0.09);
+    --smk-green: #00a37a;
+    --smk-green-soft: rgba(0, 179, 134, 0.11);
+    --smk-red: #e0303a;
+    --smk-red-soft: rgba(224, 48, 58, 0.09);
+    --smk-amber: #b25e00;
+
+    --ink: #1d1d1f;
+    --ink-2: #6e6e73;
+    --ink-3: #8e8e93;
+    --line: rgba(60, 60, 67, 0.16);
+    --canvas: #f5f5f7;
+    --surface: #ffffff;
+    --surface-2: #f5f5f7;
+    --elevated: #ffffff;
+    --glass-bg: rgba(250, 250, 252, 0.88);
+    --glass-rim: rgba(255, 255, 255, 0.6);
+    --code-bg: #0d1630;
+    --code-ink: #e6ecf7;
+    color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --smk-blue: #3b7bff;
-    --smk-blue-hover: #5a90ff;
-    --smk-blue-soft: rgba(59, 123, 255, 0.16);
-    --smk-green: #2fd3a3;
-    --smk-green-soft: rgba(47, 211, 163, 0.14);
-    --smk-red: #ff5a6e;
-    --smk-red-soft: rgba(255, 90, 110, 0.14);
+  :root:not([data-theme="light"]) {
+    --smk-blue: #3d7dff;
+    --smk-blue-hover: #5c92ff;
+    --smk-blue-soft: rgba(61, 125, 255, 0.18);
+    --smk-green: #30d6a6;
+    --smk-green-soft: rgba(48, 214, 166, 0.15);
+    --smk-red: #ff4b55;
+    --smk-red-soft: rgba(255, 75, 85, 0.15);
     --smk-amber: #ffb35c;
 
-    --ink: #f2f4f8;
-    --ink-2: rgba(235, 239, 247, 0.68);
-    --ink-3: rgba(235, 239, 247, 0.4);
-    --line: rgba(235, 239, 247, 0.12);
+    --ink: #f5f5f7;
+    --ink-2: #a1a1a6;
+    --ink-3: #6e6e73;
+    --line: rgba(84, 84, 88, 0.6);
     --canvas: #000000;
-    --surface: #14171e;
-    --surface-2: #1c2029;
-    --code-bg: #0b0f18;
+    --surface: #1c1c1e;
+    --surface-2: #2c2c2e;
+    --elevated: #1c1c1e;
+    --glass-bg: rgba(30, 30, 32, 0.84);
+    --glass-rim: rgba(255, 255, 255, 0.08);
+    --code-bg: #0b0f1a;
     color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+    --smk-blue: #3d7dff;
+    --smk-blue-hover: #5c92ff;
+    --smk-blue-soft: rgba(61, 125, 255, 0.18);
+    --smk-green: #30d6a6;
+    --smk-green-soft: rgba(48, 214, 166, 0.15);
+    --smk-red: #ff4b55;
+    --smk-red-soft: rgba(255, 75, 85, 0.15);
+    --smk-amber: #ffb35c;
+
+    --ink: #f5f5f7;
+    --ink-2: #a1a1a6;
+    --ink-3: #6e6e73;
+    --line: rgba(84, 84, 88, 0.6);
+    --canvas: #000000;
+    --surface: #1c1c1e;
+    --surface-2: #2c2c2e;
+    --elevated: #1c1c1e;
+    --glass-bg: rgba(30, 30, 32, 0.84);
+    --glass-rim: rgba(255, 255, 255, 0.08);
+    --code-bg: #0b0f1a;
+    color-scheme: dark;
 }
 
 @theme inline {
@@ -71,9 +109,11 @@
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-elevated: var(--elevated);
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --radius-xl: var(--radius-xl);
   --radius-lg: var(--radius-lg);
   --radius-md: var(--radius-md);
   --radius-sm: var(--radius-sm);
@@ -206,11 +246,194 @@
   }
 
   /* Barre flottante (verre) */
+  /* Liquid Glass — couche fonctionnelle (barres, navigation), jamais pour le contenu */
   .glass {
-    background: color-mix(in srgb, var(--surface) 72%, transparent);
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
-    box-shadow: 0 8px 30px rgba(14, 26, 51, 0.08), inset 0 0 0 0.5px var(--line);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(30px) saturate(190%);
+    backdrop-filter: blur(30px) saturate(190%);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 var(--glass-rim),
+      inset 0 0 0 0.5px var(--line);
+  }
+
+  /* Effet de bord de défilement : le contenu s'estompe sous la barre flottante */
+  .scroll-edge {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 88px;
+    z-index: 30;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--canvas) 70%, transparent), transparent);
+    mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+  }
+
+  /* Barre d'onglets flottante (mobile) */
+  .tabbar {
+    position: fixed;
+    left: 50%;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 40;
+    display: flex;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 999px;
+  }
+  .tabbar a {
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    min-width: 72px;
+    min-height: 50px;
+    padding: 6px 10px 4px;
+    border-radius: 999px;
+    color: var(--ink-2);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tabbar a[aria-current="page"] {
+    color: var(--smk-blue);
+    background: var(--smk-blue-soft);
+  }
+  .tabbar svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Pages marketing : sections pleine largeur alternées clair / noir */
+  .section {
+    padding-block: clamp(72px, 11vw, 140px);
+  }
+  .section-dark {
+    background: #000;
+    color: #f5f5f7;
+    --ink: #f5f5f7;
+    --ink-2: #a1a1a6;
+    --ink-3: #6e6e73;
+    --line: rgba(255, 255, 255, 0.12);
+    --surface: #1d1d1f;
+    --surface-2: #2c2c2e;
+    --smk-blue: #3d7dff;
+    --smk-blue-hover: #5c92ff;
+    --smk-blue-soft: rgba(61, 125, 255, 0.18);
+    --smk-green: #30d6a6;
+    --smk-green-soft: rgba(48, 214, 166, 0.15);
+  }
+  .eyebrow {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink-2);
+  }
+  .t-display {
+    font-size: clamp(2.6rem, 6.6vw, 5rem);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.028em;
+  }
+  .subhead {
+    font-size: clamp(1.1rem, 1.9vw, 1.3rem);
+    line-height: 1.45;
+    color: var(--ink-2);
+    letter-spacing: 0.004em;
+  }
+  .text-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .section-dark .text-gradient {
+    background: linear-gradient(100deg, #5b8fff 0%, #3fa8ff 45%, #3ce0b0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .link-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 44px;
+    color: var(--smk-blue);
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+  .link-more:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Grille bento */
+  .bento {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  @media (min-width: 720px) {
+    .bento {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  .bento > * {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: clamp(24px, 3vw, 36px);
+    overflow: hidden;
+  }
+
+  /* Cadre de téléphone pour présenter l'interface */
+  .device {
+    position: relative;
+    width: min(320px, 82vw);
+    aspect-ratio: 9 / 19.2;
+    border-radius: 52px;
+    padding: 11px;
+    background: linear-gradient(145deg, #2a2d34, #0d0e11);
+    box-shadow:
+      0 50px 100px -30px rgba(11, 75, 214, 0.45),
+      0 30px 60px -30px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.12);
+  }
+  .device-screen {
+    position: relative;
+    height: 100%;
+    border-radius: 42px;
+    overflow: hidden;
+    background: var(--canvas);
+    color: var(--ink);
+  }
+  .device-island {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 28px;
+    border-radius: 999px;
+    background: #000;
+    z-index: 2;
+  }
+
+  /* Animation d'entrée unique de l'accueil (respecte « réduire les animations ») */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .rise {
+    animation: rise 0.9s var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
   }
 
   /* Barre de progression */

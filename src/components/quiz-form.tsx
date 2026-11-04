@@ -81,7 +81,7 @@ export function QuizForm({ quizId, questions }: { quizId: string; questions: Qui
         </fieldset>
       ))}
 
-      <div className="glass sticky bottom-3 z-10 flex flex-col gap-3 rounded-[var(--radius-lg)] p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="glass sticky bottom-[calc(max(14px,env(safe-area-inset-bottom))_+_72px)] z-10 sm:bottom-3 flex flex-col gap-3 rounded-[var(--radius-lg)] p-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-ink-2" aria-live="polite">
           {remaining === 0
             ? "Toutes les questions ont une réponse."
