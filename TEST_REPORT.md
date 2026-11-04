@@ -82,6 +82,17 @@ Compte de test dédié : `e2e@smktech.test` (email confirmé créé directement 
 | Écrans `/admin`, fiche formation, nouvelle formation, éditeur de quiz (desktop, API simulée) | exécuté (captures locales) | ✅ aucun débordement |
 | Enrôlement TOTP réel avec Google/Microsoft Authenticator puis accès `/admin` en production | préparé | 🟡 à faire par le propriétaire (rôle admin à attribuer) |
 
+## Offres, codes promo, accès offerts, paiements (04/11/2026, 22 h)
+
+| Test | Type | Résultat |
+|---|---|---|
+| `supabase/tests/premium_security.sql` : prix en lecture seule hors admin aal2, auto-attribution Premium / faux abonnement / création de code refusés, leçons Premium invisibles en Free, codes personnels réservés, usage unique, cumul des mois, blocage après 10 échecs, accès illimité puis révocation, webhook : faux jeton refusé, idempotence, paiement réel refusé, paiements d'autrui invisibles | exécuté (SQL, transaction annulée) | ✅ 34/34 |
+| Non-régression `security_and_grading.sql` après contrôle Premium | exécuté | ✅ 24/24 |
+| Bug détecté par les tests : journal d'audit des offres (identifiant texte) → migration `20261104221000_fix_plans_audit.sql` | exécuté | ✅ corrigé |
+| Vérification de signature Stripe (valide, contenu modifié, autre clé, rejeu > 5 min, en-tête absent, rotation), refus des clés `sk_live_`, encodage Stripe, formats de prix | exécuté (Vitest) | ✅ 27/27 au total |
+| Écrans Tarifs, Abonnement, admin Offres / Codes promo / Accès / Paiements (mobile, desktop, sombre, API simulée) | exécuté (captures) | ✅ aucun débordement |
+| Paiement Stripe Checkout réel en mode test (carte 4242…), webhook reçu, Premium activé, résiliation via le portail | préparé | 🟡 après configuration des clés de test |
+
 ## Restant à tester
 
 | Scénario | État |

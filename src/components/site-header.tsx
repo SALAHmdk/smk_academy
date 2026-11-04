@@ -26,6 +26,9 @@ export async function SiteHeader() {
             <Link href="/formations" className="rounded-full px-3.5 py-2 text-ink/80 transition-colors hover:text-ink">
               Formations
             </Link>
+            <Link href="/tarifs" className="rounded-full px-3.5 py-2 text-ink/80 transition-colors hover:text-ink">
+              Tarifs
+            </Link>
             {user ? (
               <>
                 <Link href="/tableau-de-bord" className="rounded-full px-3.5 py-2 text-ink/80 transition-colors hover:text-ink">

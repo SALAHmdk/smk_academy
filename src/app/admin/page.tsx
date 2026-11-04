@@ -14,8 +14,18 @@ const ENTITY: Record<string, string> = {
   quiz_answer_keys: "Corrigé",
   categories: "Catégorie",
   profiles: "Profil",
+  plans: "Offre",
+  promo_codes: "Code promo",
+  premium_grants: "Accès Premium",
 };
-const ACTION: Record<string, string> = { INSERT: "Création", UPDATE: "Modification", DELETE: "Suppression" };
+const ACTION: Record<string, string> = {
+  INSERT: "Création",
+  UPDATE: "Modification",
+  DELETE: "Suppression",
+  GRANT: "Attribution",
+  REVOKE: "Révocation",
+  DISABLE: "Désactivation",
+};
 
 export default async function AdminHome({ searchParams }: Props) {
   const { supabase } = await requireAdmin("/admin");
@@ -36,6 +46,7 @@ export default async function AdminHome({ searchParams }: Props) {
 
   const tiles = [
     ["Étudiants", s.students],
+    ["dont Premium", s.premium_students],
     ["Formations publiées", s.courses_published],
     ["Annoncées", s.courses_coming_soon],
     ["Brouillons", s.courses_draft],
@@ -58,7 +69,7 @@ export default async function AdminHome({ searchParams }: Props) {
         </Link>
       </div>
 
-      <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-lg)] bg-line sm:grid-cols-4 lg:grid-cols-7">
+      <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-lg)] bg-line sm:grid-cols-4 lg:grid-cols-8">
         {tiles.map(([label, value]) => (
           <div key={label} className="bg-surface p-4">
             <dt className="text-[13px] text-ink-2">{label}</dt>
@@ -123,6 +134,8 @@ export default async function AdminHome({ searchParams }: Props) {
                   <span className="min-w-0 flex-1">
                     {ACTION[e.action] ?? e.action} · {ENTITY[e.entity] ?? e.entity}
                     {summary.title ? ` « ${summary.title} »` : ""}
+                    {summary.name && !summary.title ? ` « ${summary.name} »` : ""}
+                    {summary.email ? ` pour ${summary.email}` : ""}
                     {summary.old_status && summary.status && summary.old_status !== summary.status ? ` (${summary.old_status} → ${summary.status})` : ""}
                     {summary.old_role && summary.role && summary.old_role !== summary.role ? ` (rôle ${summary.old_role} → ${summary.role})` : ""}
                   </span>

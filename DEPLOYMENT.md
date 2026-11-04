@@ -43,7 +43,22 @@ Le fichier `netlify.toml` fixe la commande (`npm run build`), le dossier publié
 
 HTTPS est fourni automatiquement par Netlify. Les prévisualisations de déploiement (Deploy Previews) sont créées pour chaque pull request.
 
-## 3. Vérification après déploiement
+## 3. Paiements Stripe (mode test)
+
+Tant que ces trois variables manquent, la page Tarifs affiche « Paiement en ligne bientôt disponible » ; les codes promo et les accès offerts fonctionnent déjà.
+
+1. **Stripe (mode test)** : Développeurs → Clés API → copier la clé secrète `sk_test_…`.
+2. **Webhook Stripe** : Développeurs → Webhooks → Ajouter un endpoint `https://smk-academy.netlify.app/api/webhooks/stripe` avec les événements
+   `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed` → copier le secret `whsec_…`.
+3. **Jeton base de données** : générer un jeton aléatoire (`openssl rand -hex 32`), puis enregistrer son empreinte dans Supabase (SQL Editor) :
+   `insert into private.app_secrets (name, sha256_hex) values ('payments_webhook', encode(extensions.digest('<jeton>', 'sha256'), 'hex')) on conflict (name) do update set sha256_hex = excluded.sha256_hex, updated_at = now();`
+4. **Netlify** → Site configuration → Environment variables : `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `PAYMENTS_WEBHOOK_TOKEN` (portée « Functions »), puis redéployer.
+5. **Portail client Stripe** : Paramètres → Billing → Portail client → activer (résiliation, moyens de paiement, factures).
+6. Moyens de paiement : Paramètres → Moyens de paiement (carte, Apple Pay, Google Pay, Link ; PayPal selon l'éligibilité du compte).
+
+Sécurité : signature Stripe vérifiée (HMAC-SHA256, 5 min), événements réels (`livemode`) refusés par l'application ET par la base, idempotence par identifiant d'événement, prix lus en base uniquement.
+
+## 4. Vérification après déploiement
 
 ```bash
 E2E_BASE_URL=https://smk-academy.netlify.app E2E_EMAIL=... E2E_PASSWORD=... npm run e2e

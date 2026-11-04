@@ -6,7 +6,7 @@ import { CourseCover } from "@/components/course-cover";
 import { StatusDot } from "@/components/icons";
 import { formatDuration, formatScore, LEVEL_LABEL, percent } from "@/lib/learning";
 import { getCourseOutline, getUserCourseState, lessonHref, quizHref } from "@/lib/queries";
-import { getCurrentUser } from "@/lib/supabase/server";
+import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,6 +30,10 @@ export default async function CoursePage({ params }: Props) {
         quizzes.map((q) => q.id),
       )
     : null;
+
+  const locked =
+    Boolean(user) && !upcoming && course.is_premium &&
+    !((await (await createClient()).rpc("my_access")).data as { premium?: boolean } | null)?.premium;
 
   const modulePos = new Map(modules.map((m) => [m.id, m.position]));
   const firstLesson = lessons[0];
@@ -114,6 +118,20 @@ export default async function CoursePage({ params }: Props) {
               <Link href={`/inscription?suite=/formations/${slug}`} className="btn btn-primary w-full">
                 Créer un compte pour commencer
               </Link>
+            ) : locked ? (
+              <div>
+                <Link href="/tarifs" className="btn btn-primary w-full">
+                  Débloquer avec SMK Premium
+                </Link>
+                <p className="mt-3 text-sm text-ink-2">
+                  Cette formation fait partie de l&apos;offre Premium, dès 1 € par mois. Vous avez un code promo ?
+                  Saisissez-le dans{" "}
+                  <Link href="/compte/abonnement" className="text-blue">
+                    Mon compte → Abonnement
+                  </Link>
+                  .
+                </p>
+              </div>
             ) : !state?.enrolled ? (
               <form action={enrollInCourse}>
                 <input type="hidden" name="courseId" value={course.id} />

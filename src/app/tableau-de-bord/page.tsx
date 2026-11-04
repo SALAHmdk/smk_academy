@@ -15,8 +15,8 @@ export default async function DashboardPage({ searchParams }: Props) {
   const { mdp } = await searchParams;
 
   const supabase = await createClient();
-  const [{ data: profile }, { data: enrollments }, { data: attempts }, { data: progress }] = await Promise.all([
-    supabase.from("profiles").select("full_name, plan").eq("id", user.id).single(),
+  const [{ data: profile }, { data: enrollments }, { data: attempts }, { data: progress }, { data: accessData }] = await Promise.all([
+    supabase.from("profiles").select("full_name").eq("id", user.id).single(),
     supabase
       .from("enrollments")
       .select("course_id, last_lesson_id, last_activity_at, courses(id, slug, title, categories(name))")
@@ -27,6 +27,7 @@ export default async function DashboardPage({ searchParams }: Props) {
       .order("created_at", { ascending: false })
       .limit(50),
     supabase.from("lesson_progress").select("lesson_id"),
+    supabase.rpc("my_access"),
   ]);
 
   const courseIds = (enrollments ?? []).map((e) => e.course_id);
@@ -78,7 +79,7 @@ export default async function DashboardPage({ searchParams }: Props) {
         <div>
           <h1 className="t-1">{firstName ? `Bonjour ${firstName}` : "Mon tableau de bord"}</h1>
           <p className="mt-2 text-ink-2">
-            Offre {profile?.plan === "premium" ? "SMK Premium" : "SMK Free"}, connecté avec {user.email}
+            Offre {(accessData as { premium?: boolean } | null)?.premium ? "SMK Premium" : "SMK Free"}, connecté avec {user.email}
           </p>
         </div>
       </header>

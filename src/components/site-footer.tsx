@@ -14,6 +14,9 @@ export function SiteFooter() {
             <Link href="/formations" className="hover:text-ink hover:underline">
               Formations
             </Link>
+            <Link href="/tarifs" className="hover:text-ink hover:underline">
+              Tarifs
+            </Link>
             <Link href="/inscription" className="hover:text-ink hover:underline">
               Créer un compte
             </Link>

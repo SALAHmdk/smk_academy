@@ -8,8 +8,8 @@
 | 4 | Administration : rôles, CRUD formations / modules / leçons / quiz depuis l'interface, statistiques réelles, MFA TOTP obligatoire (aal2) | ✅ code + tests SQL ; 🟡 test TOTP réel en production |
 | 4b | Catalogue : 10 catégories, 55 formations (1 publiée, 54 « Bientôt disponible »), recherche et filtres | ✅ |
 | 5 | Formations SQL et Anglais professionnel (5 modules × 3 leçons chacune), puis JavaScript, HTML/CSS, Java… | ⏳ SQL en cours |
-| 6 | Offres Free / Premium configurables, accès Premium vérifié côté serveur | ⏳ |
-| 7 | Stripe (mode test) : Checkout, Billing, webhooks signés et idempotents ; puis PayPal | ⏳ |
+| 6 | Offres Free / Premium configurables (0 €, 1 €/mois, 10 €/an), accès Premium vérifié en base, codes promo, accès offerts | ✅ |
+| 7 | Stripe (mode test) : Checkout, portail client, webhooks signés et idempotents ; puis PayPal | ✅ code + tests ; 🟡 clés de test à configurer |
 | 8 | Design Apple / Liquid Glass, thème, barre d'onglets mobile | ✅ ; PWA hors ligne, attestations PDF ⏳ |
 | 9 | Audit sécurité, tests d'autorisation admin, pages légales (à valider juridiquement) | ⏳ |
 | 10 | Production : SMTP, domaine, monitoring, documentation finale | ⏳ |

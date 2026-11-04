@@ -171,6 +171,100 @@ export type Database = {
           },
         ];
       };
+      payments: {
+        Row: {
+          amount_cents: number;
+          created_at: string;
+          currency: string;
+          id: string;
+          livemode: boolean;
+          plan_id: string | null;
+          provider: string;
+          provider_ref: string;
+          provider_subscription_id: string | null;
+          status: string;
+          user_id: string | null;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      plans: {
+        Row: {
+          billing_interval: string | null;
+          currency: string;
+          features: string[];
+          id: string;
+          is_active: boolean;
+          name: string;
+          position: number;
+          price_cents: number;
+          tagline: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: { name?: string; tagline?: string; price_cents?: number; features?: string[]; is_active?: boolean };
+        Relationships: [];
+      };
+      premium_grants: {
+        Row: {
+          created_at: string;
+          ends_at: string | null;
+          granted_by: string | null;
+          id: string;
+          note: string;
+          promo_code_id: string | null;
+          revoked_at: string | null;
+          source: string;
+          starts_at: string;
+          user_id: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      promo_codes: {
+        Row: {
+          code: string;
+          created_at: string;
+          created_by: string | null;
+          disabled_at: string | null;
+          expires_at: string | null;
+          id: string;
+          max_redemptions: number;
+          months: number | null;
+          note: string;
+          redemptions_count: number;
+          restricted_email: string | null;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      promo_redemptions: {
+        Row: { grant_id: string | null; id: string; promo_code_id: string; redeemed_at: string; user_id: string };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      subscriptions: {
+        Row: {
+          cancel_at_period_end: boolean;
+          created_at: string;
+          current_period_end: string | null;
+          id: string;
+          plan_id: string | null;
+          provider: string;
+          provider_customer_id: string | null;
+          provider_subscription_id: string;
+          status: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
       profiles: {
         Row: { created_at: string; full_name: string; id: string; plan: string; role: string; updated_at: string };
         Insert: never;
@@ -275,6 +369,40 @@ export type Database = {
         Returns: undefined;
       };
       admin_stats: { Args: never; Returns: Json };
+      admin_create_promo_code: {
+        Args: {
+          p_code?: string;
+          p_expires_at: string | null;
+          p_max_redemptions: number;
+          p_months: number | null;
+          p_note: string;
+          p_restricted_email: string | null;
+        };
+        Returns: string;
+      };
+      admin_disable_promo_code: { Args: { p_id: string }; Returns: undefined };
+      admin_grant_premium: { Args: { p_email: string; p_months: number | null; p_note: string }; Returns: string };
+      admin_payments_overview: { Args: never; Returns: Json };
+      admin_premium_members: {
+        Args: never;
+        Returns: {
+          created_at: string;
+          email: string;
+          ends_at: string | null;
+          grant_id: string;
+          note: string;
+          revoked_at: string | null;
+          source: string;
+          starts_at: string;
+        }[];
+      };
+      admin_revoke_premium: { Args: { p_grant_id: string }; Returns: undefined };
+      my_access: { Args: never; Returns: Json };
+      payments_apply_event: {
+        Args: { p_data: Json; p_event_id: string; p_provider: string; p_token: string; p_type: string };
+        Returns: string;
+      };
+      redeem_promo_code: { Args: { p_code: string }; Returns: Json };
       complete_lesson: { Args: { p_lesson_id: string }; Returns: undefined };
       enroll_in_course: { Args: { p_course_id: string }; Returns: undefined };
       my_role: { Args: never; Returns: string };

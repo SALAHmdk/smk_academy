@@ -7,6 +7,7 @@ import { ProfileForm } from "@/components/profile-form";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { getTheme } from "@/lib/theme";
+import type { Access } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Mon compte", robots: { index: false } };
 
@@ -14,10 +15,12 @@ export default async function AccountPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/connexion?suite=/compte");
   const supabase = await createClient();
-  const [{ data: profile }, theme] = await Promise.all([
-    supabase.from("profiles").select("full_name, plan, created_at").eq("id", user.id).single(),
+  const [{ data: profile }, theme, { data: accessData }] = await Promise.all([
+    supabase.from("profiles").select("full_name, created_at").eq("id", user.id).single(),
     getTheme(),
+    supabase.rpc("my_access"),
   ]);
+  const access = (accessData ?? { premium: false }) as Access;
 
   return (
     <div className="mx-auto max-w-2xl px-5 pt-10">
@@ -33,10 +36,13 @@ export default async function AccountPage() {
             <span>Adresse email</span>
             <span className="truncate text-ink-2">{user.email}</span>
           </div>
-          <div className="flex min-h-[52px] items-center justify-between gap-4 px-5 py-3">
-            <span>Offre</span>
-            <span className="text-ink-2">{profile?.plan === "premium" ? "SMK Premium" : "SMK Free"}</span>
-          </div>
+          <Link href="/compte/abonnement" className="flex min-h-[52px] items-center justify-between gap-4 px-5 py-3 hover:bg-surface-2">
+            <span>Offre et abonnement</span>
+            <span className="flex items-center gap-2 text-ink-2">
+              {access.premium ? "SMK Premium" : "SMK Free"}
+              <ChevronIcon className="h-4 w-4 text-ink-3" />
+            </span>
+          </Link>
           {profile?.created_at && (
             <div className="flex min-h-[52px] items-center justify-between gap-4 px-5 py-3">
               <span>Membre depuis</span>
@@ -61,7 +67,7 @@ export default async function AccountPage() {
           <h2 id="admin" className="mb-2 px-1 text-[13px] font-medium text-ink-2">Administration</h2>
           <div className="surface">
             <Link href="/admin" className="flex min-h-[52px] items-center justify-between px-5 py-3 hover:bg-surface-2">
-              <span>Gérer les formations</span>
+              <span>Formations, offres, codes promo et paiements</span>
               <ChevronIcon className="h-4 w-4 text-ink-3" />
             </Link>
           </div>

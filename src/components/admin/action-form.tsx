@@ -11,6 +11,7 @@ export function ActionForm({
   pendingLabel = "Enregistrement…",
   className = "grid gap-5",
   danger = false,
+  subtle = false,
 }: {
   action: (prev: AdminState, form: FormData) => Promise<AdminState>;
   children: ReactNode;
@@ -18,6 +19,7 @@ export function ActionForm({
   pendingLabel?: string;
   className?: string;
   danger?: boolean;
+  subtle?: boolean;
 }) {
   const [state, formAction, pending] = useActionState(action, {});
   return (
@@ -27,7 +29,7 @@ export function ActionForm({
         <button
           type="submit"
           disabled={pending}
-          className={`btn ${danger ? "bg-red text-white hover:opacity-90" : "btn-primary"}`}
+          className={`btn ${danger ? "bg-red text-white hover:opacity-90" : subtle ? "btn-secondary min-h-[36px] px-4 py-1 text-[14px]" : "btn-primary"}`}
         >
           {pending ? pendingLabel : submitLabel}
         </button>
