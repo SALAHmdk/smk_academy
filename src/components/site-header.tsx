@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/supabase/server";
+import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { TabBar } from "@/components/tab-bar";
 
 export async function SiteHeader() {
   const user = await getCurrentUser();
+  const isAdmin = user ? (await (await createClient()).rpc("my_role")).data === "admin" : false;
 
   return (
     <>
@@ -33,6 +34,11 @@ export async function SiteHeader() {
                 <Link href="/compte" className="rounded-full px-3.5 py-2 text-ink/80 transition-colors hover:text-ink">
                   Compte
                 </Link>
+                {isAdmin && (
+                  <Link href="/admin" className="rounded-full px-3.5 py-2 font-medium text-blue">
+                    Administration
+                  </Link>
+                )}
               </>
             ) : (
               <>

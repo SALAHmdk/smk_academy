@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["/tableau-de-bord", "/compte", "/resultats"];
+const PROTECTED_PREFIXES = ["/tableau-de-bord", "/compte", "/resultats", "/admin"];
 
 /** Rafraîchit la session Supabase à chaque requête et protège les espaces privés. */
 export async function proxy(request: NextRequest) {
@@ -38,6 +38,17 @@ export async function proxy(request: NextRequest) {
     url.pathname = "/connexion";
     url.search = `?suite=${encodeURIComponent(pathname + search)}`;
     return NextResponse.redirect(url);
+  }
+
+  // Compte avec double authentification : la session doit être vérifiée (aal2) pour les espaces privés.
+  if (needsAuth && isLoggedIn) {
+    const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (aal?.nextLevel === "aal2" && aal.currentLevel !== "aal2") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/connexion/verification";
+      url.search = `?suite=${encodeURIComponent(pathname + search)}`;
+      return NextResponse.redirect(url);
+    }
   }
 
   return response;

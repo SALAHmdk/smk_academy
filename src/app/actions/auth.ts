@@ -88,7 +88,13 @@ export async function signIn(_prev: FormState, form: FormData): Promise<FormStat
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) return { error: translateAuthError(error.message), fields };
 
-  redirect(safeNextPath(form.get("suite")));
+  const next = safeNextPath(form.get("suite"));
+  // Compte protégé par la double authentification : code TOTP obligatoire avant d'aller plus loin.
+  const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (aal?.nextLevel === "aal2" && aal.currentLevel !== "aal2") {
+    redirect(`/connexion/verification?suite=${encodeURIComponent(next)}`);
+  }
+  redirect(next);
 }
 
 export async function signOut(): Promise<void> {

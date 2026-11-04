@@ -146,7 +146,7 @@ begin
   perform set_config('request.jwt.claims', '{"role":"anon"}', true);
   perform set_config('role', 'anon', true);
   select count(*) into v_count from public.courses;
-  report := report || case when v_count = 3 then 'PASS' else 'FAIL' end || ' visiteur : catalogue visible (' || v_count || ' formations)' || chr(10);
+  report := report || case when v_count >= 3 then 'PASS' else 'FAIL' end || ' visiteur : catalogue visible (' || v_count || ' formations)' || chr(10);
   select count(*) into v_count from public.modules;
   report := report || case when v_count = 5 then 'PASS' else 'FAIL' end || ' visiteur : plan de cours visible' || chr(10);
   begin

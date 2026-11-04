@@ -5,8 +5,9 @@
 | 1 | Architecture, Supabase, authentification, parcours étudiant Python (leçon → quiz /20 → progression) | ✅ code + tests SQL ; 🟡 test de bout en bout après déploiement |
 | 2 | Python modules 3 à 5 (9 leçons, 3 quiz) | ✅ ; examen final ⏳ |
 | 3 | Profil (modification, suppression de compte RGPD), favoris | ⏳ |
-| 4 | Administration : rôles, CRUD formations / modules / leçons / quiz depuis l'interface, statistiques réelles | ⏳ |
-| 5 | Formations SQL et Anglais professionnel (5 modules × 3 leçons chacune) | ⏳ |
+| 4 | Administration : rôles, CRUD formations / modules / leçons / quiz depuis l'interface, statistiques réelles, MFA TOTP obligatoire (aal2) | ✅ code + tests SQL ; 🟡 test TOTP réel en production |
+| 4b | Catalogue : 10 catégories, 55 formations (1 publiée, 54 « Bientôt disponible »), recherche et filtres | ✅ |
+| 5 | Formations SQL et Anglais professionnel (5 modules × 3 leçons chacune), puis JavaScript, HTML/CSS, Java… | ⏳ SQL en cours |
 | 6 | Offres Free / Premium configurables, accès Premium vérifié côté serveur | ⏳ |
 | 7 | Stripe (mode test) : Checkout, Billing, webhooks signés et idempotents ; puis PayPal | ⏳ |
 | 8 | Design Apple / Liquid Glass, thème, barre d'onglets mobile | ✅ ; PWA hors ligne, attestations PDF ⏳ |
@@ -15,7 +16,7 @@
 
 ## Prochaines actions immédiates
 
-1. Créer le site Netlify relié au dépôt (avec l'accord de SMKTECH) et définir les 3 variables d'environnement.
-2. Renseigner Site URL / Redirect URLs dans Supabase Auth.
-3. Exécuter `npm run e2e` contre le site déployé et compléter TEST_REPORT.md.
-4. Examen final Python, puis profil complet (suppression de compte RGPD) et administration.
+1. Propriétaire : `select private.set_role('<email>', 'admin');` dans l'éditeur SQL Supabase, puis activer la double authentification sur `/compte/securite`.
+2. Propriétaire : activer « Leaked password protection » dans Supabase Auth.
+3. Formation SQL complète (5 modules), puis Anglais professionnel.
+4. Mission sécurité : audit défensif, en-têtes CSP/HSTS, CAPTCHA, limitation de débit, documents SECURITY*.md.

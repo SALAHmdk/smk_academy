@@ -72,6 +72,16 @@ Compte de test dédié : `e2e@smktech.test` (email confirmé créé directement 
 | Déconnexion → espace privé de nouveau inaccessible | ✅ |
 | Reconnexion → moyenne 18/20, 1 leçon terminée, 1/15, « Prochaine étape : Variables et types de base », historique daté (heure de Paris) | ✅ |
 
+## Catalogue et administration (04/11/2026, soir)
+
+| Test | Type | Résultat |
+|---|---|---|
+| `supabase/tests/security_and_grading.sql` après migrations catalogue | exécuté (SQL, transaction annulée) | ✅ 24/24 |
+| `supabase/tests/admin_security.sql` : étudiant refusé, admin en aal1 refusé, admin aal2 autorisé, formation/module vides non publiables, question sans corrigé bloquée, validation des corrigés, journal d'audit, brouillons invisibles des étudiants et visiteurs | exécuté (SQL, transaction annulée) | ✅ 18/18 |
+| Typecheck, lint, 16 tests unitaires (dont filtres du catalogue), build | exécuté | ✅ |
+| Écrans `/admin`, fiche formation, nouvelle formation, éditeur de quiz (desktop, API simulée) | exécuté (captures locales) | ✅ aucun débordement |
+| Enrôlement TOTP réel avec Google/Microsoft Authenticator puis accès `/admin` en production | préparé | 🟡 à faire par le propriétaire (rôle admin à attribuer) |
+
 ## Restant à tester
 
 | Scénario | État |

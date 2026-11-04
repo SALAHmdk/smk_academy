@@ -56,9 +56,25 @@ export default async function AccountPage() {
         </div>
       </section>
 
+      {(await supabase.rpc("my_role")).data === "admin" && (
+        <section aria-labelledby="admin" className="mt-8">
+          <h2 id="admin" className="mb-2 px-1 text-[13px] font-medium text-ink-2">Administration</h2>
+          <div className="surface">
+            <Link href="/admin" className="flex min-h-[52px] items-center justify-between px-5 py-3 hover:bg-surface-2">
+              <span>Gérer les formations</span>
+              <ChevronIcon className="h-4 w-4 text-ink-3" />
+            </Link>
+          </div>
+        </section>
+      )}
+
       <section aria-labelledby="securite" className="mt-8">
         <h2 id="securite" className="mb-2 px-1 text-[13px] font-medium text-ink-2">Sécurité</h2>
         <div className="surface divide-y divide-line">
+          <Link href="/compte/securite" className="flex min-h-[52px] items-center justify-between px-5 py-3 hover:bg-surface-2">
+            <span>Double authentification</span>
+            <ChevronIcon className="h-4 w-4 text-ink-3" />
+          </Link>
           <Link href="/compte/nouveau-mot-de-passe" className="flex min-h-[52px] items-center justify-between px-5 py-3 hover:bg-surface-2">
             <span>Changer de mot de passe</span>
             <ChevronIcon className="h-4 w-4 text-ink-3" />
