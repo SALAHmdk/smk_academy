@@ -1,4 +1,4 @@
-# Rapport de tests — jalon 1 (04/11/2026)
+# Rapport de tests — jalons 1 et 2 (04/11/2026)
 
 Légende : ✅ exécuté et réussi · 🟡 préparé, pas encore exécuté · ❌ non couvert
 
@@ -28,7 +28,10 @@ Légende : ✅ exécuté et réussi · 🟡 préparé, pas encore exécuté · �
 | Un étudiant B ne voit ni les notes, ni la progression, ni le profil de A | ✅ ✅ ✅ |
 | Visiteur : catalogue et plan visibles, leçons et quiz refusés | ✅ ✅ ✅ ✅ |
 
-Intégrité du contenu : empreintes MD5 des 6 leçons identiques entre le dépôt et la base ✅.
+Intégrité du contenu : empreintes MD5 des **15 leçons** identiques entre le dépôt et la base ✅.
+Contenu : 5 modules publiés × 3 leçons, 5 quiz × 10 questions, 50 corrigés en base ✅.
+Notation des 5 quiz avec toutes les bonnes réponses : 20/20 pour chacun ✅.
+Code pédagogique des modules 3 à 5 : les **75 blocs** (exemples + corrections) exécutés avec Python 3 sans erreur inattendue ✅ (saisies simulées ; les blocs qui illustrent volontairement une erreur la produisent bien).
 Advisor sécurité Supabase : seules alertes = les 4 RPC volontairement ouvertes aux connectés + `rls_auto_enable` (déclencheur d'événement Supabase, non appelable via l'API).
 
 ## Application
@@ -42,7 +45,9 @@ Advisor sécurité Supabase : seules alertes = les 4 RPC volontairement ouvertes
 | Redirection vers /connexion : tableau de bord, leçons, résultats | ✅ |
 | 404 personnalisée | ✅ |
 | En-têtes de sécurité | ✅ |
-| Captures Chrome headless 390 px et 1366 px, clair et sombre : accueil, catalogue, formation, inscription, connexion — **aucun débordement horizontal** | ✅ (données de catalogue simulées localement) |
+| Captures Chrome headless 393 px et 1366 px, clair et sombre : accueil, catalogue, formation, inscription, connexion — **aucun débordement horizontal** | ✅ (API Supabase simulée localement avec le vrai contenu) |
+| Pages connectées (tableau de bord, formation, leçon, quiz, résultat, compte) en 393 px et 1366 px, clair et sombre, avec une session simulée | ✅ aucun débordement ; barre d'onglets et barre de validation du quiz vérifiées |
+| Flou « Liquid Glass » effectivement appliqué (style calculé `backdrop-filter`) | ✅ après correction de l'ordre des déclarations |
 
 ## Parcours étudiant complet contre Supabase réel
 
@@ -55,5 +60,5 @@ L'environnement de développement de Claude ne peut pas joindre `*.supabase.co` 
 | Lecture d'une leçon, correction repliable | 🟡 |
 | Quiz → note /20 → correction | 🟡 (logique ✅ en SQL) |
 | Récupération de la progression après reconnexion | 🟡 (logique ✅ en SQL) |
-| Affichage mobile des pages connectées (leçon, quiz, résultats, tableau de bord) | 🟡 |
+| Affichage mobile des pages connectées sur le site déployé | 🟡 (vérifié localement ✅) |
 | Administration, Premium, paiements | ❌ jalons suivants |

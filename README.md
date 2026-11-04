@@ -4,7 +4,7 @@
 
 Plateforme de formation en ligne de SMKTECH : comptes étudiants, catalogue, leçons avec exercices corrigés, quiz notés sur 20 et progression enregistrée.
 
-## État actuel — jalon 1
+## État actuel — jalons 1 et 2
 
 | Fonctionnalité | État |
 |---|---|
@@ -12,8 +12,9 @@ Plateforme de formation en ligne de SMKTECH : comptes étudiants, catalogue, le�
 | Inscription, confirmation d'email, connexion, déconnexion | ✅ |
 | Mot de passe oublié / nouveau mot de passe | ✅ |
 | Catalogue (disponibles / à venir) | ✅ |
-| Formation Python : modules 1 et 2 publiés (6 leçons, 12 exercices corrigés, 2 quiz) | ✅ |
-| Modules 3 à 5 de Python | ⏳ affichés « En préparation » |
+| Formation Python complète : 5 modules, 15 leçons, 30 exercices corrigés, 5 quiz notés sur 20 | ✅ |
+| Design Apple / Liquid Glass aux couleurs SMKTECH, thème clair / sombre / automatique | ✅ |
+| Page « Mon compte » (nom, apparence, mot de passe, déconnexion) | ✅ |
 | Quiz noté sur 20, correction détaillée, historique | ✅ (note calculée en base) |
 | Progression et reprise (« Reprendre ma formation ») | ✅ |
 | Tableau de bord étudiant | ✅ |

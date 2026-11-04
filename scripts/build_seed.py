@@ -85,16 +85,23 @@ def emit(out, rows):
 
 
 def main() -> None:
+    # Option : --modules 3,4,5 pour ne générer que certains modules (sans les cours).
+    only = None
+    if "--modules" in sys.argv:
+        only = {int(x) for x in sys.argv[sys.argv.index("--modules") + 1].split(",")}
     content = load_content()
     out = ["-- Généré par scripts/build_seed.py — ne pas modifier à la main."]
     rows = {k: [] for k in TABLES}
 
     for c in [content.COURSE, *content.OTHER_COURSES]:
-        out.append(course_sql(c))
+        if only is None or c is content.COURSE:
+            out.append(course_sql(c))
 
     slug = content.COURSE["slug"]
     cid = uid("course", slug)
     for m in content.MODULES:
+        if only is not None and m["position"] not in only:
+            continue
         mid = uid("module", slug, m["position"])
         rows["modules"].append(f"'{mid}', '{cid}', {lit(m['title'])}, {lit(m['description'])}, {m['position']}, {lit(m['status'])}")
         for pos, (lslug, title, summary, md, minutes) in enumerate(m["lessons"], start=1):

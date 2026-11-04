@@ -20,7 +20,7 @@ COURSE = {
     ),
     "category": "Programmation",
     "level": "debutant",
-    "duration_minutes": 600,
+    "duration_minutes": 660,
     "objectives": [
         "Écrire et exécuter un programme Python",
         "Manipuler variables, types et conversions",
@@ -843,6 +843,14 @@ print(f"Nombre de voyelles : {voyelles}")
 > L'opérateur `in` teste si un caractère appartient à une chaîne : `"a" in "aeiouy"` vaut `True`.
 """
 
+# Modules 3 à 5 : contenu dans un fichier séparé pour rester lisible.
+import importlib.util as _ilu
+from pathlib import Path as _Path
+
+_spec = _ilu.spec_from_file_location("python_debutant_m3_m5", _Path(__file__).with_name("python_debutant_m3_m5.py"))
+_m35 = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_m35)
+
 # Quiz : (kind, prompt, code, [options], [indices des bonnes réponses], explication)
 QUIZ_M1 = [
     ("single", "Qu'affiche ce programme ?", 'print("2" + "3")',
@@ -944,13 +952,45 @@ MODULES = [
         ],
         "quiz": ("Quiz — Conditions et boucles", QUIZ_M2),
     },
-    {"position": 3, "title": "Listes, tuples et dictionnaires",
-     "description": "Stocker et manipuler des collections de données.", "status": "coming_soon",
-     "lessons": [], "quiz": None},
-    {"position": 4, "title": "Les fonctions",
-     "description": "Découper un programme en blocs réutilisables.", "status": "coming_soon",
-     "lessons": [], "quiz": None},
-    {"position": 5, "title": "Fichiers, erreurs et mini-projet",
-     "description": "Lire et écrire des fichiers, gérer les exceptions, réaliser un projet complet.",
-     "status": "coming_soon", "lessons": [], "quiz": None},
+    {
+        "position": 3,
+        "title": "Listes, tuples et dictionnaires",
+        "description": "Stocker et manipuler des collections de données.",
+        "status": "published",
+        "lessons": [
+            ("listes", "Les listes", "Créer, lire, modifier et parcourir une liste.", _m35.M3_L1, 25),
+            ("tuples-et-sequences", "Tuples et parcours de séquences",
+             "Tuples, déballage, enumerate(), zip(), split() et join().", _m35.M3_L2, 25),
+            ("dictionnaires", "Les dictionnaires", "Associer des clés à des valeurs, compter, combiner.", _m35.M3_L3, 25),
+        ],
+        "quiz": ("Quiz — Listes, tuples et dictionnaires", _m35.QUIZ_M3),
+    },
+    {
+        "position": 4,
+        "title": "Les fonctions",
+        "description": "Découper un programme en blocs réutilisables.",
+        "status": "published",
+        "lessons": [
+            ("definir-une-fonction", "Définir et appeler une fonction", "def, paramètres et return.", _m35.M4_L1, 25),
+            ("parametres-et-portee", "Paramètres, portée et documentation",
+             "Valeurs par défaut, arguments nommés, variables locales, docstrings.", _m35.M4_L2, 25),
+            ("modules-et-decomposition", "Modules et découpage d'un programme",
+             "import, math, random, fonctions courtes et tests avec assert.", _m35.M4_L3, 30),
+        ],
+        "quiz": ("Quiz — Les fonctions", _m35.QUIZ_M4),
+    },
+    {
+        "position": 5,
+        "title": "Fichiers, erreurs et mini-projet",
+        "description": "Lire et écrire des fichiers, gérer les exceptions, réaliser un projet complet.",
+        "status": "published",
+        "lessons": [
+            ("gerer-les-erreurs", "Gérer les erreurs", "try, except, else, finally et raise.", _m35.M5_L1, 25),
+            ("lire-et-ecrire-des-fichiers", "Lire et écrire des fichiers",
+             "open, with, modes r/w/a, lecture ligne par ligne.", _m35.M5_L2, 25),
+            ("mini-projet-carnet-de-notes", "Mini-projet : un carnet de notes",
+             "Assembler toute la formation dans un programme complet.", _m35.M5_L3, 45),
+        ],
+        "quiz": ("Quiz — Fichiers et erreurs", _m35.QUIZ_M5),
+    },
 ]

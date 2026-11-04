@@ -83,4 +83,13 @@ Une question rapporte tous ses points si l'ensemble des options cochées est exa
 
 ## Design system
 
-Couleurs issues du logo SMKTECH : bleu `#0B4BD6` réservé aux éléments interactifs, vert `#00A87E` réservé aux réussites (leçon terminée, quiz validé). Police système Apple (SF) avec Inter en repli. Boutons capsules ≥ 44 px, barre de navigation flottante translucide, mode sombre sur fond noir. Jetons dans `src/app/globals.css` (`@layer components`).
+Structure et retenue des Human Interface Guidelines d'Apple (Liquid Glass, 2025-2026), identité SMKTECH :
+
+- **Couleurs** : neutres Apple (`#f5f5f7` fond, `#1d1d1f` texte ; sombre : `#000` fond, `#1c1c1e` surfaces, `#f5f5f7` texte). Le bleu du logo `#0B4BD6` est la seule teinte d'interaction ; le vert du logo `#00A37A` est réservé aux réussites. Dégradé bleu → vert du logo pour un seul titre signature par page marketing.
+- **Typographie** : police système SF (Inter en repli), titres à resserrement progressif (−0,028 em en très grand).
+- **Couche fonctionnelle en verre** : navigation en capsule flottante, barre d'onglets flottante sur mobile (Accueil, Formations, Progression, Compte), effet de bord de défilement. Le verre n'est jamais utilisé pour le contenu.
+- **Pages marketing** : sections centrées alternant clair et noir pur, visuel produit dans un cadre de téléphone, grille bento, une seule animation d'entrée (désactivée si « réduire les animations »).
+- **Composants** : boutons capsules ≥ 44 px (pression = légère réduction), listes groupées façon Réglages, commande segmentée pour le thème.
+- **Thème** : automatique (système), clair ou sombre, choisi dans « Mon compte ».
+
+Jetons et composants dans `src/app/globals.css` (`@layer components`).

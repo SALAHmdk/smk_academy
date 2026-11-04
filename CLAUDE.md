@@ -19,6 +19,9 @@ Plateforme e-learning de SMKTECH. Dépôt unique : `SALAHmdk/smk_academy` (ne ja
 - Nouvelle table : RLS + `revoke all` + grants explicites (les privilèges par défaut sont révoqués). Politiques avec `(select auth.uid())`, index sur les colonnes filtrées.
 - Après une migration : régénérer `src/lib/database.types.ts`, lancer l'advisor sécurité Supabase et `supabase/tests/security_and_grading.sql`.
 - CSS : jetons et classes de composants dans `@layer components` de `globals.css` (sinon ils écrasent les utilitaires Tailwind). Bleu = interactif, vert = réussite uniquement.
+- Lightning CSS ne garde que la dernière déclaration d'une paire préfixée : écrire `-webkit-backdrop-filter` AVANT `backdrop-filter`.
+- Thème : cookie `smk-theme` (light/dark) → `<html data-theme>` ; absent = système.
+- Nouveau contenu : `python3 scripts/build_seed.py --modules N` génère une migration ne contenant que ce module ; ne jamais réécrire une migration déjà appliquée.
 - Contenu : `content/*.py` → `scripts/build_seed.py` (UUID v5 déterministes, upserts idempotents).
 - Vérifier avant de livrer : `npm run typecheck && npm run lint && npm test && npm run build`.
 
@@ -30,4 +33,7 @@ Plateforme e-learning de SMKTECH. Dépôt unique : `SALAHmdk/smk_academy` (ne ja
 
 ## État et suite
 
-Voir ROADMAP.md (jalon 1 livré) et TEST_REPORT.md. Prochaine étape : site Netlify + configuration Auth Supabase, puis test de bout en bout, puis modules 3 à 5 de Python.
+Voir ROADMAP.md (jalons 1 et 2 livrés : parcours étudiant + formation Python complète, design Apple) et TEST_REPORT.md.
+Prochaine étape : site Netlify (création via API refusée en 429 le 04/11 : import manuel depuis l'interface) + configuration Auth Supabase, puis test de bout en bout, puis examen final Python et administration.
+
+Captures locales : `python3 mock_supabase.py <repo>` (API simulée) + `next dev` avec `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321`, session simulée par un cookie `sb-127-auth-token` contenant un JWT HS256 factice (voir l'historique de session).
