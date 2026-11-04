@@ -23,6 +23,7 @@ Plateforme e-learning de SMKTECH. Dépôt unique : `SALAHmdk/smk_academy` (ne ja
 - Thème : cookie `smk-theme` (light/dark) → `<html data-theme>` ; absent = système.
 - Nouveau contenu : `python3 scripts/build_seed.py --modules N` génère une migration ne contenant que ce module ; ne jamais réécrire une migration déjà appliquée.
 - Contenu : `content/*.py` → `scripts/build_seed.py` (UUID v5 déterministes, upserts idempotents).
+- Dépendances : n'installer que des versions publiées depuis au moins une semaine (`npm install --before=<date>`). Le registre utilisé par Netlify n'avait pas encore les versions de la veille (échec ETARGET du 04/11 sur is-core-module@2.18.0). Chaque entrée du package-lock.json doit avoir `resolved` et `integrity`.
 - Vérifier avant de livrer : `npm run typecheck && npm run lint && npm test && npm run build`.
 
 ## Environnement Claude
