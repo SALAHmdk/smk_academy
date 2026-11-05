@@ -2,7 +2,7 @@
 # Ne pas épingler @netlify/plugin-nextjs : Netlify le met à jour à chaque build.
 
 [build]
-  command = "npm run build"
+  command = "npm run build && node scripts/import_content.mjs"
   publish = ".next"
 
 [build.environment]
@@ -14,3 +14,4 @@
 #   NEXT_PUBLIC_SUPABASE_URL
 #   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 #   NEXT_PUBLIC_SITE_URL   (URL publique du site, ex. https://smk-academy.netlify.app)
+#   CONTENT_IMPORT_TOKEN   (secret, portée « Builds » : import automatique des formations de content/build)

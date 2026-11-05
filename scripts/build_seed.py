@@ -95,7 +95,57 @@ def emit(out, rows):
             out.append(f"insert into {table} ({cols}) values\n{values}\non conflict ({pk}) do update set {updates};\n")
 
 
+def payload(content) -> dict:
+    """Contenu complet d'une formation pour la RPC content_import_course (identifiants déterministes)."""
+    c = content.COURSE
+    slug = c["slug"]
+    modules = []
+    for m in content.MODULES:
+        mid = uid("module", slug, m["position"])
+        mod = {
+            "id": mid, "position": m["position"], "title": m["title"], "description": m["description"],
+            "status": m["status"],
+            "lessons": [
+                {"id": uid("lesson", slug, m["position"], lslug), "slug": lslug, "title": title, "summary": summary,
+                 "content_md": md.strip(), "duration_minutes": minutes, "position": pos}
+                for pos, (lslug, title, summary, md, minutes) in enumerate(m["lessons"], start=1)
+            ],
+        }
+        if m["quiz"]:
+            qtitle, questions = m["quiz"]
+            qs = []
+            for qpos, (kind, prompt, code, options, correct, explanation) in enumerate(questions, start=1):
+                assert correct and all(0 <= i < len(options) for i in correct), prompt
+                if kind != "multiple":
+                    assert len(correct) == 1, prompt
+                oids = [uid("option", slug, m["position"], qpos, opos) for opos in range(1, len(options) + 1)]
+                qs.append({
+                    "id": uid("question", slug, m["position"], qpos), "position": qpos, "kind": kind, "prompt": prompt,
+                    "code": code, "points": POINTS_PER_QUESTION,
+                    "options": [{"id": oid, "position": i + 1, "label": lab} for i, (oid, lab) in enumerate(zip(oids, options))],
+                    "correct": [oids[i] for i in correct], "explanation": explanation,
+                })
+            mod["quiz"] = {"id": uid("quiz", slug, m["position"]), "title": qtitle, "pass_mark": 10, "questions": qs}
+        modules.append(mod)
+    course = {k: c[k] for k in ("slug", "title", "subtitle", "description", "level", "duration_minutes",
+                                "objectives", "prerequisites", "is_premium", "position", "status")}
+    course.update(id=uid("course", slug), category_slug=c.get("category_slug") or CATEGORY_SLUGS[c["category"]],
+                  topic=c.get("topic", ""), cover_label=c.get("cover_label", ""))
+    return {"course": course, "modules": modules}
+
+
 def main() -> None:
+    if "--json" in sys.argv:
+        # --json : écrit content/build/<slug>.json, importé automatiquement au build Netlify.
+        import json
+        content = load_content()
+        data = payload(content)
+        out_dir = ROOT / "content" / "build"
+        out_dir.mkdir(exist_ok=True)
+        path = out_dir / f"{data['course']['slug']}.json"
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"{path.relative_to(ROOT)} : {len(data['modules'])} modules")
+        return
     # Option : --modules 3,4,5 pour ne générer que certains modules (sans les cours).
     only = None
     if "--modules" in sys.argv:

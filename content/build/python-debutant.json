@@ -1,0 +1,1853 @@
+{
+ "course": {
+  "slug": "python-debutant",
+  "title": "Python pour débutants",
+  "subtitle": "Écrivez vos premiers programmes, pas à pas.",
+  "description": "Une formation progressive pour apprendre à programmer avec Python, même sans aucune expérience. Chaque leçon combine explications, exemples de code commentés et exercices corrigés, puis un quiz noté sur 20 valide chaque module.",
+  "level": "debutant",
+  "duration_minutes": 660,
+  "objectives": [
+   "Écrire et exécuter un programme Python",
+   "Manipuler variables, types et conversions",
+   "Contrôler le déroulement d'un programme avec conditions et boucles",
+   "Organiser son code avec des fonctions",
+   "Lire et écrire des fichiers, gérer les erreurs"
+  ],
+  "prerequisites": [
+   "Savoir utiliser un ordinateur et un navigateur",
+   "Aucune connaissance en programmation n'est nécessaire"
+  ],
+  "is_premium": false,
+  "position": 1,
+  "status": "published",
+  "id": "70e1705f-341c-5c47-9fa2-bddb767d9e42",
+  "category_slug": "programmation",
+  "topic": "Python",
+  "cover_label": "Py"
+ },
+ "modules": [
+  {
+   "id": "e1d20424-2dff-5ca2-9e45-9c8a022c80e3",
+   "position": 1,
+   "title": "Premiers pas avec Python",
+   "description": "Écrire et exécuter un programme, utiliser variables, types et opérations.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "32ccfaee-b4c9-537b-ae27-01b54d7c1d0e",
+     "slug": "decouvrir-python",
+     "title": "Découvrir Python et écrire son premier programme",
+     "summary": "print(), commentaires et lecture des messages d'erreur.",
+     "content_md": "## Pourquoi Python ?\n\nPython est un langage de programmation conçu pour être **lisible**. Son code ressemble presque à de l'anglais, ce qui en fait le langage idéal pour débuter. Il est pourtant utilisé par des professionnels partout : sites web, analyse de données, intelligence artificielle, automatisation de tâches, scripts d'administration…\n\nUn **programme** est une suite d'instructions que l'ordinateur exécute dans l'ordre, de haut en bas. Le rôle de Python est de traduire ces instructions, écrites par un humain, en actions que la machine sait réaliser. On dit que Python est un langage **interprété** : vous écrivez le code, l'interpréteur Python le lit et l'exécute immédiatement, ligne après ligne.\n\n## Où écrire du Python ?\n\nTrois options s'offrent à vous :\n\n1. **En ligne**, sans rien installer : des sites comme *Python Tutor* ou *Replit* exécutent votre code dans le navigateur. C'est parfait pour ce cours.\n2. **Sur votre ordinateur** : téléchargez Python depuis `python.org` (version 3.12 ou plus récente), puis lancez `python` (ou `python3` sur macOS/Linux) dans un terminal.\n3. **Dans un éditeur** comme VS Code, qui colore le code et signale les erreurs.\n\n> Assurez-vous d'utiliser **Python 3**. Python 2 n'est plus maintenu depuis 2020.\n\n## Votre premier programme\n\nLa fonction `print()` affiche du texte à l'écran. Le texte à afficher est placé entre guillemets : on appelle cela une **chaîne de caractères**.\n\n```python\nprint(\"Bonjour, SMK Academy !\")\n```\n\nRésultat :\n\n```text\nBonjour, SMK Academy !\n```\n\nVous pouvez afficher plusieurs éléments en les séparant par des virgules. Python insère alors un espace entre eux :\n\n```python\nprint(\"J'apprends\", \"Python\", \"depuis\", 1, \"jour\")\n# Affiche : J'apprends Python depuis 1 jour\n```\n\nChaque appel à `print()` passe à la ligne suivante :\n\n```python\nprint(\"Ligne 1\")\nprint(\"Ligne 2\")\n```\n\n## Les commentaires\n\nTout ce qui suit le symbole `#` sur une ligne est un **commentaire** : Python l'ignore. Les commentaires servent à expliquer votre code aux humains, y compris à vous-même dans trois mois.\n\n```python\n# Ce programme salue l'utilisateur\nprint(\"Salut !\")  # un commentaire peut aussi suivre une instruction\n```\n\n## Lire un message d'erreur\n\nFaire des erreurs est normal : c'est même ainsi qu'on apprend. Si vous oubliez un guillemet, Python s'arrête et affiche un message :\n\n```python\nprint(\"Bonjour)\n```\n\n```text\nSyntaxError: unterminated string literal (detected at line 1)\n```\n\nPrenez l'habitude de **lire la dernière ligne** du message : elle indique le type d'erreur (`SyntaxError`, erreur de syntaxe) et souvent la ligne concernée. Ici, Python signale une chaîne de caractères qui n'a jamais été fermée.\n\nAutre erreur fréquente : les majuscules. Python est **sensible à la casse** : `Print` et `print` sont deux noms différents.\n\n```python\nPrint(\"Bonjour\")\n# NameError: name 'Print' is not defined\n```\n\n## À retenir\n\n- Un programme est une suite d'instructions exécutées de haut en bas.\n- `print()` affiche des valeurs ; le texte s'écrit entre guillemets.\n- `#` introduit un commentaire ignoré par Python.\n- Lisez la dernière ligne d'un message d'erreur : elle donne le type et la cause du problème.\n\n## Exercices\n\n### Exercice 1 — Carte de visite\n\nÉcrivez un programme qui affiche sur trois lignes votre prénom, la ville où vous habitez et la phrase `J'apprends Python avec SMK Academy`.\n\n```solution\nprint(\"Prénom : Salah\")\nprint(\"Ville : Paris\")\nprint(\"J'apprends Python avec SMK Academy\")\n```\n\n### Exercice 2 — Chasse aux erreurs\n\nLe programme suivant contient trois erreurs. Trouvez-les et corrigez-les.\n\n```python\nprint(\"Début du programme)\nPrint(\"Python est lisible\")\nprint(\"Fin du programme\"\n```\n\n```solution\nprint(\"Début du programme\")   # guillemet fermant manquant\nprint(\"Python est lisible\")   # print s'écrit en minuscules\nprint(\"Fin du programme\")     # parenthèse fermante manquante\n```",
+     "duration_minutes": 20,
+     "position": 1
+    },
+    {
+     "id": "f6b4b5e5-3d39-5ac8-bfeb-5aeceb467c69",
+     "slug": "variables-et-types",
+     "title": "Variables et types de base",
+     "summary": "Stocker des valeurs, bien les nommer, connaître int, float, str et bool.",
+     "content_md": "## Qu'est-ce qu'une variable ?\n\nUne **variable** est un nom qui désigne une valeur stockée en mémoire. Imaginez une étiquette collée sur une boîte : l'étiquette est le nom, le contenu de la boîte est la valeur.\n\nOn crée une variable avec le signe `=`, appelé **opérateur d'affectation** :\n\n```python\nage = 25\nprenom = \"Amina\"\nprint(prenom, \"a\", age, \"ans\")\n# Affiche : Amina a 25 ans\n```\n\nAttention : en Python, `=` ne signifie pas « est égal à » comme en mathématiques. Il signifie « **range la valeur de droite dans le nom de gauche** ». C'est pourquoi on peut écrire :\n\n```python\nscore = 10\nscore = score + 5   # on calcule score + 5, puis on range le résultat dans score\nprint(score)        # 15\n```\n\nUne variable peut changer de valeur au cours du programme : c'est pour cela qu'on l'appelle *variable*.\n\n## Bien nommer ses variables\n\nRègles obligatoires :\n\n- un nom contient des lettres, des chiffres et le caractère `_` ;\n- il ne commence **pas** par un chiffre ;\n- il ne peut pas être un mot réservé de Python (`if`, `for`, `class`…).\n\nConventions recommandées :\n\n- écrivez en minuscules et séparez les mots par `_` : `prix_total`, `nombre_eleves` (style *snake_case*) ;\n- choisissez des noms **explicites** : `prix_ttc` est bien plus clair que `p` ou `x2`.\n\n```python\nnombre_de_lecons = 15    # correct et lisible\n2eme_essai = 3           # SyntaxError : commence par un chiffre\n```\n\n## Les quatre types de base\n\nChaque valeur a un **type**, qui détermine ce qu'on peut faire avec elle.\n\n| Type | Nom | Exemples |\n|------|-----|----------|\n| `int` | nombre entier | `42`, `-7`, `0` |\n| `float` | nombre décimal | `3.14`, `-0.5`, `2.0` |\n| `str` | chaîne de caractères | `\"Python\"`, `'Bonjour'` |\n| `bool` | booléen | `True`, `False` |\n\nNotez que les nombres décimaux s'écrivent avec un **point**, pas une virgule : `3.14` et non `3,14`.\n\nLa fonction `type()` indique le type d'une valeur :\n\n```python\nprint(type(42))        # <class 'int'>\nprint(type(3.14))      # <class 'float'>\nprint(type(\"42\"))      # <class 'str'>  — entre guillemets, c'est du texte !\nprint(type(True))      # <class 'bool'>\n```\n\n`42` et `\"42\"` sont deux valeurs très différentes : la première est un nombre, la seconde un texte composé des caractères `4` et `2`.\n\n## Le type détermine les opérations possibles\n\n```python\nprint(10 + 5)          # 15     : addition de nombres\nprint(\"10\" + \"5\")      # 105    : concaténation (mise bout à bout) de textes\nprint(\"ha\" * 3)        # hahaha : répétition d'un texte\n```\n\nMélanger un texte et un nombre dans une addition provoque une erreur :\n\n```python\nprint(\"Âge : \" + 25)\n# TypeError: can only concatenate str (not \"int\") to str\n```\n\nNous verrons à la leçon suivante comment convertir une valeur d'un type à l'autre pour résoudre ce problème.\n\n## Les booléens\n\nUn booléen ne peut valoir que `True` (vrai) ou `False` (faux), avec une majuscule. Ils servent à représenter une réponse oui/non et seront essentiels pour les conditions du module 2.\n\n```python\nest_connecte = True\na_reussi_quiz = False\nprint(est_connecte)    # True\n```\n\n## À retenir\n\n- `nom = valeur` range une valeur dans une variable ; la valeur peut changer ensuite.\n- Noms en *snake_case*, explicites, sans chiffre au début.\n- Quatre types de base : `int`, `float`, `str`, `bool`.\n- `type()` révèle le type ; `\"42\"` (texte) n'est pas `42` (nombre).\n\n## Exercices\n\n### Exercice 1 — Fiche étudiant\n\nCréez les variables `nom` (texte), `annee_naissance` (entier), `moyenne` (décimal) et `est_inscrit` (booléen), puis affichez chacune avec son type.\n\n```solution\nnom = \"Yanis\"\nannee_naissance = 2003\nmoyenne = 14.5\nest_inscrit = True\n\nprint(nom, type(nom))\nprint(annee_naissance, type(annee_naissance))\nprint(moyenne, type(moyenne))\nprint(est_inscrit, type(est_inscrit))\n```\n\n### Exercice 2 — Échanger deux valeurs\n\nOn a `a = 3` et `b = 8`. Écrivez le code qui échange leurs valeurs pour obtenir `a = 8` et `b = 3`, d'abord avec une variable intermédiaire, puis avec la syntaxe Python `a, b = b, a`.\n\n```solution\na = 3\nb = 8\n\n# Méthode 1 : variable intermédiaire\ntemp = a\na = b\nb = temp\nprint(a, b)   # 8 3\n\n# Méthode 2 : affectation multiple (propre à Python)\na, b = b, a\nprint(a, b)   # 3 8 (on a ré-échangé)\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "6298a8c4-3b27-5772-b528-3b4307a17ff0",
+     "slug": "saisie-conversions-operations",
+     "title": "Saisie, conversions et opérations",
+     "summary": "input(), conversions de types, opérateurs arithmétiques et f-strings.",
+     "content_md": "## Demander une information : input()\n\n`input()` affiche un message, attend que l'utilisateur tape quelque chose puis appuie sur Entrée, et **renvoie le texte saisi**.\n\n```python\nprenom = input(\"Comment vous appelez-vous ? \")\nprint(\"Enchanté,\", prenom)\n```\n\nPoint essentiel : `input()` renvoie **toujours une chaîne de caractères** (`str`), même si l'utilisateur tape un nombre.\n\n```python\nage = input(\"Votre âge ? \")   # l'utilisateur tape 20\nprint(type(age))              # <class 'str'>\nprint(age + 1)                # TypeError !\n```\n\n## Convertir entre les types\n\nPour transformer une valeur, on utilise le nom du type comme une fonction :\n\n| Fonction | Convertit en | Exemple | Résultat |\n|----------|--------------|---------|----------|\n| `int()` | entier | `int(\"20\")` | `20` |\n| `float()` | décimal | `float(\"3.5\")` | `3.5` |\n| `str()` | texte | `str(42)` | `\"42\"` |\n\n```python\nage = int(input(\"Votre âge ? \"))   # on convertit directement la saisie\nprint(\"L'an prochain, vous aurez\", age + 1, \"ans\")\n```\n\nSi la conversion est impossible, Python lève une erreur :\n\n```python\nint(\"vingt\")\n# ValueError: invalid literal for int() with base 10: 'vingt'\n```\n\n`int()` appliqué à un décimal **tronque** (supprime la partie décimale) sans arrondir : `int(7.9)` vaut `7`.\n\n## Les opérateurs arithmétiques\n\n| Opérateur | Rôle | Exemple | Résultat |\n|-----------|------|---------|----------|\n| `+` | addition | `7 + 2` | `9` |\n| `-` | soustraction | `7 - 2` | `5` |\n| `*` | multiplication | `7 * 2` | `14` |\n| `/` | division | `7 / 2` | `3.5` |\n| `//` | division entière | `7 // 2` | `3` |\n| `%` | reste (modulo) | `7 % 2` | `1` |\n| `**` | puissance | `7 ** 2` | `49` |\n\nQuelques remarques :\n\n- `/` renvoie **toujours** un `float` : `8 / 2` vaut `4.0`.\n- `//` et `%` vont ensemble : 7 = 2 × **3** + **1**.\n- `%` est très utile pour savoir si un nombre est pair : `n % 2` vaut `0` pour un nombre pair.\n- Les priorités sont celles des mathématiques ; utilisez des parenthèses en cas de doute : `(2 + 3) * 4` vaut `20`.\n\n```python\nminutes_totales = 135\nheures = minutes_totales // 60    # 2\nminutes = minutes_totales % 60    # 15\nprint(heures, \"h\", minutes, \"min\")\n```\n\n## Mettre en forme avec les f-strings\n\nUne **f-string** est une chaîne précédée de la lettre `f`. Tout ce qui est entre accolades `{}` est remplacé par sa valeur :\n\n```python\nprenom = \"Lina\"\nnote = 15.456\nprint(f\"{prenom} a obtenu {note} sur 20\")\n# Lina a obtenu 15.456 sur 20\n\nprint(f\"Note arrondie : {note:.1f}/20\")\n# Note arrondie : 15.5/20\n```\n\nLe format `:.1f` affiche le nombre avec une décimale, `:.2f` avec deux. Les f-strings évitent les conversions manuelles avec `str()` et rendent le code bien plus lisible.\n\n## Un programme complet\n\n```python\n# Calcul du prix TTC\nprix_ht = float(input(\"Prix HT (€) : \"))\ntaux_tva = 20\n\ntva = prix_ht * taux_tva / 100\nprix_ttc = prix_ht + tva\n\nprint(f\"TVA : {tva:.2f} €\")\nprint(f\"Prix TTC : {prix_ttc:.2f} €\")\n```\n\n## À retenir\n\n- `input()` renvoie toujours du texte : convertissez avec `int()` ou `float()`.\n- `/` donne un décimal, `//` le quotient entier, `%` le reste.\n- Les f-strings `f\"... {valeur} ...\"` insèrent des valeurs dans un texte ; `:.2f` fixe le nombre de décimales.\n\n## Exercices\n\n### Exercice 1 — Convertisseur de durée\n\nDemandez un nombre de secondes à l'utilisateur et affichez l'équivalent en heures, minutes et secondes. Exemple : `3725` → `1 h 2 min 5 s`.\n\n```solution\ntotal = int(input(\"Nombre de secondes : \"))\n\nheures = total // 3600\nreste = total % 3600\nminutes = reste // 60\nsecondes = reste % 60\n\nprint(f\"{heures} h {minutes} min {secondes} s\")\n```\n\n### Exercice 2 — Moyenne de trois notes\n\nDemandez trois notes sur 20 (elles peuvent être décimales) et affichez la moyenne avec deux décimales.\n\n```solution\nnote1 = float(input(\"Note 1 : \"))\nnote2 = float(input(\"Note 2 : \"))\nnote3 = float(input(\"Note 3 : \"))\n\nmoyenne = (note1 + note2 + note3) / 3\nprint(f\"Moyenne : {moyenne:.2f}/20\")\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "5e138572-4d1c-5200-b7bc-b707fe41a1a3",
+    "title": "Quiz — Premiers pas avec Python",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "4d482a46-cdc9-5a2d-af30-f6697f046f49",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "print(\"2\" + \"3\")",
+      "points": 2,
+      "options": [
+       {
+        "id": "69a6177c-7d2b-5855-aa10-c7f9b128d95c",
+        "position": 1,
+        "label": "5"
+       },
+       {
+        "id": "0c58d56f-7000-559d-ab48-8f3c1d7b1530",
+        "position": 2,
+        "label": "23"
+       },
+       {
+        "id": "24eaedd0-9ffb-51bb-9c99-a73131f940f6",
+        "position": 3,
+        "label": "Une erreur"
+       },
+       {
+        "id": "e09c10ba-b4ab-591f-8ba6-7f24075a9986",
+        "position": 4,
+        "label": "2 3"
+       }
+      ],
+      "correct": [
+       "0c58d56f-7000-559d-ab48-8f3c1d7b1530"
+      ],
+      "explanation": "Les guillemets font de \"2\" et \"3\" des chaînes : + les met bout à bout (concaténation) et produit \"23\"."
+     },
+     {
+      "id": "84bce527-d31c-58d8-8c06-e2106a366e4b",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quel est le type de la valeur renvoyée par input() ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ed39b66b-0e34-5c22-8ba2-a56c38bd1b63",
+        "position": 1,
+        "label": "int"
+       },
+       {
+        "id": "452e8d04-72e4-5f26-826a-117753a3fa8f",
+        "position": 2,
+        "label": "float"
+       },
+       {
+        "id": "d5f150b7-7786-5026-9de5-5b827b4a940c",
+        "position": 3,
+        "label": "str"
+       },
+       {
+        "id": "9bb07491-ae91-578e-bd76-1458096cd2fb",
+        "position": 4,
+        "label": "Cela dépend de ce que tape l'utilisateur"
+       }
+      ],
+      "correct": [
+       "d5f150b7-7786-5026-9de5-5b827b4a940c"
+      ],
+      "explanation": "input() renvoie toujours une chaîne (str). Il faut la convertir avec int() ou float() pour calculer."
+     },
+     {
+      "id": "b2342927-e8d0-5694-a98a-59d86fb89606",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Combien vaut l'expression 17 // 5 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2e7ba0b9-77f4-53f1-9f32-c35db1aa38e8",
+        "position": 1,
+        "label": "3.4"
+       },
+       {
+        "id": "3ff9c563-efcd-5c55-9991-87d79f0e9913",
+        "position": 2,
+        "label": "3"
+       },
+       {
+        "id": "b3925a47-5ed6-5795-b271-2cbd1518dd8a",
+        "position": 3,
+        "label": "2"
+       },
+       {
+        "id": "47e21922-68bc-53d6-9306-c003497bc2e1",
+        "position": 4,
+        "label": "4"
+       }
+      ],
+      "correct": [
+       "3ff9c563-efcd-5c55-9991-87d79f0e9913"
+      ],
+      "explanation": "// est la division entière : 17 = 5 × 3 + 2, le quotient entier est 3."
+     },
+     {
+      "id": "39b987c0-e2cf-53e9-8892-1e0da70434fe",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Combien vaut l'expression 17 % 5 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "366b596e-0c25-513f-b46b-d6767cd1ed6c",
+        "position": 1,
+        "label": "2"
+       },
+       {
+        "id": "64c6b4fe-f361-5858-84ab-c0af22d57ee2",
+        "position": 2,
+        "label": "3"
+       },
+       {
+        "id": "cbdd6b98-a9a0-5796-8fb4-c9bb5f74574e",
+        "position": 3,
+        "label": "3.4"
+       },
+       {
+        "id": "e90c9bad-77cf-58c0-ac3b-3fa097c359dd",
+        "position": 4,
+        "label": "0"
+       }
+      ],
+      "correct": [
+       "366b596e-0c25-513f-b46b-d6767cd1ed6c"
+      ],
+      "explanation": "% donne le reste de la division entière : 17 = 5 × 3 + 2, le reste est 2."
+     },
+     {
+      "id": "94ea164c-9487-5604-8aaa-3fefb3640b95",
+      "position": 5,
+      "kind": "multiple",
+      "prompt": "Parmi ces noms de variables, lesquels sont valides en Python ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "71119cc8-fd2c-5d92-8a3c-b15cf1330e1f",
+        "position": 1,
+        "label": "prix_total"
+       },
+       {
+        "id": "7678a795-0909-58a4-9557-a95e504dd38f",
+        "position": 2,
+        "label": "2eme_note"
+       },
+       {
+        "id": "0440dec5-1e94-5d45-807d-115da044366c",
+        "position": 3,
+        "label": "_compteur"
+       },
+       {
+        "id": "36f325b0-5a6b-5bec-bbe1-cb9a95e20331",
+        "position": 4,
+        "label": "nombre-eleves"
+       }
+      ],
+      "correct": [
+       "71119cc8-fd2c-5d92-8a3c-b15cf1330e1f",
+       "0440dec5-1e94-5d45-807d-115da044366c"
+      ],
+      "explanation": "Un nom contient lettres, chiffres et _ et ne commence pas par un chiffre. 2eme_note commence par un chiffre ; nombre-eleves contient un tiret, interprété comme une soustraction."
+     },
+     {
+      "id": "6ac0a729-65f1-512b-8a99-c6041523efca",
+      "position": 6,
+      "kind": "true_false",
+      "prompt": "Python ignore tout ce qui suit le symbole # sur une ligne.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8ea4a39e-1df8-513f-a895-7c8b858ce877",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "53732d4f-404c-5c17-ac12-fa1ceda7fe8a",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "8ea4a39e-1df8-513f-a895-7c8b858ce877"
+      ],
+      "explanation": "# introduit un commentaire : il sert aux humains et n'est jamais exécuté."
+     },
+     {
+      "id": "74729a9e-85a1-5d6e-8c22-ddf5bdebd9e9",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "note = 15.456\nprint(f\"{note:.1f}\")",
+      "points": 2,
+      "options": [
+       {
+        "id": "d79f0846-c8cd-50c3-8653-3341985615e0",
+        "position": 1,
+        "label": "15.4"
+       },
+       {
+        "id": "7fe1a606-283f-57ac-b2ec-839d2e2f154c",
+        "position": 2,
+        "label": "15.5"
+       },
+       {
+        "id": "834b34c1-5a44-5972-b289-b0ab3f9244a7",
+        "position": 3,
+        "label": "15.456"
+       },
+       {
+        "id": "d093161f-3449-548a-ad5d-1fa3275c4b28",
+        "position": 4,
+        "label": "{note:.1f}"
+       }
+      ],
+      "correct": [
+       "7fe1a606-283f-57ac-b2ec-839d2e2f154c"
+      ],
+      "explanation": "Le format :.1f arrondit à une décimale : 15.456 devient 15.5."
+     },
+     {
+      "id": "66743abd-4a5e-56ee-acf2-5cfb4d66eeb7",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles expressions produisent une erreur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "632c0767-5dfe-57d0-a33c-e7a89c86437e",
+        "position": 1,
+        "label": "\"Âge : \" + 25"
+       },
+       {
+        "id": "5b0eceb7-5f6d-5182-a767-57aadd03c203",
+        "position": 2,
+        "label": "int(\"vingt\")"
+       },
+       {
+        "id": "e4706bf0-1912-595c-8b7b-a2062b0332e6",
+        "position": 3,
+        "label": "int(\"20\") + 1"
+       },
+       {
+        "id": "3116aec2-9ce5-5ea5-855b-011101262705",
+        "position": 4,
+        "label": "str(25) + \" ans\""
+       }
+      ],
+      "correct": [
+       "632c0767-5dfe-57d0-a33c-e7a89c86437e",
+       "5b0eceb7-5f6d-5182-a767-57aadd03c203"
+      ],
+      "explanation": "On ne peut pas additionner un str et un int (TypeError), et \"vingt\" ne peut pas être converti en entier (ValueError). Les deux autres expressions sont correctes."
+     },
+     {
+      "id": "aab6556c-0f23-5873-a234-d55bf787daec",
+      "position": 9,
+      "kind": "true_false",
+      "prompt": "L'expression 8 / 2 renvoie l'entier 4.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8ab67941-a82c-535e-b463-a3cc9ab4688a",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "9cf9a111-f3b6-576a-bf3e-121bb57e9729",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "9cf9a111-f3b6-576a-bf3e-121bb57e9729"
+      ],
+      "explanation": "L'opérateur / renvoie toujours un float : 8 / 2 vaut 4.0. Pour un entier, utilisez 8 // 2."
+     },
+     {
+      "id": "5c8b194b-c3a9-5170-96d1-5e8d4e5b3165",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Après ces instructions, que vaut score ?",
+      "code": "score = 10\nscore = score + 5\nscore = score * 2",
+      "points": 2,
+      "options": [
+       {
+        "id": "fb075fcd-5c17-5506-b210-258b2b1c25dd",
+        "position": 1,
+        "label": "10"
+       },
+       {
+        "id": "647b1afd-af68-54f6-ae8b-ae7398f0c382",
+        "position": 2,
+        "label": "15"
+       },
+       {
+        "id": "c6124ca0-4f90-5e8e-b8ac-c6dadd03f2cb",
+        "position": 3,
+        "label": "20"
+       },
+       {
+        "id": "0b281b3f-7db7-54b8-88c3-58870f6ba398",
+        "position": 4,
+        "label": "30"
+       }
+      ],
+      "correct": [
+       "0b281b3f-7db7-54b8-88c3-58870f6ba398"
+      ],
+      "explanation": "score vaut d'abord 10, puis 10 + 5 = 15, puis 15 × 2 = 30. Chaque affectation remplace l'ancienne valeur."
+     }
+    ]
+   }
+  },
+  {
+   "id": "57ce5744-5413-5d8f-af77-74bf2787f572",
+   "position": 2,
+   "title": "Conditions et boucles",
+   "description": "Prendre des décisions et répéter des actions.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "fab41434-f860-568b-acec-c7ca3bc91dde",
+     "slug": "conditions",
+     "title": "Les conditions : if, elif, else",
+     "summary": "Comparaisons, opérateurs logiques et choix multiples.",
+     "content_md": "## Prendre des décisions\n\nJusqu'ici, nos programmes exécutaient toutes leurs instructions, dans l'ordre. Une **condition** permet d'exécuter un bloc de code **seulement si** une affirmation est vraie.\n\n```python\nnote = 14\nif note >= 10:\n    print(\"Module validé !\")\nprint(\"Fin du programme\")\n```\n\nDeux éléments de syntaxe sont indispensables :\n\n1. les **deux-points** `:` à la fin de la ligne `if` ;\n2. l'**indentation** (4 espaces) des instructions qui dépendent de la condition.\n\nL'indentation n'est pas décorative en Python : c'est elle qui délimite le bloc. Une indentation incorrecte provoque une `IndentationError`.\n\n## Les opérateurs de comparaison\n\nUne comparaison produit un booléen, `True` ou `False` :\n\n| Opérateur | Signification | Exemple | Résultat |\n|-----------|---------------|---------|----------|\n| `==` | égal à | `5 == 5` | `True` |\n| `!=` | différent de | `5 != 3` | `True` |\n| `<` | strictement inférieur | `3 < 5` | `True` |\n| `<=` | inférieur ou égal | `5 <= 5` | `True` |\n| `>` | strictement supérieur | `3 > 5` | `False` |\n| `>=` | supérieur ou égal | `3 >= 5` | `False` |\n\nNe confondez pas `=` (affectation) et `==` (comparaison) : c'est l'erreur la plus fréquente des débutants.\n\n## if, elif, else\n\n`else` (« sinon ») s'exécute quand la condition est fausse. `elif` (contraction de *else if*) teste une nouvelle condition si les précédentes étaient fausses.\n\n```python\nnote = float(input(\"Votre note sur 20 : \"))\n\nif note >= 16:\n    mention = \"Très bien\"\nelif note >= 14:\n    mention = \"Bien\"\nelif note >= 12:\n    mention = \"Assez bien\"\nelif note >= 10:\n    mention = \"Passable\"\nelse:\n    mention = \"Non validé\"\n\nprint(f\"Résultat : {mention}\")\n```\n\nPython teste les conditions **de haut en bas** et n'exécute que le **premier** bloc dont la condition est vraie. Avec une note de 15, seul le bloc `\"Bien\"` s'exécute, même si `note >= 12` est aussi vrai. L'ordre des `elif` est donc important.\n\n## Combiner des conditions : and, or, not\n\n- `a and b` est vrai si **les deux** sont vrais ;\n- `a or b` est vrai si **au moins un** est vrai ;\n- `not a` inverse la valeur.\n\n```python\nage = 20\na_un_compte = True\n\nif age >= 18 and a_un_compte:\n    print(\"Accès autorisé\")\n\njour = \"samedi\"\nif jour == \"samedi\" or jour == \"dimanche\":\n    print(\"C'est le week-end\")\n\nif not a_un_compte:\n    print(\"Créez un compte pour continuer\")\n```\n\nPython permet aussi d'enchaîner les comparaisons, comme en mathématiques :\n\n```python\nnote = 12\nif 0 <= note <= 20:\n    print(\"Note valide\")\n```\n\n## Comparer des textes\n\nLes comparaisons fonctionnent aussi sur les chaînes, en tenant compte des majuscules :\n\n```python\nreponse = input(\"Voulez-vous continuer ? (oui/non) \")\nif reponse.lower() == \"oui\":\n    print(\"C'est parti !\")\n```\n\nLa méthode `.lower()` convertit le texte en minuscules : ainsi `\"OUI\"`, `\"Oui\"` et `\"oui\"` sont acceptés.\n\n## À retenir\n\n- `if condition:` suivi d'un bloc indenté de 4 espaces.\n- `elif` et `else` traitent les autres cas ; seul le premier bloc vrai s'exécute.\n- `==` compare, `=` affecte.\n- `and`, `or`, `not` combinent des conditions.\n\n## Exercices\n\n### Exercice 1 — Pair ou impair\n\nDemandez un entier et affichez s'il est pair ou impair.\n\n```solution\nn = int(input(\"Entrez un entier : \"))\nif n % 2 == 0:\n    print(f\"{n} est pair\")\nelse:\n    print(f\"{n} est impair\")\n```\n\n### Exercice 2 — Tarif de cinéma\n\nLe billet coûte 12 €. Les moins de 14 ans paient 6 €, les 14-25 ans et les plus de 65 ans paient 8 €. Demandez l'âge et affichez le tarif.\n\n```solution\nage = int(input(\"Votre âge : \"))\n\nif age < 14:\n    prix = 6\nelif age <= 25 or age > 65:\n    prix = 8\nelse:\n    prix = 12\n\nprint(f\"Tarif : {prix} €\")\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "7b8ec9b8-7f7c-58e1-82da-97ee9597bed0",
+     "slug": "boucle-while",
+     "title": "La boucle while",
+     "summary": "Répéter tant qu'une condition est vraie, valider une saisie, accumuler.",
+     "content_md": "## Répéter tant qu'une condition est vraie\n\nUne **boucle** répète un bloc d'instructions. La boucle `while` (« tant que ») répète son bloc **tant que** sa condition est vraie.\n\n```python\ncompteur = 1\nwhile compteur <= 5:\n    print(\"Tour\", compteur)\n    compteur = compteur + 1\nprint(\"Terminé\")\n```\n\n```text\nTour 1\nTour 2\nTour 3\nTour 4\nTour 5\nTerminé\n```\n\nLe déroulement est le suivant : Python teste la condition ; si elle est vraie, il exécute le bloc puis **revient tester** la condition ; dès qu'elle est fausse, il passe à la suite du programme.\n\n## L'écriture raccourcie +=\n\nAugmenter une variable est si courant que Python propose un raccourci :\n\n```python\ncompteur += 1     # équivaut à compteur = compteur + 1\ntotal -= 5        # total = total - 5\nprix *= 2         # prix = prix * 2\n```\n\n## Attention aux boucles infinies\n\nSi la condition ne devient jamais fausse, la boucle ne s'arrête jamais :\n\n```python\ncompteur = 1\nwhile compteur <= 5:\n    print(compteur)\n    # oubli de compteur += 1 : la boucle tourne indéfiniment !\n```\n\nSi cela vous arrive, interrompez le programme avec **Ctrl + C** dans le terminal. Avant d'écrire un `while`, demandez-vous toujours : *qu'est-ce qui fera devenir la condition fausse ?*\n\n## Cas d'usage typique : valider une saisie\n\n`while` est idéal quand on ne sait pas à l'avance combien de répétitions seront nécessaires, par exemple pour redemander une saisie tant qu'elle est incorrecte :\n\n```python\nnote = float(input(\"Note sur 20 : \"))\nwhile note < 0 or note > 20:\n    print(\"La note doit être comprise entre 0 et 20.\")\n    note = float(input(\"Note sur 20 : \"))\nprint(f\"Note enregistrée : {note}\")\n```\n\n## Accumuler un résultat\n\nUne boucle sert souvent à construire un résultat petit à petit dans une variable appelée **accumulateur** :\n\n```python\n# Somme des entiers de 1 à 100\nsomme = 0\nn = 1\nwhile n <= 100:\n    somme += n\n    n += 1\nprint(somme)   # 5050\n```\n\n## Interrompre une boucle : break\n\nL'instruction `break` quitte immédiatement la boucle. Combinée à `while True` (une condition toujours vraie), elle permet d'écrire des boucles dont la sortie se décide à l'intérieur :\n\n```python\nsecret = 7\nwhile True:\n    essai = int(input(\"Devinez le nombre (1-10) : \"))\n    if essai == secret:\n        print(\"Bravo !\")\n        break\n    print(\"Raté, réessayez.\")\n```\n\n## À retenir\n\n- `while condition:` répète le bloc tant que la condition est vraie.\n- Vérifiez que la condition finira par devenir fausse, sinon la boucle est infinie (Ctrl + C pour l'arrêter).\n- `+=`, `-=`, `*=` modifient une variable de façon concise.\n- `break` sort immédiatement de la boucle.\n\n## Exercices\n\n### Exercice 1 — Compte à rebours\n\nAffichez un compte à rebours de 10 à 1, puis le message `Décollage !`.\n\n```solution\nn = 10\nwhile n >= 1:\n    print(n)\n    n -= 1\nprint(\"Décollage !\")\n```\n\n### Exercice 2 — Moyenne d'une série de notes\n\nDemandez des notes jusqu'à ce que l'utilisateur tape `-1`. Affichez ensuite le nombre de notes saisies et leur moyenne (si au moins une note a été saisie).\n\n```solution\nsomme = 0\nnombre = 0\n\nnote = float(input(\"Note (-1 pour terminer) : \"))\nwhile note != -1:\n    somme += note\n    nombre += 1\n    note = float(input(\"Note (-1 pour terminer) : \"))\n\nif nombre > 0:\n    print(f\"{nombre} notes, moyenne : {somme / nombre:.2f}/20\")\nelse:\n    print(\"Aucune note saisie.\")\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "6cde5a2f-105f-5a5d-9da0-6e6612d3eb4e",
+     "slug": "boucle-for",
+     "title": "La boucle for et range()",
+     "summary": "Parcourir une séquence, compter, break et continue.",
+     "content_md": "## Parcourir une séquence\n\nLa boucle `for` parcourt les éléments d'une séquence, un par un. Une chaîne de caractères est une séquence de caractères :\n\n```python\nfor lettre in \"SMK\":\n    print(lettre)\n```\n\n```text\nS\nM\nK\n```\n\nÀ chaque tour, la variable `lettre` prend la valeur de l'élément suivant. La boucle s'arrête d'elle-même à la fin de la séquence : pas de risque de boucle infinie.\n\n## range() : générer des nombres\n\n`range()` produit une suite d'entiers, ce qui permet de répéter une action un nombre précis de fois.\n\n| Appel | Nombres produits |\n|-------|------------------|\n| `range(5)` | 0, 1, 2, 3, 4 |\n| `range(1, 6)` | 1, 2, 3, 4, 5 |\n| `range(0, 11, 2)` | 0, 2, 4, 6, 8, 10 |\n| `range(5, 0, -1)` | 5, 4, 3, 2, 1 |\n\nLa borne de fin est toujours **exclue** : `range(1, 6)` s'arrête à 5.\n\n```python\nfor i in range(1, 4):\n    print(f\"Leçon {i}\")\n```\n\n## for ou while ?\n\n- **`for`** quand on connaît le nombre de répétitions ou qu'on parcourt une séquence ;\n- **`while`** quand la répétition dépend d'une condition imprévisible (saisie de l'utilisateur, jeu…).\n\nComparez la somme de 1 à 100, beaucoup plus concise avec `for` :\n\n```python\nsomme = 0\nfor n in range(1, 101):\n    somme += n\nprint(somme)   # 5050\n```\n\n## break et continue\n\n- `break` quitte la boucle immédiatement ;\n- `continue` passe directement au tour suivant.\n\n```python\n# Afficher les nombres de 1 à 10 sauf les multiples de 3\nfor n in range(1, 11):\n    if n % 3 == 0:\n        continue\n    print(n)\n```\n\n```python\n# Trouver le premier multiple de 7 supérieur à 50\nfor n in range(51, 100):\n    if n % 7 == 0:\n        print(n)   # 56\n        break\n```\n\n## Boucles imbriquées\n\nUne boucle peut en contenir une autre. La boucle intérieure s'exécute entièrement à chaque tour de la boucle extérieure :\n\n```python\nfor ligne in range(1, 4):\n    for colonne in range(1, 4):\n        print(ligne * colonne, end=\"\\t\")\n    print()\n```\n\n```text\n1\t2\t3\n2\t4\t6\n3\t6\t9\n```\n\nLe paramètre `end=\"\\t\"` remplace le retour à la ligne de `print()` par une tabulation ; le `print()` vide final passe à la ligne.\n\n## À retenir\n\n- `for element in sequence:` parcourt chaque élément.\n- `range(debut, fin, pas)` génère des entiers ; `fin` est exclue.\n- `for` pour un nombre connu de tours, `while` pour une condition.\n- `continue` saute au tour suivant, `break` sort de la boucle.\n\n## Exercices\n\n### Exercice 1 — Table de multiplication\n\nDemandez un nombre et affichez sa table de multiplication de 1 à 10, au format `7 x 3 = 21`.\n\n```solution\nn = int(input(\"Quelle table ? \"))\nfor i in range(1, 11):\n    print(f\"{n} x {i} = {n * i}\")\n```\n\n### Exercice 2 — Compter les voyelles\n\nDemandez une phrase et affichez le nombre de voyelles (a, e, i, o, u, y) qu'elle contient, sans tenir compte des majuscules.\n\n```solution\nphrase = input(\"Votre phrase : \")\nvoyelles = 0\nfor caractere in phrase.lower():\n    if caractere in \"aeiouy\":\n        voyelles += 1\nprint(f\"Nombre de voyelles : {voyelles}\")\n```\n\n> L'opérateur `in` teste si un caractère appartient à une chaîne : `\"a\" in \"aeiouy\"` vaut `True`.",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "3b906e23-94ee-537b-9f81-4235a08fe91b",
+    "title": "Quiz — Conditions et boucles",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "48fcadb4-133a-5d91-b152-2a9dfabd0d89",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel opérateur teste l'égalité de deux valeurs ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "edeb25f6-16e8-5558-ae00-61066d7036fa",
+        "position": 1,
+        "label": "="
+       },
+       {
+        "id": "5fbdd16c-dc3e-51eb-8914-e19c35cdfe2e",
+        "position": 2,
+        "label": "=="
+       },
+       {
+        "id": "043157ad-da95-56a4-bc6a-9d3844040e1a",
+        "position": 3,
+        "label": "==="
+       },
+       {
+        "id": "787c9c54-c26f-595d-812b-b2f044e544f3",
+        "position": 4,
+        "label": "equals"
+       }
+      ],
+      "correct": [
+       "5fbdd16c-dc3e-51eb-8914-e19c35cdfe2e"
+      ],
+      "explanation": "== compare deux valeurs. Un seul = est l'opérateur d'affectation."
+     },
+     {
+      "id": "bcd94236-4942-5270-98a3-969878598671",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "note = 15\nif note >= 12:\n    print(\"A\")\nelif note >= 14:\n    print(\"B\")\nelse:\n    print(\"C\")",
+      "points": 2,
+      "options": [
+       {
+        "id": "23df9471-386f-5e18-a825-019d03152b6e",
+        "position": 1,
+        "label": "A"
+       },
+       {
+        "id": "a44b5656-2b83-5592-9a1a-fd4f59d08f16",
+        "position": 2,
+        "label": "B"
+       },
+       {
+        "id": "7ee7cdcc-7bd9-59f9-aa7a-6f56aa7038ab",
+        "position": 3,
+        "label": "A puis B"
+       },
+       {
+        "id": "9c30621f-4cb3-53f7-8bd2-1432683fd81d",
+        "position": 4,
+        "label": "C"
+       }
+      ],
+      "correct": [
+       "23df9471-386f-5e18-a825-019d03152b6e"
+      ],
+      "explanation": "Python exécute seulement le premier bloc dont la condition est vraie. note >= 12 est vrai, donc il affiche A et ignore la suite, même si note >= 14 est aussi vrai."
+     },
+     {
+      "id": "8fd1c9f1-4662-5e85-8f14-59d86ff55641",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quels nombres produit range(2, 8, 2) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "39451af8-fea9-5a82-b136-07b58a6ba538",
+        "position": 1,
+        "label": "2, 4, 6, 8"
+       },
+       {
+        "id": "44807d95-99c2-5abf-87a4-92766cc838f1",
+        "position": 2,
+        "label": "2, 4, 6"
+       },
+       {
+        "id": "379c1af3-fedc-5cfa-8d1e-c10715fcfda3",
+        "position": 3,
+        "label": "2, 3, 4, 5, 6, 7"
+       },
+       {
+        "id": "e96c84b5-2eb2-515c-9737-a06d03c9d588",
+        "position": 4,
+        "label": "4, 6, 8"
+       }
+      ],
+      "correct": [
+       "44807d95-99c2-5abf-87a4-92766cc838f1"
+      ],
+      "explanation": "range part de 2, avance de 2 en 2 et s'arrête avant 8 (borne exclue) : 2, 4, 6."
+     },
+     {
+      "id": "ee72c5fb-d492-5865-8c2a-d35d178f2161",
+      "position": 4,
+      "kind": "true_false",
+      "prompt": "Une boucle while dont la condition ne devient jamais fausse s'exécute indéfiniment.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ed73c00d-44b7-5f46-8a73-ea8380340b35",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "dfee922f-1e47-5178-bd84-c27d0f17e4d7",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "ed73c00d-44b7-5f46-8a73-ea8380340b35"
+      ],
+      "explanation": "C'est une boucle infinie. Il faut s'assurer que le bloc modifie ce que teste la condition (ou utiliser break)."
+     },
+     {
+      "id": "12f0d6ee-6824-56d3-9522-7f873199838b",
+      "position": 5,
+      "kind": "multiple",
+      "prompt": "Quelles conditions sont vraies lorsque age = 20 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3cce3a43-1e49-50d5-b36c-f96732049961",
+        "position": 1,
+        "label": "age >= 18 and age < 25"
+       },
+       {
+        "id": "d7213cac-db42-5a27-9822-0f6805a156ac",
+        "position": 2,
+        "label": "age < 18 or age > 65"
+       },
+       {
+        "id": "7b95ca9b-4e63-5166-a72c-900cc219ecff",
+        "position": 3,
+        "label": "not age == 20"
+       },
+       {
+        "id": "2c47a190-ff69-5ab7-b4c8-6caabaa772bd",
+        "position": 4,
+        "label": "18 <= age <= 30"
+       }
+      ],
+      "correct": [
+       "3cce3a43-1e49-50d5-b36c-f96732049961",
+       "2c47a190-ff69-5ab7-b4c8-6caabaa772bd"
+      ],
+      "explanation": "20 est bien entre 18 et 25, et entre 18 et 30. Il n'est ni < 18 ni > 65, et not (age == 20) vaut False."
+     },
+     {
+      "id": "c3aa61c0-f216-5103-8e31-5a7e3b751eb4",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Combien de fois le mot « SMK » est-il affiché ?",
+      "code": "for i in range(3):\n    for j in range(2):\n        print(\"SMK\")",
+      "points": 2,
+      "options": [
+       {
+        "id": "67137ff4-3dd6-554a-9b13-0af50eb5a9e8",
+        "position": 1,
+        "label": "2"
+       },
+       {
+        "id": "bd434c6e-ca10-528c-b638-8b72a77764a4",
+        "position": 2,
+        "label": "3"
+       },
+       {
+        "id": "e612e23a-c742-5a89-803c-1abbe45a580c",
+        "position": 3,
+        "label": "5"
+       },
+       {
+        "id": "9adeff69-2eca-5450-9560-842679cf73c3",
+        "position": 4,
+        "label": "6"
+       }
+      ],
+      "correct": [
+       "9adeff69-2eca-5450-9560-842679cf73c3"
+      ],
+      "explanation": "La boucle intérieure (2 tours) s'exécute entièrement à chacun des 3 tours de la boucle extérieure : 3 × 2 = 6."
+     },
+     {
+      "id": "249c71a3-eded-5d8f-b524-2f1cded2be75",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "for n in range(1, 6):\n    if n == 3:\n        continue\n    print(n, end=' ')",
+      "points": 2,
+      "options": [
+       {
+        "id": "fc28b2ef-898f-532f-bec6-7ce32fdb39c5",
+        "position": 1,
+        "label": "1 2"
+       },
+       {
+        "id": "ccd5d5c4-8ca2-5872-93b1-3bf8d9978999",
+        "position": 2,
+        "label": "1 2 3 4 5"
+       },
+       {
+        "id": "fb99a110-abf9-52c7-a0d0-706334e7cbac",
+        "position": 3,
+        "label": "1 2 4 5"
+       },
+       {
+        "id": "2babf15f-d89f-5c44-936e-5b56d2864359",
+        "position": 4,
+        "label": "3"
+       }
+      ],
+      "correct": [
+       "fb99a110-abf9-52c7-a0d0-706334e7cbac"
+      ],
+      "explanation": "continue saute la suite du bloc pour n = 3 et passe au tour suivant : 3 n'est pas affiché."
+     },
+     {
+      "id": "d091b533-2e82-5fd9-979c-b5f294c881eb",
+      "position": 8,
+      "kind": "true_false",
+      "prompt": "En Python, l'indentation du bloc qui suit un if est facultative.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b506e12a-064f-5336-bd7d-ff40f944ab1d",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "aa149748-b0e2-5eba-9a27-8077ac81b954",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "aa149748-b0e2-5eba-9a27-8077ac81b954"
+      ],
+      "explanation": "L'indentation est obligatoire : c'est elle qui délimite le bloc. Sans elle, Python lève une IndentationError."
+     },
+     {
+      "id": "20c96769-cb43-505d-a99e-78bc9eb77e7b",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Après cette boucle, que vaut total ?",
+      "code": "total = 0\nn = 1\nwhile n <= 4:\n    total += n\n    n += 1",
+      "points": 2,
+      "options": [
+       {
+        "id": "0a0d1f13-f8b7-5d3b-99fb-058ee361e822",
+        "position": 1,
+        "label": "4"
+       },
+       {
+        "id": "086d264c-2952-51e8-81bc-b187a3c8e26c",
+        "position": 2,
+        "label": "6"
+       },
+       {
+        "id": "392cd43b-9b08-55d6-8f76-0ffde453c8c0",
+        "position": 3,
+        "label": "10"
+       },
+       {
+        "id": "c4339600-078f-5205-a66b-9e1b383581dd",
+        "position": 4,
+        "label": "15"
+       }
+      ],
+      "correct": [
+       "392cd43b-9b08-55d6-8f76-0ffde453c8c0"
+      ],
+      "explanation": "La boucle ajoute 1, 2, 3 puis 4 : total = 1 + 2 + 3 + 4 = 10."
+     },
+     {
+      "id": "9f96009c-a355-515b-ba8e-26f0028d468d",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Dans quelles situations une boucle while est-elle plus adaptée qu'une boucle for ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7f43fb99-d7c2-5ba4-922b-b449a2238ac2",
+        "position": 1,
+        "label": "Redemander une saisie tant qu'elle est invalide"
+       },
+       {
+        "id": "c2bfb43d-9dd0-5777-b6e6-502e518d5577",
+        "position": 2,
+        "label": "Afficher les nombres de 1 à 100"
+       },
+       {
+        "id": "279fcdec-3e70-5264-acfa-ba4fa6b78361",
+        "position": 3,
+        "label": "Faire jouer l'utilisateur jusqu'à ce qu'il trouve le nombre secret"
+       },
+       {
+        "id": "5865c492-969b-5503-a84c-a6eab195f19d",
+        "position": 4,
+        "label": "Parcourir chaque lettre d'un mot"
+       }
+      ],
+      "correct": [
+       "7f43fb99-d7c2-5ba4-922b-b449a2238ac2",
+       "279fcdec-3e70-5264-acfa-ba4fa6b78361"
+      ],
+      "explanation": "while convient quand le nombre de tours dépend d'une condition imprévisible. Pour un nombre connu de tours ou une séquence, for est plus simple."
+     }
+    ]
+   }
+  },
+  {
+   "id": "5d72ac2e-9373-5e71-8aa4-20a924c02949",
+   "position": 3,
+   "title": "Listes, tuples et dictionnaires",
+   "description": "Stocker et manipuler des collections de données.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "6c3a4309-e98a-5e84-b7ff-c6fe4f73ffc6",
+     "slug": "listes",
+     "title": "Les listes",
+     "summary": "Créer, lire, modifier et parcourir une liste.",
+     "content_md": "## Ranger plusieurs valeurs ensemble\n\nJusqu'ici, une variable contenait une seule valeur. Pour stocker les notes d'une classe, les étapes d'une recette ou les produits d'un panier, on utilise une **liste** : une suite ordonnée de valeurs, écrite entre crochets et séparée par des virgules.\n\n```python\nnotes = [12, 15.5, 9, 17]\nprenoms = [\"Amina\", \"Yanis\", \"Lina\"]\nvide = []\nprint(notes)        # [12, 15.5, 9, 17]\nprint(len(notes))   # 4 : len() donne le nombre d'éléments\n```\n\nUne liste peut contenir des valeurs de types différents, mais en pratique on y range des éléments de même nature.\n\n## Accéder à un élément : l'indice\n\nChaque élément a une position appelée **indice**. Attention : on commence à compter à **0**.\n\n```python\nprenoms = [\"Amina\", \"Yanis\", \"Lina\"]\nprint(prenoms[0])    # Amina   (premier élément)\nprint(prenoms[2])    # Lina    (troisième élément)\nprint(prenoms[-1])   # Lina    (indice négatif : on part de la fin)\n```\n\nDemander un indice qui n'existe pas provoque une erreur :\n\n```python\nprint(prenoms[3])\n# IndexError: list index out of range\n```\n\nPour une liste de longueur `n`, les indices valides vont de `0` à `n - 1`.\n\n## Extraire une partie : les tranches\n\nLa syntaxe `liste[debut:fin]` renvoie une nouvelle liste, de `debut` inclus à `fin` **exclu** (comme `range`).\n\n```python\nlettres = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nprint(lettres[1:3])   # ['b', 'c']\nprint(lettres[:2])    # ['a', 'b']        depuis le début\nprint(lettres[3:])    # ['d', 'e']        jusqu'à la fin\n```\n\n## Modifier une liste\n\nContrairement à une chaîne de caractères, une liste est **modifiable** (on dit *mutable*) :\n\n```python\ncourses = [\"pain\", \"lait\"]\ncourses[1] = \"beurre\"        # remplace l'élément d'indice 1\ncourses.append(\"œufs\")       # ajoute à la fin\ncourses.insert(0, \"café\")    # insère à l'indice 0\nprint(courses)               # ['café', 'pain', 'beurre', 'œufs']\n\ncourses.remove(\"pain\")       # retire la première occurrence de \"pain\"\ndernier = courses.pop()      # retire et renvoie le dernier élément\nprint(dernier)               # œufs\nprint(courses)               # ['café', 'beurre']\n```\n\n`append`, `insert`, `remove` et `pop` sont des **méthodes** : des fonctions attachées à la liste, appelées avec un point.\n\n## Parcourir et tester\n\nLa boucle `for` parcourt une liste élément par élément, et `in` teste l'appartenance :\n\n```python\nnotes = [12, 15.5, 9, 17]\ntotal = 0\nfor note in notes:\n    total += note\nprint(f\"Moyenne : {total / len(notes):.2f}\")   # Moyenne : 13.38\n\nif 9 in notes:\n    print(\"Au moins une note sous la moyenne\")\n```\n\nPython fournit aussi des fonctions toutes prêtes : `sum(notes)`, `min(notes)`, `max(notes)`, et `sorted(notes)` qui renvoie une copie triée.\n\n```python\nprint(sum(notes) / len(notes))   # 13.375\nprint(max(notes))                # 17\nprint(sorted(notes))             # [9, 12, 15.5, 17]\n```\n\n## À retenir\n\n- Une liste s'écrit `[a, b, c]` ; `len()` donne sa longueur.\n- Les indices commencent à 0 ; `-1` désigne le dernier élément.\n- `liste[debut:fin]` extrait une tranche, `fin` exclue.\n- `append`, `insert`, `remove`, `pop` modifient la liste ; `sum`, `min`, `max`, `sorted` l'analysent.\n\n## Exercices\n\n### Exercice 1 — Statistiques d'une classe\n\nÀ partir de `notes = [14, 8, 17.5, 11, 9.5, 16]`, affichez le nombre de notes, la moyenne (2 décimales), la meilleure et la moins bonne note.\n\n```solution\nnotes = [14, 8, 17.5, 11, 9.5, 16]\n\nprint(\"Nombre de notes :\", len(notes))\nprint(f\"Moyenne : {sum(notes) / len(notes):.2f}\")\nprint(\"Meilleure note :\", max(notes))\nprint(\"Moins bonne note :\", min(notes))\n```\n\n### Exercice 2 — Liste de tâches\n\nCréez une liste vide `taches`. Demandez trois tâches à l'utilisateur et ajoutez-les avec `append`. Retirez ensuite la première tâche (elle est terminée) et affichez les tâches restantes, une par ligne.\n\n```solution\ntaches = []\nfor i in range(3):\n    tache = input(f\"Tâche {i + 1} : \")\n    taches.append(tache)\n\ntaches.pop(0)   # pop accepte un indice : retire la première tâche\n\nfor tache in taches:\n    print(\"-\", tache)\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "705455fb-0812-5b9c-a2ee-05feb61a34d2",
+     "slug": "tuples-et-sequences",
+     "title": "Tuples et parcours de séquences",
+     "summary": "Tuples, déballage, enumerate(), zip(), split() et join().",
+     "content_md": "## Le tuple : une séquence qui ne change pas\n\nUn **tuple** ressemble à une liste, mais s'écrit entre parenthèses et **ne peut pas être modifié** après sa création (*immuable*). On l'utilise pour des données qui vont ensemble et ne doivent pas changer : des coordonnées, une date, une couleur RVB.\n\n```python\npoint = (3, 7)\ndate = (14, \"juillet\", 1789)\nprint(point[0])      # 3   : même accès par indice qu'une liste\nprint(len(date))     # 3\n\npoint[0] = 5\n# TypeError: 'tuple' object does not support item assignment\n```\n\nUn tuple d'un seul élément s'écrit avec une virgule : `(5,)`. Sans virgule, `(5)` est simplement le nombre 5 entre parenthèses.\n\n## Le déballage\n\nOn peut répartir les éléments d'un tuple (ou d'une liste) dans plusieurs variables en une seule ligne :\n\n```python\npoint = (3, 7)\nx, y = point\nprint(x, y)          # 3 7\n\njour, mois, annee = (14, \"juillet\", 1789)\nprint(mois)          # juillet\n```\n\nC'est ce mécanisme qui permet l'échange de valeurs `a, b = b, a` vu au module 1 : à droite, Python crée le tuple `(b, a)`, puis le déballe dans `a` et `b`.\n\nUne fonction peut aussi renvoyer plusieurs valeurs sous forme de tuple ; vous le verrez au module 4.\n\n## Parcourir avec l'indice : enumerate()\n\nQuand on a besoin à la fois de la position et de la valeur, `enumerate()` fournit des paires `(indice, élément)` :\n\n```python\npodium = [\"Lina\", \"Yanis\", \"Amina\"]\nfor position, prenom in enumerate(podium, start=1):\n    print(f\"{position}. {prenom}\")\n```\n\n```text\n1. Lina\n2. Yanis\n3. Amina\n```\n\nC'est plus lisible et plus sûr que de gérer un compteur à la main.\n\n## Parcourir deux listes ensemble : zip()\n\n`zip()` associe les éléments de même position de plusieurs séquences :\n\n```python\neleves = [\"Lina\", \"Yanis\", \"Amina\"]\nnotes = [16, 11, 14]\n\nfor eleve, note in zip(eleves, notes):\n    print(f\"{eleve} : {note}/20\")\n```\n\n```text\nLina : 16/20\nYanis : 11/20\nAmina : 14/20\n```\n\nSi les séquences n'ont pas la même longueur, `zip()` s'arrête à la plus courte.\n\n## Les chaînes sont aussi des séquences\n\nUne chaîne se comporte comme un tuple de caractères : indices, tranches, `len()`, `in` et `for` fonctionnent, et elle est immuable.\n\n```python\nmot = \"Python\"\nprint(mot[0], mot[-1])   # P n\nprint(mot[1:4])          # yth\n```\n\nDeux méthodes très utiles relient chaînes et listes :\n\n```python\nphrase = \"apprendre coder progresser\"\nmots = phrase.split()        # découpe sur les espaces\nprint(mots)                  # ['apprendre', 'coder', 'progresser']\n\nprint(\" - \".join(mots))      # apprendre - coder - progresser\n```\n\n`split(\";\")` découpe sur un autre séparateur, ce qui servira pour lire des fichiers au module 5.\n\n## Liste ou tuple ?\n\n- **Liste** : une collection qui évolue (ajouts, suppressions, tri).\n- **Tuple** : un petit groupe de valeurs fixes qui décrivent une même chose.\n\n## À retenir\n\n- Un tuple `(a, b)` s'utilise comme une liste mais ne se modifie pas.\n- Le déballage `x, y = point` répartit les valeurs dans des variables.\n- `enumerate()` donne indice et valeur ; `zip()` parcourt plusieurs séquences en parallèle.\n- `split()` transforme une chaîne en liste, `join()` fait l'inverse.\n\n## Exercices\n\n### Exercice 1 — Bulletin\n\nAvec `matieres = [\"Maths\", \"Français\", \"Anglais\"]` et `notes = [15, 12, 17]`, affichez chaque matière avec sa note, puis la matière où la note est la plus haute.\n\n```solution\nmatieres = [\"Maths\", \"Français\", \"Anglais\"]\nnotes = [15, 12, 17]\n\nfor matiere, note in zip(matieres, notes):\n    print(f\"{matiere} : {note}/20\")\n\nmeilleure = max(notes)\nindice = notes.index(meilleure)   # position de la meilleure note\nprint(\"Meilleure matière :\", matieres[indice])\n```\n\n### Exercice 2 — Compter les mots\n\nDemandez une phrase, puis affichez le nombre de mots et le mot le plus long.\n\n```solution\nphrase = input(\"Votre phrase : \")\nmots = phrase.split()\n\nprint(\"Nombre de mots :\", len(mots))\n\nplus_long = \"\"\nfor mot in mots:\n    if len(mot) > len(plus_long):\n        plus_long = mot\nprint(\"Mot le plus long :\", plus_long)\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "d13300d0-1365-561c-bd78-294ee85602d1",
+     "slug": "dictionnaires",
+     "title": "Les dictionnaires",
+     "summary": "Associer des clés à des valeurs, compter, combiner.",
+     "content_md": "## Retrouver une valeur par son nom\n\nUne liste range des valeurs par position. Mais pour un annuaire, on veut retrouver un numéro à partir d'un **nom**, pas d'un indice. C'est le rôle du **dictionnaire** : un ensemble de paires **clé : valeur**, écrit entre accolades.\n\n```python\netudiant = {\n    \"nom\": \"Amina\",\n    \"age\": 21,\n    \"formation\": \"Python\",\n}\nprint(etudiant[\"nom\"])        # Amina\nprint(len(etudiant))          # 3 paires\n```\n\nLes clés sont le plus souvent des chaînes ; elles doivent être **uniques**. Les valeurs peuvent être de n'importe quel type, y compris des listes.\n\n## Ajouter, modifier, supprimer\n\n```python\nstock = {\"pommes\": 12, \"poires\": 5}\n\nstock[\"bananes\"] = 8      # nouvelle clé : ajout\nstock[\"pommes\"] = 10      # clé existante : modification\ndel stock[\"poires\"]       # suppression\n\nprint(stock)              # {'pommes': 10, 'bananes': 8}\n```\n\nLire une clé absente provoque une erreur :\n\n```python\nprint(stock[\"kiwis\"])\n# KeyError: 'kiwis'\n```\n\nDeux façons de s'en protéger :\n\n```python\nif \"kiwis\" in stock:              # in teste les clés\n    print(stock[\"kiwis\"])\n\nprint(stock.get(\"kiwis\", 0))      # get renvoie 0 si la clé n'existe pas\n```\n\n## Parcourir un dictionnaire\n\n```python\nnotes = {\"Lina\": 16, \"Yanis\": 11, \"Amina\": 14}\n\nfor prenom in notes:                     # parcourt les clés\n    print(prenom)\n\nfor prenom, note in notes.items():       # paires (clé, valeur)\n    print(f\"{prenom} : {note}/20\")\n\nprint(list(notes.values()))              # [16, 11, 14]\nprint(sum(notes.values()) / len(notes))  # 13.666...\n```\n\n`items()` est la méthode la plus utile : elle renvoie des tuples `(clé, valeur)` que l'on déballe directement dans la boucle.\n\n## Compter avec un dictionnaire\n\nUn usage classique : compter des occurrences. La clé est l'élément compté, la valeur son nombre d'apparitions.\n\n```python\nvotes = [\"Python\", \"SQL\", \"Python\", \"Anglais\", \"Python\", \"SQL\"]\ncompte = {}\nfor choix in votes:\n    compte[choix] = compte.get(choix, 0) + 1\nprint(compte)    # {'Python': 3, 'SQL': 2, 'Anglais': 1}\n```\n\n## Combiner listes et dictionnaires\n\nLes données réelles mélangent souvent les deux : une liste de dictionnaires, chacun décrivant un élément.\n\n```python\nclasse = [\n    {\"nom\": \"Lina\", \"notes\": [16, 18]},\n    {\"nom\": \"Yanis\", \"notes\": [11, 9]},\n]\nfor eleve in classe:\n    moyenne = sum(eleve[\"notes\"]) / len(eleve[\"notes\"])\n    print(f\"{eleve['nom']} : {moyenne:.1f}\")\n```\n\nRemarquez les guillemets simples `'nom'` à l'intérieur de la f-string délimitée par des guillemets doubles.\n\n## À retenir\n\n- Un dictionnaire associe des clés uniques à des valeurs : `{\"cle\": valeur}`.\n- `d[cle] = valeur` ajoute ou modifie ; `del d[cle]` supprime.\n- `in` teste une clé ; `get(cle, defaut)` évite la `KeyError`.\n- `items()` parcourt les paires, `values()` les valeurs.\n\n## Exercices\n\n### Exercice 1 — Mini-annuaire\n\nCréez un dictionnaire de trois contacts (prénom → numéro). Demandez un prénom et affichez son numéro, ou le message `Contact inconnu`.\n\n```solution\nannuaire = {\n    \"Lina\": \"06 12 34 56 78\",\n    \"Yanis\": \"07 98 76 54 32\",\n    \"Amina\": \"06 11 22 33 44\",\n}\n\nprenom = input(\"Prénom : \")\nprint(annuaire.get(prenom, \"Contact inconnu\"))\n```\n\n### Exercice 2 — Fréquence des lettres\n\nDemandez un mot et affichez combien de fois apparaît chaque lettre, au format `p : 1`.\n\n```solution\nmot = input(\"Votre mot : \").lower()\nfrequences = {}\nfor lettre in mot:\n    frequences[lettre] = frequences.get(lettre, 0) + 1\n\nfor lettre, nombre in frequences.items():\n    print(f\"{lettre} : {nombre}\")\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e6d3b879-97ba-5067-994c-cb1feeeae44a",
+    "title": "Quiz — Listes, tuples et dictionnaires",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "6181d0cf-1d25-525a-be25-4f642fd4cdaa",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "prenoms = [\"Amina\", \"Yanis\", \"Lina\"]\nprint(prenoms[1])",
+      "points": 2,
+      "options": [
+       {
+        "id": "e7bd459f-490d-5aed-9ac2-229a21fe04e0",
+        "position": 1,
+        "label": "Amina"
+       },
+       {
+        "id": "245affe9-04d6-5940-8671-1cb4b8a03546",
+        "position": 2,
+        "label": "Yanis"
+       },
+       {
+        "id": "46317fe7-cfbe-5550-a664-7c709d076cf9",
+        "position": 3,
+        "label": "Lina"
+       },
+       {
+        "id": "d7a51a4c-1f53-5369-a5ec-b75e74f39176",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "245affe9-04d6-5940-8671-1cb4b8a03546"
+      ],
+      "explanation": "Les indices commencent à 0 : prenoms[0] vaut \"Amina\", prenoms[1] vaut \"Yanis\"."
+     },
+     {
+      "id": "6d8eebee-cafc-54c4-970f-08854f4e6238",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que vaut lettres[1:3] si lettres = ['a', 'b', 'c', 'd'] ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1a7764b7-083f-5203-909b-2944a512f54a",
+        "position": 1,
+        "label": "['a', 'b', 'c']"
+       },
+       {
+        "id": "0a016889-fbfb-5e87-9157-f93940c863e8",
+        "position": 2,
+        "label": "['b', 'c']"
+       },
+       {
+        "id": "3a403e6f-91a9-54da-8e77-2e8becb88aa8",
+        "position": 3,
+        "label": "['b', 'c', 'd']"
+       },
+       {
+        "id": "b4676c0a-afeb-5ae6-bf85-9c14c6268e65",
+        "position": 4,
+        "label": "['a', 'b']"
+       }
+      ],
+      "correct": [
+       "0a016889-fbfb-5e87-9157-f93940c863e8"
+      ],
+      "explanation": "Une tranche va de l'indice de début inclus à l'indice de fin exclu : indices 1 et 2, soit 'b' et 'c'."
+     },
+     {
+      "id": "c1b3780a-0fc1-5efa-be64-01a9e7e06538",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle instruction ajoute \"thé\" à la fin de la liste boissons ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0dc89ad8-0096-5537-9af4-d18a91e5f388",
+        "position": 1,
+        "label": "boissons.append(\"thé\")"
+       },
+       {
+        "id": "22ae5e4a-5546-5f67-885c-7796644ed458",
+        "position": 2,
+        "label": "boissons.add(\"thé\")"
+       },
+       {
+        "id": "9011ee45-f52a-5171-932e-0d23d81b92e6",
+        "position": 3,
+        "label": "boissons + \"thé\""
+       },
+       {
+        "id": "71e1ebb9-4cef-5eb1-ae1c-39c396c8fd85",
+        "position": 4,
+        "label": "boissons.insert(\"thé\")"
+       }
+      ],
+      "correct": [
+       "0dc89ad8-0096-5537-9af4-d18a91e5f388"
+      ],
+      "explanation": "append() ajoute un élément à la fin. add() n'existe pas pour les listes, et insert() demande aussi un indice."
+     },
+     {
+      "id": "7b36f906-38e0-5b8c-9c9c-a64a1d484ac6",
+      "position": 4,
+      "kind": "true_false",
+      "prompt": "Un tuple peut être modifié après sa création.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4932a820-763c-5f26-8992-ef95f9f600b8",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "4b62db65-22e1-5095-8a60-2b76fe7be7b9",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "4b62db65-22e1-5095-8a60-2b76fe7be7b9"
+      ],
+      "explanation": "Un tuple est immuable : point[0] = 5 provoque une TypeError. Pour une collection modifiable, utilisez une liste."
+     },
+     {
+      "id": "8aac58bd-a4ea-5ca0-85fd-f2f950552f52",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Après x, y = (4, 9), que vaut y ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1c21cff6-4307-55ae-add7-e160ad303f40",
+        "position": 1,
+        "label": "4"
+       },
+       {
+        "id": "aaaaf30e-f674-5809-827f-254267b223cc",
+        "position": 2,
+        "label": "9"
+       },
+       {
+        "id": "dd7a7653-acce-574a-96e7-07fb284224d3",
+        "position": 3,
+        "label": "(4, 9)"
+       },
+       {
+        "id": "696c4f11-0e7b-5875-895e-69960dc8003c",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "aaaaf30e-f674-5809-827f-254267b223cc"
+      ],
+      "explanation": "Le déballage répartit les éléments dans l'ordre : x reçoit 4 et y reçoit 9."
+     },
+     {
+      "id": "2f293889-5cbc-5b44-b44f-40173333a7bb",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "stock = {\"pommes\": 12}\nstock[\"pommes\"] = 10\nstock[\"poires\"] = 3\nprint(len(stock))",
+      "points": 2,
+      "options": [
+       {
+        "id": "24c52f9d-45d1-51ee-a110-904cd2394060",
+        "position": 1,
+        "label": "1"
+       },
+       {
+        "id": "e9dc7c88-7c83-52e0-b34b-fb9135dc8db8",
+        "position": 2,
+        "label": "2"
+       },
+       {
+        "id": "3b64f643-70be-5e00-b62f-d1868e61400c",
+        "position": 3,
+        "label": "3"
+       },
+       {
+        "id": "c00f3883-d4e1-56de-b4f0-010dcbad4fa0",
+        "position": 4,
+        "label": "25"
+       }
+      ],
+      "correct": [
+       "e9dc7c88-7c83-52e0-b34b-fb9135dc8db8"
+      ],
+      "explanation": "La première affectation modifie une clé existante, la seconde ajoute une nouvelle clé : le dictionnaire contient 2 paires."
+     },
+     {
+      "id": "d7c81df6-e96b-5c92-bd12-d57836dd13f4",
+      "position": 7,
+      "kind": "multiple",
+      "prompt": "Quelles instructions évitent une KeyError si la clé \"kiwis\" n'existe pas dans stock ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1ba735ab-f76f-53c4-91de-2902405d1b1e",
+        "position": 1,
+        "label": "stock.get(\"kiwis\", 0)"
+       },
+       {
+        "id": "10812160-b253-5c33-873a-cc3d04b07e6f",
+        "position": 2,
+        "label": "stock[\"kiwis\"]"
+       },
+       {
+        "id": "91f5a0cc-d0cc-523c-bc4b-8da5d3dee23b",
+        "position": 3,
+        "label": "if \"kiwis\" in stock: print(stock[\"kiwis\"])"
+       },
+       {
+        "id": "1226c1b5-5f24-5b05-8e63-4178242bf93c",
+        "position": 4,
+        "label": "del stock[\"kiwis\"]"
+       }
+      ],
+      "correct": [
+       "1ba735ab-f76f-53c4-91de-2902405d1b1e",
+       "91f5a0cc-d0cc-523c-bc4b-8da5d3dee23b"
+      ],
+      "explanation": "get() renvoie une valeur par défaut, et le test in vérifie la présence de la clé avant de la lire. Lire ou supprimer directement une clé absente lève une KeyError."
+     },
+     {
+      "id": "82d85587-5774-5a1d-94ec-d84840b6b233",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que renvoie \"a b c\".split() ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b0d633d5-3b97-52e9-822b-b4acef0f65c5",
+        "position": 1,
+        "label": "'abc'"
+       },
+       {
+        "id": "6fbb517c-4143-5c45-af1b-e3c0698945b2",
+        "position": 2,
+        "label": "['a', 'b', 'c']"
+       },
+       {
+        "id": "36a2f4be-e97f-58ed-bc6c-d13322f67324",
+        "position": 3,
+        "label": "('a', 'b', 'c')"
+       },
+       {
+        "id": "97550a50-9f79-5178-b9df-700a3417b716",
+        "position": 4,
+        "label": "['a b c']"
+       }
+      ],
+      "correct": [
+       "6fbb517c-4143-5c45-af1b-e3c0698945b2"
+      ],
+      "explanation": "split() découpe la chaîne sur les espaces et renvoie une liste de chaînes."
+     },
+     {
+      "id": "f2b4af5f-21c6-580e-a97b-28a0a5808e0f",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "for i, x in enumerate([\"a\", \"b\"], start=1):\n    print(i, x)",
+      "points": 2,
+      "options": [
+       {
+        "id": "632d14ce-c81c-53bd-85fe-a4cc5a1707d1",
+        "position": 1,
+        "label": "0 a puis 1 b"
+       },
+       {
+        "id": "3d255987-00ee-5378-bdc1-9d8e7e84b4e2",
+        "position": 2,
+        "label": "1 a puis 2 b"
+       },
+       {
+        "id": "62de11d7-4a73-5d3f-bbcc-898ec6070d2a",
+        "position": 3,
+        "label": "a 1 puis b 2"
+       },
+       {
+        "id": "a9313e30-5334-5f72-b365-675a4067458e",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "3d255987-00ee-5378-bdc1-9d8e7e84b4e2"
+      ],
+      "explanation": "enumerate() fournit des paires (indice, élément) ; start=1 fait commencer la numérotation à 1."
+     },
+     {
+      "id": "b44cd899-8dda-5eb6-bdc4-37ed66251665",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Pour une liste de longueur 5, l'indice 5 désigne le dernier élément.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5df3650e-6ec8-51ba-a023-e8682df1ec71",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "479909e9-e364-5fd3-80cc-4009c49138b5",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "479909e9-e364-5fd3-80cc-4009c49138b5"
+      ],
+      "explanation": "Les indices valides vont de 0 à 4. Le dernier élément est liste[4] ou liste[-1] ; liste[5] provoque une IndexError."
+     }
+    ]
+   }
+  },
+  {
+   "id": "277b3ca7-00f1-5d59-892d-04756c6489a7",
+   "position": 4,
+   "title": "Les fonctions",
+   "description": "Découper un programme en blocs réutilisables.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "c4913467-ab83-5ae5-b151-e61f5e78452a",
+     "slug": "definir-une-fonction",
+     "title": "Définir et appeler une fonction",
+     "summary": "def, paramètres et return.",
+     "content_md": "## Pourquoi des fonctions ?\n\nVous utilisez déjà des fonctions : `print()`, `len()`, `input()`. Une **fonction** est un bloc de code nommé que l'on peut appeler autant de fois que nécessaire. Écrire ses propres fonctions permet :\n\n- d'éviter de copier-coller le même code ;\n- de découper un programme en petites étapes faciles à comprendre ;\n- de corriger un problème à un seul endroit.\n\n## Définir et appeler une fonction\n\nOn définit une fonction avec le mot-clé `def`, un nom, des parenthèses et deux-points. Le corps est indenté.\n\n```python\ndef saluer():\n    print(\"Bonjour et bienvenue sur SMK Academy !\")\n\nsaluer()     # appel : le code de la fonction s'exécute\nsaluer()     # on peut l'appeler plusieurs fois\n```\n\nDéfinir une fonction n'exécute rien : son code ne s'exécute qu'au moment de l'**appel**. La définition doit apparaître avant le premier appel.\n\n## Les paramètres\n\nUn **paramètre** est une variable qui reçoit une valeur au moment de l'appel. La valeur transmise s'appelle un **argument**.\n\n```python\ndef saluer(prenom):\n    print(f\"Bonjour {prenom} !\")\n\nsaluer(\"Lina\")     # Bonjour Lina !\nsaluer(\"Yanis\")    # Bonjour Yanis !\n```\n\nUne fonction peut avoir plusieurs paramètres, séparés par des virgules ; les arguments sont associés dans l'ordre :\n\n```python\ndef presenter(prenom, age):\n    print(f\"{prenom} a {age} ans.\")\n\npresenter(\"Amina\", 21)\n```\n\n## Renvoyer un résultat : return\n\n`print()` affiche une valeur à l'écran, mais le programme ne peut pas la réutiliser. Pour qu'une fonction **produise** un résultat utilisable, on utilise `return` :\n\n```python\ndef carre(n):\n    return n * n\n\nresultat = carre(5)\nprint(resultat)            # 25\nprint(carre(3) + carre(4)) # 25\n```\n\n`return` arrête immédiatement la fonction et renvoie la valeur à l'endroit de l'appel. Une fonction sans `return` renvoie la valeur spéciale `None` :\n\n```python\ndef afficher_carre(n):\n    print(n * n)\n\nx = afficher_carre(4)   # affiche 16\nprint(x)                # None : rien n'a été renvoyé\n```\n\nC'est une source d'erreur fréquente : dans la plupart des cas, une fonction de calcul doit **renvoyer** son résultat plutôt que l'afficher.\n\n## Plusieurs return\n\nUne fonction peut contenir plusieurs `return`, par exemple dans des conditions :\n\n```python\ndef mention(note):\n    if note >= 16:\n        return \"Très bien\"\n    if note >= 14:\n        return \"Bien\"\n    if note >= 10:\n        return \"Passable\"\n    return \"Non validé\"\n\nprint(mention(15))   # Bien\n```\n\nComme `return` quitte la fonction, les `elif` ne sont pas nécessaires ici.\n\n## Renvoyer plusieurs valeurs\n\nEn séparant les valeurs par des virgules, une fonction renvoie un tuple, que l'on peut déballer :\n\n```python\ndef min_max(valeurs):\n    return min(valeurs), max(valeurs)\n\nplus_petit, plus_grand = min_max([12, 7, 19])\nprint(plus_petit, plus_grand)   # 7 19\n```\n\n## À retenir\n\n- `def nom(parametres):` définit une fonction ; elle ne s'exécute qu'à l'appel `nom(arguments)`.\n- `return` renvoie un résultat et termine la fonction.\n- Sans `return`, une fonction renvoie `None`.\n- Préférez renvoyer un résultat plutôt que l'afficher dans la fonction.\n\n## Exercices\n\n### Exercice 1 — Prix TTC\n\nÉcrivez une fonction `prix_ttc(prix_ht)` qui renvoie le prix avec 20 % de TVA. Testez-la avec 50 et 19.99.\n\n```solution\ndef prix_ttc(prix_ht):\n    return prix_ht * 1.2\n\nprint(prix_ttc(50))                # 60.0\nprint(f\"{prix_ttc(19.99):.2f}\")    # 23.99\n```\n\n### Exercice 2 — Est-ce un nombre pair ?\n\nÉcrivez une fonction `est_pair(n)` qui renvoie `True` si `n` est pair et `False` sinon, puis utilisez-la pour afficher les nombres pairs de 1 à 10.\n\n```solution\ndef est_pair(n):\n    return n % 2 == 0\n\nfor i in range(1, 11):\n    if est_pair(i):\n        print(i)\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "dd185f43-8d4a-55e2-8a4a-b76716e74b03",
+     "slug": "parametres-et-portee",
+     "title": "Paramètres, portée et documentation",
+     "summary": "Valeurs par défaut, arguments nommés, variables locales, docstrings.",
+     "content_md": "## Des valeurs par défaut\n\nUn paramètre peut recevoir une **valeur par défaut**, utilisée si l'argument n'est pas fourni :\n\n```python\ndef saluer(prenom, formule=\"Bonjour\"):\n    print(f\"{formule} {prenom} !\")\n\nsaluer(\"Lina\")               # Bonjour Lina !\nsaluer(\"Yanis\", \"Bonsoir\")   # Bonsoir Yanis !\n```\n\nLes paramètres avec valeur par défaut se placent **après** les paramètres obligatoires.\n\n## Les arguments nommés\n\nÀ l'appel, on peut préciser le nom du paramètre. L'ordre n'a alors plus d'importance et l'appel devient plus lisible :\n\n```python\ndef creer_compte(email, pseudo, newsletter=False):\n    print(email, pseudo, newsletter)\n\ncreer_compte(\"lina@exemple.fr\", \"lina\", newsletter=True)\ncreer_compte(pseudo=\"yanis\", email=\"yanis@exemple.fr\")\n```\n\nVous connaissez déjà ce mécanisme : `print(\"a\", \"b\", sep=\"-\")` ou `print(x, end=\"\")` utilisent des arguments nommés.\n\n## La portée des variables\n\nUne variable créée **dans** une fonction est **locale** : elle n'existe que pendant l'exécution de la fonction.\n\n```python\ndef calculer():\n    resultat = 42\n    return resultat\n\ncalculer()\nprint(resultat)\n# NameError: name 'resultat' is not defined\n```\n\nPour récupérer une valeur calculée dans une fonction, on la **renvoie** avec `return` et on la stocke à l'appel : `resultat = calculer()`.\n\nUne fonction peut **lire** une variable définie en dehors (variable **globale**), mais si elle lui affecte une valeur, Python crée une nouvelle variable locale du même nom :\n\n```python\ntaux = 20\n\ndef appliquer_tva(prix):\n    return prix * (1 + taux / 100)   # lecture de la variable globale : autorisé\n\nprint(appliquer_tva(100))   # 120.0\n```\n\nBonne pratique : faites passer les informations par les **paramètres** et les résultats par **return**. Une fonction qui ne dépend que de ses paramètres est plus facile à comprendre et à tester.\n\n## Les paramètres et les listes\n\nQuand on passe une liste à une fonction, la fonction reçoit **la même liste**, pas une copie. Si elle la modifie, la modification est visible à l'extérieur :\n\n```python\ndef ajouter_bonus(notes):\n    for i in range(len(notes)):\n        notes[i] = min(20, notes[i] + 1)\n\nmes_notes = [12, 19, 20]\najouter_bonus(mes_notes)\nprint(mes_notes)   # [13, 20, 20]\n```\n\nPour ne pas modifier l'original, on renvoie une nouvelle liste :\n\n```python\ndef avec_bonus(notes):\n    resultat = []\n    for note in notes:\n        resultat.append(min(20, note + 1))\n    return resultat\n```\n\n## Documenter une fonction\n\nUne **docstring** est une chaîne placée juste sous la ligne `def`. Elle explique ce que fait la fonction, et l'aide de Python l'affiche avec `help()` :\n\n```python\ndef moyenne(valeurs):\n    \"\"\"Renvoie la moyenne d'une liste de nombres non vide.\"\"\"\n    return sum(valeurs) / len(valeurs)\n\nhelp(moyenne)\n```\n\n## À retenir\n\n- `param=valeur` donne une valeur par défaut ; ces paramètres viennent en dernier.\n- Les arguments nommés rendent les appels explicites et indépendants de l'ordre.\n- Les variables d'une fonction sont locales : récupérez les résultats avec `return`.\n- Une liste passée en argument peut être modifiée par la fonction.\n\n## Exercices\n\n### Exercice 1 — Puissance\n\nÉcrivez une fonction `puissance(base, exposant=2)` qui renvoie `base` élevé à `exposant`. Testez `puissance(5)`, `puissance(2, 10)` et `puissance(exposant=3, base=2)`.\n\n```solution\ndef puissance(base, exposant=2):\n    return base ** exposant\n\nprint(puissance(5))                    # 25\nprint(puissance(2, 10))                # 1024\nprint(puissance(exposant=3, base=2))   # 8\n```\n\n### Exercice 2 — Filtrer les notes\n\nÉcrivez une fonction `notes_reussies(notes, seuil=10)` qui renvoie une **nouvelle** liste contenant uniquement les notes supérieures ou égales au seuil, sans modifier la liste d'origine.\n\n```solution\ndef notes_reussies(notes, seuil=10):\n    reussies = []\n    for note in notes:\n        if note >= seuil:\n            reussies.append(note)\n    return reussies\n\ntoutes = [8, 12, 15, 9, 10]\nprint(notes_reussies(toutes))       # [12, 15, 10]\nprint(notes_reussies(toutes, 14))   # [15]\nprint(toutes)                       # inchangée : [8, 12, 15, 9, 10]\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "c0963e30-21f8-539e-8a60-a22578746807",
+     "slug": "modules-et-decomposition",
+     "title": "Modules et découpage d'un programme",
+     "summary": "import, math, random, fonctions courtes et tests avec assert.",
+     "content_md": "## Réutiliser le travail des autres : les modules\n\nPython est livré avec une **bibliothèque standard** : des centaines de fonctions prêtes à l'emploi, rangées dans des **modules**. On les charge avec `import`.\n\n```python\nimport math\n\nprint(math.sqrt(16))     # 4.0   racine carrée\nprint(math.pi)           # 3.141592653589793\nprint(math.ceil(2.1))    # 3     arrondi à l'entier supérieur\n```\n\nOn peut aussi importer uniquement ce dont on a besoin :\n\n```python\nfrom math import sqrt, floor\n\nprint(sqrt(25))    # 5.0\nprint(floor(2.9))  # 2\n```\n\n## Le module random\n\n```python\nimport random\n\nprint(random.randint(1, 6))                 # entier entre 1 et 6 inclus\nprint(random.choice([\"pile\", \"face\"]))      # élément au hasard\ncartes = [1, 2, 3, 4, 5]\nrandom.shuffle(cartes)                      # mélange la liste sur place\nprint(cartes)\n```\n\n## Découper un problème en fonctions\n\nFace à un programme plus long, la bonne méthode est de le découper en petites fonctions qui font chacune **une seule chose**, puis de les assembler. Prenons un jeu « devinez le nombre ».\n\n```python\nimport random\n\n\ndef tirer_nombre(maximum):\n    \"\"\"Choisit le nombre secret.\"\"\"\n    return random.randint(1, maximum)\n\n\ndef demander_essai(maximum):\n    \"\"\"Redemande tant que la saisie n'est pas un entier dans les bornes.\"\"\"\n    while True:\n        saisie = input(f\"Votre proposition (1-{maximum}) : \")\n        if saisie.isdigit() and 1 <= int(saisie) <= maximum:\n            return int(saisie)\n        print(\"Saisie invalide.\")\n\n\ndef indice(essai, secret):\n    \"\"\"Renvoie le message à afficher après un essai.\"\"\"\n    if essai < secret:\n        return \"C'est plus.\"\n    if essai > secret:\n        return \"C'est moins.\"\n    return \"Gagné !\"\n\n\ndef jouer(maximum=100):\n    secret = tirer_nombre(maximum)\n    essais = 0\n    while True:\n        essai = demander_essai(maximum)\n        essais += 1\n        message = indice(essai, secret)\n        print(message)\n        if essai == secret:\n            print(f\"Trouvé en {essais} essais.\")\n            return essais\n\n\njouer(20)\n```\n\nChaque fonction a un nom qui dit ce qu'elle fait. La fonction `jouer` se lit presque comme une description du jeu. Et si l'on veut changer le texte des indices, on sait immédiatement où intervenir.\n\nLa méthode `isdigit()` renvoie `True` si la chaîne ne contient que des chiffres : elle évite ici l'erreur qu'aurait provoquée `int(\"abc\")`. Au module 5, vous verrez une approche plus générale avec `try`.\n\n## Tester ses fonctions\n\nUne fonction qui renvoie une valeur se teste facilement avec `assert`, qui lève une erreur si la condition est fausse :\n\n```python\nassert indice(5, 10) == \"C'est plus.\"\nassert indice(15, 10) == \"C'est moins.\"\nassert indice(10, 10) == \"Gagné !\"\nprint(\"Tous les tests passent.\")\n```\n\nC'est l'une des grandes raisons de préférer `return` à `print` : une valeur renvoyée se vérifie automatiquement.\n\n## Conventions de style\n\n- Noms de fonctions en *snake_case*, sous forme de verbe : `calculer_moyenne`, `afficher_menu`.\n- Deux lignes vides entre les fonctions.\n- Les `import` en haut du fichier.\n- Une fonction courte (moins de 20 lignes) qui fait une seule chose.\n\n## À retenir\n\n- `import module` puis `module.fonction()`, ou `from module import fonction`.\n- `math` pour les calculs, `random` pour le hasard.\n- Découpez un programme en fonctions courtes, une responsabilité chacune.\n- `assert condition` vérifie automatiquement le résultat d'une fonction.\n\n## Exercices\n\n### Exercice 1 — Lancer de dés\n\nÉcrivez une fonction `lancer_des(nombre)` qui simule `nombre` lancers d'un dé à six faces et renvoie la liste des résultats. Affichez la liste et la somme pour 5 lancers.\n\n```solution\nimport random\n\n\ndef lancer_des(nombre):\n    resultats = []\n    for _ in range(nombre):\n        resultats.append(random.randint(1, 6))\n    return resultats\n\n\nlancers = lancer_des(5)\nprint(lancers, \"somme :\", sum(lancers))\n```\n\n> Le nom de variable `_` indique par convention que la valeur n'est pas utilisée.\n\n### Exercice 2 — Aire d'un disque, testée\n\nÉcrivez `aire_disque(rayon)` avec le module `math`, puis vérifiez avec `assert` que l'aire d'un disque de rayon 1 est bien `math.pi` et que celle de rayon 0 vaut 0.\n\n```solution\nimport math\n\n\ndef aire_disque(rayon):\n    \"\"\"Renvoie l'aire d'un disque.\"\"\"\n    return math.pi * rayon ** 2\n\n\nassert aire_disque(1) == math.pi\nassert aire_disque(0) == 0\nprint(f\"Aire pour un rayon de 3 : {aire_disque(3):.2f}\")   # 28.27\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "801c1334-e625-5d7e-ba4f-1a9962dac1bc",
+    "title": "Quiz — Les fonctions",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "85ed2f87-07c2-5f02-9298-28463c4c51ce",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel mot-clé permet de définir une fonction en Python ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "04f53e3a-27f8-50c0-8119-edd4e445ea93",
+        "position": 1,
+        "label": "function"
+       },
+       {
+        "id": "45d1b2cf-ffef-5c66-beaf-6934cf57332d",
+        "position": 2,
+        "label": "def"
+       },
+       {
+        "id": "86708b35-7a09-515b-8290-fa2bd8473a9b",
+        "position": 3,
+        "label": "func"
+       },
+       {
+        "id": "7b587ba2-92d0-5606-b700-b5c425a5ff51",
+        "position": 4,
+        "label": "define"
+       }
+      ],
+      "correct": [
+       "45d1b2cf-ffef-5c66-beaf-6934cf57332d"
+      ],
+      "explanation": "Une fonction se définit avec def, suivi de son nom, de parenthèses et de deux-points."
+     },
+     {
+      "id": "c40b6525-2201-5d69-9218-8b3c7d08d343",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "def carre(n):\n    return n * n\n\nprint(carre(3) + 1)",
+      "points": 2,
+      "options": [
+       {
+        "id": "30b9c6bf-dcf4-5205-86d2-a280b18679ee",
+        "position": 1,
+        "label": "9"
+       },
+       {
+        "id": "9d22422e-ba72-5249-8857-3bc6a248658b",
+        "position": 2,
+        "label": "10"
+       },
+       {
+        "id": "b6adc55a-90c5-50a9-95a9-f64756a6d6dc",
+        "position": 3,
+        "label": "31"
+       },
+       {
+        "id": "b9f63197-f07c-565e-a41c-f3079a770496",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "9d22422e-ba72-5249-8857-3bc6a248658b"
+      ],
+      "explanation": "carre(3) renvoie 9, auquel on ajoute 1 : le programme affiche 10."
+     },
+     {
+      "id": "7dbb011b-4f34-50bd-ab2f-639273afd704",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Que vaut x après ce code ?",
+      "code": "def afficher(n):\n    print(n * 2)\n\nx = afficher(4)",
+      "points": 2,
+      "options": [
+       {
+        "id": "8d04ffda-1deb-53c7-937d-73e59a88a62a",
+        "position": 1,
+        "label": "8"
+       },
+       {
+        "id": "362b4e7a-0ef5-5fa5-947c-a576fa60027d",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "d20590a4-6d4e-5a6c-8fa7-e037bc069154",
+        "position": 3,
+        "label": "None"
+       },
+       {
+        "id": "78abfe20-05eb-566f-96cf-3053775f8b62",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "d20590a4-6d4e-5a6c-8fa7-e037bc069154"
+      ],
+      "explanation": "La fonction affiche 8 mais ne contient pas de return : elle renvoie None, qui est stocké dans x."
+     },
+     {
+      "id": "c3e9d998-bec7-5c9c-b96f-1111ceadc8dc",
+      "position": 4,
+      "kind": "true_false",
+      "prompt": "Définir une fonction avec def exécute immédiatement son code.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4ffd9686-2545-5333-948a-3bc4ea31a7c2",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "3e077769-c8a3-5eb1-bb19-3cc6a8d25476",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "3e077769-c8a3-5eb1-bb19-3cc6a8d25476"
+      ],
+      "explanation": "La définition enregistre seulement la fonction. Son code s'exécute à chaque appel."
+     },
+     {
+      "id": "3d72ee6c-4e80-57d5-b2a4-1772062d91d5",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Avec def saluer(prenom, formule=\"Bonjour\"), qu'affiche saluer(\"Lina\") si la fonction fait print(formule, prenom) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7d0f7e40-be4d-5e6f-ba06-69148da51e8a",
+        "position": 1,
+        "label": "Lina"
+       },
+       {
+        "id": "000899e0-339d-53b0-9081-992fd394ccc8",
+        "position": 2,
+        "label": "Bonjour Lina"
+       },
+       {
+        "id": "60915596-5b9f-57f9-b356-ab1c59aad0de",
+        "position": 3,
+        "label": "Lina Bonjour"
+       },
+       {
+        "id": "8f0bd79d-ea92-5dcd-bd88-ffc40f49915f",
+        "position": 4,
+        "label": "Une erreur : il manque un argument"
+       }
+      ],
+      "correct": [
+       "000899e0-339d-53b0-9081-992fd394ccc8"
+      ],
+      "explanation": "Le paramètre formule a une valeur par défaut, utilisée quand l'argument n'est pas fourni."
+     },
+     {
+      "id": "5ea6262f-3057-5ed9-8bcc-e3a460370489",
+      "position": 6,
+      "kind": "multiple",
+      "prompt": "Quels appels sont valides pour def creer(email, pseudo, newsletter=False) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0efc8c06-8313-5d42-9e54-1b323be18749",
+        "position": 1,
+        "label": "creer(\"a@b.fr\", \"ana\")"
+       },
+       {
+        "id": "bf1d4d16-6a0a-575f-9200-ebc9972c403b",
+        "position": 2,
+        "label": "creer(pseudo=\"ana\", email=\"a@b.fr\")"
+       },
+       {
+        "id": "3c50c472-265b-5cb7-aa1d-fd89817d7051",
+        "position": 3,
+        "label": "creer(\"a@b.fr\")"
+       },
+       {
+        "id": "f6c98a45-33f1-56c3-ace1-735809728214",
+        "position": 4,
+        "label": "creer(\"a@b.fr\", \"ana\", newsletter=True)"
+       }
+      ],
+      "correct": [
+       "0efc8c06-8313-5d42-9e54-1b323be18749",
+       "bf1d4d16-6a0a-575f-9200-ebc9972c403b",
+       "f6c98a45-33f1-56c3-ace1-735809728214"
+      ],
+      "explanation": "email et pseudo sont obligatoires, dans l'ordre ou nommés. creer(\"a@b.fr\") oublie pseudo et provoque une TypeError."
+     },
+     {
+      "id": "8acdfd0c-3b29-531c-aa56-596d73b2c96b",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que se passe-t-il à la dernière ligne ?",
+      "code": "def calculer():\n    resultat = 42\n\ncalculer()\nprint(resultat)",
+      "points": 2,
+      "options": [
+       {
+        "id": "11af1a6a-9c95-5be5-8fd6-a4ba3b5a64b6",
+        "position": 1,
+        "label": "Affiche 42"
+       },
+       {
+        "id": "0d7bdd92-a14c-5d40-823c-d63162b05e9a",
+        "position": 2,
+        "label": "Affiche None"
+       },
+       {
+        "id": "3597a124-c2c1-5a4b-9299-bbe1472c175d",
+        "position": 3,
+        "label": "NameError : resultat n'est pas défini"
+       },
+       {
+        "id": "78d79564-2132-585e-8127-d8f806c120b8",
+        "position": 4,
+        "label": "Affiche 0"
+       }
+      ],
+      "correct": [
+       "3597a124-c2c1-5a4b-9299-bbe1472c175d"
+      ],
+      "explanation": "resultat est une variable locale à la fonction : elle n'existe plus après l'appel. Il fallait la renvoyer avec return."
+     },
+     {
+      "id": "ed5dbb3c-e601-5080-b148-982cc24caa32",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quelle instruction importe uniquement la fonction sqrt du module math ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "d783809b-a650-5d3c-904d-a25c3e686af0",
+        "position": 1,
+        "label": "import sqrt"
+       },
+       {
+        "id": "1a8ae91b-6a49-5591-ae4f-cf874ba9350f",
+        "position": 2,
+        "label": "from math import sqrt"
+       },
+       {
+        "id": "1a71c338-9582-529a-8fc9-b55fd1e64e19",
+        "position": 3,
+        "label": "import math.sqrt()"
+       },
+       {
+        "id": "821039a5-c578-5fa8-bdbe-307f7dddde11",
+        "position": 4,
+        "label": "include math"
+       }
+      ],
+      "correct": [
+       "1a8ae91b-6a49-5591-ae4f-cf874ba9350f"
+      ],
+      "explanation": "from module import fonction importe un élément précis, utilisable ensuite sans préfixe : sqrt(16)."
+     },
+     {
+      "id": "1e9156ee-eace-5243-a0b2-f01fd86a4223",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "def bonus(notes):\n    notes.append(20)\n\nmes_notes = [12]\nbonus(mes_notes)\nprint(mes_notes)",
+      "points": 2,
+      "options": [
+       {
+        "id": "2abca4a1-4a61-57e3-a4ae-6a9ebc26ad0a",
+        "position": 1,
+        "label": "[12]"
+       },
+       {
+        "id": "92531ea4-c36d-520e-826f-f0dc000f7d16",
+        "position": 2,
+        "label": "[12, 20]"
+       },
+       {
+        "id": "353a93d7-57e9-5588-ad47-e321dea0d621",
+        "position": 3,
+        "label": "[20]"
+       },
+       {
+        "id": "61383e48-0688-599a-aedb-20ba1d391eab",
+        "position": 4,
+        "label": "None"
+       }
+      ],
+      "correct": [
+       "92531ea4-c36d-520e-826f-f0dc000f7d16"
+      ],
+      "explanation": "La fonction reçoit la même liste, pas une copie : l'ajout est visible à l'extérieur."
+     },
+     {
+      "id": "17df09e3-d80f-534d-9e35-f872f7c51106",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Une fonction peut renvoyer plusieurs valeurs, par exemple return a, b.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "328cc0ff-0e7c-5e08-a2f8-f229b39b10d7",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "d5558bb6-fcb1-51e6-889f-03f0ceef6888",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "328cc0ff-0e7c-5e08-a2f8-f229b39b10d7"
+      ],
+      "explanation": "return a, b renvoie un tuple (a, b), que l'on peut déballer à l'appel : x, y = f()."
+     }
+    ]
+   }
+  },
+  {
+   "id": "6592e04c-ad44-5dad-b0db-e530cff2fa4b",
+   "position": 5,
+   "title": "Fichiers, erreurs et mini-projet",
+   "description": "Lire et écrire des fichiers, gérer les exceptions, réaliser un projet complet.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "d58b23f3-e702-509c-bf8b-c5edcbacd9d6",
+     "slug": "gerer-les-erreurs",
+     "title": "Gérer les erreurs",
+     "summary": "try, except, else, finally et raise.",
+     "content_md": "## Quand le programme rencontre un problème\n\nUne saisie inattendue, un fichier absent, une division par zéro : ces situations provoquent des **exceptions**. Sans précaution, le programme s'arrête avec un message d'erreur.\n\n```python\nage = int(input(\"Votre âge : \"))   # l'utilisateur tape « vingt »\n# ValueError: invalid literal for int() with base 10: 'vingt'\n```\n\nLes exceptions les plus fréquentes :\n\n| Exception | Cause typique |\n|-----------|---------------|\n| `ValueError` | conversion impossible : `int(\"abc\")` |\n| `ZeroDivisionError` | division par zéro |\n| `IndexError` | indice hors de la liste |\n| `KeyError` | clé absente d'un dictionnaire |\n| `TypeError` | opération entre types incompatibles |\n| `FileNotFoundError` | fichier introuvable |\n\n## Intercepter une exception : try / except\n\nLe bloc `try` contient le code qui peut échouer ; le bloc `except` indique quoi faire si l'exception survient. Le programme continue ensuite normalement.\n\n```python\ntry:\n    age = int(input(\"Votre âge : \"))\n    print(f\"L'an prochain, vous aurez {age + 1} ans.\")\nexcept ValueError:\n    print(\"Merci de saisir un nombre entier.\")\nprint(\"Suite du programme\")\n```\n\nSi la conversion réussit, le bloc `except` est ignoré. Si elle échoue, Python saute directement dans `except` : la ligne `print(f\"L'an prochain…\")` n'est pas exécutée.\n\n## Redemander jusqu'à obtenir une saisie valide\n\nEn combinant `while True`, `try` et `break`, on obtient une saisie robuste :\n\n```python\ndef demander_entier(message):\n    while True:\n        try:\n            return int(input(message))\n        except ValueError:\n            print(\"Ce n'est pas un nombre entier, réessayez.\")\n\n\nnombre = demander_entier(\"Combien de leçons par semaine ? \")\n```\n\n## Plusieurs cas d'erreur\n\nOn peut prévoir un `except` par type d'exception :\n\n```python\ndef moyenne(total, nombre):\n    try:\n        return total / nombre\n    except ZeroDivisionError:\n        print(\"Aucune note : moyenne impossible.\")\n        return None\n    except TypeError:\n        print(\"Le total et le nombre doivent être des nombres.\")\n        return None\n```\n\nÉvitez d'écrire un `except:` seul, sans type : il intercepterait toutes les erreurs, y compris vos propres fautes de frappe, et rendrait les problèmes très difficiles à trouver. Précisez toujours l'exception attendue.\n\n## else et finally\n\n- `else` s'exécute seulement si **aucune** exception n'a eu lieu ;\n- `finally` s'exécute **toujours**, qu'il y ait eu une erreur ou non (utile pour libérer une ressource).\n\n```python\ntry:\n    valeur = int(input(\"Un nombre : \"))\nexcept ValueError:\n    print(\"Saisie invalide.\")\nelse:\n    print(f\"Le double vaut {valeur * 2}.\")\nfinally:\n    print(\"Fin de la saisie.\")\n```\n\n## Lever une exception soi-même : raise\n\nUne fonction peut signaler qu'on l'utilise mal en levant une exception avec `raise` :\n\n```python\ndef verifier_note(note):\n    if not 0 <= note <= 20:\n        raise ValueError(\"La note doit être comprise entre 0 et 20.\")\n    return note\n\n\ntry:\n    verifier_note(25)\nexcept ValueError as erreur:\n    print(\"Erreur :\", erreur)   # Erreur : La note doit être comprise entre 0 et 20.\n```\n\n`as erreur` donne accès au message de l'exception.\n\n## À retenir\n\n- Une exception interrompt le programme si elle n'est pas interceptée.\n- `try` / `except NomDeLException:` traite l'erreur et permet de continuer.\n- Précisez toujours le type d'exception ; évitez `except:` seul.\n- `else` : aucune erreur ; `finally` : toujours ; `raise` : signaler une erreur.\n\n## Exercices\n\n### Exercice 1 — Division sécurisée\n\nDemandez deux nombres et affichez leur quotient. Gérez la saisie non numérique (`ValueError`) et la division par zéro avec deux messages différents.\n\n```solution\ntry:\n    a = float(input(\"Premier nombre : \"))\n    b = float(input(\"Second nombre : \"))\n    print(f\"Résultat : {a / b:.2f}\")\nexcept ValueError:\n    print(\"Veuillez saisir des nombres.\")\nexcept ZeroDivisionError:\n    print(\"Division par zéro impossible.\")\n```\n\n### Exercice 2 — Note validée\n\nÉcrivez une fonction `saisir_note()` qui redemande une note jusqu'à obtenir un nombre entre 0 et 20, en gérant aussi les saisies non numériques. Elle renvoie la note.\n\n```solution\ndef saisir_note():\n    while True:\n        try:\n            note = float(input(\"Note sur 20 : \"))\n        except ValueError:\n            print(\"Ce n'est pas un nombre.\")\n            continue\n        if 0 <= note <= 20:\n            return note\n        print(\"La note doit être entre 0 et 20.\")\n\n\nnote = saisir_note()\nprint(\"Note enregistrée :\", note)\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "fc32046f-2674-5522-ba27-ac9fe690d163",
+     "slug": "lire-et-ecrire-des-fichiers",
+     "title": "Lire et écrire des fichiers",
+     "summary": "open, with, modes r/w/a, lecture ligne par ligne.",
+     "content_md": "## Conserver des données après la fin du programme\n\nLes variables disparaissent quand le programme se termine. Pour garder des informations (notes, scores, paramètres), on les enregistre dans un **fichier**.\n\n## Ouvrir un fichier avec with\n\nLa fonction `open()` ouvre un fichier ; le mot-clé `with` garantit qu'il sera **refermé automatiquement**, même en cas d'erreur.\n\n```python\nwith open(\"notes.txt\", \"w\", encoding=\"utf-8\") as fichier:\n    fichier.write(\"Lina;16\\n\")\n    fichier.write(\"Yanis;11\\n\")\n```\n\nLe deuxième argument est le **mode** :\n\n| Mode | Rôle |\n|------|------|\n| `\"r\"` | lecture (par défaut) ; erreur si le fichier n'existe pas |\n| `\"w\"` | écriture ; crée le fichier ou **efface** son contenu |\n| `\"a\"` | ajout à la fin ; crée le fichier s'il n'existe pas |\n\nPrécisez toujours `encoding=\"utf-8\"` pour que les accents soient correctement enregistrés sur tous les systèmes.\n\n`write()` n'ajoute pas de retour à la ligne : écrivez `\\n` vous-même.\n\n## Lire un fichier\n\n```python\nwith open(\"notes.txt\", \"r\", encoding=\"utf-8\") as fichier:\n    contenu = fichier.read()       # tout le fichier dans une chaîne\nprint(contenu)\n```\n\nLe plus souvent, on lit **ligne par ligne** avec une boucle `for` :\n\n```python\nwith open(\"notes.txt\", encoding=\"utf-8\") as fichier:\n    for ligne in fichier:\n        ligne = ligne.strip()      # retire le \\n final et les espaces\n        print(ligne)\n```\n\n`strip()` est indispensable : chaque ligne lue se termine par `\\n`.\n\n## Exploiter des données structurées\n\nLe format `nom;note` est une version simple du format **CSV** (valeurs séparées). Avec `split(\";\")`, on récupère chaque champ :\n\n```python\nnotes = {}\nwith open(\"notes.txt\", encoding=\"utf-8\") as fichier:\n    for ligne in fichier:\n        nom, note = ligne.strip().split(\";\")\n        notes[nom] = float(note)\n\nprint(notes)                                  # {'Lina': 16.0, 'Yanis': 11.0}\nprint(sum(notes.values()) / len(notes))       # 13.5\n```\n\nPour des fichiers CSV réels (guillemets, virgules dans les valeurs), le module standard `csv` gère tous les cas particuliers.\n\n## Ajouter sans effacer\n\n```python\ndef enregistrer_score(nom, score):\n    with open(\"scores.txt\", \"a\", encoding=\"utf-8\") as fichier:\n        fichier.write(f\"{nom};{score}\\n\")\n\n\nenregistrer_score(\"Amina\", 18)\nenregistrer_score(\"Lina\", 15)\n```\n\nChaque appel ajoute une ligne : les scores précédents sont conservés.\n\n## Gérer un fichier absent\n\nÀ la première exécution, le fichier n'existe peut-être pas encore. On combine lecture et gestion d'exception :\n\n```python\ndef charger_scores():\n    scores = []\n    try:\n        with open(\"scores.txt\", encoding=\"utf-8\") as fichier:\n            for ligne in fichier:\n                nom, score = ligne.strip().split(\";\")\n                scores.append((nom, int(score)))\n    except FileNotFoundError:\n        pass   # pas encore de fichier : on renvoie une liste vide\n    return scores\n```\n\n`pass` est une instruction qui ne fait rien ; elle sert quand la syntaxe exige un bloc.\n\n## Où est créé le fichier ?\n\nUn nom simple comme `\"notes.txt\"` désigne un fichier dans le **dossier courant**, en général celui depuis lequel vous lancez le programme. Si Python ne trouve pas un fichier que vous voyez pourtant, vérifiez d'abord ce dossier.\n\n## À retenir\n\n- `with open(nom, mode, encoding=\"utf-8\") as f:` ouvre et referme automatiquement.\n- `\"r\"` lit, `\"w\"` écrase, `\"a\"` ajoute à la fin.\n- Lisez ligne par ligne avec `for ligne in f`, puis `strip()` et `split()`.\n- Interceptez `FileNotFoundError` quand le fichier peut ne pas exister.\n\n## Exercices\n\n### Exercice 1 — Journal d'apprentissage\n\nÉcrivez un programme qui demande ce que vous avez appris aujourd'hui et l'ajoute comme nouvelle ligne dans `journal.txt`, puis affiche tout le journal avec un numéro devant chaque ligne.\n\n```solution\nentree = input(\"Qu'avez-vous appris aujourd'hui ? \")\n\nwith open(\"journal.txt\", \"a\", encoding=\"utf-8\") as fichier:\n    fichier.write(entree + \"\\n\")\n\nwith open(\"journal.txt\", encoding=\"utf-8\") as fichier:\n    for numero, ligne in enumerate(fichier, start=1):\n        print(f\"{numero}. {ligne.strip()}\")\n```\n\n### Exercice 2 — Meilleur score\n\nEn réutilisant `charger_scores()`, affichez le meilleur score et son auteur, ou `Aucun score enregistré` si la liste est vide.\n\n```solution\nscores = charger_scores()\n\nif not scores:\n    print(\"Aucun score enregistré\")\nelse:\n    meilleur_nom, meilleur_score = scores[0]\n    for nom, score in scores:\n        if score > meilleur_score:\n            meilleur_nom, meilleur_score = nom, score\n    print(f\"Meilleur score : {meilleur_score} ({meilleur_nom})\")\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "5be5235a-cce4-5bf9-8760-813ab5023b70",
+     "slug": "mini-projet-carnet-de-notes",
+     "title": "Mini-projet : un carnet de notes",
+     "summary": "Assembler toute la formation dans un programme complet.",
+     "content_md": "## Le projet : un carnet de notes en ligne de commande\n\nPour terminer la formation, vous allez assembler tout ce que vous avez appris dans un programme complet. Le **carnet de notes** permet de :\n\n1. ajouter une note pour une matière ;\n2. afficher toutes les notes et la moyenne par matière ;\n3. afficher la moyenne générale ;\n4. enregistrer les notes dans un fichier et les recharger au démarrage.\n\nVous mobiliserez : variables et conversions (module 1), conditions et boucles (module 2), dictionnaires et listes (module 3), fonctions (module 4), fichiers et exceptions (module 5).\n\n## Étape 1 — Choisir la structure de données\n\nUn dictionnaire dont les clés sont les matières et les valeurs des listes de notes :\n\n```python\ncarnet = {\n    \"Maths\": [14, 16.5],\n    \"Anglais\": [12],\n}\n```\n\nAjouter une note revient à faire `carnet.setdefault(matiere, []).append(note)` : `setdefault` crée la liste vide si la matière n'existe pas encore, puis la renvoie.\n\n## Étape 2 — Charger et enregistrer\n\nFormat du fichier `carnet.txt` : une ligne par note, `matiere;note`.\n\n```python\nFICHIER = \"carnet.txt\"\n\n\ndef charger():\n    carnet = {}\n    try:\n        with open(FICHIER, encoding=\"utf-8\") as f:\n            for ligne in f:\n                matiere, note = ligne.strip().split(\";\")\n                carnet.setdefault(matiere, []).append(float(note))\n    except FileNotFoundError:\n        pass\n    return carnet\n\n\ndef enregistrer(carnet):\n    with open(FICHIER, \"w\", encoding=\"utf-8\") as f:\n        for matiere, notes in carnet.items():\n            for note in notes:\n                f.write(f\"{matiere};{note}\\n\")\n```\n\nUne variable écrite en majuscules (`FICHIER`) est, par convention, une **constante** : une valeur qui ne change pas pendant l'exécution.\n\n## Étape 3 — Les calculs\n\n```python\ndef moyenne(notes):\n    return sum(notes) / len(notes)\n\n\ndef moyenne_generale(carnet):\n    moyennes = [moyenne(notes) for notes in carnet.values() if notes]\n    if not moyennes:\n        return None\n    return moyenne(moyennes)\n```\n\nLa ligne `[moyenne(notes) for notes in carnet.values() if notes]` est une **liste en compréhension** : une écriture compacte de la boucle « pour chaque liste non vide, ajouter sa moyenne ». Elle équivaut à :\n\n```python\nmoyennes = []\nfor notes in carnet.values():\n    if notes:\n        moyennes.append(moyenne(notes))\n```\n\n## Étape 4 — Les saisies\n\n```python\ndef saisir_note():\n    while True:\n        try:\n            note = float(input(\"Note sur 20 : \").replace(\",\", \".\"))\n        except ValueError:\n            print(\"Ce n'est pas un nombre.\")\n            continue\n        if 0 <= note <= 20:\n            return note\n        print(\"La note doit être entre 0 et 20.\")\n```\n\n`replace(\",\", \".\")` accepte aussi la virgule française : `12,5` devient `12.5`.\n\n## Étape 5 — Le menu principal\n\n```python\ndef afficher(carnet):\n    if not carnet:\n        print(\"Le carnet est vide.\")\n        return\n    for matiere, notes in sorted(carnet.items()):\n        liste = \", \".join(str(n) for n in notes)\n        print(f\"{matiere} : {liste}  (moyenne {moyenne(notes):.2f})\")\n\n\ndef main():\n    carnet = charger()\n    while True:\n        print(\"\\n1. Ajouter une note  2. Afficher  3. Moyenne générale  4. Quitter\")\n        choix = input(\"Votre choix : \")\n        if choix == \"1\":\n            matiere = input(\"Matière : \").strip().capitalize()\n            carnet.setdefault(matiere, []).append(saisir_note())\n            enregistrer(carnet)\n            print(\"Note enregistrée.\")\n        elif choix == \"2\":\n            afficher(carnet)\n        elif choix == \"3\":\n            generale = moyenne_generale(carnet)\n            if generale is None:\n                print(\"Aucune note pour l'instant.\")\n            else:\n                print(f\"Moyenne générale : {generale:.2f}/20\")\n        elif choix == \"4\":\n            print(\"À bientôt !\")\n            break\n        else:\n            print(\"Choix invalide.\")\n\n\nmain()\n```\n\nExemple d'exécution :\n\n```text\n1. Ajouter une note  2. Afficher  3. Moyenne générale  4. Quitter\nVotre choix : 1\nMatière : maths\nNote sur 20 : 15,5\nNote enregistrée.\n\n1. Ajouter une note  2. Afficher  3. Moyenne générale  4. Quitter\nVotre choix : 2\nMaths : 15.5  (moyenne 15.50)\n```\n\n## Pour aller plus loin\n\nUne fois le carnet fonctionnel, améliorez-le :\n\n- supprimer la dernière note d'une matière ;\n- afficher la meilleure et la moins bonne matière ;\n- refuser une matière vide ;\n- afficher une mention à côté de chaque moyenne, avec la fonction `mention()` du module 4.\n\n## À retenir\n\n- Un projet se construit par étapes : données, fichiers, calculs, saisies, menu.\n- Chaque étape correspond à des fonctions courtes et testables.\n- `setdefault` crée une entrée de dictionnaire si nécessaire.\n- Les listes en compréhension condensent une boucle qui construit une liste.\n\n## Exercices\n\n### Exercice 1 — Meilleure matière\n\nAjoutez une fonction `meilleure_matiere(carnet)` qui renvoie le nom de la matière ayant la meilleure moyenne (ou `None` si le carnet est vide), et une option de menu pour l'afficher.\n\n```solution\ndef meilleure_matiere(carnet):\n    meilleure = None\n    meilleure_moyenne = -1\n    for matiere, notes in carnet.items():\n        if notes and moyenne(notes) > meilleure_moyenne:\n            meilleure, meilleure_moyenne = matiere, moyenne(notes)\n    return meilleure\n\n\n# Dans main(), ajouter par exemple :\n# elif choix == \"5\":\n#     print(\"Meilleure matière :\", meilleure_matiere(carnet) or \"aucune\")\n```\n\n### Exercice 2 — Tests automatiques\n\nÉcrivez trois `assert` qui vérifient `moyenne`, `moyenne_generale` sur un carnet de test, et `moyenne_generale` sur un carnet vide.\n\n```solution\ntest = {\"Maths\": [10, 20], \"Anglais\": [12]}\n\nassert moyenne([10, 20]) == 15\nassert moyenne_generale(test) == 13.5     # moyenne de 15 et 12\nassert moyenne_generale({}) is None\nprint(\"Tous les tests passent.\")\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "362ab9db-63e9-5e3d-9ebb-a92a6baa0aa5",
+    "title": "Quiz — Fichiers et erreurs",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "b6c9a266-2b0f-5ab9-ae8c-bac95bcdf0ee",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quelle exception provoque int(\"vingt\") ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "631fabb5-d4cf-52da-a561-3cada71d19b8",
+        "position": 1,
+        "label": "TypeError"
+       },
+       {
+        "id": "087458cb-d9a3-525c-b8f5-27fff55ca731",
+        "position": 2,
+        "label": "ValueError"
+       },
+       {
+        "id": "9e53da04-1774-548a-9fdc-30d6e09bff23",
+        "position": 3,
+        "label": "ZeroDivisionError"
+       },
+       {
+        "id": "b1ceaa5c-4b69-5c34-8a99-e82b52aba08e",
+        "position": 4,
+        "label": "KeyError"
+       }
+      ],
+      "correct": [
+       "087458cb-d9a3-525c-b8f5-27fff55ca731"
+      ],
+      "explanation": "La chaîne ne représente pas un entier : la conversion échoue avec une ValueError."
+     },
+     {
+      "id": "ca09ef59-f8c3-5637-a225-c98859d50694",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme si l'utilisateur tape « abc » ?",
+      "code": "try:\n    n = int(input())\n    print(\"OK\")\nexcept ValueError:\n    print(\"Erreur\")\nprint(\"Fin\")",
+      "points": 2,
+      "options": [
+       {
+        "id": "6a4deb62-7ef4-5284-be97-3c6fc6513fcb",
+        "position": 1,
+        "label": "OK puis Fin"
+       },
+       {
+        "id": "e2a68271-26ee-59f5-a19f-c6b41328e33e",
+        "position": 2,
+        "label": "Erreur puis Fin"
+       },
+       {
+        "id": "a62e16ea-a151-55c4-879e-1bfc0311bb3a",
+        "position": 3,
+        "label": "Erreur seulement"
+       },
+       {
+        "id": "996ff019-611d-576b-adb1-227c041402c7",
+        "position": 4,
+        "label": "Le programme s'arrête avec une ValueError"
+       }
+      ],
+      "correct": [
+       "e2a68271-26ee-59f5-a19f-c6b41328e33e"
+      ],
+      "explanation": "La conversion échoue : Python saute dans except (Erreur) sans exécuter print(\"OK\"), puis le programme continue (Fin)."
+     },
+     {
+      "id": "427cf9cb-286f-5a5d-9ac4-70ce7aa08a7d",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Dans quel cas le bloc finally s'exécute-t-il ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "76c6ae40-8254-5a8a-b23f-e0a424e808bb",
+        "position": 1,
+        "label": "Seulement si une exception a eu lieu"
+       },
+       {
+        "id": "7ffba145-4642-518c-85ac-cff64de26c8c",
+        "position": 2,
+        "label": "Seulement si aucune exception n'a eu lieu"
+       },
+       {
+        "id": "54b1264b-c021-589f-a4d3-2122cc4c1be2",
+        "position": 3,
+        "label": "Toujours"
+       },
+       {
+        "id": "2577c22d-0076-5e73-8bda-dda8674fa812",
+        "position": 4,
+        "label": "Jamais si le bloc try contient return"
+       }
+      ],
+      "correct": [
+       "54b1264b-c021-589f-a4d3-2122cc4c1be2"
+      ],
+      "explanation": "finally s'exécute dans tous les cas, ce qui le rend utile pour libérer une ressource."
+     },
+     {
+      "id": "e9d94ed1-e30d-5a4a-ada2-b8c3a3aed576",
+      "position": 4,
+      "kind": "true_false",
+      "prompt": "Il est recommandé d'écrire except: sans préciser de type d'exception.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "dea67d2a-67b1-549a-99d4-9cfd5d9cd160",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "f736ff80-edb8-5ac8-9824-96c7fefabc7e",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "f736ff80-edb8-5ac8-9824-96c7fefabc7e"
+      ],
+      "explanation": "Un except sans type intercepte toutes les erreurs, y compris les fautes de programmation, et masque les vrais problèmes. Précisez l'exception attendue."
+     },
+     {
+      "id": "9f0dd409-54c1-5ab9-9a33-b7a96ebf529c",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quel mode d'ouverture ajoute du texte à la fin d'un fichier sans effacer son contenu ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b5f8da29-62a6-5b79-bb89-5e751b8d1d87",
+        "position": 1,
+        "label": "\"r\""
+       },
+       {
+        "id": "ccd21ec3-515c-5ac7-bf16-1c78631abe96",
+        "position": 2,
+        "label": "\"w\""
+       },
+       {
+        "id": "e8dbb611-61ee-53c1-a7ec-ce2563e0640f",
+        "position": 3,
+        "label": "\"a\""
+       },
+       {
+        "id": "0a15a232-9397-5c7b-9895-6fe3699b21e5",
+        "position": 4,
+        "label": "\"x\""
+       }
+      ],
+      "correct": [
+       "e8dbb611-61ee-53c1-a7ec-ce2563e0640f"
+      ],
+      "explanation": "\"a\" (append) ajoute à la fin. \"w\" efface le contenu existant, \"r\" ouvre en lecture seule."
+     },
+     {
+      "id": "4306e90e-ff68-595e-9eee-01d6125cfb22",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Pourquoi utilise-t-on with open(...) as f: ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ddfa3d7a-cfea-5399-9cfe-829aff9c8989",
+        "position": 1,
+        "label": "Pour lire plus vite"
+       },
+       {
+        "id": "a38a087d-5f35-59c7-b70e-42acc5994e01",
+        "position": 2,
+        "label": "Pour que le fichier soit refermé automatiquement"
+       },
+       {
+        "id": "cf16d378-6a5c-53de-94e6-0b55d83b6404",
+        "position": 3,
+        "label": "Pour créer un dossier"
+       },
+       {
+        "id": "66703801-05b5-5084-b0ff-5371794d249a",
+        "position": 4,
+        "label": "C'est la seule façon d'ouvrir un fichier"
+       }
+      ],
+      "correct": [
+       "a38a087d-5f35-59c7-b70e-42acc5994e01"
+      ],
+      "explanation": "with garantit la fermeture du fichier à la fin du bloc, même si une erreur survient."
+     },
+     {
+      "id": "c6190bc8-7767-5966-99d1-ac80b81a0680",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie \"Lina;16\\n\".strip().split(\";\") ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "592eed9e-5763-5761-8cfa-7c615ced165b",
+        "position": 1,
+        "label": "['Lina;16']"
+       },
+       {
+        "id": "4da037f4-188e-52e8-b9cb-f8f64a1c62db",
+        "position": 2,
+        "label": "['Lina', '16']"
+       },
+       {
+        "id": "c9042d0e-8855-53ed-9510-9a6aeb2bd213",
+        "position": 3,
+        "label": "['Lina', 16]"
+       },
+       {
+        "id": "85417421-1f7a-5c30-8f86-5c89cb703122",
+        "position": 4,
+        "label": "('Lina', '16')"
+       }
+      ],
+      "correct": [
+       "4da037f4-188e-52e8-b9cb-f8f64a1c62db"
+      ],
+      "explanation": "strip() retire le retour à la ligne, puis split(\";\") découpe sur le point-virgule. Les éléments restent des chaînes : il faut convertir 16 avec int() ou float()."
+     },
+     {
+      "id": "57d8211d-d12d-5c6b-975e-25f475fd3e27",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur l'ouverture en mode \"w\" sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1bb3451d-79fa-5479-8210-762feb632183",
+        "position": 1,
+        "label": "Elle crée le fichier s'il n'existe pas"
+       },
+       {
+        "id": "5cba339c-be41-5697-89e5-68ef808eb48e",
+        "position": 2,
+        "label": "Elle efface le contenu existant"
+       },
+       {
+        "id": "2fd17234-bdbd-5f87-96f5-e9115d46ff9a",
+        "position": 3,
+        "label": "Elle lève FileNotFoundError si le fichier n'existe pas"
+       },
+       {
+        "id": "80f00081-269c-5f0d-ac2e-9ca1e93541e2",
+        "position": 4,
+        "label": "Elle ajoute toujours à la fin"
+       }
+      ],
+      "correct": [
+       "1bb3451d-79fa-5479-8210-762feb632183",
+       "5cba339c-be41-5697-89e5-68ef808eb48e"
+      ],
+      "explanation": "Le mode \"w\" crée le fichier si besoin et remplace son contenu. C'est le mode \"r\" qui lève FileNotFoundError pour un fichier absent."
+     },
+     {
+      "id": "bdd7d973-aa49-5004-a5ef-e5a808cd62e6",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "def verifier(note):\n    if note > 20:\n        raise ValueError(\"trop grand\")\n    return note\n\ntry:\n    verifier(25)\nexcept ValueError as e:\n    print(e)",
+      "points": 2,
+      "options": [
+       {
+        "id": "2ec9289d-2149-59ba-8f45-2c0be71b4ac5",
+        "position": 1,
+        "label": "25"
+       },
+       {
+        "id": "ca3344f3-e8f1-5c5f-839b-70d29a589595",
+        "position": 2,
+        "label": "trop grand"
+       },
+       {
+        "id": "1ca1a8ab-7193-5135-94e2-eebbeacae6c5",
+        "position": 3,
+        "label": "ValueError"
+       },
+       {
+        "id": "29ac0efc-95c2-5a97-b5d6-31dabb87d370",
+        "position": 4,
+        "label": "Rien"
+       }
+      ],
+      "correct": [
+       "ca3344f3-e8f1-5c5f-839b-70d29a589595"
+      ],
+      "explanation": "raise lève l'exception avec son message ; except ValueError as e l'intercepte et print(e) affiche le message."
+     },
+     {
+      "id": "1ba357e0-e86b-5ebe-b879-4e7f898e456c",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "write() ajoute automatiquement un retour à la ligne après le texte écrit.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "05033c9c-7e02-59ae-b7ab-fda5ebcf61f2",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "64cb48f5-b67a-5910-b276-2435eb3706e3",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "64cb48f5-b67a-5910-b276-2435eb3706e3"
+      ],
+      "explanation": "write() écrit exactement le texte fourni. Pour passer à la ligne, ajoutez \"\\n\" vous-même."
+     }
+    ]
+   }
+  }
+ ]
+}

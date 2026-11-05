@@ -1,0 +1,1892 @@
+{
+ "course": {
+  "slug": "sql-debutant",
+  "title": "SQL pour débutants",
+  "subtitle": "Interrogez une base de données avec confiance.",
+  "description": "Apprenez à lire et à modifier des données avec SQL, le langage commun à PostgreSQL, MySQL, SQLite, Oracle et SQL Server. Une seule base d'exemple vous accompagne de la première requête SELECT jusqu'aux jointures, agrégations et sous-requêtes. Chaque leçon propose des exercices corrigés et chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 480,
+  "objectives": [
+   "Comprendre l'organisation d'une base de données relationnelle",
+   "Extraire, filtrer et trier des données avec SELECT",
+   "Calculer des statistiques avec GROUP BY et les fonctions d'agrégation",
+   "Croiser plusieurs tables avec les jointures",
+   "Créer des tables et modifier des données en toute sécurité"
+  ],
+  "prerequisites": [
+   "Savoir utiliser un ordinateur et un navigateur",
+   "Aucune connaissance préalable en programmation ou en base de données"
+  ],
+  "is_premium": false,
+  "position": 2,
+  "status": "published",
+  "id": "458089cd-7c63-54a4-8e5d-dda50ea92fd3",
+  "category_slug": "bases-de-donnees",
+  "topic": "SQL",
+  "cover_label": "SQL"
+ },
+ "modules": [
+  {
+   "id": "bbdfa414-fd52-589e-89d6-6e9c7ec18e98",
+   "position": 1,
+   "title": "Découvrir SQL",
+   "description": "Comprendre une base relationnelle, lire des tables avec SELECT et filtrer avec WHERE.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "734599d2-ddc3-53a0-8633-c110992fbfc5",
+     "slug": "bases-de-donnees-relationnelles",
+     "title": "Bases de données relationnelles et SQL",
+     "summary": "Tables, lignes, colonnes, clé primaire, NULL et la base de la formation.",
+     "content_md": "## À quoi sert une base de données ?\n\nUne application garde en mémoire des milliers d'informations : comptes, commandes, notes, messages… Ces informations sont rangées dans une **base de données**, gérée par un logiciel spécialisé appelé **SGBD** (système de gestion de bases de données) : PostgreSQL, MySQL, SQLite, Oracle ou SQL Server.\n\nLa plupart de ces bases sont **relationnelles** : les données y sont rangées dans des **tables**, comme dans un tableur.\n\n- Une **table** regroupe des informations d'un même type (les étudiants, les formations…).\n- Chaque **colonne** décrit une caractéristique (le prénom, la ville…).\n- Chaque **ligne** (on dit aussi *enregistrement*) correspond à un élément précis : un étudiant, une formation.\n\n## Le langage SQL\n\n**SQL** (*Structured Query Language*) est le langage qui permet de dialoguer avec une base relationnelle. On écrit une **requête**, le SGBD l'exécute et renvoie un résultat, lui aussi présenté sous forme de tableau.\n\n```sql\nSELECT prenom, ville FROM etudiants;\n```\n\nCette requête se lit presque comme une phrase : « sélectionne le prénom et la ville dans la table des étudiants ». SQL est un langage **déclaratif** : vous décrivez *ce que vous voulez obtenir*, et le SGBD décide lui-même *comment* aller le chercher.\n\n> SQL est normalisé : les requêtes de cette formation fonctionnent sur PostgreSQL, MySQL et SQLite. Lorsque la syntaxe varie d'un SGBD à l'autre, c'est signalé.\n\n## La base de la formation\n\nToute la formation utilise la même petite base, celle d'un organisme de formation. Elle contient trois tables.\n\n**etudiants**\n\n| id | prenom | nom | ville | date_naissance | email |\n|---|---|---|---|---|---|\n| 1 | Amina | Benali | Paris | 2001-03-14 | amina@exemple.fr |\n| 2 | Lucas | Martin | Lyon | 1999-11-02 | lucas@exemple.fr |\n| 3 | Sofia | Rossi | Paris | 2003-06-25 | *(vide)* |\n| 4 | Karim | Haddad | Marseille | 2000-01-30 | karim@exemple.fr |\n| 5 | Emma | Dubois | Lille | 2002-09-08 | emma@exemple.fr |\n| 6 | Yanis | Morel | Lyon | 1998-04-17 | yanis@exemple.fr |\n\n**formations**\n\n| id | titre | categorie | duree_heures | prix |\n|---|---|---|---|---|\n| 1 | Python pour débutants | Programmation | 11 | 0 |\n| 2 | SQL pour débutants | Bases de données | 8 | 0 |\n| 3 | Excel avancé | Business Intelligence | 6 | 49 |\n| 4 | Machine Learning | Data Science | 20 | 99 |\n| 5 | Anglais professionnel | Langues | 8 | 29 |\n| 6 | Docker | Cloud et DevOps | 10 | 39 |\n\n**inscriptions** : qui suit quelle formation, et avec quelle note sur 20.\n\n| id | etudiant_id | formation_id | date_inscription | note |\n|---|---|---|---|---|\n| 1 | 1 | 1 | 2026-09-01 | 16 |\n| 2 | 1 | 2 | 2026-09-15 | 14 |\n| 3 | 2 | 1 | 2026-09-03 | 9 |\n| 4 | 3 | 4 | 2026-10-01 | 18 |\n| 5 | 4 | 2 | 2026-10-05 | *(vide)* |\n| 6 | 5 | 3 | 2026-10-10 | 12 |\n| 7 | 2 | 5 | 2026-10-12 | 11 |\n| 8 | 1 | 4 | 2026-10-20 | *(vide)* |\n\nRemarquez trois choses importantes :\n\n1. Chaque table possède une colonne `id` dont la valeur est **unique** : c'est la **clé primaire**. Elle identifie une ligne sans ambiguïté, même si deux étudiants portent le même nom.\n2. La table `inscriptions` ne recopie ni le nom de l'étudiant ni le titre de la formation : elle contient seulement leurs identifiants (`etudiant_id`, `formation_id`). C'est ce lien entre tables qui rend la base **relationnelle**. Vous apprendrez à exploiter ces liens au module 4.\n3. Certaines cases sont vides : Sofia n'a pas donné d'email et deux inscriptions n'ont pas encore de note. En SQL, une case vide contient la valeur spéciale **NULL**, qui signifie « inconnu ».\n\n## Où pratiquer ?\n\nPour exécuter les requêtes de la formation, il suffit d'un navigateur :\n\n1. Ouvrez un outil en ligne gratuit comme **DB Fiddle** (choisissez PostgreSQL) ou **SQLite Online**.\n2. Copiez le script de création ci-dessous et exécutez-le une fois : il crée les trois tables et leurs données.\n3. Écrivez ensuite vos requêtes à la suite.\n\n```sql\nCREATE TABLE etudiants (\n  id INTEGER PRIMARY KEY,\n  prenom TEXT NOT NULL,\n  nom TEXT NOT NULL,\n  ville TEXT,\n  date_naissance DATE,\n  email TEXT UNIQUE\n);\nCREATE TABLE formations (\n  id INTEGER PRIMARY KEY,\n  titre TEXT NOT NULL,\n  categorie TEXT NOT NULL,\n  duree_heures INTEGER NOT NULL,\n  prix NUMERIC NOT NULL DEFAULT 0\n);\nCREATE TABLE inscriptions (\n  id INTEGER PRIMARY KEY,\n  etudiant_id INTEGER NOT NULL REFERENCES etudiants (id),\n  formation_id INTEGER NOT NULL REFERENCES formations (id),\n  date_inscription DATE NOT NULL,\n  note NUMERIC\n);\nINSERT INTO etudiants VALUES\n  (1, 'Amina', 'Benali', 'Paris', '2001-03-14', 'amina@exemple.fr'),\n  (2, 'Lucas', 'Martin', 'Lyon', '1999-11-02', 'lucas@exemple.fr'),\n  (3, 'Sofia', 'Rossi', 'Paris', '2003-06-25', NULL),\n  (4, 'Karim', 'Haddad', 'Marseille', '2000-01-30', 'karim@exemple.fr'),\n  (5, 'Emma', 'Dubois', 'Lille', '2002-09-08', 'emma@exemple.fr'),\n  (6, 'Yanis', 'Morel', 'Lyon', '1998-04-17', 'yanis@exemple.fr');\nINSERT INTO formations VALUES\n  (1, 'Python pour débutants', 'Programmation', 11, 0),\n  (2, 'SQL pour débutants', 'Bases de données', 8, 0),\n  (3, 'Excel avancé', 'Business Intelligence', 6, 49),\n  (4, 'Machine Learning', 'Data Science', 20, 99),\n  (5, 'Anglais professionnel', 'Langues', 8, 29),\n  (6, 'Docker', 'Cloud et DevOps', 10, 39);\nINSERT INTO inscriptions VALUES\n  (1, 1, 1, '2026-09-01', 16),\n  (2, 1, 2, '2026-09-15', 14),\n  (3, 2, 1, '2026-09-03', 9),\n  (4, 3, 4, '2026-10-01', 18),\n  (5, 4, 2, '2026-10-05', NULL),\n  (6, 5, 3, '2026-10-10', 12),\n  (7, 2, 5, '2026-10-12', 11),\n  (8, 1, 4, '2026-10-20', NULL);\n```\n\nNe cherchez pas encore à comprendre chaque mot de ce script : `CREATE TABLE` et `INSERT` sont expliqués au module 5.\n\n## À retenir\n\n- Une base relationnelle range les données dans des **tables** faites de **colonnes** et de **lignes**.\n- **SQL** est le langage qui interroge et modifie ces tables ; il est commun à tous les grands SGBD.\n- La **clé primaire** (`id`) identifie chaque ligne de façon unique.\n- Les tables sont reliées entre elles par des identifiants (`etudiant_id`, `formation_id`).\n- **NULL** représente une valeur inconnue ou absente.\n\n## Exercices\n\n### Exercice 1 — Lire une table\n\nEn vous aidant uniquement des tableaux ci-dessus, répondez : combien de formations sont gratuites ? Dans quelle ville habite l'étudiant n° 4 ? Quelle note a obtenue l'étudiant n° 2 à la formation n° 5 ?\n\n```solution-text\n- Deux formations sont gratuites (prix = 0) : « Python pour débutants » et « SQL pour débutants ».\n- L'étudiant n° 4, Karim Haddad, habite à Marseille.\n- L'inscription n° 7 relie l'étudiant 2 (Lucas) à la formation 5 (Anglais professionnel) : sa note est 11.\n```\n\n### Exercice 2 — Suivre les identifiants\n\nAmina (id 1) est inscrite à plusieurs formations. Lesquelles, et lesquelles ne sont pas encore notées ?\n\n```solution-text\nLa table inscriptions contient trois lignes avec etudiant_id = 1 :\n- formation 1 « Python pour débutants » : note 16 ;\n- formation 2 « SQL pour débutants » : note 14 ;\n- formation 4 « Machine Learning » : note NULL, donc pas encore notée.\n```",
+     "duration_minutes": 20,
+     "position": 1
+    },
+    {
+     "id": "4a88590b-8364-5494-a470-b19ec386c23f",
+     "slug": "select",
+     "title": "Lire des données avec SELECT",
+     "summary": "Choisir des colonnes, calculer, renommer avec AS, supprimer les doublons.",
+     "content_md": "## La requête SELECT\n\n`SELECT` est l'instruction la plus utilisée en SQL : elle **lit** des données sans jamais les modifier. Sa forme minimale comporte deux mots-clés :\n\n```sql\nSELECT colonnes\nFROM table;\n```\n\n- `SELECT` liste les colonnes à afficher, séparées par des virgules ;\n- `FROM` indique la table à lire ;\n- le point-virgule `;` termine la requête.\n\n```sql\nSELECT prenom, nom, ville\nFROM etudiants;\n```\n\n```text\nprenom | nom    | ville\n-------+--------+----------\nAmina  | Benali | Paris\nLucas  | Martin | Lyon\nSofia  | Rossi  | Paris\nKarim  | Haddad | Marseille\nEmma   | Dubois | Lille\nYanis  | Morel  | Lyon\n```\n\nLes colonnes apparaissent dans l'ordre où vous les avez écrites, pas dans l'ordre de la table.\n\n> Les mots-clés SQL ne sont pas sensibles à la casse : `select`, `SELECT` et `Select` sont équivalents. L'usage est d'écrire les mots-clés en MAJUSCULES et les noms de tables et de colonnes en minuscules, pour une lecture plus facile. Les retours à la ligne sont libres.\n\n## Toutes les colonnes : l'étoile\n\nL'astérisque `*` signifie « toutes les colonnes » :\n\n```sql\nSELECT * FROM formations;\n```\n\nC'est pratique pour découvrir une table. Dans une application, préférez lister les colonnes utiles : la requête reste lisible et ne renvoie pas de données superflues.\n\n## Calculer dans un SELECT\n\nUne colonne du résultat peut être une **expression** : un calcul effectué pour chaque ligne. Les opérateurs arithmétiques habituels sont disponibles : `+`, `-`, `*`, `/`.\n\n```sql\nSELECT titre, duree_heures * 60 AS duree_minutes\nFROM formations;\n```\n\n```text\ntitre                 | duree_minutes\n----------------------+--------------\nPython pour débutants | 660\nSQL pour débutants    | 480\nExcel avancé          | 360\nMachine Learning      | 1200\nAnglais professionnel | 480\nDocker                | 600\n```\n\nLe calcul ne modifie pas la table : il produit seulement une colonne dans le résultat.\n\n## Renommer une colonne avec AS\n\nLe mot-clé `AS` donne un nom (un **alias**) à une colonne du résultat. Sans alias, le SGBD invente un nom peu lisible comme `?column?` ou `duree_heures * 60`.\n\n```sql\nSELECT prenom AS \"Prénom\", ville AS \"Ville de résidence\"\nFROM etudiants;\n```\n\nLes **guillemets doubles** permettent un alias avec majuscules, accents ou espaces. Les **apostrophes** (guillemets simples), elles, servent aux **valeurs texte** : `'Paris'`. Ne les confondez pas.\n\n## Supprimer les doublons avec DISTINCT\n\nPlusieurs étudiants habitent la même ville. Pour obtenir chaque ville **une seule fois**, ajoutez `DISTINCT` juste après `SELECT` :\n\n```sql\nSELECT DISTINCT ville\nFROM etudiants;\n```\n\n```text\nville\n---------\nParis\nLyon\nMarseille\nLille\n```\n\nSans `DISTINCT`, la requête renverrait six lignes, dont Paris et Lyon en double. L'ordre des lignes n'est pas garanti tant que vous ne le demandez pas explicitement (leçon « Trier et limiter »).\n\n## Pièges fréquents\n\n- Oublier la virgule entre deux colonnes : `SELECT prenom nom FROM etudiants` ne provoque pas d'erreur, mais affiche la colonne `prenom` **renommée** en `nom` !\n- Mettre une virgule après la dernière colonne : `SELECT prenom, nom, FROM etudiants` est une erreur de syntaxe.\n- Écrire une valeur texte entre guillemets doubles : en PostgreSQL, `\"Paris\"` désigne une colonne nommée Paris, pas le texte Paris.\n\n## À retenir\n\n- `SELECT colonnes FROM table;` lit des données sans les modifier.\n- `*` sélectionne toutes les colonnes.\n- On peut calculer des expressions et les nommer avec `AS`.\n- `DISTINCT` supprime les lignes en double du résultat.\n- Apostrophes pour les valeurs texte, guillemets doubles pour les noms.\n\n## Exercices\n\n### Exercice 1 — Catalogue\n\nAffichez le titre et le prix de chaque formation, en nommant les colonnes « Formation » et « Prix (€) ».\n\n```solution-sql\nSELECT titre AS \"Formation\", prix AS \"Prix (€)\"\nFROM formations;\n```\n\n### Exercice 2 — Catégories\n\nAffichez la liste des catégories de formation, chacune une seule fois.\n\n```solution-sql\nSELECT DISTINCT categorie\nFROM formations;\n-- 6 lignes : chaque formation a ici sa propre catégorie.\n```\n\n### Exercice 3 — Prix pour un groupe\n\nUn groupe de 10 personnes s'inscrit à chaque formation. Affichez le titre et le montant total pour le groupe dans une colonne `prix_groupe`.\n\n```solution-sql\nSELECT titre, prix * 10 AS prix_groupe\nFROM formations;\n-- Machine Learning : 990, Excel avancé : 490, Docker : 390…\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "a6df48bb-b85d-5766-94bb-03406eba0115",
+     "slug": "where",
+     "title": "Filtrer avec WHERE",
+     "summary": "Comparaisons, AND/OR/NOT, IN, BETWEEN, LIKE et IS NULL.",
+     "content_md": "## Filtrer les lignes avec WHERE\n\n`SELECT` choisit les **colonnes** ; `WHERE` choisit les **lignes**. Seules les lignes pour lesquelles la condition est vraie apparaissent dans le résultat.\n\n```sql\nSELECT prenom, nom\nFROM etudiants\nWHERE ville = 'Paris';\n```\n\n```text\nprenom | nom\n-------+-------\nAmina  | Benali\nSofia  | Rossi\n```\n\n`WHERE` se place toujours **après** `FROM`. En SQL, l'égalité s'écrit avec un seul signe `=` (contrairement à Python).\n\n## Les opérateurs de comparaison\n\n| Opérateur | Signification |\n|---|---|\n| `=` | égal à |\n| `<>` (ou `!=`) | différent de |\n| `<`, `<=` | inférieur, inférieur ou égal |\n| `>`, `>=` | supérieur, supérieur ou égal |\n\nIls fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates (ordre chronologique) :\n\n```sql\nSELECT prenom, date_naissance\nFROM etudiants\nWHERE date_naissance >= '2002-01-01';\n-- Sofia (2003-06-25) et Emma (2002-09-08)\n```\n\n## Combiner des conditions : AND, OR, NOT\n\n- `AND` : les deux conditions doivent être vraies ;\n- `OR` : au moins une des deux ;\n- `NOT` : inverse une condition.\n\n```sql\nSELECT titre, prix\nFROM formations\nWHERE prix > 0 AND duree_heures <= 10;\n```\n\n```text\ntitre                 | prix\n----------------------+-----\nExcel avancé          | 49\nAnglais professionnel | 29\nDocker                | 39\n```\n\n`AND` est évalué **avant** `OR`, comme la multiplication avant l'addition. En cas de doute, utilisez des parenthèses :\n\n```sql\nSELECT prenom, ville\nFROM etudiants\nWHERE (ville = 'Paris' OR ville = 'Lyon') AND date_naissance < '2000-01-01';\n-- Lucas (Lyon, 1999) et Yanis (Lyon, 1998)\n```\n\nSans les parenthèses, la requête signifierait « Paris, ou bien (Lyon et né avant 2000) » : Amina et Sofia apparaîtraient aussi.\n\n## Raccourcis utiles\n\n**IN** teste l'appartenance à une liste :\n\n```sql\nSELECT titre\nFROM formations\nWHERE categorie IN ('Langues', 'Data Science');\n-- Machine Learning, Anglais professionnel\n```\n\n**BETWEEN** teste un intervalle, **bornes comprises** :\n\n```sql\nSELECT titre, duree_heures\nFROM formations\nWHERE duree_heures BETWEEN 8 AND 11;\n-- Python (11), SQL (8), Anglais (8), Docker (10)\n```\n\n**LIKE** recherche un motif dans un texte : `%` remplace n'importe quelle suite de caractères (même vide), `_` remplace exactement un caractère.\n\n```sql\nSELECT prenom, nom\nFROM etudiants\nWHERE nom LIKE 'M%';\n-- Lucas Martin, Yanis Morel\n```\n\n> En PostgreSQL, `LIKE` distingue majuscules et minuscules (`'m%'` ne trouverait rien) ; utilisez `ILIKE` pour l'ignorer. En MySQL et SQLite, `LIKE` ignore la casse par défaut.\n\n## Le cas particulier de NULL\n\n`NULL` signifie « valeur inconnue ». On ne peut donc pas le comparer avec `=` : `email = NULL` n'est jamais vrai, pas même pour Sofia. Il faut utiliser `IS NULL` ou `IS NOT NULL` :\n\n```sql\nSELECT prenom\nFROM etudiants\nWHERE email IS NULL;\n-- Sofia\n```\n\nC'est l'une des erreurs les plus fréquentes en SQL : retenez-la dès maintenant.\n\n## À retenir\n\n- `WHERE` filtre les lignes ; il se place après `FROM`.\n- Comparaisons : `=`, `<>`, `<`, `<=`, `>`, `>=`.\n- `AND` passe avant `OR` : mettez des parenthèses dès que vous mélangez les deux.\n- `IN` (liste), `BETWEEN` (intervalle, bornes incluses), `LIKE` (motif avec `%` et `_`).\n- `NULL` se teste uniquement avec `IS NULL` / `IS NOT NULL`.\n\n## Exercices\n\n### Exercice 1 — Formations longues\n\nAffichez le titre et la durée des formations de plus de 10 heures.\n\n```solution-sql\nSELECT titre, duree_heures\nFROM formations\nWHERE duree_heures > 10;\n-- Python pour débutants (11), Machine Learning (20)\n```\n\n### Exercice 2 — Inscriptions à noter\n\nAffichez l'identifiant des inscriptions qui n'ont pas encore de note.\n\n```solution-sql\nSELECT id\nFROM inscriptions\nWHERE note IS NULL;\n-- 5 et 8. Attention : WHERE note = NULL ne renverrait aucune ligne.\n```\n\n### Exercice 3 — Recherche dans le catalogue\n\nAffichez les formations payantes dont le titre contient la lettre « e » minuscule, en excluant la catégorie « Data Science ».\n\n```solution-sql\nSELECT titre, prix\nFROM formations\nWHERE prix > 0\n  AND titre LIKE '%e%'\n  AND categorie <> 'Data Science';\n-- Excel avancé, Anglais professionnel, Docker\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "08ea9688-ce2b-592b-82ed-c6e1716bf5ab",
+    "title": "Quiz — Découvrir SQL",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "6d088157-78fe-5f8f-b496-fa89fd016a84",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Dans une table, que représente une ligne ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "bb15148c-f8d7-5bbd-9531-804d79265cb2",
+        "position": 1,
+        "label": "Une caractéristique commune à tous les éléments"
+       },
+       {
+        "id": "61f56313-df6a-5ebf-9f19-a8d7c2c0f3cb",
+        "position": 2,
+        "label": "Un élément précis, par exemple un étudiant"
+       },
+       {
+        "id": "21a6c07b-1b2f-543e-b99d-d01fc3f77be5",
+        "position": 3,
+        "label": "Le type de données d'une colonne"
+       },
+       {
+        "id": "42c3e027-21ba-53da-a687-7bac98b15cc7",
+        "position": 4,
+        "label": "Une requête enregistrée"
+       }
+      ],
+      "correct": [
+       "61f56313-df6a-5ebf-9f19-a8d7c2c0f3cb"
+      ],
+      "explanation": "Une ligne (ou enregistrement) décrit un élément précis ; les colonnes décrivent les caractéristiques communes à tous les éléments."
+     },
+     {
+      "id": "baf4bd3b-495d-51a5-9b6c-71a51727cb0a",
+      "position": 2,
+      "kind": "single",
+      "prompt": "À quoi sert la clé primaire d'une table ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "971101c3-3a36-5ca0-9076-f38942ae8403",
+        "position": 1,
+        "label": "À trier automatiquement les lignes"
+       },
+       {
+        "id": "6bc115f0-3ace-5447-880e-fd74c0ecf5e4",
+        "position": 2,
+        "label": "À identifier chaque ligne de manière unique"
+       },
+       {
+        "id": "bcf4638a-c1fb-524d-982e-41b3c19dddcf",
+        "position": 3,
+        "label": "À chiffrer les données"
+       },
+       {
+        "id": "dd23b450-e3d0-532c-b1ce-292932609f94",
+        "position": 4,
+        "label": "À relier la table à Internet"
+       }
+      ],
+      "correct": [
+       "6bc115f0-3ace-5447-880e-fd74c0ecf5e4"
+      ],
+      "explanation": "La clé primaire (souvent id) prend une valeur différente pour chaque ligne : elle permet de désigner une ligne sans ambiguïté, même si deux étudiants ont le même nom."
+     },
+     {
+      "id": "2d6c3b83-fb02-59a3-85f5-6767d9dca156",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Que renvoie cette requête ?",
+      "code": "SELECT DISTINCT ville FROM etudiants;",
+      "points": 2,
+      "options": [
+       {
+        "id": "be3d2983-d06c-5d71-91e9-4876d15dfd70",
+        "position": 1,
+        "label": "6 lignes, une par étudiant"
+       },
+       {
+        "id": "bd81729b-ca5a-5e61-acbe-743ddd8c3cf0",
+        "position": 2,
+        "label": "4 lignes, une par ville différente"
+       },
+       {
+        "id": "5dc3498e-74a0-58f4-b6b0-3c2865c34dd0",
+        "position": 3,
+        "label": "1 ligne : le nombre de villes"
+       },
+       {
+        "id": "3cac7b7d-ac15-5ba1-823d-b26e7d73f1f7",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "bd81729b-ca5a-5e61-acbe-743ddd8c3cf0"
+      ],
+      "explanation": "DISTINCT supprime les doublons : Paris et Lyon apparaissent deux fois dans la table mais une seule fois dans le résultat, soit 4 villes."
+     },
+     {
+      "id": "168154b9-2f03-5e31-9f12-3edc1fe59dcb",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle requête affiche uniquement les étudiants habitant à Lyon ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2b37ea6b-e6e1-52a9-bb93-1fbfaf0717ab",
+        "position": 1,
+        "label": "SELECT * FROM etudiants WHERE ville = \"Lyon\";"
+       },
+       {
+        "id": "49b3a3f0-178f-513b-acd8-f5750a2bac8e",
+        "position": 2,
+        "label": "SELECT * FROM etudiants WHERE ville == 'Lyon';"
+       },
+       {
+        "id": "6924e66f-21d0-57f5-99fd-588c573674e2",
+        "position": 3,
+        "label": "SELECT * FROM etudiants WHERE ville = 'Lyon';"
+       },
+       {
+        "id": "242b367c-f555-5f22-a927-4873dfdce974",
+        "position": 4,
+        "label": "SELECT * WHERE ville = 'Lyon' FROM etudiants;"
+       }
+      ],
+      "correct": [
+       "6924e66f-21d0-57f5-99fd-588c573674e2"
+      ],
+      "explanation": "En SQL, l'égalité s'écrit avec un seul = et les valeurs texte entre apostrophes. Les guillemets doubles désignent un nom de colonne, == n'existe pas et WHERE se place après FROM."
+     },
+     {
+      "id": "7459fab3-0b71-5ee6-9c98-441054479b80",
+      "position": 5,
+      "kind": "multiple",
+      "prompt": "Quelles conditions sélectionnent Sofia, qui n'a pas d'email ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e8bd8eec-2df2-50f8-99fb-3f5cf8ff4316",
+        "position": 1,
+        "label": "WHERE email IS NULL"
+       },
+       {
+        "id": "b895574a-ac22-5131-834b-aa96b7c6be21",
+        "position": 2,
+        "label": "WHERE email = NULL"
+       },
+       {
+        "id": "2de62ab4-b50f-5565-91ea-59a79fb79ba7",
+        "position": 3,
+        "label": "WHERE email IS NOT NULL"
+       },
+       {
+        "id": "1db1199e-239d-501e-a294-8f105a0d968d",
+        "position": 4,
+        "label": "WHERE prenom = 'Sofia'"
+       }
+      ],
+      "correct": [
+       "e8bd8eec-2df2-50f8-99fb-3f5cf8ff4316",
+       "1db1199e-239d-501e-a294-8f105a0d968d"
+      ],
+      "explanation": "NULL ne se compare jamais avec = : email = NULL n'est vrai pour aucune ligne. IS NULL fonctionne, tout comme un filtre sur le prénom. IS NOT NULL sélectionne au contraire les cinq autres."
+     },
+     {
+      "id": "c515b66b-0d67-5765-90cd-3992f69c8466",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Combien de lignes renvoie cette requête ?",
+      "code": "SELECT titre FROM formations\nWHERE duree_heures BETWEEN 8 AND 10;",
+      "points": 2,
+      "options": [
+       {
+        "id": "9561ffcf-0631-570f-8938-7719ec06ea62",
+        "position": 1,
+        "label": "1"
+       },
+       {
+        "id": "a4287b4a-f7cb-5b85-a258-dfb69d17c5e8",
+        "position": 2,
+        "label": "2"
+       },
+       {
+        "id": "6aefded1-e19b-57f9-ba2e-3373cb5a1b24",
+        "position": 3,
+        "label": "3"
+       },
+       {
+        "id": "036c3588-42f9-537d-b53e-b3ca2c2c36e7",
+        "position": 4,
+        "label": "4"
+       }
+      ],
+      "correct": [
+       "6aefded1-e19b-57f9-ba2e-3373cb5a1b24"
+      ],
+      "explanation": "BETWEEN inclut ses bornes : SQL (8 h), Anglais professionnel (8 h) et Docker (10 h) sont retenues, soit 3 lignes. Python (11 h) est exclue."
+     },
+     {
+      "id": "fed387e5-63eb-5c62-9b9e-4f6bac65bd6e",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quel motif trouve tous les noms qui se terminent par « i » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e7d8a6a-671f-5924-b7cd-03544c87558f",
+        "position": 1,
+        "label": "LIKE 'i%'"
+       },
+       {
+        "id": "ca60cc4e-5f9b-55ad-8e7a-da70c9551585",
+        "position": 2,
+        "label": "LIKE '%i'"
+       },
+       {
+        "id": "9571ea57-4964-5137-a2a9-d50483326876",
+        "position": 3,
+        "label": "LIKE '_i'"
+       },
+       {
+        "id": "31c88ae9-22ba-5648-805b-a44adb957606",
+        "position": 4,
+        "label": "LIKE '%i%'"
+       }
+      ],
+      "correct": [
+       "ca60cc4e-5f9b-55ad-8e7a-da70c9551585"
+      ],
+      "explanation": "% remplace n'importe quelle suite de caractères. '%i' signifie « n'importe quoi puis un i final ». 'i%' cherche un i au début, '_i' exactement deux caractères, '%i%' un i n'importe où."
+     },
+     {
+      "id": "9924d8ef-c691-50bc-8866-bc0c1064b0aa",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que renvoie cette requête ?",
+      "code": "SELECT prenom FROM etudiants\nWHERE ville = 'Paris' OR ville = 'Lyon' AND date_naissance < '2000-01-01';",
+      "points": 2,
+      "options": [
+       {
+        "id": "dd2966ba-f4ac-5115-9241-be775602ddf0",
+        "position": 1,
+        "label": "Lucas et Yanis"
+       },
+       {
+        "id": "d3d8bd34-611d-5948-bf95-0c50cc7a977e",
+        "position": 2,
+        "label": "Amina, Sofia, Lucas et Yanis"
+       },
+       {
+        "id": "53683a0a-cc88-5d52-9240-bdbba029453d",
+        "position": 3,
+        "label": "Amina et Sofia"
+       },
+       {
+        "id": "c1bc290f-985c-50ba-95ad-fcef9df6e070",
+        "position": 4,
+        "label": "Aucune ligne"
+       }
+      ],
+      "correct": [
+       "d3d8bd34-611d-5948-bf95-0c50cc7a977e"
+      ],
+      "explanation": "AND est évalué avant OR : la condition se lit « Paris, OU (Lyon ET né avant 2000) ». Amina et Sofia (Paris) sont donc retenues, ainsi que Lucas et Yanis. Des parenthèses autour du OR auraient donné seulement Lucas et Yanis."
+     },
+     {
+      "id": "9f72a4dd-96a6-51e8-b556-f46bb37f48f3",
+      "position": 9,
+      "kind": "true_false",
+      "prompt": "Une requête SELECT peut modifier les données d'une table.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2a9350ea-6788-5831-8cfa-d92a89da6778",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "82a33ad0-1143-5357-84db-90dd4bb0356b",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "82a33ad0-1143-5357-84db-90dd4bb0356b"
+      ],
+      "explanation": "SELECT ne fait que lire. Un calcul comme prix * 10 produit une colonne dans le résultat, sans toucher à la table. Les modifications se font avec INSERT, UPDATE et DELETE."
+     },
+     {
+      "id": "10687aba-d553-5566-a929-e3409609c502",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Qu'affiche cette requête ?",
+      "code": "SELECT prenom nom FROM etudiants;",
+      "points": 2,
+      "options": [
+       {
+        "id": "e558184c-af0c-5a39-b931-76203845905f",
+        "position": 1,
+        "label": "Les prénoms et les noms"
+       },
+       {
+        "id": "67bdd8fa-971d-5646-b7fa-c9a77c7d3d08",
+        "position": 2,
+        "label": "Une erreur de syntaxe"
+       },
+       {
+        "id": "e764feeb-afb9-57c0-929a-86e69ef5d30c",
+        "position": 3,
+        "label": "Les prénoms, dans une colonne intitulée « nom »"
+       },
+       {
+        "id": "900654ab-b581-55c9-8851-bf763714a9cc",
+        "position": 4,
+        "label": "Les noms seulement"
+       }
+      ],
+      "correct": [
+       "e764feeb-afb9-57c0-929a-86e69ef5d30c"
+      ],
+      "explanation": "Sans virgule, le second mot est interprété comme un alias (le mot AS est facultatif). La requête affiche donc la colonne prenom renommée en nom : un piège classique."
+     }
+    ]
+   }
+  },
+  {
+   "id": "1c537041-9ffb-57a1-ba64-ffae2d99cc2b",
+   "position": 2,
+   "title": "Trier, limiter et transformer",
+   "description": "Ordonner les résultats, paginer, utiliser les fonctions et CASE.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "a421ad6d-2ea7-56a8-82a2-29a3815b7cdb",
+     "slug": "order-by-limit",
+     "title": "Trier et limiter les résultats",
+     "summary": "ORDER BY, ASC/DESC, plusieurs critères, LIMIT et OFFSET.",
+     "content_md": "## Trier avec ORDER BY\n\nSans instruction de tri, l'ordre des lignes renvoyées par une requête **n'est pas garanti** : il peut changer d'une exécution à l'autre. Pour un ordre précis, ajoutez `ORDER BY` à la fin de la requête.\n\n```sql\nSELECT titre, prix\nFROM formations\nORDER BY prix;\n```\n\nLe tri est **croissant** par défaut (`ASC`, *ascending*). Pour un ordre **décroissant**, ajoutez `DESC` :\n\n```sql\nSELECT titre, prix\nFROM formations\nORDER BY prix DESC;\n```\n\n## Trier sur plusieurs colonnes\n\nDeux formations sont gratuites : laquelle afficher en premier ? Ajoutez un second critère, utilisé seulement en cas d'égalité sur le premier :\n\n```sql\nSELECT titre, prix\nFROM formations\nORDER BY prix DESC, titre;\n```\n\n```text\ntitre                 | prix\n----------------------+-----\nMachine Learning      | 99\nExcel avancé          | 49\nDocker                | 39\nAnglais professionnel | 29\nPython pour débutants | 0\nSQL pour débutants    | 0\n```\n\nChaque critère a son propre sens de tri : ici `prix` est décroissant et `titre` croissant (alphabétique).\n\nOn peut aussi trier sur un alias défini dans le `SELECT` :\n\n```sql\nSELECT titre, duree_heures * 60 AS minutes\nFROM formations\nORDER BY minutes DESC;\n```\n\n## Limiter le nombre de lignes\n\n`LIMIT n` ne garde que les `n` premières lignes du résultat. Combiné à `ORDER BY`, il répond aux questions du type « les 3 plus… » :\n\n```sql\nSELECT prenom, date_naissance\nFROM etudiants\nORDER BY date_naissance\nLIMIT 3;\n```\n\n```text\nprenom | date_naissance\n-------+---------------\nYanis  | 1998-04-17\nLucas  | 1999-11-02\nKarim  | 2000-01-30\n```\n\nLes trois étudiants les plus âgés sont ceux dont la date de naissance est la plus ancienne.\n\n> `LIMIT` sans `ORDER BY` renvoie des lignes au hasard de l'organisation interne de la table : combinez-les toujours. `LIMIT` est accepté par PostgreSQL, MySQL et SQLite ; la norme SQL écrit aussi `FETCH FIRST 3 ROWS ONLY` (PostgreSQL, Oracle, SQL Server).\n\n## Paginer avec OFFSET\n\n`OFFSET n` saute les `n` premières lignes. C'est le principe de la **pagination** d'un site (« page suivante ») :\n\n```sql\n-- Page 2, avec 2 étudiants par page\nSELECT prenom, date_naissance\nFROM etudiants\nORDER BY date_naissance\nLIMIT 2 OFFSET 2;\n-- Karim (2000-01-30), Amina (2001-03-14)\n```\n\nPour la page `p` avec `n` lignes par page : `LIMIT n OFFSET (p - 1) × n`.\n\n## L'ordre d'écriture des clauses\n\nLes clauses s'écrivent toujours dans cet ordre :\n\n```sql\nSELECT colonnes\nFROM table\nWHERE condition\nORDER BY tri\nLIMIT nombre OFFSET décalage;\n```\n\nÉcrire `ORDER BY` avant `WHERE` provoque une erreur de syntaxe.\n\n## À retenir\n\n- Sans `ORDER BY`, l'ordre du résultat n'est pas garanti.\n- `ASC` (par défaut) pour croissant, `DESC` pour décroissant, critère par critère.\n- `LIMIT` garde les premières lignes ; `OFFSET` en saute.\n- Ordre des clauses : `SELECT … FROM … WHERE … ORDER BY … LIMIT … OFFSET …`.\n\n## Exercices\n\n### Exercice 1 — Le plus long\n\nAffichez le titre de la formation la plus longue.\n\n```solution-sql\nSELECT titre\nFROM formations\nORDER BY duree_heures DESC\nLIMIT 1;\n-- Machine Learning (20 heures)\n```\n\n### Exercice 2 — Classement des notes\n\nAffichez les inscriptions notées (identifiant et note), de la meilleure à la moins bonne note.\n\n```solution-sql\nSELECT id, note\nFROM inscriptions\nWHERE note IS NOT NULL\nORDER BY note DESC;\n-- 4 (18), 1 (16), 2 (14), 6 (12), 7 (11), 3 (9)\n```\n\n### Exercice 3 — Annuaire alphabétique\n\nAffichez nom et prénom des étudiants triés par ville, puis par nom dans chaque ville. N'affichez que les 4 premiers.\n\n```solution-sql\nSELECT ville, nom, prenom\nFROM etudiants\nORDER BY ville, nom\nLIMIT 4;\n-- Lille Dubois, Lyon Martin, Lyon Morel, Marseille Haddad\n```",
+     "duration_minutes": 20,
+     "position": 1
+    },
+    {
+     "id": "6b065d94-4734-5e54-b60a-ab3fb42e7e4b",
+     "slug": "fonctions",
+     "title": "Fonctions sur le texte, les nombres et NULL",
+     "summary": "UPPER, LENGTH, SUBSTR, ||, ROUND, COALESCE et les dates.",
+     "content_md": "## Les fonctions SQL\n\nUne **fonction** prend une ou plusieurs valeurs et renvoie un résultat. Elle s'applique ligne par ligne, dans le `SELECT` comme dans le `WHERE`. Les plus courantes sont communes à tous les SGBD.\n\n## Fonctions sur le texte\n\n| Fonction | Rôle | Exemple | Résultat |\n|---|---|---|---|\n| `UPPER(t)` | met en majuscules | `UPPER('Lyon')` | `LYON` |\n| `LOWER(t)` | met en minuscules | `LOWER('SQL')` | `sql` |\n| `LENGTH(t)` | nombre de caractères | `LENGTH('Emma')` | `4` |\n| `SUBSTR(t, début, n)` | extrait `n` caractères | `SUBSTR('Benali', 1, 3)` | `Ben` |\n| `TRIM(t)` | supprime les espaces au début et à la fin | `TRIM('  SQL ')` | `SQL` |\n\nL'opérateur `||` **concatène** (met bout à bout) deux textes :\n\n```sql\nSELECT UPPER(nom) AS nom,\n       prenom || ' ' || nom AS nom_complet,\n       LENGTH(prenom) AS lettres\nFROM etudiants\nWHERE ville = 'Lyon';\n```\n\n```text\nnom    | nom_complet  | lettres\n-------+--------------+--------\nMARTIN | Lucas Martin | 5\nMOREL  | Yanis Morel  | 5\n```\n\n> MySQL n'accepte pas `||` pour concaténer par défaut : utilisez `CONCAT(prenom, ' ', nom)`, qui fonctionne aussi en PostgreSQL.\n\nLes fonctions servent aussi à filtrer sans se soucier de la casse :\n\n```sql\nSELECT prenom FROM etudiants WHERE LOWER(ville) = 'paris';\n```\n\n## Fonctions numériques\n\n- `ROUND(x, n)` arrondit à `n` décimales : `ROUND(13.333, 1)` donne `13.3` ;\n- `ABS(x)` renvoie la valeur absolue ;\n- les opérateurs `+ - * /` et `%` (reste de la division, `MOD` en Oracle).\n\nAttention à la **division entière** : en PostgreSQL et SQLite, `7 / 2` vaut `3` lorsque les deux nombres sont des entiers. Écrivez `7 / 2.0` pour obtenir `3.5`.\n\n## Remplacer NULL avec COALESCE\n\n`COALESCE(a, b, …)` renvoie la première valeur **non NULL** de la liste. C'est le moyen standard d'afficher une valeur par défaut :\n\n```sql\nSELECT prenom, COALESCE(email, 'non renseigné') AS email\nFROM etudiants;\n```\n\n```text\nprenom | email\n-------+-----------------\nAmina  | amina@exemple.fr\nLucas  | lucas@exemple.fr\nSofia  | non renseigné\nKarim  | karim@exemple.fr\nEmma   | emma@exemple.fr\nYanis  | yanis@exemple.fr\n```\n\nPourquoi est-ce important ? Parce que **toute opération avec NULL donne NULL** : `NULL + 1` vaut `NULL`, `'Bonjour ' || NULL` vaut `NULL` (sauf en Oracle). `COALESCE` évite ces « trous » dans les résultats.\n\n## Les dates\n\nLes dates s'écrivent au format international `'AAAA-MM-JJ'` et se comparent naturellement. `CURRENT_DATE` renvoie la date du jour :\n\n```sql\nSELECT id, date_inscription\nFROM inscriptions\nWHERE date_inscription < CURRENT_DATE;\n```\n\nLes fonctions de calcul sur les dates (ajouter un mois, extraire l'année…) varient beaucoup d'un SGBD à l'autre : `EXTRACT(YEAR FROM d)` en PostgreSQL et MySQL, `strftime('%Y', d)` en SQLite. Consultez la documentation de votre SGBD le moment venu.\n\n## À retenir\n\n- Les fonctions s'appliquent ligne par ligne, dans `SELECT` et `WHERE`.\n- Texte : `UPPER`, `LOWER`, `LENGTH`, `SUBSTR`, `TRIM`, concaténation `||` (ou `CONCAT`).\n- Nombres : `ROUND`, `ABS` ; attention à la division entière.\n- Toute opération avec `NULL` donne `NULL` ; `COALESCE` fournit une valeur de remplacement.\n- Dates au format `'AAAA-MM-JJ'`, date du jour avec `CURRENT_DATE`.\n\n## Exercices\n\n### Exercice 1 — Initiales\n\nAffichez pour chaque étudiant ses initiales (première lettre du prénom et du nom), par exemple `AB` pour Amina Benali.\n\n```solution-sql\nSELECT prenom, nom, SUBSTR(prenom, 1, 1) || SUBSTR(nom, 1, 1) AS initiales\nFROM etudiants;\n-- AB, LM, SR, KH, ED, YM\n```\n\n### Exercice 2 — Notes affichables\n\nAffichez l'identifiant de chaque inscription et sa note, en remplaçant les notes manquantes par 0 dans une colonne `note_affichee`.\n\n```solution-sql\nSELECT id, COALESCE(note, 0) AS note_affichee\nFROM inscriptions;\n-- Les inscriptions 5 et 8 affichent 0.\n```\n\n### Exercice 3 — Prix horaire\n\nAffichez le titre des formations payantes et leur prix par heure, arrondi à deux décimales.\n\n```solution-sql\nSELECT titre, ROUND(prix / duree_heures, 2) AS prix_horaire\nFROM formations\nWHERE prix > 0;\n-- Excel avancé 8.17, Machine Learning 4.95, Anglais professionnel 3.63, Docker 3.9\n-- (prix est de type NUMERIC : la division n'est pas entière.)\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "9b324705-271c-5e86-8cc2-983fff836cd1",
+     "slug": "case-when",
+     "title": "Conditions avec CASE",
+     "summary": "Produire une valeur selon des conditions, ligne par ligne.",
+     "content_md": "## Choisir une valeur selon une condition : CASE\n\n`CASE` est l'équivalent SQL du « si… sinon… ». Il produit une valeur différente selon les conditions, pour chaque ligne :\n\n```sql\nCASE\n  WHEN condition1 THEN valeur1\n  WHEN condition2 THEN valeur2\n  ELSE valeur_par_defaut\nEND\n```\n\nLes conditions sont testées **dans l'ordre** ; la première vraie l'emporte et les suivantes sont ignorées. Si aucune n'est vraie et qu'il n'y a pas de `ELSE`, le résultat est `NULL`.\n\n## Un premier exemple\n\n```sql\nSELECT titre,\n       CASE WHEN prix = 0 THEN 'Gratuite' ELSE 'Payante' END AS acces\nFROM formations;\n```\n\n```text\ntitre                 | acces\n----------------------+---------\nPython pour débutants | Gratuite\nSQL pour débutants    | Gratuite\nExcel avancé          | Payante\nMachine Learning      | Payante\nAnglais professionnel | Payante\nDocker                | Payante\n```\n\n## Plusieurs cas : attribuer une mention\n\n```sql\nSELECT id, note,\n       CASE\n         WHEN note >= 16 THEN 'Très bien'\n         WHEN note >= 10 THEN 'Validé'\n         WHEN note IS NULL THEN 'En cours'\n         ELSE 'À retravailler'\n       END AS mention\nFROM inscriptions;\n```\n\n```text\nid | note | mention\n---+------+---------------\n1  | 16   | Très bien\n2  | 14   | Validé\n3  | 9    | À retravailler\n4  | 18   | Très bien\n5  | NULL | En cours\n6  | 12   | Validé\n7  | 11   | Validé\n8  | NULL | En cours\n```\n\nL'**ordre des conditions** compte : la note 18 vérifie à la fois `>= 16` et `>= 10`, mais c'est la première condition vraie (`Très bien`) qui est retenue. Si l'on testait `>= 10` en premier, aucune note n'obtiendrait jamais « Très bien ».\n\nNotez aussi le traitement de `NULL` : sans la ligne `WHEN note IS NULL`, les inscriptions non notées tomberaient dans le `ELSE` et recevraient « À retravailler », ce qui serait faux.\n\n## CASE ailleurs que dans SELECT\n\n`CASE` peut servir dans `ORDER BY` pour imposer un ordre personnalisé :\n\n```sql\nSELECT prenom, ville\nFROM etudiants\nORDER BY CASE WHEN ville = 'Paris' THEN 0 ELSE 1 END, prenom;\n-- Les Parisiennes d'abord (Amina, Sofia), puis les autres par ordre alphabétique.\n```\n\nIl servira aussi au module 3 pour compter selon une condition, à l'intérieur d'une agrégation.\n\n## À retenir\n\n- `CASE WHEN … THEN … ELSE … END` choisit une valeur ligne par ligne.\n- La première condition vraie l'emporte : écrivez les cas du plus précis au plus général.\n- Sans `ELSE`, une ligne qui ne vérifie aucune condition reçoit `NULL`.\n- Pensez à traiter `NULL` explicitement avec `IS NULL`.\n- `CASE` s'utilise dans `SELECT`, `WHERE`, `ORDER BY` et dans les agrégations.\n\n## Exercices\n\n### Exercice 1 — Format des formations\n\nAffichez le titre de chaque formation et une colonne `format` valant « Courte » (moins de 8 heures), « Standard » (de 8 à 12 heures) ou « Longue » (plus de 12 heures).\n\n```solution-sql\nSELECT titre,\n       CASE\n         WHEN duree_heures < 8 THEN 'Courte'\n         WHEN duree_heures <= 12 THEN 'Standard'\n         ELSE 'Longue'\n       END AS format\nFROM formations;\n-- Excel avancé : Courte ; Machine Learning : Longue ; toutes les autres : Standard.\n```\n\n### Exercice 2 — Repérer les erreurs\n\nPourquoi cette requête n'affiche-t-elle jamais « Excellent » ? Corrigez-la.\n\n```sql\nSELECT id,\n       CASE\n         WHEN note >= 10 THEN 'Admis'\n         WHEN note >= 16 THEN 'Excellent'\n         ELSE 'Non admis'\n       END AS resultat\nFROM inscriptions;\n```\n\n```solution-sql\n-- Toute note >= 16 est aussi >= 10 : la première condition l'emporte toujours.\n-- Il faut tester le cas le plus exigeant en premier, et traiter NULL.\nSELECT id,\n       CASE\n         WHEN note >= 16 THEN 'Excellent'\n         WHEN note >= 10 THEN 'Admis'\n         WHEN note IS NULL THEN 'Non noté'\n         ELSE 'Non admis'\n       END AS resultat\nFROM inscriptions;\n```",
+     "duration_minutes": 20,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "7538fe6d-cfae-51db-8f59-02fb635b94de",
+    "title": "Quiz — Trier, limiter et transformer",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "9cb75b59-fb10-5151-b955-075f2330339d",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quelle clause trie les formations de la plus chère à la moins chère ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5e018c4b-f684-5b10-9996-94c20dcbad09",
+        "position": 1,
+        "label": "ORDER BY prix"
+       },
+       {
+        "id": "eada8002-65be-5d37-8643-713858bb0ed7",
+        "position": 2,
+        "label": "ORDER BY prix DESC"
+       },
+       {
+        "id": "548008e4-17ab-56f8-859b-265e4241dc49",
+        "position": 3,
+        "label": "SORT BY prix DESC"
+       },
+       {
+        "id": "3ed1a7bc-3472-5e34-8a22-7dd157e62147",
+        "position": 4,
+        "label": "ORDER prix DESC"
+       }
+      ],
+      "correct": [
+       "eada8002-65be-5d37-8643-713858bb0ed7"
+      ],
+      "explanation": "ORDER BY trie et DESC impose l'ordre décroissant. Sans DESC, le tri est croissant (ASC). SORT BY n'existe pas en SQL standard."
+     },
+     {
+      "id": "588a249f-4c2b-5539-919b-a93e1017a660",
+      "position": 2,
+      "kind": "true_false",
+      "prompt": "Sans ORDER BY, les lignes sont toujours renvoyées dans l'ordre de leur insertion.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7cddb1ce-99e0-5c35-8f76-3e93a4ce79ed",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "e510de46-738c-5432-8e17-bfff2f58fbd0",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "e510de46-738c-5432-8e17-bfff2f58fbd0"
+      ],
+      "explanation": "L'ordre n'est garanti que par ORDER BY. Le SGBD peut renvoyer les lignes dans n'importe quel ordre, qui peut changer d'une exécution à l'autre."
+     },
+     {
+      "id": "e54b6aba-9a97-5f8a-a632-0238a5b0f8c7",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle requête affiche la page 3 d'une liste, à raison de 10 étudiants par page ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2451f0b8-6f15-5efe-8ef1-fc33859a052f",
+        "position": 1,
+        "label": "... LIMIT 10 OFFSET 30"
+       },
+       {
+        "id": "8622ef76-6fd6-5994-91f0-36c360e28d26",
+        "position": 2,
+        "label": "... LIMIT 10 OFFSET 20"
+       },
+       {
+        "id": "9a5238e6-1e0b-5ffc-a65b-fc7bf7d65d50",
+        "position": 3,
+        "label": "... LIMIT 30 OFFSET 10"
+       },
+       {
+        "id": "f6dff124-9101-520a-b717-0421acafebca",
+        "position": 4,
+        "label": "... LIMIT 3 OFFSET 10"
+       }
+      ],
+      "correct": [
+       "8622ef76-6fd6-5994-91f0-36c360e28d26"
+      ],
+      "explanation": "Pour la page p avec n lignes par page : LIMIT n OFFSET (p − 1) × n. Page 3 : on saute les 20 premières lignes et on en garde 10."
+     },
+     {
+      "id": "327adab5-17d5-52cb-9434-48d090c9a640",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quel est l'ordre correct des clauses ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "15494324-9def-5971-9df5-b7eb5a9c58b2",
+        "position": 1,
+        "label": "SELECT, FROM, ORDER BY, WHERE, LIMIT"
+       },
+       {
+        "id": "3bf8eddc-2139-510c-9fa2-48932b28ef42",
+        "position": 2,
+        "label": "SELECT, WHERE, FROM, ORDER BY, LIMIT"
+       },
+       {
+        "id": "a7f09cab-c426-5ef1-8836-e567d99b7544",
+        "position": 3,
+        "label": "SELECT, FROM, WHERE, ORDER BY, LIMIT"
+       },
+       {
+        "id": "14924535-e54f-5344-910d-5f65e374fe52",
+        "position": 4,
+        "label": "FROM, SELECT, WHERE, LIMIT, ORDER BY"
+       }
+      ],
+      "correct": [
+       "a7f09cab-c426-5ef1-8836-e567d99b7544"
+      ],
+      "explanation": "Les clauses s'écrivent toujours SELECT … FROM … WHERE … ORDER BY … LIMIT. Tout autre ordre provoque une erreur de syntaxe."
+     },
+     {
+      "id": "9764e1fd-4e0c-5465-89d4-778d6381ef8e",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que vaut l'expression suivante ?",
+      "code": "COALESCE(NULL, NULL, 'Lyon', 'Paris')",
+      "points": 2,
+      "options": [
+       {
+        "id": "87dd1f30-a709-5ac6-b127-7eff551ea3ef",
+        "position": 1,
+        "label": "NULL"
+       },
+       {
+        "id": "31a16fc2-df6b-5a2c-89ea-a2be115ce079",
+        "position": 2,
+        "label": "'Lyon'"
+       },
+       {
+        "id": "6786e51e-44fc-5be2-8c71-4391ccfa2e48",
+        "position": 3,
+        "label": "'Paris'"
+       },
+       {
+        "id": "8aa61c8b-db2c-5960-a990-4af5d55be911",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "31a16fc2-df6b-5a2c-89ea-a2be115ce079"
+      ],
+      "explanation": "COALESCE renvoie la première valeur non NULL de la liste, en partant de la gauche : 'Lyon'."
+     },
+     {
+      "id": "4958f982-34b1-5588-940f-ddf468a2d400",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que vaut NULL + 5 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "39f71cc3-e4d9-560c-a4b3-f0603a2fcd63",
+        "position": 1,
+        "label": "5"
+       },
+       {
+        "id": "d68478f0-d109-50e8-a149-f27846448fe0",
+        "position": 2,
+        "label": "0"
+       },
+       {
+        "id": "a26b7029-f6fc-56b1-b30d-c8805a038313",
+        "position": 3,
+        "label": "NULL"
+       },
+       {
+        "id": "bbb51c8d-9720-55ce-853e-69a1f1d7123f",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "a26b7029-f6fc-56b1-b30d-c8805a038313"
+      ],
+      "explanation": "Toute opération arithmétique avec NULL donne NULL : une valeur inconnue plus 5 reste inconnue. COALESCE(note, 0) + 5 vaudrait 5."
+     },
+     {
+      "id": "89a2a53a-f4f2-5917-b0ad-2ecaccef7fe6",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie UPPER(SUBSTR('benali', 1, 3)) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e94400fb-0dbe-5c14-8eb1-7ab3b6200478",
+        "position": 1,
+        "label": "'BENALI'"
+       },
+       {
+        "id": "8cb33d81-0e58-5a63-839e-24367b3916d3",
+        "position": 2,
+        "label": "'BEN'"
+       },
+       {
+        "id": "78ba9269-2faf-565a-a597-108734970657",
+        "position": 3,
+        "label": "'ben'"
+       },
+       {
+        "id": "98ea7e3b-43e3-5fdc-800e-4fcb6251631f",
+        "position": 4,
+        "label": "'ALI'"
+       }
+      ],
+      "correct": [
+       "8cb33d81-0e58-5a63-839e-24367b3916d3"
+      ],
+      "explanation": "SUBSTR extrait 3 caractères à partir du premier : 'ben'. UPPER les met ensuite en majuscules : 'BEN'."
+     },
+     {
+      "id": "0d7f9851-c287-5a99-acfb-e9f3ad180bc4",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quelle mention reçoit une note de 18 avec ce CASE ?",
+      "code": "CASE\n  WHEN note >= 10 THEN 'Validé'\n  WHEN note >= 16 THEN 'Très bien'\n  ELSE 'Non validé'\nEND",
+      "points": 2,
+      "options": [
+       {
+        "id": "bc357bf0-02d3-5f73-8348-9201aa661925",
+        "position": 1,
+        "label": "Validé"
+       },
+       {
+        "id": "932ac528-c7db-5c08-a973-611cd33709eb",
+        "position": 2,
+        "label": "Très bien"
+       },
+       {
+        "id": "27c22fb8-edca-5b60-8d43-e34a2d2e0dee",
+        "position": 3,
+        "label": "Non validé"
+       },
+       {
+        "id": "cb1c432a-2bc8-5100-8e3f-e8124bb19984",
+        "position": 4,
+        "label": "NULL"
+       }
+      ],
+      "correct": [
+       "bc357bf0-02d3-5f73-8348-9201aa661925"
+      ],
+      "explanation": "La première condition vraie l'emporte : 18 >= 10, donc « Validé », et la suite n'est pas testée. Il faudrait tester >= 16 en premier."
+     },
+     {
+      "id": "8f81633f-3d4d-5518-83e7-4bb82b4d1585",
+      "position": 9,
+      "kind": "true_false",
+      "prompt": "Un CASE sans ELSE renvoie NULL pour les lignes qui ne vérifient aucune condition.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b0772ae5-74c3-55fa-b401-db81fea3728e",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "73dc83f1-7b7f-52cb-96eb-72a04c0b4c19",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "b0772ae5-74c3-55fa-b401-db81fea3728e"
+      ],
+      "explanation": "C'est le comportement standard : sans ELSE, la valeur par défaut est NULL. Pensez à prévoir un ELSE ou à traiter explicitement les cas restants."
+     },
+     {
+      "id": "3d411f86-9427-5237-a112-9db86fe58169",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quelles requêtes affichent les 2 formations les plus courtes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3d198aa9-e6e9-53cb-b07a-c3411472c608",
+        "position": 1,
+        "label": "SELECT titre FROM formations ORDER BY duree_heures LIMIT 2;"
+       },
+       {
+        "id": "68ca6205-1bc9-5710-96ee-15636e48b237",
+        "position": 2,
+        "label": "SELECT titre FROM formations ORDER BY duree_heures ASC LIMIT 2;"
+       },
+       {
+        "id": "ab033f39-3bea-5526-9aeb-088434d0278f",
+        "position": 3,
+        "label": "SELECT titre FROM formations LIMIT 2;"
+       },
+       {
+        "id": "2d3e9018-2326-562a-b692-b2a4388fd973",
+        "position": 4,
+        "label": "SELECT titre FROM formations ORDER BY duree_heures DESC LIMIT 2;"
+       }
+      ],
+      "correct": [
+       "3d198aa9-e6e9-53cb-b07a-c3411472c608",
+       "68ca6205-1bc9-5710-96ee-15636e48b237"
+      ],
+      "explanation": "Le tri croissant (ASC est la valeur par défaut) met les plus courtes en premier. Sans ORDER BY, LIMIT renvoie deux lignes quelconques ; avec DESC, on obtiendrait les plus longues."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c36831c7-6d45-5ec3-9364-da2c32439368",
+   "position": 3,
+   "title": "Agréger les données",
+   "description": "Compter, additionner, faire des moyennes et des statistiques par groupe.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "ac3e2b8c-575a-5ba8-8054-8d38bf87604d",
+     "slug": "fonctions-agregation",
+     "title": "Les fonctions d'agrégation",
+     "summary": "COUNT, SUM, AVG, MIN, MAX et leur comportement avec NULL.",
+     "content_md": "## Résumer plusieurs lignes en une seule valeur\n\nJusqu'ici, chaque ligne du résultat correspondait à une ligne de la table. Les **fonctions d'agrégation** font l'inverse : elles résument un ensemble de lignes en **une seule valeur**. Combien d'inscriptions ? Quelle note moyenne ? Quel est le prix le plus élevé ?\n\n| Fonction | Rôle |\n|---|---|\n| `COUNT(*)` | nombre de lignes |\n| `COUNT(colonne)` | nombre de valeurs **non NULL** de la colonne |\n| `SUM(colonne)` | somme |\n| `AVG(colonne)` | moyenne |\n| `MIN(colonne)` | plus petite valeur |\n| `MAX(colonne)` | plus grande valeur |\n\n## Un tableau de bord en une requête\n\n```sql\nSELECT COUNT(*)            AS nb_inscriptions,\n       COUNT(note)         AS nb_notes,\n       ROUND(AVG(note), 1) AS moyenne,\n       MIN(note)           AS note_min,\n       MAX(note)           AS note_max\nFROM inscriptions;\n```\n\n```text\nnb_inscriptions | nb_notes | moyenne | note_min | note_max\n----------------+----------+---------+----------+---------\n8               | 6        | 13.3    | 9        | 18\n```\n\nLe résultat ne contient qu'**une seule ligne**, qui résume les huit inscriptions.\n\n## Les agrégations ignorent NULL\n\nObservez la différence entre `COUNT(*)` (8) et `COUNT(note)` (6) : deux inscriptions n'ont pas de note. Toutes les fonctions d'agrégation, sauf `COUNT(*)`, **ignorent les valeurs NULL**.\n\nLa moyenne vaut donc (16 + 14 + 9 + 18 + 12 + 11) / 6 = 80 / 6 ≈ 13,3 : les deux inscriptions non notées ne comptent pas comme des zéros. C'est généralement ce que l'on souhaite. Si vous voulez au contraire compter les absences comme des zéros, écrivez `AVG(COALESCE(note, 0))`, qui vaudrait 80 / 8 = 10.\n\n## Agréger une partie des lignes\n\n`WHERE` filtre les lignes **avant** le calcul :\n\n```sql\nSELECT SUM(prix) AS total_catalogue_payant, COUNT(*) AS nb_formations\nFROM formations\nWHERE prix > 0;\n-- total_catalogue_payant : 216, nb_formations : 4\n```\n\n## Compter des valeurs distinctes\n\n`COUNT(DISTINCT colonne)` compte les valeurs différentes. Combien d'étudiants différents se sont inscrits au moins une fois ?\n\n```sql\nSELECT COUNT(DISTINCT etudiant_id) AS etudiants_inscrits\nFROM inscriptions;\n-- 5 (Amina compte une seule fois malgré ses trois inscriptions ; Yanis n'est inscrit nulle part)\n```\n\n## Compter selon une condition\n\nEn combinant `SUM` et `CASE`, on compte plusieurs catégories dans la même requête :\n\n```sql\nSELECT SUM(CASE WHEN note >= 10 THEN 1 ELSE 0 END) AS validees,\n       SUM(CASE WHEN note < 10 THEN 1 ELSE 0 END)  AS non_validees\nFROM inscriptions;\n-- validees : 5, non_validees : 1\n```\n\n## Le piège : mélanger lignes et agrégats\n\nCette requête est **refusée** par PostgreSQL :\n\n```sql\nSELECT prenom, COUNT(*) FROM etudiants;\n```\n\nElle demande à la fois une valeur par étudiant (`prenom`) et une valeur unique pour toute la table (`COUNT(*)`) : SQL ne sait pas quel prénom afficher sur la ligne unique du résultat. Pour obtenir un calcul **par groupe**, il faut `GROUP BY`, objet de la leçon suivante.\n\n> SQLite et certaines configurations de MySQL acceptent cette requête et affichent un prénom choisi arbitrairement : le résultat n'a pas de sens. Ne vous y fiez pas.\n\n## À retenir\n\n- `COUNT`, `SUM`, `AVG`, `MIN`, `MAX` résument plusieurs lignes en une valeur.\n- `COUNT(*)` compte les lignes ; `COUNT(colonne)` compte les valeurs non NULL.\n- Les agrégations ignorent `NULL` ; `COALESCE` permet de le remplacer.\n- `COUNT(DISTINCT …)` compte les valeurs différentes ; `SUM(CASE …)` compte selon une condition.\n- On ne mélange pas une colonne « par ligne » et une agrégation sans `GROUP BY`.\n\n## Exercices\n\n### Exercice 1 — Le catalogue en chiffres\n\nAffichez le nombre de formations, leur durée totale en heures et le prix moyen.\n\n```solution-sql\nSELECT COUNT(*) AS nb_formations,\n       SUM(duree_heures) AS heures_totales,\n       AVG(prix) AS prix_moyen\nFROM formations;\n-- 6 formations, 63 heures, prix moyen 36\n```\n\n### Exercice 2 — Les notes d'Amina\n\nAffichez la meilleure note et la note moyenne d'Amina (identifiant 1).\n\n```solution-sql\nSELECT MAX(note) AS meilleure_note, AVG(note) AS moyenne\nFROM inscriptions\nWHERE etudiant_id = 1;\n-- 16 et 15 : l'inscription non notée (Machine Learning) est ignorée.\n```\n\n### Exercice 3 — Taux de réussite\n\nCalculez le nombre d'inscriptions notées et le nombre d'inscriptions validées (note ≥ 10) dans la même requête.\n\n```solution-sql\nSELECT COUNT(note) AS notees,\n       SUM(CASE WHEN note >= 10 THEN 1 ELSE 0 END) AS validees\nFROM inscriptions;\n-- 6 notées, 5 validées\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "b9562a8b-6625-5c0c-a92c-7342ad263ad4",
+     "slug": "group-by",
+     "title": "Regrouper avec GROUP BY",
+     "summary": "Calculer une statistique pour chaque groupe de lignes.",
+     "content_md": "## Une statistique par groupe\n\nCombien d'étudiants habitent dans **chaque** ville ? Il faut découper la table en groupes (un par ville), puis calculer un `COUNT` dans chaque groupe. C'est le rôle de `GROUP BY` :\n\n```sql\nSELECT ville, COUNT(*) AS nb_etudiants\nFROM etudiants\nGROUP BY ville\nORDER BY nb_etudiants DESC, ville;\n```\n\n```text\nville     | nb_etudiants\n----------+-------------\nLyon      | 2\nParis     | 2\nLille     | 1\nMarseille | 1\n```\n\nLe SGBD procède en trois temps :\n\n1. il lit les lignes de `etudiants` ;\n2. il range ensemble les lignes qui ont la même valeur de `ville` ;\n3. il produit **une ligne de résultat par groupe**, avec la valeur commune (`ville`) et le résultat de l'agrégation.\n\n## La règle d'or du GROUP BY\n\nDans une requête avec `GROUP BY`, chaque colonne du `SELECT` doit être :\n\n- soit **dans le GROUP BY** (elle a la même valeur pour tout le groupe) ;\n- soit **à l'intérieur d'une fonction d'agrégation**.\n\n```sql\n-- Refusé : prenom n'est ni groupé ni agrégé (quel prénom afficher pour Paris ?)\nSELECT ville, prenom, COUNT(*) FROM etudiants GROUP BY ville;\n```\n\n## Plusieurs statistiques par groupe\n\n```sql\nSELECT formation_id,\n       COUNT(*) AS inscrits,\n       ROUND(AVG(note), 1) AS moyenne\nFROM inscriptions\nGROUP BY formation_id\nORDER BY formation_id;\n```\n\n```text\nformation_id | inscrits | moyenne\n-------------+----------+--------\n1            | 2        | 12.5\n2            | 2        | 14.0\n3            | 1        | 12.0\n4            | 2        | 18.0\n5            | 1        | 11.0\n```\n\nLa formation 2 compte deux inscrits mais une seule note (14) : la moyenne ignore la note manquante. Il en va de même pour la formation 4. La formation 6 (Docker) n'apparaît pas, car aucune inscription ne la concerne : on verra au module 4 comment l'afficher avec zéro inscrit.\n\n## Grouper sur plusieurs colonnes\n\nOn peut grouper selon plusieurs critères : un groupe correspond alors à chaque **combinaison** de valeurs.\n\n```sql\nSELECT ville, date_naissance >= '2000-01-01' AS ne_apres_2000, COUNT(*) AS nb\nFROM etudiants\nGROUP BY ville, date_naissance >= '2000-01-01'\nORDER BY ville;\n-- Lyon apparaît une fois (Lucas et Yanis sont nés avant 2000) ; chaque autre ville aussi.\n```\n\nEn pratique, on groupe le plus souvent sur une ou deux colonnes « catégories » : ville, catégorie, mois, statut…\n\n## Trier les groupes\n\n`ORDER BY` s'applique au résultat final : on peut trier sur la colonne de groupe ou sur l'agrégat, via son alias.\n\n```sql\nSELECT categorie, SUM(duree_heures) AS heures\nFROM formations\nGROUP BY categorie\nORDER BY heures DESC\nLIMIT 3;\n-- Data Science (20), Programmation (11), Cloud et DevOps (10)\n```\n\n## À retenir\n\n- `GROUP BY` découpe les lignes en groupes et produit une ligne de résultat par groupe.\n- Toute colonne du `SELECT` est soit groupée, soit agrégée.\n- Les groupes sans aucune ligne n'apparaissent pas.\n- `ORDER BY` et `LIMIT` s'appliquent après le regroupement.\n\n## Exercices\n\n### Exercice 1 — Inscriptions par étudiant\n\nAffichez, pour chaque `etudiant_id` présent dans les inscriptions, le nombre d'inscriptions, du plus grand au plus petit.\n\n```solution-sql\nSELECT etudiant_id, COUNT(*) AS nb\nFROM inscriptions\nGROUP BY etudiant_id\nORDER BY nb DESC, etudiant_id;\n-- 1 : 3, 2 : 2, puis 3, 4 et 5 : 1\n```\n\n### Exercice 2 — Prix moyen par tranche\n\nAffichez le nombre de formations gratuites et payantes, avec leur durée moyenne. Indice : groupez sur une expression `CASE`.\n\n```solution-sql\nSELECT CASE WHEN prix = 0 THEN 'Gratuite' ELSE 'Payante' END AS acces,\n       COUNT(*) AS nb,\n       AVG(duree_heures) AS duree_moyenne\nFROM formations\nGROUP BY CASE WHEN prix = 0 THEN 'Gratuite' ELSE 'Payante' END;\n-- Gratuite : 2 formations, 9.5 h ; Payante : 4 formations, 11 h\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "d6133057-013d-571c-bf8d-9ac8933aeebd",
+     "slug": "having",
+     "title": "Filtrer les groupes avec HAVING",
+     "summary": "HAVING, différence avec WHERE et ordre d'exécution d'une requête.",
+     "content_md": "## Filtrer après le regroupement : HAVING\n\nQuels étudiants sont inscrits à **au moins deux** formations ? La condition porte sur un résultat d'agrégation (`COUNT(*)`), qui n'existe qu'**après** le regroupement. `WHERE` ne peut donc pas l'utiliser : il faut `HAVING`.\n\n```sql\nSELECT etudiant_id, COUNT(*) AS nb\nFROM inscriptions\nGROUP BY etudiant_id\nHAVING COUNT(*) >= 2;\n```\n\n```text\netudiant_id | nb\n------------+---\n1           | 3\n2           | 2\n```\n\n## WHERE ou HAVING ?\n\n| | `WHERE` | `HAVING` |\n|---|---|---|\n| Filtre… | les **lignes** | les **groupes** |\n| Moment | avant le `GROUP BY` | après le `GROUP BY` |\n| Peut utiliser une agrégation ? | non | oui |\n\nLes deux se combinent très bien. Quelles formations ont une moyenne d'au moins 12, en ne tenant compte que des inscriptions notées ?\n\n```sql\nSELECT formation_id, ROUND(AVG(note), 1) AS moyenne\nFROM inscriptions\nWHERE note IS NOT NULL\nGROUP BY formation_id\nHAVING AVG(note) >= 12\nORDER BY moyenne DESC;\n```\n\n```text\nformation_id | moyenne\n-------------+--------\n4            | 18.0\n2            | 14.0\n1            | 12.5\n3            | 12.0\n```\n\nLa formation 5 (moyenne 11) est éliminée par le `HAVING`.\n\n> Règle pratique : si la condition peut s'écrire dans le `WHERE`, mettez-la dans le `WHERE`. Les lignes inutiles sont écartées plus tôt et la requête est plus rapide.\n\n## L'ordre d'exécution d'une requête\n\nUne requête ne s'exécute pas dans l'ordre où elle s'écrit. Le SGBD suit cet ordre **logique** :\n\n1. `FROM` : choisir la table (et les jointures) ;\n2. `WHERE` : filtrer les lignes ;\n3. `GROUP BY` : former les groupes ;\n4. `HAVING` : filtrer les groupes ;\n5. `SELECT` : calculer les colonnes et les alias ;\n6. `ORDER BY` : trier ;\n7. `LIMIT` / `OFFSET` : garder une partie du résultat.\n\nCet ordre explique plusieurs règles déjà rencontrées :\n\n- un alias défini dans le `SELECT` est utilisable dans `ORDER BY` (étape 6) mais **pas dans `WHERE`** (étape 2, quand l'alias n'existe pas encore) ;\n- une agrégation ne peut pas apparaître dans `WHERE` : les groupes n'existent pas encore.\n\n```sql\n-- Erreur (PostgreSQL, Oracle, SQL Server) : l'alias minutes n'existe pas encore à l'étape WHERE\nSELECT titre, duree_heures * 60 AS minutes FROM formations WHERE minutes > 500;\n\n-- Correct : on répète l'expression\nSELECT titre, duree_heures * 60 AS minutes FROM formations WHERE duree_heures * 60 > 500;\n```\n\n## À retenir\n\n- `HAVING` filtre les groupes, après le `GROUP BY` ; il accepte les agrégations.\n- `WHERE` filtre les lignes avant le regroupement ; préférez-le quand c'est possible.\n- Ordre logique : `FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`.\n- Un alias du `SELECT` n'est pas visible dans `WHERE`.\n\n## Exercices\n\n### Exercice 1 — Villes représentées\n\nAffichez les villes qui comptent au moins deux étudiants.\n\n```solution-sql\nSELECT ville, COUNT(*) AS nb\nFROM etudiants\nGROUP BY ville\nHAVING COUNT(*) >= 2;\n-- Paris et Lyon\n```\n\n### Exercice 2 — Corriger la requête\n\nCette requête renvoie une erreur. Expliquez pourquoi, puis corrigez-la pour obtenir les formations dont la meilleure note dépasse 15.\n\n```sql\nSELECT formation_id, MAX(note) AS meilleure\nFROM inscriptions\nWHERE MAX(note) > 15\nGROUP BY formation_id;\n```\n\n```solution-sql\n-- Une agrégation ne peut pas figurer dans WHERE : les groupes n'existent pas encore.\nSELECT formation_id, MAX(note) AS meilleure\nFROM inscriptions\nGROUP BY formation_id\nHAVING MAX(note) > 15;\n-- Formations 1 (16) et 4 (18)\n```\n\n### Exercice 3 — Catégories actives\n\nParmi les formations de plus de 6 heures, affichez les catégories dont la durée totale atteint au moins 10 heures.\n\n```solution-sql\nSELECT categorie, SUM(duree_heures) AS heures\nFROM formations\nWHERE duree_heures > 6\nGROUP BY categorie\nHAVING SUM(duree_heures) >= 10;\n-- Cloud et DevOps (10), Data Science (20), Programmation (11)\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "4de55be0-9840-539b-a1c4-ab628176f210",
+    "title": "Quiz — Agréger les données",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "c986f89a-e0ae-56b4-b768-9f3106b3f151",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que renvoie COUNT(note) sur la table inscriptions, qui compte 8 lignes dont 2 sans note ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0f6cb594-62a1-5a3e-b40d-3fa33f54d69f",
+        "position": 1,
+        "label": "8"
+       },
+       {
+        "id": "5c413f19-b165-52a2-b82c-864019590c20",
+        "position": 2,
+        "label": "6"
+       },
+       {
+        "id": "b4d1427c-98f7-53af-aad2-27d17b392e47",
+        "position": 3,
+        "label": "2"
+       },
+       {
+        "id": "8b89e0f0-2309-529f-bc23-3a140f71983a",
+        "position": 4,
+        "label": "NULL"
+       }
+      ],
+      "correct": [
+       "5c413f19-b165-52a2-b82c-864019590c20"
+      ],
+      "explanation": "COUNT(colonne) ne compte que les valeurs non NULL : 6. COUNT(*) compterait les 8 lignes."
+     },
+     {
+      "id": "d75d8d43-6937-5e65-8018-12a460820b80",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Les notes sont 16, 14, 9, 18, 12, 11, NULL et NULL. Que vaut AVG(note) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "69c599a6-84a5-583c-b279-689d393b7834",
+        "position": 1,
+        "label": "10"
+       },
+       {
+        "id": "38241e5c-c54c-5ec6-a4b2-e373069565fa",
+        "position": 2,
+        "label": "13,3 environ"
+       },
+       {
+        "id": "d55e330a-a3d1-5857-a3dd-ea260d1e3711",
+        "position": 3,
+        "label": "NULL"
+       },
+       {
+        "id": "d1d4f448-e6b6-5fbf-91cb-3b4cfe7a8903",
+        "position": 4,
+        "label": "80"
+       }
+      ],
+      "correct": [
+       "38241e5c-c54c-5ec6-a4b2-e373069565fa"
+      ],
+      "explanation": "AVG ignore les NULL : 80 / 6 ≈ 13,3. Pour compter les absences comme des zéros, il faudrait AVG(COALESCE(note, 0)) = 10."
+     },
+     {
+      "id": "61729b78-59cc-52b3-8ba6-77f75523b7cc",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Combien de lignes renvoie cette requête ?",
+      "code": "SELECT ville, COUNT(*)\nFROM etudiants\nGROUP BY ville;",
+      "points": 2,
+      "options": [
+       {
+        "id": "d9dcafe5-9657-5a3b-9749-35771297b961",
+        "position": 1,
+        "label": "1"
+       },
+       {
+        "id": "7e9fcb08-4045-580e-a5ef-e0548dc8ab64",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "a5f52ae6-a342-59ba-ac67-f8c92c31fb85",
+        "position": 3,
+        "label": "6"
+       },
+       {
+        "id": "baa17680-b523-533c-93f5-0d8c81ab4c4c",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "7e9fcb08-4045-580e-a5ef-e0548dc8ab64"
+      ],
+      "explanation": "GROUP BY produit une ligne par groupe. Il y a 4 villes différentes : Paris, Lyon, Marseille et Lille."
+     },
+     {
+      "id": "0051047a-a583-5681-8761-aa146d6b4f3f",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Pourquoi cette requête est-elle refusée par PostgreSQL ?",
+      "code": "SELECT ville, prenom, COUNT(*)\nFROM etudiants\nGROUP BY ville;",
+      "points": 2,
+      "options": [
+       {
+        "id": "fa41b26e-b948-5d44-a281-ed7c47b0890c",
+        "position": 1,
+        "label": "COUNT(*) est interdit avec GROUP BY"
+       },
+       {
+        "id": "9a93822b-82d5-5535-94a2-39bf0cc04b0d",
+        "position": 2,
+        "label": "prenom n'est ni groupé ni agrégé"
+       },
+       {
+        "id": "10bbc0da-c21a-5f3f-9c92-426a7dee5c94",
+        "position": 3,
+        "label": "ville doit être agrégée"
+       },
+       {
+        "id": "e9ea6f67-2ef3-51b8-965a-d8ced7ada989",
+        "position": 4,
+        "label": "Il manque un ORDER BY"
+       }
+      ],
+      "correct": [
+       "9a93822b-82d5-5535-94a2-39bf0cc04b0d"
+      ],
+      "explanation": "Chaque colonne du SELECT doit être dans le GROUP BY ou dans une agrégation. Un groupe « Paris » contient deux prénoms : SQL ne peut pas choisir lequel afficher."
+     },
+     {
+      "id": "ecd01baa-2d13-51ca-b29b-7e649ae8690d",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quelle clause permet de ne garder que les groupes ayant au moins 2 lignes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a35bc567-a2a3-5262-bec2-4678bef373ca",
+        "position": 1,
+        "label": "WHERE COUNT(*) >= 2"
+       },
+       {
+        "id": "e7130356-cfa7-5100-b675-be81a03db7c0",
+        "position": 2,
+        "label": "HAVING COUNT(*) >= 2"
+       },
+       {
+        "id": "a5a5c706-2e93-5edf-b316-1027f3eea191",
+        "position": 3,
+        "label": "GROUP BY COUNT(*) >= 2"
+       },
+       {
+        "id": "3d20da1e-f0be-5533-ba4e-95ba9f5853d7",
+        "position": 4,
+        "label": "LIMIT 2"
+       }
+      ],
+      "correct": [
+       "e7130356-cfa7-5100-b675-be81a03db7c0"
+      ],
+      "explanation": "HAVING filtre les groupes après le regroupement et accepte les agrégations. WHERE agit avant le regroupement et ne peut pas utiliser COUNT."
+     },
+     {
+      "id": "5b4b303c-eaab-5fda-b101-fdc1dae103e9",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Dans quel ordre logique le SGBD exécute-t-il ces clauses ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3816ca89-3170-52f6-b014-8c78cfcde37e",
+        "position": 1,
+        "label": "SELECT, FROM, WHERE, GROUP BY, HAVING"
+       },
+       {
+        "id": "77a3b5d7-bb7f-5be9-927b-2a1fa245940b",
+        "position": 2,
+        "label": "FROM, WHERE, GROUP BY, HAVING, SELECT"
+       },
+       {
+        "id": "885d0684-e8e8-52f5-8e93-88808a50e4da",
+        "position": 3,
+        "label": "FROM, GROUP BY, WHERE, SELECT, HAVING"
+       },
+       {
+        "id": "9a5c8633-8701-52f6-a636-8224e6db47c7",
+        "position": 4,
+        "label": "WHERE, FROM, SELECT, GROUP BY, HAVING"
+       }
+      ],
+      "correct": [
+       "77a3b5d7-bb7f-5be9-927b-2a1fa245940b"
+      ],
+      "explanation": "Ordre logique : FROM, WHERE, GROUP BY, HAVING, SELECT, puis ORDER BY et LIMIT. C'est pourquoi un alias du SELECT n'est pas utilisable dans WHERE."
+     },
+     {
+      "id": "24498b3f-0b23-5f5d-a3e7-7af422862e38",
+      "position": 7,
+      "kind": "true_false",
+      "prompt": "COUNT(DISTINCT etudiant_id) compte une seule fois un étudiant inscrit à plusieurs formations.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f917226a-f7ac-570f-9413-097fda6df813",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "93f72195-888d-5617-a9ee-34c752e514e6",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "f917226a-f7ac-570f-9413-097fda6df813"
+      ],
+      "explanation": "DISTINCT élimine les doublons avant de compter : Amina, inscrite trois fois, n'est comptée qu'une fois."
+     },
+     {
+      "id": "3e55efa5-8788-5247-86a8-cbac54717b80",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles conditions peuvent figurer dans un WHERE ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7462b8ad-071f-5fc0-a72c-97a20367cd09",
+        "position": 1,
+        "label": "note >= 10"
+       },
+       {
+        "id": "fc627f37-ecc3-5bfc-9680-a2f8c8094ac0",
+        "position": 2,
+        "label": "COUNT(*) > 1"
+       },
+       {
+        "id": "1ea8cb96-5685-5589-8406-7085971aaf0a",
+        "position": 3,
+        "label": "ville IN ('Paris', 'Lyon')"
+       },
+       {
+        "id": "2ec25a99-32d8-589c-b52d-7b220819f681",
+        "position": 4,
+        "label": "AVG(note) > 12"
+       }
+      ],
+      "correct": [
+       "7462b8ad-071f-5fc0-a72c-97a20367cd09",
+       "1ea8cb96-5685-5589-8406-7085971aaf0a"
+      ],
+      "explanation": "WHERE accepte les conditions sur les lignes. Les agrégations (COUNT, AVG…) ne sont autorisées que dans HAVING, SELECT et ORDER BY."
+     },
+     {
+      "id": "2c6d2ed0-f491-511b-851a-bb2c22c9aecd",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Que calcule cette expression ?",
+      "code": "SUM(CASE WHEN note >= 10 THEN 1 ELSE 0 END)",
+      "points": 2,
+      "options": [
+       {
+        "id": "f5a03a03-9dcf-57a4-bae2-5ec3501772e1",
+        "position": 1,
+        "label": "La somme des notes supérieures ou égales à 10"
+       },
+       {
+        "id": "84b54b33-cb89-5776-9a14-e7cacf26edef",
+        "position": 2,
+        "label": "Le nombre de notes supérieures ou égales à 10"
+       },
+       {
+        "id": "0bc75bf3-168d-5d95-9bb1-90942e8254af",
+        "position": 3,
+        "label": "La moyenne des notes"
+       },
+       {
+        "id": "7853f02e-550d-50e6-83d0-8932506818ae",
+        "position": 4,
+        "label": "Le nombre total de lignes"
+       }
+      ],
+      "correct": [
+       "84b54b33-cb89-5776-9a14-e7cacf26edef"
+      ],
+      "explanation": "Le CASE vaut 1 pour chaque note ≥ 10 et 0 sinon : la somme de ces 1 compte les notes ≥ 10."
+     },
+     {
+      "id": "42ac6186-9ae2-5eaa-b039-9e5d293b0e96",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Que renvoie MAX(note) pour un groupe dont toutes les notes sont NULL ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "01665784-6f8f-5417-b320-64c72e9db0d5",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "05ae03bf-9c3f-50a7-9f2f-9b5e1b740fa1",
+        "position": 2,
+        "label": "NULL"
+       },
+       {
+        "id": "8e996cc7-b84c-550b-a36c-7c1daf3237c8",
+        "position": 3,
+        "label": "Une erreur"
+       },
+       {
+        "id": "1fee9a97-7844-5086-b3db-bed95b435e7f",
+        "position": 4,
+        "label": "20"
+       }
+      ],
+      "correct": [
+       "05ae03bf-9c3f-50a7-9f2f-9b5e1b740fa1"
+      ],
+      "explanation": "Les agrégations ignorent les NULL ; s'il ne reste aucune valeur, le résultat est NULL. Seul COUNT renvoie 0 dans ce cas."
+     }
+    ]
+   }
+  },
+  {
+   "id": "a9a348a1-30ab-5d6f-9af0-222d483965cc",
+   "position": 4,
+   "title": "Joindre des tables",
+   "description": "Croiser les informations de plusieurs tables grâce aux clés étrangères.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "34297120-76f9-5bfb-b68f-4f85c95a507c",
+     "slug": "inner-join",
+     "title": "Relier deux tables avec JOIN",
+     "summary": "Clés étrangères, INNER JOIN, alias de tables.",
+     "content_md": "## Pourquoi plusieurs tables ?\n\nLa table `inscriptions` ne contient que des identifiants : `etudiant_id = 1`, `formation_id = 4`. Pour savoir qu'il s'agit d'*Amina* inscrite en *Machine Learning*, il faut aller chercher l'information dans les tables `etudiants` et `formations`.\n\nPourquoi ne pas tout ranger dans une seule grande table ? Parce qu'Amina apparaîtrait trois fois, avec trois copies de son email. Le jour où elle change d'adresse, il faudrait modifier trois lignes, et l'oubli d'une seule rendrait les données incohérentes. En stockant chaque information **une seule fois** et en la référençant par son identifiant, la base reste fiable. Ce principe s'appelle la **normalisation**.\n\n## Clé primaire et clé étrangère\n\n- `etudiants.id` est la **clé primaire** de la table des étudiants.\n- `inscriptions.etudiant_id` est une **clé étrangère** : elle *fait référence* à `etudiants.id`. La base refuse une inscription qui pointerait vers un étudiant inexistant.\n\nUne **jointure** reconstitue l'information en associant chaque ligne d'une table aux lignes correspondantes d'une autre.\n\n## INNER JOIN\n\n```sql\nSELECT etudiants.prenom, inscriptions.formation_id, inscriptions.note\nFROM inscriptions\nINNER JOIN etudiants ON etudiants.id = inscriptions.etudiant_id;\n```\n\n- `INNER JOIN etudiants` ajoute la table des étudiants ;\n- `ON …` donne la **condition de jointure** : une ligne d'inscription est associée à l'étudiant dont l'`id` est égal à son `etudiant_id`.\n\nLe mot `INNER` est facultatif : `JOIN` seul signifie `INNER JOIN`.\n\n## Les alias de tables\n\nRépéter `inscriptions.` et `etudiants.` alourdit la requête. On donne un **alias** court à chaque table, juste après son nom :\n\n```sql\nSELECT e.prenom, e.nom, i.formation_id, i.note\nFROM inscriptions i\nJOIN etudiants e ON e.id = i.etudiant_id;\n```\n\nPréfixer les colonnes devient **obligatoire** dès qu'un nom existe dans les deux tables : `id` existe à la fois dans `inscriptions` et dans `etudiants`. Écrire simplement `id` serait **ambigu** et provoquerait une erreur.\n\n## Joindre trois tables\n\nChaque `JOIN` ajoute une table. Pour afficher en clair qui suit quelle formation :\n\n```sql\nSELECT e.prenom, f.titre, i.note\nFROM inscriptions i\nJOIN etudiants e  ON e.id = i.etudiant_id\nJOIN formations f ON f.id = i.formation_id\nORDER BY e.prenom, f.titre;\n```\n\n```text\nprenom | titre                 | note\n-------+-----------------------+-----\nAmina  | Machine Learning      | NULL\nAmina  | Python pour débutants | 16\nAmina  | SQL pour débutants    | 14\nEmma   | Excel avancé          | 12\nKarim  | SQL pour débutants    | NULL\nLucas  | Anglais professionnel | 11\nLucas  | Python pour débutants | 9\nSofia  | Machine Learning      | 18\n```\n\nCe résultat contient **une ligne par inscription** (8 lignes). Yanis n'apparaît pas : il n'a aucune inscription, et `INNER JOIN` ne garde que les lignes qui ont une correspondance des deux côtés. Docker non plus, pour la même raison.\n\n## Filtrer après une jointure\n\n`WHERE` s'utilise normalement, sur n'importe quelle colonne des tables jointes :\n\n```sql\nSELECT e.prenom, e.nom\nFROM inscriptions i\nJOIN etudiants e  ON e.id = i.etudiant_id\nJOIN formations f ON f.id = i.formation_id\nWHERE f.titre = 'Python pour débutants';\n-- Amina Benali, Lucas Martin\n```\n\n## Le piège : oublier la condition ON\n\nSans condition de jointure (ou avec une condition fausse), chaque ligne de la première table est associée à **chaque** ligne de la seconde : 8 inscriptions × 6 étudiants = 48 lignes absurdes. C'est le **produit cartésien**. Si un résultat contient soudain beaucoup trop de lignes, vérifiez vos `ON`.\n\n## À retenir\n\n- Une **clé étrangère** référence la clé primaire d'une autre table.\n- `JOIN … ON …` associe les lignes qui vérifient la condition de jointure.\n- `INNER JOIN` ne garde que les lignes ayant une correspondance des deux côtés.\n- Des alias courts (`e`, `f`, `i`) rendent la requête lisible ; préfixez les colonnes ambiguës.\n- Un nombre de lignes inattendu signale souvent une condition `ON` manquante ou fausse.\n\n## Exercices\n\n### Exercice 1 — Notes en clair\n\nAffichez le titre de la formation et la note de chaque inscription notée, de la meilleure à la moins bonne.\n\n```solution-sql\nSELECT f.titre, i.note\nFROM inscriptions i\nJOIN formations f ON f.id = i.formation_id\nWHERE i.note IS NOT NULL\nORDER BY i.note DESC;\n-- Machine Learning 18, Python 16, SQL 14, Excel 12, Anglais 11, Python 9\n```\n\n### Exercice 2 — Les Lyonnais\n\nAffichez le prénom et le titre des formations suivies par les étudiants habitant à Lyon.\n\n```solution-sql\nSELECT e.prenom, f.titre\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id\nJOIN formations f   ON f.id = i.formation_id\nWHERE e.ville = 'Lyon';\n-- Lucas : Python pour débutants, Anglais professionnel (Yanis n'a aucune inscription)\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "2dc3314b-ff08-5ca5-b230-1bd53da1c3d0",
+     "slug": "left-join",
+     "title": "Garder toutes les lignes avec LEFT JOIN",
+     "summary": "Jointure externe, lignes sans correspondance, trouver les absents.",
+     "content_md": "## Le problème des lignes sans correspondance\n\nCombien de formations suit chaque étudiant, **y compris ceux qui n'en suivent aucune** ? Avec un `INNER JOIN`, Yanis disparaît du résultat, puisqu'il n'a aucune inscription. Il faut une jointure qui conserve toutes les lignes d'une table : la **jointure externe**.\n\n## LEFT JOIN\n\n`LEFT JOIN` garde **toutes les lignes de la table de gauche** (celle écrite avant le `JOIN`), même lorsqu'elles n'ont aucune correspondance à droite. Les colonnes de la table de droite sont alors remplies de `NULL`.\n\n```sql\nSELECT e.prenom, i.formation_id\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id\nORDER BY e.prenom;\n```\n\nCette fois, Yanis figure dans le résultat, avec `NULL` comme `formation_id`.\n\n## Compter avec un LEFT JOIN\n\n```sql\nSELECT e.prenom, COUNT(i.id) AS nb_inscriptions\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id\nGROUP BY e.id, e.prenom\nORDER BY nb_inscriptions DESC, e.prenom;\n```\n\n```text\nprenom | nb_inscriptions\n-------+----------------\nAmina  | 3\nLucas  | 2\nEmma   | 1\nKarim  | 1\nSofia  | 1\nYanis  | 0\n```\n\nLe détail qui compte : on écrit `COUNT(i.id)` et **non** `COUNT(*)`. La ligne de Yanis existe bien (avec des `NULL` à droite), donc `COUNT(*)` vaudrait 1. `COUNT(i.id)` ne compte que les valeurs non NULL : 0.\n\nOn groupe aussi sur `e.id` et pas seulement sur le prénom : deux étudiants pourraient porter le même prénom.\n\n## Trouver les absents\n\nLe motif « `LEFT JOIN` + `IS NULL` » répond aux questions du type « qui n'a jamais… ? » :\n\n```sql\n-- Étudiants sans aucune inscription\nSELECT e.prenom, e.nom\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id\nWHERE i.id IS NULL;\n-- Yanis Morel\n```\n\n```sql\n-- Formations sans aucun inscrit\nSELECT f.titre\nFROM formations f\nLEFT JOIN inscriptions i ON i.formation_id = f.id\nWHERE i.id IS NULL;\n-- Docker\n```\n\n## L'ordre des tables compte\n\n`A LEFT JOIN B` conserve toutes les lignes de **A**. Inverser les tables change le sens de la requête : `inscriptions LEFT JOIN etudiants` conserverait toutes les inscriptions, et Yanis n'apparaîtrait pas.\n\nIl existe aussi `RIGHT JOIN` (conserve la table de droite) et `FULL OUTER JOIN` (conserve les deux). En pratique, on réécrit presque toujours un `RIGHT JOIN` en `LEFT JOIN` en inversant les tables : c'est plus lisible.\n\n## Piège : un filtre qui annule le LEFT JOIN\n\n```sql\n-- Yanis disparaît : la condition du WHERE élimine les lignes où i.note est NULL\nSELECT e.prenom, i.note\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id\nWHERE i.note >= 10;\n```\n\nUne condition sur la table de droite placée dans le `WHERE` élimine les lignes sans correspondance, et le `LEFT JOIN` se comporte alors comme un `INNER JOIN`. Pour filtrer la table de droite tout en gardant toutes les lignes de gauche, placez la condition dans le `ON` :\n\n```sql\nSELECT e.prenom, COUNT(i.id) AS formations_validees\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id AND i.note >= 10\nGROUP BY e.id, e.prenom\nORDER BY e.prenom;\n-- Amina 2, Emma 1, Karim 0, Lucas 1, Sofia 1, Yanis 0\n```\n\n## À retenir\n\n- `LEFT JOIN` garde toutes les lignes de la table de gauche ; les colonnes de droite valent `NULL` sans correspondance.\n- Avec un `LEFT JOIN`, comptez avec `COUNT(colonne_de_droite)`, pas `COUNT(*)`.\n- `LEFT JOIN … WHERE droite.id IS NULL` trouve les lignes sans correspondance.\n- Une condition sur la table de droite se place dans le `ON` pour ne pas perdre de lignes.\n\n## Exercices\n\n### Exercice 1 — Inscrits par formation\n\nAffichez chaque formation avec son nombre d'inscrits, y compris celles qui n'en ont aucun.\n\n```solution-sql\nSELECT f.titre, COUNT(i.id) AS inscrits\nFROM formations f\nLEFT JOIN inscriptions i ON i.formation_id = f.id\nGROUP BY f.id, f.titre\nORDER BY inscrits DESC, f.titre;\n-- Machine Learning, Python, SQL : 2 ; Anglais, Excel : 1 ; Docker : 0\n```\n\n### Exercice 2 — Jamais noté\n\nAffichez les étudiants qui n'ont encore reçu aucune note (aucune inscription, ou seulement des inscriptions non notées).\n\n```solution-sql\nSELECT e.prenom\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id AND i.note IS NOT NULL\nWHERE i.id IS NULL;\n-- Karim (inscrit mais pas encore noté) et Yanis (aucune inscription)\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "109bdb5c-44d2-57dc-92c6-2fb625afab43",
+     "slug": "jointures-et-agregations",
+     "title": "Jointures multiples et agrégations",
+     "summary": "Trois tables à la fois, statistiques par étudiant et par formation.",
+     "content_md": "## Combiner jointures et agrégations\n\nLes jointures prennent toute leur puissance associées à `GROUP BY`. La méthode est toujours la même :\n\n1. **joindre** les tables pour disposer de toutes les colonnes utiles ;\n2. **filtrer** les lignes avec `WHERE` ;\n3. **grouper** et **agréger** ;\n4. **trier** et **limiter**.\n\n## Statistiques par formation\n\n```sql\nSELECT f.titre,\n       COUNT(i.id)           AS inscrits,\n       ROUND(AVG(i.note), 1) AS moyenne\nFROM formations f\nLEFT JOIN inscriptions i ON i.formation_id = f.id\nGROUP BY f.id, f.titre\nORDER BY inscrits DESC, f.titre;\n```\n\n```text\ntitre                 | inscrits | moyenne\n----------------------+----------+--------\nMachine Learning      | 2        | 18.0\nPython pour débutants | 2        | 12.5\nSQL pour débutants    | 2        | 14.0\nAnglais professionnel | 1        | 11.0\nExcel avancé          | 1        | 12.0\nDocker                | 0        | NULL\n```\n\nDocker n'a ni inscrit ni moyenne : `AVG` sur un groupe sans aucune note renvoie `NULL`.\n\n## Statistiques par catégorie\n\nOn peut grouper sur une colonne de n'importe quelle table jointe :\n\n```sql\nSELECT f.categorie, COUNT(i.id) AS inscrits\nFROM formations f\nLEFT JOIN inscriptions i ON i.formation_id = f.id\nGROUP BY f.categorie\nORDER BY inscrits DESC, f.categorie;\n-- Bases de données, Data Science, Programmation : 2 ; Business Intelligence, Langues : 1 ; Cloud et DevOps : 0\n```\n\n## Trois tables et un calcul\n\nCombien chaque étudiant a-t-il dépensé en formations ?\n\n```sql\nSELECT e.prenom, SUM(f.prix) AS depense\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id\nJOIN formations f   ON f.id = i.formation_id\nGROUP BY e.id, e.prenom\nORDER BY depense DESC, e.prenom;\n```\n\n```text\nprenom | depense\n-------+--------\nAmina  | 99\nSofia  | 99\nEmma   | 49\nLucas  | 29\nKarim  | 0\n```\n\nAmina a suivi Python (0), SQL (0) et Machine Learning (99) : 99 € au total. Yanis n'apparaît pas (aucune inscription, `INNER JOIN`).\n\n## Moyenne par ville\n\n```sql\nSELECT e.ville, ROUND(AVG(i.note), 1) AS moyenne\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id\nWHERE i.note IS NOT NULL\nGROUP BY e.ville\nORDER BY moyenne DESC;\n```\n\n```text\nville | moyenne\n------+--------\nParis | 16.0\nLille | 12.0\nLyon  | 10.0\n```\n\nParis : (16 + 14 + 18) / 3 = 16. Marseille est absente, car la seule inscription de Karim n'est pas notée.\n\n## Vérifier ses résultats\n\nUne requête qui ne renvoie pas d'erreur n'est pas forcément juste. Prenez l'habitude de vérifier :\n\n- **le nombre de lignes** : est-il plausible ? Un nombre trop élevé signale souvent une jointure mal écrite ;\n- **un cas à la main** : recalculez une ligne du résultat à partir des tables, comme ci-dessus pour Amina ;\n- **les NULL** : les lignes sans correspondance ou les valeurs manquantes sont-elles traitées comme vous le souhaitez ?\n\n## À retenir\n\n- Méthode : joindre → filtrer → grouper et agréger → trier.\n- Le `GROUP BY` peut porter sur n'importe quelle colonne des tables jointes.\n- `INNER JOIN` ou `LEFT JOIN` selon que les lignes sans correspondance doivent apparaître ou non.\n- Vérifiez toujours le nombre de lignes et recalculez un cas à la main.\n\n## Exercices\n\n### Exercice 1 — Heures de formation par étudiant\n\nAffichez, pour chaque étudiant inscrit, le nombre total d'heures de formation qu'il suit.\n\n```solution-sql\nSELECT e.prenom, SUM(f.duree_heures) AS heures\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id\nJOIN formations f   ON f.id = i.formation_id\nGROUP BY e.id, e.prenom\nORDER BY heures DESC;\n-- Amina 39 (11 + 8 + 20), Sofia 20, Lucas 19 (11 + 8), Karim 8, Emma 6\n```\n\n### Exercice 2 — Catégories qui réussissent\n\nAffichez les catégories dont la moyenne des notes est d'au moins 12, avec cette moyenne arrondie à une décimale.\n\n```solution-sql\nSELECT f.categorie, ROUND(AVG(i.note), 1) AS moyenne\nFROM formations f\nJOIN inscriptions i ON i.formation_id = f.id\nGROUP BY f.categorie\nHAVING AVG(i.note) >= 12\nORDER BY moyenne DESC;\n-- Data Science 18.0, Bases de données 14.0, Programmation 12.5, Business Intelligence 12.0\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "60ad1ac3-b85c-5da6-a3bf-8bcc342f0544",
+    "title": "Quiz — Joindre des tables",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "a9b2d72d-993a-5a7f-9de9-ed6dbb218f6d",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'est-ce qu'une clé étrangère ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b9fe9d72-21ee-5246-8956-cb602575a97a",
+        "position": 1,
+        "label": "Une colonne qui fait référence à la clé primaire d'une autre table"
+       },
+       {
+        "id": "95629ba3-0488-55da-ae09-cb148678fb84",
+        "position": 2,
+        "label": "Une clé de chiffrement externe"
+       },
+       {
+        "id": "815e9267-a930-5e39-9d50-37aada2f098b",
+        "position": 3,
+        "label": "La clé primaire d'une table importée"
+       },
+       {
+        "id": "19b913c6-ed97-5702-9bc3-ea3c0958d681",
+        "position": 4,
+        "label": "Une colonne qui accepte les doublons"
+       }
+      ],
+      "correct": [
+       "b9fe9d72-21ee-5246-8956-cb602575a97a"
+      ],
+      "explanation": "inscriptions.etudiant_id est une clé étrangère : elle référence etudiants.id, et la base refuse une valeur qui n'y existe pas."
+     },
+     {
+      "id": "ffcf2c6c-f161-5247-821d-462ca62ba69f",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Combien de lignes renvoie cette jointure ?",
+      "code": "SELECT e.prenom, i.formation_id\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id;",
+      "points": 2,
+      "options": [
+       {
+        "id": "50312de4-b96c-56e2-8994-dbc8866a2d08",
+        "position": 1,
+        "label": "6"
+       },
+       {
+        "id": "158b76a7-0186-564c-8e0b-50af2578af99",
+        "position": 2,
+        "label": "8"
+       },
+       {
+        "id": "b695f942-1a79-5cf0-ab85-7c745b341ef8",
+        "position": 3,
+        "label": "48"
+       },
+       {
+        "id": "c1358d94-f06e-5cae-8f5b-cd3f308dbfc0",
+        "position": 4,
+        "label": "9"
+       }
+      ],
+      "correct": [
+       "158b76a7-0186-564c-8e0b-50af2578af99"
+      ],
+      "explanation": "INNER JOIN produit une ligne par inscription ayant un étudiant correspondant : 8 lignes. Yanis, sans inscription, n'apparaît pas."
+     },
+     {
+      "id": "1936c6e9-b702-5950-b1da-a22a1c90721c",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Même question avec un LEFT JOIN : combien de lignes ?",
+      "code": "SELECT e.prenom, i.formation_id\nFROM etudiants e\nLEFT JOIN inscriptions i ON i.etudiant_id = e.id;",
+      "points": 2,
+      "options": [
+       {
+        "id": "bee90a1c-29a4-5c43-9f9b-a69ba102c466",
+        "position": 1,
+        "label": "6"
+       },
+       {
+        "id": "e2d0e0bb-bb0f-5ec2-bbbb-5beed370850e",
+        "position": 2,
+        "label": "8"
+       },
+       {
+        "id": "0b1d8a5c-cc58-5216-8c70-2f52c5201ea2",
+        "position": 3,
+        "label": "9"
+       },
+       {
+        "id": "a2396272-b921-5199-b009-517281331ce0",
+        "position": 4,
+        "label": "14"
+       }
+      ],
+      "correct": [
+       "0b1d8a5c-cc58-5216-8c70-2f52c5201ea2"
+      ],
+      "explanation": "Les 8 inscriptions donnent 8 lignes, et LEFT JOIN ajoute une ligne pour Yanis, qui n'a aucune correspondance (formation_id NULL) : 9 lignes."
+     },
+     {
+      "id": "d936402e-c12c-5194-ac5e-98fddfd9ac35",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Que se passe-t-il si l'on oublie la condition de jointure entre 8 inscriptions et 6 étudiants (CROSS JOIN) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f971959a-da3c-5a2f-b06f-754baf84c10e",
+        "position": 1,
+        "label": "Une erreur systématique"
+       },
+       {
+        "id": "6655a8de-fcd5-5a3c-bbf0-410d0f975257",
+        "position": 2,
+        "label": "8 lignes"
+       },
+       {
+        "id": "1477e4fd-9857-5dba-916b-246ab73dfd50",
+        "position": 3,
+        "label": "48 lignes : chaque inscription est associée à chaque étudiant"
+       },
+       {
+        "id": "c6cd80a7-a012-584f-9773-8f629ab04b08",
+        "position": 4,
+        "label": "6 lignes"
+       }
+      ],
+      "correct": [
+       "1477e4fd-9857-5dba-916b-246ab73dfd50"
+      ],
+      "explanation": "Sans condition, chaque ligne de la première table est associée à chaque ligne de la seconde : 8 × 6 = 48. C'est le produit cartésien."
+     },
+     {
+      "id": "7fa3f4fc-8eb9-568f-abba-801b8928f359",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Pourquoi écrire COUNT(i.id) plutôt que COUNT(*) après un LEFT JOIN ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e9d316fa-cbe9-51cf-b682-87b5fcad9ee9",
+        "position": 1,
+        "label": "COUNT(*) est plus lent"
+       },
+       {
+        "id": "dc4a7237-c03e-5268-845f-4a4e8496cae1",
+        "position": 2,
+        "label": "Pour compter 0 et non 1 pour les lignes sans correspondance"
+       },
+       {
+        "id": "4ce8c555-6541-5e36-a4ec-8544b034272a",
+        "position": 3,
+        "label": "COUNT(*) est interdit avec LEFT JOIN"
+       },
+       {
+        "id": "33bb0f16-c7f7-5044-9b9e-95b0d311937b",
+        "position": 4,
+        "label": "Il n'y a aucune différence"
+       }
+      ],
+      "correct": [
+       "dc4a7237-c03e-5268-845f-4a4e8496cae1"
+      ],
+      "explanation": "La ligne d'un étudiant sans inscription existe (avec des NULL à droite) : COUNT(*) la compte, COUNT(i.id) ignore le NULL et donne 0."
+     },
+     {
+      "id": "93e17e25-bc61-5822-83c5-d1befecc401b",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Quelle requête trouve les formations sans aucun inscrit ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0ccfe0c3-39a2-5bf9-8dfc-a7a848f3e05f",
+        "position": 1,
+        "label": "SELECT f.titre FROM formations f JOIN inscriptions i ON i.formation_id = f.id WHERE i.id IS NULL;"
+       },
+       {
+        "id": "f932f3b5-1dda-5aa6-b59c-4f2b700983dc",
+        "position": 2,
+        "label": "SELECT f.titre FROM formations f LEFT JOIN inscriptions i ON i.formation_id = f.id WHERE i.id IS NULL;"
+       },
+       {
+        "id": "be985cd0-260d-57e5-8c8f-7a92213ec4e5",
+        "position": 3,
+        "label": "SELECT f.titre FROM inscriptions i LEFT JOIN formations f ON f.id = i.formation_id WHERE f.id IS NULL;"
+       },
+       {
+        "id": "8eb5809a-c646-5aab-bb5c-5376c12ea10c",
+        "position": 4,
+        "label": "SELECT f.titre FROM formations f LEFT JOIN inscriptions i ON i.formation_id = f.id WHERE i.id = NULL;"
+       }
+      ],
+      "correct": [
+       "f932f3b5-1dda-5aa6-b59c-4f2b700983dc"
+      ],
+      "explanation": "Il faut conserver toutes les formations (LEFT JOIN depuis formations) puis garder celles sans correspondance (i.id IS NULL). Un INNER JOIN les exclut d'emblée ; = NULL n'est jamais vrai."
+     },
+     {
+      "id": "135fe239-edb1-567d-826f-1443b306f7d5",
+      "position": 7,
+      "kind": "true_false",
+      "prompt": "Dans « A LEFT JOIN B », toutes les lignes de B sont conservées.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "af3f06db-8955-5220-835c-a97948b13ab5",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "53d4fd0d-28a2-5d78-8641-eb1147a7b954",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "53d4fd0d-28a2-5d78-8641-eb1147a7b954"
+      ],
+      "explanation": "C'est la table de gauche, A, qui est conservée en entier. Les lignes de B n'apparaissent que si elles correspondent à une ligne de A."
+     },
+     {
+      "id": "d8923c96-14f2-5316-a510-7e1a3146c991",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Pourquoi cette requête renvoie-t-elle une erreur « colonne ambiguë » ?",
+      "code": "SELECT id, prenom, note\nFROM etudiants e\nJOIN inscriptions i ON i.etudiant_id = e.id;",
+      "points": 2,
+      "options": [
+       {
+        "id": "8cfe20bf-535b-5d88-b403-056504a120ac",
+        "position": 1,
+        "label": "prenom existe dans les deux tables"
+       },
+       {
+        "id": "b572c5ec-43b5-5337-9b30-021c9cd74ebe",
+        "position": 2,
+        "label": "id existe dans les deux tables"
+       },
+       {
+        "id": "4a0fcb5d-036f-525b-855a-29a05e2698e4",
+        "position": 3,
+        "label": "note est NULL pour certaines lignes"
+       },
+       {
+        "id": "a2c90e93-a198-5d92-b3e9-2b3bc42fac95",
+        "position": 4,
+        "label": "Il manque INNER"
+       }
+      ],
+      "correct": [
+       "b572c5ec-43b5-5337-9b30-021c9cd74ebe"
+      ],
+      "explanation": "etudiants et inscriptions ont toutes deux une colonne id : il faut préciser e.id ou i.id. INNER est facultatif."
+     },
+     {
+      "id": "767c961b-1789-53a8-9789-03daa6cb9169",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur la normalisation sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b7f4ec40-5f8b-5aca-8fb8-86a347118f0f",
+        "position": 1,
+        "label": "Chaque information est stockée une seule fois"
+       },
+       {
+        "id": "327e4f0e-96dd-52d1-8ec5-bad391316d8f",
+        "position": 2,
+        "label": "Elle impose de tout mettre dans une seule table"
+       },
+       {
+        "id": "23d93498-bfe8-5099-8551-2973dcdf74c5",
+        "position": 3,
+        "label": "Elle évite les incohérences lors des modifications"
+       },
+       {
+        "id": "1955ffe1-6cc4-5e0b-9dbf-a8a154eeb03e",
+        "position": 4,
+        "label": "Elle s'appuie sur des identifiants qui relient les tables"
+       }
+      ],
+      "correct": [
+       "b7f4ec40-5f8b-5aca-8fb8-86a347118f0f",
+       "23d93498-bfe8-5099-8551-2973dcdf74c5",
+       "1955ffe1-6cc4-5e0b-9dbf-a8a154eeb03e"
+      ],
+      "explanation": "Normaliser, c'est répartir les données en tables reliées par des clés, pour stocker chaque information une fois et éviter les copies divergentes. C'est l'inverse d'une table unique."
+     },
+     {
+      "id": "30403a64-9246-5eaf-aaf6-5c9eca543166",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Avec un LEFT JOIN etudiants → inscriptions, où placer la condition « note >= 10 » pour garder aussi les étudiants sans note ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5810f950-66ba-53b3-894e-8f1e3e87ffba",
+        "position": 1,
+        "label": "Dans le WHERE"
+       },
+       {
+        "id": "f861c1b1-32ee-59d0-a49b-d06ce9c1c6e3",
+        "position": 2,
+        "label": "Dans le ON de la jointure"
+       },
+       {
+        "id": "eb1f0032-3ba4-50c0-ba22-e62779a7e64c",
+        "position": 3,
+        "label": "Dans le GROUP BY"
+       },
+       {
+        "id": "92de1c6f-1a78-5ef5-82d7-29974c5b9b5f",
+        "position": 4,
+        "label": "Dans le SELECT"
+       }
+      ],
+      "correct": [
+       "f861c1b1-32ee-59d0-a49b-d06ce9c1c6e3"
+      ],
+      "explanation": "Dans le WHERE, la condition élimine les lignes où note est NULL, y compris celles des étudiants sans inscription : le LEFT JOIN devient un INNER JOIN. Dans le ON, elle filtre seulement les correspondances."
+     }
+    ]
+   }
+  },
+  {
+   "id": "7a7e647a-f423-5667-9475-4147f4bae379",
+   "position": 5,
+   "title": "Créer et modifier des données",
+   "description": "Créer des tables, insérer, mettre à jour, supprimer et utiliser des sous-requêtes.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "742a9eaf-c0ed-569e-ab60-ad6ad68657c6",
+     "slug": "create-table",
+     "title": "Créer une table et ses contraintes",
+     "summary": "CREATE TABLE, types, PRIMARY KEY, NOT NULL, UNIQUE, CHECK, FOREIGN KEY.",
+     "content_md": "## Le langage de définition des données\n\nJusqu'ici, vous avez **lu** des données. SQL permet aussi de **définir** la structure de la base : créer, modifier et supprimer des tables. Ces instructions forment le *DDL* (*Data Definition Language*).\n\n## CREATE TABLE\n\n```sql\nCREATE TABLE avis (\n  id            INTEGER PRIMARY KEY,\n  inscription_id INTEGER NOT NULL REFERENCES inscriptions (id),\n  etoiles       INTEGER NOT NULL CHECK (etoiles BETWEEN 1 AND 5),\n  commentaire   TEXT,\n  publie_le     DATE NOT NULL DEFAULT CURRENT_DATE\n);\n```\n\nChaque colonne est déclarée avec un **nom**, un **type** et, éventuellement, des **contraintes**.\n\n## Les types de données courants\n\n| Type | Contenu | Exemple |\n|---|---|---|\n| `INTEGER` | nombre entier | `42` |\n| `NUMERIC(p, s)` | nombre décimal exact (montants) | `49.90` |\n| `TEXT` / `VARCHAR(n)` | texte (limité à `n` caractères pour `VARCHAR`) | `'Lyon'` |\n| `BOOLEAN` | vrai ou faux | `TRUE` |\n| `DATE` | date | `'2026-11-05'` |\n| `TIMESTAMP` | date et heure | `'2026-11-05 09:30:00'` |\n\n> Pour de l'argent, utilisez `NUMERIC` et jamais un type à virgule flottante (`REAL`, `FLOAT`) : ces derniers produisent des erreurs d'arrondi (0,1 + 0,2 ≠ 0,3).\n\n## Les contraintes : la base vérifie pour vous\n\nLes contraintes refusent les données incohérentes, quelle que soit l'application qui les envoie :\n\n- `PRIMARY KEY` : valeur unique et obligatoire, identifiant de la ligne ;\n- `NOT NULL` : la colonne doit être renseignée ;\n- `UNIQUE` : deux lignes ne peuvent pas avoir la même valeur (par exemple l'email) ;\n- `CHECK (condition)` : la valeur doit vérifier la condition (`etoiles BETWEEN 1 AND 5`) ;\n- `REFERENCES table (colonne)` : **clé étrangère**, la valeur doit exister dans l'autre table ;\n- `DEFAULT valeur` : valeur utilisée si rien n'est fourni.\n\nUne tentative d'insertion qui viole une contrainte est **rejetée avec une erreur** : la base ne contient jamais de note de 7 étoiles ni d'avis rattaché à une inscription inexistante.\n\n## Les identifiants automatiques\n\nPlutôt que de choisir soi-même les `id`, on laisse généralement la base les générer :\n\n```sql\n-- PostgreSQL (norme SQL)\nid INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY\n-- MySQL\nid INT AUTO_INCREMENT PRIMARY KEY\n-- SQLite : une colonne INTEGER PRIMARY KEY est numérotée automatiquement\n```\n\n## Modifier ou supprimer une table\n\n```sql\nALTER TABLE etudiants ADD COLUMN telephone TEXT;   -- ajouter une colonne\nALTER TABLE etudiants DROP COLUMN telephone;       -- la supprimer\nDROP TABLE avis;                                   -- supprimer la table ET toutes ses données\n```\n\n> `DROP TABLE` est **irréversible** : la table et toutes ses lignes disparaissent. Sur une vraie base, on ne l'exécute qu'après avoir vérifié qu'une sauvegarde existe.\n\n## À retenir\n\n- `CREATE TABLE` déclare chaque colonne avec un type et des contraintes.\n- `NUMERIC` pour les montants, `DATE`/`TIMESTAMP` pour le temps, `TEXT` pour le texte.\n- Les contraintes (`PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `CHECK`, `REFERENCES`) protègent la cohérence des données.\n- `ALTER TABLE` modifie une table ; `DROP TABLE` la supprime définitivement.\n\n## Exercices\n\n### Exercice 1 — Table des formateurs\n\nCréez une table `formateurs` avec un identifiant, un prénom et un nom obligatoires, un email unique et un taux horaire positif.\n\n```solution-sql\nCREATE TABLE formateurs (\n  id          INTEGER PRIMARY KEY,\n  prenom      TEXT NOT NULL,\n  nom         TEXT NOT NULL,\n  email       TEXT UNIQUE,\n  taux_horaire NUMERIC(6, 2) NOT NULL CHECK (taux_horaire > 0)\n);\n```\n\n### Exercice 2 — Quelle contrainte ?\n\nPour chaque règle, indiquez la contrainte adaptée : (a) deux étudiants ne peuvent pas avoir le même email ; (b) une note est comprise entre 0 et 20 ; (c) une inscription doit concerner une formation existante ; (d) le prénom est obligatoire.\n\n```solution-text\n(a) UNIQUE sur la colonne email\n(b) CHECK (note BETWEEN 0 AND 20)\n(c) une clé étrangère : formation_id INTEGER REFERENCES formations (id)\n(d) NOT NULL sur la colonne prenom\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "90109a06-9b26-51c2-9664-e211e7bddf23",
+     "slug": "insert-update-delete",
+     "title": "Insérer, modifier et supprimer",
+     "summary": "INSERT, UPDATE, DELETE, transactions et bonnes pratiques de sécurité.",
+     "content_md": "## Ajouter des lignes : INSERT\n\n```sql\nINSERT INTO etudiants (id, prenom, nom, ville, date_naissance, email)\nVALUES (7, 'Lina', 'Fontaine', 'Nantes', '2004-02-11', 'lina@exemple.fr');\n```\n\n- On liste les colonnes à remplir, puis les valeurs **dans le même ordre**.\n- Les colonnes omises reçoivent leur valeur par défaut (`DEFAULT`) ou `NULL`.\n- Plusieurs lignes peuvent être insérées d'un coup :\n\n```sql\nINSERT INTO formations (id, titre, categorie, duree_heures, prix)\nVALUES (7, 'HTML et CSS', 'Développement web', 10, 0),\n       (8, 'React', 'Développement web', 14, 39);\n```\n\n> Écrivez toujours la liste des colonnes. `INSERT INTO etudiants VALUES (…)` dépend de l'ordre des colonnes de la table et se casse le jour où une colonne est ajoutée.\n\n## Modifier des lignes : UPDATE\n\n```sql\nUPDATE inscriptions\nSET note = 13\nWHERE id = 5;\n```\n\n`SET` indique les nouvelles valeurs ; `WHERE` désigne les lignes concernées. On peut modifier plusieurs colonnes et utiliser la valeur actuelle :\n\n```sql\nUPDATE formations\nSET prix = prix + 10, duree_heures = duree_heures + 1\nWHERE categorie = 'Data Science';\n```\n\n## Supprimer des lignes : DELETE\n\n```sql\nDELETE FROM inscriptions\nWHERE id = 8;\n```\n\n## La règle de sécurité absolue : le WHERE\n\n**Sans `WHERE`, `UPDATE` et `DELETE` s'appliquent à toutes les lignes de la table.**\n\n```sql\nUPDATE formations SET prix = 0;      -- toutes les formations deviennent gratuites\nDELETE FROM inscriptions;            -- toutes les inscriptions sont effacées\n```\n\nCes requêtes sont parfaitement valides : la base les exécute sans demander de confirmation. Adoptez ce réflexe :\n\n1. écrivez d'abord un `SELECT` avec le `WHERE` prévu ;\n2. vérifiez que les lignes renvoyées sont exactement celles à modifier ;\n3. remplacez ensuite `SELECT …` par `UPDATE … SET …` ou `DELETE`, **sans toucher au `WHERE`**.\n\n```sql\nSELECT * FROM inscriptions WHERE note IS NULL;      -- 1. vérifier : lignes 5 et 8\nDELETE FROM inscriptions WHERE note IS NULL;        -- 2. puis supprimer\n```\n\n## Les transactions\n\nUne **transaction** regroupe plusieurs modifications qui doivent réussir **toutes ensemble ou pas du tout**. Exemple : transférer un étudiant d'une formation à une autre.\n\n```sql\nBEGIN;\nUPDATE inscriptions SET formation_id = 2 WHERE id = 3;\nUPDATE etudiants SET ville = 'Paris' WHERE id = 2;\nCOMMIT;\n```\n\n- `BEGIN` ouvre la transaction ;\n- `COMMIT` valide définitivement toutes les modifications ;\n- `ROLLBACK` les annule toutes, comme si rien ne s'était passé.\n\nEn cas d'erreur au milieu (contrainte violée, coupure…), le SGBD annule la transaction : la base ne reste jamais dans un état à moitié modifié. Avant une modification délicate, vous pouvez aussi ouvrir une transaction, exécuter votre `UPDATE`, vérifier avec un `SELECT`, puis choisir `COMMIT` ou `ROLLBACK`.\n\n## Les contraintes en action\n\n```sql\nINSERT INTO inscriptions (id, etudiant_id, formation_id, date_inscription)\nVALUES (9, 42, 1, '2026-11-05');\n-- Erreur : l'étudiant 42 n'existe pas (violation de la clé étrangère)\n\nDELETE FROM etudiants WHERE id = 1;\n-- Erreur : des inscriptions font encore référence à Amina\n```\n\nLa clé étrangère empêche à la fois de créer une inscription « orpheline » et de supprimer un étudiant qui a encore des inscriptions.\n\n> Dans une application, les valeurs saisies par les utilisateurs ne sont **jamais** collées directement dans le texte d'une requête : on utilise des **requêtes paramétrées**, fournies par tous les langages. Sinon, un texte malveillant peut modifier la requête elle-même : c'est l'**injection SQL**, l'une des failles de sécurité les plus courantes.\n\n## À retenir\n\n- `INSERT INTO table (colonnes) VALUES (…)` ajoute des lignes ; listez toujours les colonnes.\n- `UPDATE table SET … WHERE …` modifie ; `DELETE FROM table WHERE …` supprime.\n- Sans `WHERE`, toute la table est concernée : vérifiez d'abord avec un `SELECT`.\n- `BEGIN … COMMIT` / `ROLLBACK` : tout ou rien.\n- Requêtes paramétrées dans le code, toujours.\n\n## Exercices\n\n### Exercice 1 — Nouvelle inscription\n\nInscrivez Yanis (id 6) à la formation Docker (id 6) le 5 novembre 2026, avec l'identifiant 9, sans note.\n\n```solution-sql\nINSERT INTO inscriptions (id, etudiant_id, formation_id, date_inscription)\nVALUES (9, 6, 6, '2026-11-05');\n-- La colonne note, omise, vaut NULL.\n```\n\n### Exercice 2 — Promotion\n\nBaissez de 20 % le prix de toutes les formations payantes de plus de 8 heures. Écrivez d'abord la requête de vérification.\n\n```solution-sql\nSELECT id, titre, prix FROM formations WHERE prix > 0 AND duree_heures > 8;\n-- Machine Learning (99) et Docker (39)\nUPDATE formations\nSET prix = prix * 0.8\nWHERE prix > 0 AND duree_heures > 8;\n-- Machine Learning : 79.2, Docker : 31.2\n```\n\n### Exercice 3 — Trouver l'erreur\n\nUn collègue veut supprimer l'inscription n° 8 et a exécuté `DELETE FROM inscriptions;`. Que s'est-il passé, et comment l'éviter ?\n\n```solution-text\nSans WHERE, la requête a supprimé TOUTES les inscriptions, pas seulement la n° 8.\nLa bonne requête est : DELETE FROM inscriptions WHERE id = 8;\nPour l'éviter : vérifier d'abord avec SELECT * FROM inscriptions WHERE id = 8;\net travailler dans une transaction (BEGIN … puis COMMIT seulement si le nombre de lignes supprimées est correct).\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "e6beda58-4576-520f-9365-bb5b01423afc",
+     "slug": "sous-requetes-mini-projet",
+     "title": "Sous-requêtes et mini-projet",
+     "summary": "Requêtes imbriquées, puis un tableau de bord complet de l'organisme.",
+     "content_md": "## Une requête dans une requête\n\nUne **sous-requête** est un `SELECT` écrit entre parenthèses à l'intérieur d'une autre requête. Elle permet de répondre en une fois à une question en deux temps.\n\nQuelles formations sont plus chères que la moyenne ? Il faut d'abord calculer la moyenne (36 €), puis comparer chaque prix :\n\n```sql\nSELECT titre, prix\nFROM formations\nWHERE prix > (SELECT AVG(prix) FROM formations);\n```\n\n```text\ntitre            | prix\n-----------------+-----\nExcel avancé     | 49\nMachine Learning | 99\nDocker           | 39\n```\n\nLa sous-requête renvoie **une seule valeur** : on peut donc la comparer avec `>`.\n\n## Sous-requête avec IN\n\nLorsque la sous-requête renvoie **une liste** de valeurs, on utilise `IN` :\n\n```sql\n-- Étudiants ayant obtenu au moins une note supérieure ou égale à 15\nSELECT prenom, nom\nFROM etudiants\nWHERE id IN (SELECT etudiant_id FROM inscriptions WHERE note >= 15);\n-- Amina Benali, Sofia Rossi\n```\n\n`NOT IN` donne l'inverse. Attention : si la sous-requête peut renvoyer `NULL`, `NOT IN` ne renvoie plus aucune ligne. Le motif `LEFT JOIN … IS NULL` ou `NOT EXISTS` est plus sûr dans ce cas.\n\n## EXISTS\n\n`EXISTS (sous-requête)` est vrai si la sous-requête renvoie au moins une ligne. Elle peut faire référence à la requête principale :\n\n```sql\n-- Formations ayant au moins une inscription notée\nSELECT f.titre\nFROM formations f\nWHERE EXISTS (\n  SELECT 1 FROM inscriptions i\n  WHERE i.formation_id = f.id AND i.note IS NOT NULL\n);\n-- Python, SQL, Excel, Machine Learning, Anglais (pas Docker)\n```\n\n## Retrouver la ligne du maximum\n\n« Qui a obtenu la meilleure note, et dans quelle formation ? » :\n\n```sql\nSELECT e.prenom, f.titre, i.note\nFROM inscriptions i\nJOIN etudiants e  ON e.id = i.etudiant_id\nJOIN formations f ON f.id = i.formation_id\nWHERE i.note = (SELECT MAX(note) FROM inscriptions);\n-- Sofia, Machine Learning, 18\n```\n\n## Mini-projet : le tableau de bord de l'organisme\n\nLa direction vous demande quatre indicateurs. Écrivez chaque requête, exécutez-la, puis comparez avec la correction. Ce projet mobilise toute la formation.\n\n### Indicateur 1 — Vue d'ensemble\n\nUne seule ligne : nombre d'étudiants, nombre de formations, nombre d'inscriptions et moyenne générale arrondie à une décimale.\n\n```solution-sql\nSELECT (SELECT COUNT(*) FROM etudiants)    AS etudiants,\n       (SELECT COUNT(*) FROM formations)   AS formations,\n       (SELECT COUNT(*) FROM inscriptions) AS inscriptions,\n       (SELECT ROUND(AVG(note), 1) FROM inscriptions) AS moyenne_generale;\n-- 6 | 6 | 8 | 13.3\n```\n\n### Indicateur 2 — Classement des formations\n\nPour chaque formation : titre, nombre d'inscrits, moyenne (ou « — » si aucune note) et chiffre d'affaires (prix × inscrits). Les formations sans inscrit doivent apparaître. Triez par chiffre d'affaires décroissant.\n\n```solution-sql\nSELECT f.titre,\n       COUNT(i.id) AS inscrits,\n       COALESCE(CAST(ROUND(AVG(i.note), 1) AS TEXT), '—') AS moyenne,\n       f.prix * COUNT(i.id) AS chiffre_affaires\nFROM formations f\nLEFT JOIN inscriptions i ON i.formation_id = f.id\nGROUP BY f.id, f.titre, f.prix\nORDER BY chiffre_affaires DESC, f.titre;\n-- Machine Learning 2 | 18.0 | 198 ; Excel avancé 1 | 12.0 | 49 ; Anglais 1 | 11.0 | 29 ;\n-- Docker 0 | — | 0 ; Python 2 | 12.5 | 0 ; SQL 2 | 14.0 | 0\n```\n\n### Indicateur 3 — Étudiants à relancer\n\nLes étudiants sans aucune inscription, avec leur email (ou « email manquant »), pour une campagne de relance.\n\n```solution-sql\nSELECT e.prenom, e.nom, COALESCE(e.email, 'email manquant') AS contact\nFROM etudiants e\nWHERE NOT EXISTS (SELECT 1 FROM inscriptions i WHERE i.etudiant_id = e.id);\n-- Yanis Morel, yanis@exemple.fr\n```\n\n### Indicateur 4 — Mentions\n\nLe nombre d'inscriptions par mention : « Très bien » (≥ 16), « Validé » (≥ 10), « À retravailler » (< 10) et « En cours » (pas de note).\n\n```solution-sql\nSELECT CASE\n         WHEN note >= 16 THEN 'Très bien'\n         WHEN note >= 10 THEN 'Validé'\n         WHEN note IS NULL THEN 'En cours'\n         ELSE 'À retravailler'\n       END AS mention,\n       COUNT(*) AS nb\nFROM inscriptions\nGROUP BY 1\nORDER BY nb DESC;\n-- Validé 3, Très bien 2, En cours 2, À retravailler 1\n-- (GROUP BY 1 regroupe sur la première colonne du SELECT.)\n```\n\n## Et après ?\n\nVous savez désormais lire, analyser et modifier une base relationnelle. Pour aller plus loin : les **index** (accélérer les recherches), les **vues** (enregistrer une requête), les **fonctions de fenêtrage** (classements, cumuls) et la conception d'un schéma complet. Ces notions sont au programme des formations PostgreSQL et MySQL de SMK Academy.\n\n## À retenir\n\n- Une sous-requête est un `SELECT` entre parenthèses dans une autre requête.\n- Une valeur unique se compare avec `=`, `>`, etc. ; une liste s'utilise avec `IN`.\n- `EXISTS` teste la présence d'au moins une ligne ; préférez `NOT EXISTS` à `NOT IN` quand des `NULL` sont possibles.\n- Toute question métier se décompose : quelles tables, quelles lignes, quels groupes, quel ordre.",
+     "duration_minutes": 40,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "0d3158b9-b186-50c6-a4ba-21012acb0ab2",
+    "title": "Quiz — Créer et modifier des données",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "27864bac-3815-5c14-902c-251be6a77854",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que fait cette requête ?",
+      "code": "UPDATE formations SET prix = 0;",
+      "points": 2,
+      "options": [
+       {
+        "id": "db9874c8-6b57-560b-98bf-902734f4122c",
+        "position": 1,
+        "label": "Elle provoque une erreur car il manque WHERE"
+       },
+       {
+        "id": "839d5235-c37c-5938-9898-9d344bbafb3e",
+        "position": 2,
+        "label": "Elle rend gratuite la première formation"
+       },
+       {
+        "id": "95313a1f-d18b-58cb-8709-f4ff58048d52",
+        "position": 3,
+        "label": "Elle rend gratuites toutes les formations"
+       },
+       {
+        "id": "bf646bf4-c115-5753-91b4-9f1b275609ee",
+        "position": 4,
+        "label": "Elle ne fait rien sans COMMIT"
+       }
+      ],
+      "correct": [
+       "95313a1f-d18b-58cb-8709-f4ff58048d52"
+      ],
+      "explanation": "Sans WHERE, UPDATE s'applique à toutes les lignes. La requête est valide et s'exécute immédiatement (hors transaction ouverte)."
+     },
+     {
+      "id": "4519395d-1ca0-5aab-b0d1-800258ea143d",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle contrainte garantit qu'une note est comprise entre 0 et 20 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c80db567-d5fd-5434-aed4-57fa0f235d14",
+        "position": 1,
+        "label": "UNIQUE"
+       },
+       {
+        "id": "7a359355-c473-5946-9adc-f0916c688e2b",
+        "position": 2,
+        "label": "NOT NULL"
+       },
+       {
+        "id": "cec07819-8728-547f-8bb1-be6197dfb833",
+        "position": 3,
+        "label": "CHECK (note BETWEEN 0 AND 20)"
+       },
+       {
+        "id": "1090cd50-4460-5248-9169-615d2a28c2b7",
+        "position": 4,
+        "label": "DEFAULT 0"
+       }
+      ],
+      "correct": [
+       "cec07819-8728-547f-8bb1-be6197dfb833"
+      ],
+      "explanation": "CHECK impose une condition à chaque valeur. UNIQUE interdit les doublons, NOT NULL impose une valeur, DEFAULT fournit une valeur par défaut."
+     },
+     {
+      "id": "5d50c9e9-3e5b-5697-96f5-3a886a27af9f",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quel type choisir pour stocker un prix ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5eb7ceed-2ad5-5beb-9744-29fe71da6e36",
+        "position": 1,
+        "label": "FLOAT"
+       },
+       {
+        "id": "da24d839-d144-57ce-88a6-45d3d148fb1f",
+        "position": 2,
+        "label": "REAL"
+       },
+       {
+        "id": "03bc705e-ec4c-5096-b013-f2216ba5de3e",
+        "position": 3,
+        "label": "NUMERIC(8, 2)"
+       },
+       {
+        "id": "6f77070e-922c-561e-8298-bcf4789e051a",
+        "position": 4,
+        "label": "TEXT"
+       }
+      ],
+      "correct": [
+       "03bc705e-ec4c-5096-b013-f2216ba5de3e"
+      ],
+      "explanation": "NUMERIC stocke les décimaux de façon exacte. Les types à virgule flottante (FLOAT, REAL) introduisent des erreurs d'arrondi inacceptables pour de l'argent."
+     },
+     {
+      "id": "6c770df5-c861-5aec-b0aa-78055ed0d2f5",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle est la meilleure pratique avant un DELETE délicat ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "50e16a92-1d3b-5565-ad1e-71c39156f75d",
+        "position": 1,
+        "label": "Exécuter d'abord un SELECT avec le même WHERE pour vérifier les lignes"
+       },
+       {
+        "id": "1a4eec4e-1c39-50c3-862d-008e87806c6c",
+        "position": 2,
+        "label": "Supprimer puis recréer les lignes manquantes"
+       },
+       {
+        "id": "76344f0c-a18e-52d4-9b5c-47d1a44e434f",
+        "position": 3,
+        "label": "Retirer le WHERE pour aller plus vite"
+       },
+       {
+        "id": "10e776c3-83ee-577c-95a9-04d58fa9c1aa",
+        "position": 4,
+        "label": "Désactiver les clés étrangères"
+       }
+      ],
+      "correct": [
+       "50e16a92-1d3b-5565-ad1e-71c39156f75d"
+      ],
+      "explanation": "Le SELECT avec le même WHERE montre exactement les lignes qui seront supprimées. On peut en plus travailler dans une transaction pour pouvoir annuler."
+     },
+     {
+      "id": "f60c1b8b-6225-587d-823b-e18e24af180f",
+      "position": 5,
+      "kind": "true_false",
+      "prompt": "ROLLBACK annule toutes les modifications effectuées depuis le BEGIN de la transaction.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b523ed43-52d9-503f-a514-c0998c758f4b",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "dca216b9-cc82-5e91-a134-c61248e9e13b",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "b523ed43-52d9-503f-a514-c0998c758f4b"
+      ],
+      "explanation": "Une transaction est « tout ou rien » : COMMIT valide l'ensemble, ROLLBACK l'annule entièrement."
+     },
+     {
+      "id": "785d9396-ccfc-57a6-bc9f-121964ab9a9f",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Pourquoi cette insertion échoue-t-elle ?",
+      "code": "INSERT INTO inscriptions (id, etudiant_id, formation_id, date_inscription)\nVALUES (9, 42, 1, '2026-11-05');",
+      "points": 2,
+      "options": [
+       {
+        "id": "7177b0b0-b2f2-5dc0-b129-edccb39711a7",
+        "position": 1,
+        "label": "La date est mal écrite"
+       },
+       {
+        "id": "c6287b7f-4911-56ce-8cfb-eed26d47b05d",
+        "position": 2,
+        "label": "L'étudiant 42 n'existe pas : la clé étrangère est violée"
+       },
+       {
+        "id": "17b87982-72eb-5316-9cd5-51a059e1ee3e",
+        "position": 3,
+        "label": "La note est obligatoire"
+       },
+       {
+        "id": "a26df1f1-8eba-5b5f-9ee5-2033880fedfb",
+        "position": 4,
+        "label": "L'identifiant 9 est déjà pris"
+       }
+      ],
+      "correct": [
+       "c6287b7f-4911-56ce-8cfb-eed26d47b05d"
+      ],
+      "explanation": "etudiant_id référence etudiants(id). Aucun étudiant n'a l'identifiant 42 : la base refuse cette inscription orpheline. La note, elle, peut être NULL."
+     },
+     {
+      "id": "2a35a556-43df-5a77-89d9-8f7b76934050",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie cette requête ?",
+      "code": "SELECT titre FROM formations\nWHERE prix > (SELECT AVG(prix) FROM formations);",
+      "points": 2,
+      "options": [
+       {
+        "id": "4e7aec56-5eed-5523-968e-ded523cdd598",
+        "position": 1,
+        "label": "Les formations gratuites"
+       },
+       {
+        "id": "118b6e66-3fe0-5380-b55b-3497dfb10b1c",
+        "position": 2,
+        "label": "Les formations plus chères que le prix moyen (36 €)"
+       },
+       {
+        "id": "288663b5-a346-5bc7-878f-52ff6d24f012",
+        "position": 3,
+        "label": "La formation la plus chère"
+       },
+       {
+        "id": "9602e65e-7dfb-586b-acea-a501655562f5",
+        "position": 4,
+        "label": "Une erreur : une sous-requête est interdite dans WHERE"
+       }
+      ],
+      "correct": [
+       "118b6e66-3fe0-5380-b55b-3497dfb10b1c"
+      ],
+      "explanation": "La sous-requête calcule le prix moyen (36 €) ; la requête principale garde les formations plus chères : Excel avancé, Machine Learning et Docker."
+     },
+     {
+      "id": "0fdd2366-5d1f-514d-9bac-691a4890deec",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles instructions modifient les données ou la structure de la base ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "78cdabff-13f3-56ab-b4e4-9963d9d4d789",
+        "position": 1,
+        "label": "SELECT"
+       },
+       {
+        "id": "f75ec796-2076-5fd6-b1d5-c6300a82236a",
+        "position": 2,
+        "label": "INSERT"
+       },
+       {
+        "id": "26db1179-7b8e-540a-99e9-18c9a7e67a99",
+        "position": 3,
+        "label": "DELETE"
+       },
+       {
+        "id": "dd3ad4ae-7f25-5d87-befc-a84f877998f7",
+        "position": 4,
+        "label": "ALTER TABLE"
+       }
+      ],
+      "correct": [
+       "f75ec796-2076-5fd6-b1d5-c6300a82236a",
+       "26db1179-7b8e-540a-99e9-18c9a7e67a99",
+       "dd3ad4ae-7f25-5d87-befc-a84f877998f7"
+      ],
+      "explanation": "INSERT ajoute des lignes, DELETE en supprime, ALTER TABLE modifie la structure. SELECT se contente de lire."
+     },
+     {
+      "id": "166797e5-a098-5d3d-bd2b-df90096e7627",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Comment une application doit-elle transmettre la saisie d'un utilisateur à une requête SQL ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7a7152ea-af6a-540d-bcd9-116464a11340",
+        "position": 1,
+        "label": "En la collant directement dans le texte de la requête"
+       },
+       {
+        "id": "2e2acdfd-30bc-53c3-ac16-8a4c762ce7d7",
+        "position": 2,
+        "label": "Avec une requête paramétrée"
+       },
+       {
+        "id": "58be7817-9cfd-5f9c-bc58-f448aa47425d",
+        "position": 3,
+        "label": "En la mettant en majuscules"
+       },
+       {
+        "id": "6083305f-1224-550d-a6c2-2246c64a92d6",
+        "position": 4,
+        "label": "En supprimant les espaces"
+       }
+      ],
+      "correct": [
+       "2e2acdfd-30bc-53c3-ac16-8a4c762ce7d7"
+      ],
+      "explanation": "Les requêtes paramétrées séparent le code SQL des données : un texte malveillant ne peut pas modifier la requête. C'est la protection standard contre l'injection SQL."
+     },
+     {
+      "id": "7722b9d5-8d18-59de-96c7-85843fabffb3",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quand préférer NOT EXISTS à NOT IN ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "566f7c1c-7cda-5ec9-abaa-b24799219a80",
+        "position": 1,
+        "label": "Jamais, ils sont toujours équivalents"
+       },
+       {
+        "id": "61b02680-f049-5ebd-857b-1d4195ec6710",
+        "position": 2,
+        "label": "Quand la sous-requête peut renvoyer des NULL"
+       },
+       {
+        "id": "2f524066-3202-559f-a872-06d0b7e828f8",
+        "position": 3,
+        "label": "Quand la table est vide"
+       },
+       {
+        "id": "1e6c8604-e088-5fca-80b9-6b5779bfd40b",
+        "position": 4,
+        "label": "Uniquement en MySQL"
+       }
+      ],
+      "correct": [
+       "61b02680-f049-5ebd-857b-1d4195ec6710"
+      ],
+      "explanation": "Si la liste de NOT IN contient un NULL, la condition n'est jamais vraie et la requête ne renvoie rien. NOT EXISTS n'a pas ce piège."
+     }
+    ]
+   }
+  }
+ ]
+}
