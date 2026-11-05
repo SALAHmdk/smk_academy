@@ -7,7 +7,7 @@
 | 3 | Profil (modification, suppression de compte RGPD), favoris | ⏳ |
 | 4 | Administration : rôles, CRUD formations / modules / leçons / quiz depuis l'interface, statistiques réelles, MFA TOTP obligatoire (aal2) | ✅ code + tests SQL ; 🟡 test TOTP réel en production |
 | 4b | Catalogue : 10 catégories, 55 formations (1 publiée, 54 « Bientôt disponible »), recherche et filtres | ✅ |
-| 5 | Formations SQL et Anglais professionnel (5 modules × 3 leçons chacune), puis JavaScript, HTML/CSS, Java… | ✅ SQL publiée (15 leçons, 5 quiz) ; ⏳ Anglais professionnel |
+| 5 | Formations SQL et Anglais professionnel (5 modules × 3 leçons chacune), puis JavaScript, HTML/CSS, Java… | ✅ SQL publiée ; ✅ Anglais professionnel, JavaScript, HTML/CSS rédigés et vérifiés (import automatique au prochain build) ; ⏳ Java, puis les autres |
 | 6 | Offres Free / Premium configurables (0 €, 1 €/mois, 10 €/an), accès Premium vérifié en base, codes promo, accès offerts | ✅ |
 | 7 | Stripe (mode test) : Checkout, portail client, webhooks signés et idempotents ; puis PayPal | ✅ code + tests ; 🟡 clés de test à configurer |
 | 8 | Design Apple / Liquid Glass, thème, barre d'onglets mobile | ✅ ; PWA hors ligne, attestations PDF ⏳ |

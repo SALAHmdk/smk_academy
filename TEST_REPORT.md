@@ -103,6 +103,16 @@ Compte de test dédié : `e2e@smktech.test` (email confirmé créé directement 
 | Notation des 5 quiz : bonnes réponses → 20/20, copie vide → 0/20 ; 15 leçons lisibles après inscription | exécuté (SQL, transaction annulée) | ✅ |
 | Parcours complet dans le navigateur sur le site Netlify | préparé | 🟡 |
 
+## Formations Anglais professionnel, JavaScript, HTML/CSS et import automatique (05/11/2026)
+
+| Test | Type | Résultat |
+|---|---|---|
+| `check_js_course.mjs` : 81 exemples JavaScript exécutés avec Node, sortie identique à la leçon ; 26 blocs DOM/réseau vérifiés en syntaxe | exécuté | ✅ (2 erreurs réelles trouvées puis corrigées : identifiants `Date.now()` en double, format d'affichage) |
+| `check_web_course.mjs` : 79 blocs HTML (imbrication) et CSS (Lightning CSS + accolades) ; détection d'erreurs vérifiée sur un exemple cassé | exécuté | ✅ |
+| Anglais professionnel : relecture des exemples et des corrigés | relu | ✅ |
+| RPC `content_import_if_changed` : faux jeton refusé, import sans session (rôle anon) avec publication et corrigés, second import ignoré (« inchangée ») | exécuté (SQL, transaction annulée) | ✅ |
+| Import réel au build Netlify | préparé | 🟡 en attente de la variable `CONTENT_IMPORT_TOKEN` |
+
 ## Restant à tester
 
 | Scénario | État |
