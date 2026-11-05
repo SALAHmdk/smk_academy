@@ -1,0 +1,1901 @@
+{
+ "course": {
+  "slug": "c-debutant",
+  "title": "Langage C",
+  "subtitle": "Comprendre la mémoire et les pointeurs.",
+  "description": "Le C est le langage des systèmes d'exploitation, de l'embarqué et de nombreux outils que vous utilisez chaque jour. Cette formation part de zéro : compilation avec gcc, variables, conditions, boucles et fonctions, puis tableaux, chaînes et pointeurs, mémoire dynamique, structures et fichiers. Une attention particulière est portée à la sûreté mémoire (comportements indéfinis, dépassements, fuites) et aux outils qui les détectent. Chaque leçon propose des programmes complets et des exercices corrigés ; chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 840,
+  "objectives": [
+   "Écrire et compiler un programme C",
+   "Utiliser pointeurs et tableaux",
+   "Gérer la mémoire dynamique"
+  ],
+  "prerequisites": [
+   "Aucun prérequis"
+  ],
+  "is_premium": false,
+  "position": 14,
+  "status": "published",
+  "id": "9a1cab03-0853-5e5b-8044-58b9442ee2d7",
+  "category_slug": "programmation",
+  "topic": "C",
+  "cover_label": "C"
+ },
+ "modules": [
+  {
+   "id": "e2eb0a4d-8d75-529a-b892-d0c7e6b15274",
+   "position": 1,
+   "title": "Compilation et bases",
+   "description": "Compiler avec gcc, comprendre les types, les opérateurs, printf et la saisie.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "3f0a3ad3-5a51-58ca-bef6-4c7213ee5f46",
+     "slug": "premier-programme-c",
+     "title": "Premier programme et compilation",
+     "summary": "Le rôle du C, gcc, les étapes de compilation, erreurs et avertissements.",
+     "content_md": "## Qu'est-ce que le langage C ?\n\nLe **C** a été créé au début des années 1970 aux laboratoires Bell, pour écrire le système Unix. Plus de cinquante ans plus tard, il reste partout :\n\n- dans les **systèmes d'exploitation** (le noyau Linux est écrit essentiellement en C) ;\n- dans l'**embarqué** : microcontrôleurs, objets connectés, automobile ;\n- dans les **outils et bibliothèques** de base : l'interpréteur Python officiel (CPython), de nombreuses bases de données, des compilateurs.\n\nApprendre le C, c'est comprendre **ce qui se passe sous le capot** : comment les données sont rangées en mémoire, ce qu'est une adresse, pourquoi un programme peut planter. Ces notions vous serviront ensuite dans n'importe quel langage.\n\n> Le C vous donne beaucoup de pouvoir et peu de garde-fous : le compilateur fait ce que vous écrivez, même si c'est une erreur. Tout au long de cette formation, nous insisterons sur les **bonnes pratiques de sûreté**.\n\n## Un langage compilé\n\nEn Python ou en JavaScript, un programme est lu et exécuté par un interpréteur. En C, le code source doit d'abord être **compilé** : un programme appelé **compilateur** le traduit en **exécutable**, un fichier en langage machine que le processeur exécute directement.\n\nLa compilation se déroule en trois grandes étapes :\n\n| Étape | Rôle |\n|---|---|\n| Préprocesseur | traite les lignes commençant par `#` (inclusion de fichiers, constantes) |\n| Compilation | traduit le C en code machine (fichier objet) |\n| Édition des liens (*linking*) | assemble votre code et les bibliothèques en un exécutable |\n\nNous utiliserons **gcc** (*GNU Compiler Collection*), le compilateur libre le plus répandu. **clang** est une alternative très proche, avec les mêmes options de base.\n\n## Installer un compilateur\n\n- **Linux** (Debian, Ubuntu) : `sudo apt install build-essential` installe gcc et les outils associés.\n- **macOS** : `xcode-select --install` installe les outils en ligne de commande ; la commande `gcc` y lance en réalité clang, ce qui convient parfaitement pour cette formation.\n- **Windows** : le plus simple est d'utiliser **WSL** (un Linux intégré à Windows) puis la commande Linux ci-dessus, ou l'environnement **MSYS2**.\n\nVérifiez l'installation dans un terminal avec `gcc --version`. Un simple éditeur de texte suffit ensuite ; un éditeur comme VS Code apporte la coloration et l'autocomplétion.\n\n## Votre premier programme\n\nCréez un fichier `bonjour.c` :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"Bonjour, SMK Academy !\\n\");\n    return 0;\n}\n```\n\n```text\nBonjour, SMK Academy !\n```\n\nLigne par ligne :\n\n- `#include <stdio.h>` demande au préprocesseur d'inclure la déclaration des fonctions d'entrée-sortie standard (*standard input/output*), dont `printf` ;\n- `int main(void)` est la **fonction principale** : l'exécution commence toujours ici. `int` indique qu'elle renvoie un entier, `void` qu'elle ne reçoit aucun paramètre ;\n- les **accolades** `{ }` délimitent le corps de la fonction ;\n- `printf(...)` affiche du texte ; `\\n` est le **retour à la ligne** ;\n- `return 0;` termine le programme en signalant au système que tout s'est bien passé (une valeur différente de 0 signale une erreur).\n\nChaque instruction se termine par un **point-virgule**.\n\n## Compiler et exécuter\n\nDans le terminal, placez-vous dans le dossier du fichier et tapez :\n\n```bash\ngcc -std=c17 -Wall -Wextra -o bonjour bonjour.c\n./bonjour\n```\n\n| Option | Signification |\n|---|---|\n| `-std=c17` | utiliser la norme C17 du langage |\n| `-Wall -Wextra` | activer les principaux **avertissements** (*warnings*) |\n| `-o bonjour` | nommer l'exécutable `bonjour` (sinon il s'appelle `a.out`) |\n\n`./bonjour` lance l'exécutable situé dans le dossier courant (sous Windows natif, il s'appelle `bonjour.exe`).\n\n> Le C a connu plusieurs versions normalisées : C89, C99, C11, C17 et plus récemment C23. Nous utilisons C17, bien pris en charge par tous les compilateurs actuels.\n\n## Lire une erreur de compilation\n\nOublions le point-virgule après `printf(...)`. gcc refuse de compiler et affiche :\n\n```text\nbonjour.c: In function 'main':\nbonjour.c:5:39: error: expected ';' before 'return'\n    5 |     printf(\"Bonjour, SMK Academy !\\n\")\n      |                                       ^\n      |                                       ;\n```\n\nLe message indique le **fichier**, la **ligne** (5) et la **colonne** (39), puis la nature du problème. Lisez toujours la **première** erreur en premier : les suivantes en sont souvent la conséquence.\n\n## Ne jamais ignorer un avertissement\n\nUn **avertissement** n'empêche pas la compilation, mais il signale très souvent un vrai bogue. Sans `#include <stdio.h>`, gcc 13 affiche par exemple :\n\n```text\nnoinc.c:3:5: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]\n```\n\nSelon la version du compilateur, ce cas est un simple avertissement ou une erreur. Prenez l'habitude de compiler **toujours** avec `-Wall -Wextra` et de corriger chaque avertissement : un programme qui compile « avec des warnings » n'est pas terminé.\n\n## Les commentaires\n\n```c\n#include <stdio.h>\n\n/* Commentaire\n   sur plusieurs lignes */\nint main(void)\n{\n    // Commentaire sur une ligne\n    printf(\"%d\\n\", 2 + 3); // affiche 5\n    return 0;\n}\n```\n\n```text\n5\n```\n\n`%d` est un **indicateur de format** : il est remplacé par la valeur entière qui suit. Nous y reviendrons en détail.\n\n## À retenir\n\n- Le C est **compilé** : code source `.c` → compilateur → exécutable.\n- Tout programme commence par `int main(void)` et se termine par `return 0;` en cas de succès.\n- `#include <stdio.h>` est nécessaire pour utiliser `printf`.\n- Compilez avec `gcc -std=c17 -Wall -Wextra -o prog prog.c` et corrigez **chaque** avertissement.\n- Lisez la première erreur en premier : fichier, ligne, colonne, message.\n\n## Exercices\n\n### Exercice 1 — Carte de visite\n\nÉcrivez un programme qui affiche votre prénom sur une ligne, puis `Formation : Langage C` sur la ligne suivante.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"Amina\\n\");\n    printf(\"Formation : Langage C\\n\");\n    return 0;\n}\n```\n\n```text\nAmina\nFormation : Langage C\n```\n\n### Exercice 2 — Trouvez les erreurs\n\nCe programme ne compile pas. Trouvez les trois erreurs.\n\n```text\n#include <stdio.h>\n\nint Main(void)\n{\n    printf(\"Bonjour\\n\")\n    return 0;\n```\n\n```solution-text\n1. Le C distingue majuscules et minuscules : la fonction principale s'appelle main, pas Main.\n2. Il manque le point-virgule après printf(\"Bonjour\\n\").\n3. L'accolade fermante } de la fonction est absente.\n```\n\n### Exercice 3 — Un calcul\n\nAffichez le résultat de `12 * 4` à l'aide de `printf` et de `%d`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"12 x 4 = %d\\n\", 12 * 4);\n    return 0;\n}\n```\n\n```text\n12 x 4 = 48\n```",
+     "duration_minutes": 35,
+     "position": 1
+    },
+    {
+     "id": "65321f4b-0afc-5b42-a68e-31ec8a0efdb6",
+     "slug": "variables-et-types",
+     "title": "Variables et types",
+     "summary": "int, double, char, sizeof, division entière, constantes et dépassements.",
+     "content_md": "## Les variables\n\nUne **variable** est une zone de la mémoire, désignée par un nom, qui contient une valeur. En C, chaque variable a un **type** fixé à sa déclaration : le compilateur sait ainsi combien d'octets réserver et comment interpréter leur contenu.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int age = 25;\n    double taille = 1.72;\n    char initiale = 'S';\n\n    printf(\"Âge : %d ans\\n\", age);\n    printf(\"Taille : %.2f m\\n\", taille);\n    printf(\"Initiale : %c\\n\", initiale);\n    return 0;\n}\n```\n\n```text\nÂge : 25 ans\nTaille : 1.72 m\nInitiale : S\n```\n\nOn peut modifier une variable après sa déclaration : `age = 26;`. En revanche, on ne peut pas changer son type.\n\nRègles de nommage : lettres non accentuées, chiffres et `_`, sans commencer par un chiffre. Le C distingue les majuscules (`total` et `Total` sont deux variables). Par convention, on écrit souvent les noms en minuscules avec des `_` : `prix_total`, `nb_etudiants`.\n\n## Les types de base\n\n| Type | Contenu | Format `printf` |\n|---|---|---|\n| `int` | entier (positif ou négatif) | `%d` |\n| `unsigned int` | entier positif ou nul | `%u` |\n| `long long` | grand entier | `%lld` |\n| `double` | nombre à virgule (double précision) | `%f` |\n| `float` | nombre à virgule (simple précision) | `%f` |\n| `char` | un caractère (petit entier) | `%c` |\n\nDans le code, le séparateur décimal est le **point** : `1.72`, pas `1,72`. Préférez `double` à `float` : il est plus précis et c'est le type des constantes décimales comme `1.72`.\n\n## La taille des types : `sizeof`\n\nL'opérateur `sizeof` donne la taille d'un type ou d'une variable, en **octets**. Son résultat est de type `size_t`, qui s'affiche avec `%zu`.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"char   : %zu octet(s)\\n\", sizeof(char));\n    printf(\"int    : %zu octet(s)\\n\", sizeof(int));\n    printf(\"double : %zu octet(s)\\n\", sizeof(double));\n    return 0;\n}\n```\n\n```text\nchar   : 1 octet(s)\nint    : 4 octet(s)\ndouble : 8 octet(s)\n```\n\n`sizeof(char)` vaut **toujours** 1. Les autres tailles dépendent de la machine et du compilateur : les valeurs ci-dessus sont celles d'un ordinateur 64 bits courant. Un `int` de 4 octets (32 bits) va de -2 147 483 648 à 2 147 483 647.\n\n## Les caractères sont des nombres\n\nUn `char` contient en réalité un **code numérique**. Les caractères s'écrivent entre **apostrophes** `'A'`, alors que les textes (chaînes) s'écrivent entre **guillemets** `\"Bonjour\"`.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    char lettre = 'A';\n    printf(\"%c a pour code %d\\n\", lettre, lettre);\n    printf(\"La lettre suivante est %c\\n\", lettre + 1);\n    return 0;\n}\n```\n\n```text\nA a pour code 65\nLa lettre suivante est B\n```\n\n## La division entière\n\nEntre deux entiers, `/` effectue une **division entière** : la partie décimale est perdue. `%` donne le **reste**.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"%d\\n\", 7 / 2);\n    printf(\"%d\\n\", 7 % 2);\n    printf(\"%f\\n\", 7.0 / 2);\n    printf(\"%.1f\\n\", (double) 7 / 2);\n    return 0;\n}\n```\n\n```text\n3\n1\n3.500000\n3.5\n```\n\nIl suffit qu'un des deux opérandes soit décimal pour obtenir une division décimale. `(double) 7` est une **conversion explicite** (*cast*) : elle transforme l'entier 7 en `double`. Par défaut, `%f` affiche 6 décimales ; `%.1f` en affiche une.\n\n## Constantes\n\nUne valeur qui ne doit pas changer se déclare avec `const`. Le préprocesseur permet aussi de définir des constantes avec `#define` (sans `=` ni point-virgule) :\n\n```c\n#include <stdio.h>\n\n#define TAUX_TVA 0.20\n\nint main(void)\n{\n    const double prix_ht = 50.0;\n    printf(\"Prix TTC : %.2f euros\\n\", prix_ht * (1 + TAUX_TVA));\n    return 0;\n}\n```\n\n```text\nPrix TTC : 60.00 euros\n```\n\nUne tentative de modification (`prix_ht = 40;`) est refusée par le compilateur.\n\n## Deux pièges de sûreté\n\n**1. Une variable non initialisée contient n'importe quoi.** `int total;` réserve la mémoire sans la remettre à zéro. Lire `total` avant de lui donner une valeur produit une valeur imprévisible : c'est un bogue, que `-Wall` signale souvent. **Initialisez toujours vos variables** : `int total = 0;`.\n\n**2. Le dépassement de capacité.** Un type a des limites, définies dans `<limits.h>` :\n\n```c\n#include <stdio.h>\n#include <limits.h>\n\nint main(void)\n{\n    printf(\"INT_MAX = %d\\n\", INT_MAX);\n    unsigned int u = 0;\n    u = u - 1;\n    printf(\"0 - 1 en unsigned = %u\\n\", u);\n    return 0;\n}\n```\n\n```text\nINT_MAX = 2147483647\n0 - 1 en unsigned = 4294967295\n```\n\nPour un type **non signé**, le résultat « fait le tour » : c'est un comportement défini, mais rarement celui qu'on veut. Pour un `int` **signé**, dépasser `INT_MAX` (par exemple `INT_MAX + 1`) est un **comportement indéfini** (*undefined behavior*, UB).\n\n> **Comportement indéfini** : la norme du C n'impose rien. Le programme peut sembler fonctionner, donner un résultat faux ou planter, et ce comportement peut changer d'une compilation à l'autre. C'est la principale source de bogues et de failles de sécurité en C : tout au long de la formation, nous apprendrons à les éviter.\n\n## À retenir\n\n- Chaque variable a un **type** : `int`, `double`, `char`… et se déclare avant usage.\n- `sizeof` donne une taille en octets (`%zu`) ; seule `sizeof(char) == 1` est garantie.\n- `7 / 2` vaut 3 entre entiers ; utilisez un `double` ou un *cast* pour une division décimale.\n- `'A'` est un caractère (un nombre), `\"A\"` une chaîne.\n- Initialisez toujours vos variables ; le dépassement d'un entier signé est un comportement indéfini.\n\n## Exercices\n\n### Exercice 1 — Moyenne\n\nAvec trois notes entières 12, 15 et 16, affichez la moyenne avec deux décimales.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int n1 = 12, n2 = 15, n3 = 16;\n    double moyenne = (n1 + n2 + n3) / 3.0;\n    printf(\"Moyenne : %.2f\\n\", moyenne);\n    return 0;\n}\n```\n\n```text\nMoyenne : 14.33\n```\n\nDiviser par `3.0` (et non `3`) force une division décimale.\n\n### Exercice 2 — Heures et minutes\n\nConvertissez 135 minutes en heures et minutes avec `/` et `%`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int minutes = 135;\n    printf(\"%d h %d min\\n\", minutes / 60, minutes % 60);\n    return 0;\n}\n```\n\n```text\n2 h 15 min\n```\n\n### Exercice 3 — Code d'un caractère\n\nAffichez le code numérique de `'a'` et le caractère dont le code vaut `'a' + 25`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"%d\\n\", 'a');\n    printf(\"%c\\n\", 'a' + 25);\n    return 0;\n}\n```\n\n```text\n97\nz\n```",
+     "duration_minutes": 40,
+     "position": 2
+    },
+    {
+     "id": "94d610ee-3c27-56b4-87c0-abb9b9e08c77",
+     "slug": "operateurs-printf-scanf",
+     "title": "Opérateurs, affichage et saisie",
+     "summary": "Priorités, formats de printf, math.h, scanf et sscanf.",
+     "content_md": "## Les opérateurs arithmétiques et d'affectation\n\n| Opérateur | Rôle | Exemple |\n|---|---|---|\n| `+ - * /` | opérations de base | `a * 2` |\n| `%` | reste de la division entière | `17 % 5` vaut 2 |\n| `+=`, `-=`, `*=`, `/=` | opération et affectation | `total += prix;` |\n| `++`, `--` | ajouter ou retirer 1 | `compteur++;` |\n\nLa multiplication et la division sont prioritaires sur l'addition, comme en mathématiques. Dans le doute, ajoutez des **parenthèses** : elles rendent aussi le code plus lisible.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 2 + 3 * 4;\n    int b = (2 + 3) * 4;\n    int compteur = 10;\n    compteur += 5;\n    compteur++;\n    printf(\"a = %d, b = %d, compteur = %d\\n\", a, b, compteur);\n    return 0;\n}\n```\n\n```text\na = 14, b = 20, compteur = 16\n```\n\n> Évitez d'utiliser `++` sur une variable qui apparaît plusieurs fois dans la même expression (`i = i++ + 1;`) : c'est un comportement indéfini. Gardez `compteur++;` seul sur sa ligne.\n\n## Bien utiliser `printf`\n\n`printf` (*print formatted*) remplace chaque **indicateur de format** par l'argument correspondant, dans l'ordre.\n\n| Indicateur | Type affiché |\n|---|---|\n| `%d` | `int` |\n| `%u` | `unsigned int` |\n| `%lld` | `long long` |\n| `%f`, `%.2f` | `double` (6 ou 2 décimales) |\n| `%c` | `char` |\n| `%s` | chaîne de caractères |\n| `%zu` | `size_t` (résultat de `sizeof`) |\n| `%p` | adresse mémoire (module 3) |\n| `%%` | le caractère `%` lui-même |\n\nOn peut aussi fixer une **largeur** pour aligner des colonnes : `%5d` occupe au moins 5 caractères alignés à droite, `%-10s` au moins 10 caractères alignés à gauche.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"%-10s|%5d|\\n\", \"Stylos\", 12);\n    printf(\"%-10s|%5d|\\n\", \"Cahiers\", 140);\n    printf(\"Remise : %d%%\\n\", 15);\n    printf(\"Pi vaut environ %.3f\\n\", 3.14159);\n    return 0;\n}\n```\n\n```text\nStylos    |   12|\nCahiers   |  140|\nRemise : 15%\nPi vaut environ 3.142\n```\n\n> Le type de l'argument **doit** correspondre à l'indicateur. `printf(\"%d\", 3.5)` est un comportement indéfini et affiche n'importe quoi. Avec `-Wall`, gcc vérifie la plupart de ces correspondances et vous avertit.\n\n## Les fonctions mathématiques\n\nLa bibliothèque `<math.h>` fournit `sqrt` (racine carrée), `pow` (puissance), `fabs` (valeur absolue d'un décimal), `round`, `floor`, `ceil`… Sous Linux, il faut ajouter l'option `-lm` à la fin de la commande de compilation pour lier la bibliothèque mathématique.\n\n```c\n#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n    printf(\"%.3f\\n\", sqrt(2.0));\n    printf(\"%.0f\\n\", pow(2.0, 10.0));\n    printf(\"%.1f\\n\", round(2.6));\n    return 0;\n}\n```\n\n```text\n1.414\n1024\n3.0\n```\n\n```bash\ngcc -std=c17 -Wall -Wextra -o maths maths.c -lm\n```\n\n## Lire une saisie au clavier : `scanf`\n\n`scanf` lit des valeurs tapées au clavier selon des indicateurs de format proches de ceux de `printf`. Remarquez le `&` devant la variable : il transmet son **adresse**, pour que `scanf` puisse y écrire (les adresses sont expliquées au module 3).\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int age = 0;\n    printf(\"Votre âge : \");\n    if (scanf(\"%d\", &age) != 1) {\n        printf(\"Saisie invalide.\\n\");\n        return 1;\n    }\n    printf(\"Dans 10 ans, vous aurez %d ans.\\n\", age + 10);\n    return 0;\n}\n```\n\nExemple d'exécution, si vous tapez `30` :\n\n```text\nVotre âge : 30\nDans 10 ans, vous aurez 40 ans.\n```\n\n`scanf` renvoie le **nombre de valeurs lues avec succès**. Si l'utilisateur tape `abc`, il renvoie 0 et `age` n'est pas modifié. **Testez toujours cette valeur de retour** : utiliser une variable que `scanf` n'a pas remplie est une source classique de bogues.\n\n> Pour lire du texte, n'utilisez jamais `scanf(\"%s\", ...)` sans limite de taille : une saisie trop longue déborde de la mémoire prévue. Nous verrons au module 3 la fonction `fgets`, plus sûre.\n\n## Convertir un texte en nombre : `sscanf`\n\n`sscanf` fonctionne comme `scanf`, mais lit dans une **chaîne** au lieu du clavier. C'est pratique pour analyser une ligne déjà lue, et pour tester sans clavier :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    const char *ligne = \"42 3.5\";\n    int quantite = 0;\n    double prix = 0.0;\n    int lus = sscanf(ligne, \"%d %lf\", &quantite, &prix);\n    printf(\"Valeurs lues : %d\\n\", lus);\n    printf(\"Total : %.2f\\n\", quantite * prix);\n    return 0;\n}\n```\n\n```text\nValeurs lues : 2\nTotal : 147.00\n```\n\nAttention : pour **lire** un `double`, `scanf` et `sscanf` utilisent `%lf`, alors que `printf` utilise `%f`.\n\n## À retenir\n\n- Priorités habituelles (`*` et `/` avant `+` et `-`) ; ajoutez des parenthèses en cas de doute.\n- `printf` : un indicateur par argument, du **bon type** (`%d`, `%f`, `%c`, `%s`, `%zu`, `%%`).\n- `<math.h>` demande l'option `-lm` sous Linux.\n- `scanf(\"%d\", &x)` : n'oubliez pas le `&` et **testez la valeur de retour**.\n- Pour lire un `double` : `%lf` ; pour l'afficher : `%f`.\n\n## Exercices\n\n### Exercice 1 — Facture alignée\n\nAffichez cette facture, avec le nom aligné à gauche sur 8 caractères et le prix aligné à droite sur 8 caractères avec 2 décimales : Café 2.5, Croissant 1.2.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    printf(\"%-8s%8.2f\\n\", \"Café\", 2.5);\n    printf(\"%-8s%8.2f\\n\", \"Croissant\", 1.2);\n    return 0;\n}\n```\n\n```text\nCafé       2.50\nCroissant    1.20\n```\n\nRemarquez deux détails. `Croissant` (9 caractères) dépasse la largeur de 8 : `printf` ne coupe jamais, il écrit tout. Et `é` occupe **deux octets** en UTF-8 : `printf` compte des octets, pas des caractères affichés, d'où un décalage d'un espace.\n\n### Exercice 2 — Hypoténuse\n\nCalculez l'hypoténuse d'un triangle rectangle de côtés 3 et 4 avec `sqrt`.\n\n```solution-c\n#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n    double a = 3.0, b = 4.0;\n    printf(\"Hypoténuse : %.1f\\n\", sqrt(a * a + b * b));\n    return 0;\n}\n```\n\n```text\nHypoténuse : 5.0\n```\n\n### Exercice 3 — Analyser une date\n\nAvec `sscanf`, extrayez le jour, le mois et l'année de la chaîne `\"14/07/2025\"`, puis affichez-les au format `2025-07-14`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int jour = 0, mois = 0, annee = 0;\n    if (sscanf(\"14/07/2025\", \"%d/%d/%d\", &jour, &mois, &annee) == 3) {\n        printf(\"%d-%02d-%02d\\n\", annee, mois, jour);\n    }\n    return 0;\n}\n```\n\n```text\n2025-07-14\n```\n\n`%02d` complète l'affichage par des zéros à gauche, sur 2 chiffres.",
+     "duration_minutes": 40,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "65de6fdc-a54c-58e2-ab2c-9ec8ebc9801f",
+    "title": "Quiz — Compilation et bases",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "d163016b-d5ca-5471-ac57-fc3d6d43c18f",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que produit la commande gcc -std=c17 -Wall -o bonjour bonjour.c ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3eef85db-a972-542d-8c84-87dff6f49ebf",
+        "position": 1,
+        "label": "Elle exécute directement bonjour.c"
+       },
+       {
+        "id": "32eeab2e-fd53-5a38-93c6-6a649191fd42",
+        "position": 2,
+        "label": "Elle compile bonjour.c en un exécutable nommé bonjour"
+       },
+       {
+        "id": "f53270e5-e23b-5a8a-abfa-a25b9cac7e02",
+        "position": 3,
+        "label": "Elle crée le fichier bonjour.c"
+       },
+       {
+        "id": "17366975-4376-5240-8d8e-5759c864d7e2",
+        "position": 4,
+        "label": "Elle affiche le code source"
+       }
+      ],
+      "correct": [
+       "32eeab2e-fd53-5a38-93c6-6a649191fd42"
+      ],
+      "explanation": "gcc compile le fichier source ; l'option -o fixe le nom de l'exécutable produit, qu'on lance ensuite avec ./bonjour."
+     },
+     {
+      "id": "54fc84b4-dfae-5f4c-8b65-f80b38e5dcb0",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Par quelle fonction commence l'exécution d'un programme C ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6ae0f458-c2b4-58fd-8eb6-a5fef0219a90",
+        "position": 1,
+        "label": "start"
+       },
+       {
+        "id": "18282d8e-d9c6-518d-9d3a-be929121b26a",
+        "position": 2,
+        "label": "printf"
+       },
+       {
+        "id": "11158390-0723-5fe4-8f9e-3f68991a25ec",
+        "position": 3,
+        "label": "main"
+       },
+       {
+        "id": "da276e03-f069-5451-b381-840b07bcab32",
+        "position": 4,
+        "label": "init"
+       }
+      ],
+      "correct": [
+       "11158390-0723-5fe4-8f9e-3f68991a25ec"
+      ],
+      "explanation": "L'exécution commence toujours par la fonction main, quel que soit l'ordre des fonctions dans le fichier."
+     },
+     {
+      "id": "5be0d995-f8e4-55d3-af1b-8209ea785f25",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Que vaut l'expression 7 / 2 lorsque 7 et 2 sont des int ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2347f085-5b6b-5077-832c-80ce30d2f659",
+        "position": 1,
+        "label": "3.5"
+       },
+       {
+        "id": "dcc3a04b-38c6-5b1b-8ca1-5689fd3b7f11",
+        "position": 2,
+        "label": "3"
+       },
+       {
+        "id": "ea1e3289-2192-524e-acb8-17f0c9b6b8b3",
+        "position": 3,
+        "label": "4"
+       },
+       {
+        "id": "53d2dcdf-e4db-53fd-85bd-12332df97b1a",
+        "position": 4,
+        "label": "1"
+       }
+      ],
+      "correct": [
+       "dcc3a04b-38c6-5b1b-8ca1-5689fd3b7f11"
+      ],
+      "explanation": "Entre deux entiers, / effectue une division entière : la partie décimale est perdue, le résultat vaut 3."
+     },
+     {
+      "id": "6f0006df-1d8c-5a00-8261-c3131de57377",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quel indicateur de format affiche un double avec deux décimales ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cd1ce11f-d78b-5ec0-92e4-296a60e9a9ff",
+        "position": 1,
+        "label": "%d"
+       },
+       {
+        "id": "38282c1a-5589-55ed-be27-f3927b792ab8",
+        "position": 2,
+        "label": "%2d"
+       },
+       {
+        "id": "a782b730-a657-55fa-8f0b-cfcc580f35d1",
+        "position": 3,
+        "label": "%lf2"
+       },
+       {
+        "id": "4da3868d-4704-54d3-bf63-d42a3c828764",
+        "position": 4,
+        "label": "%.2f"
+       }
+      ],
+      "correct": [
+       "4da3868d-4704-54d3-bf63-d42a3c828764"
+      ],
+      "explanation": "%f affiche un double ; la précision .2 limite l'affichage à deux décimales."
+     },
+     {
+      "id": "4f96f900-9f91-55f8-8e91-fcc8eb7186e7",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char c = 'A';\n    printf(\"%c\\n\", c + 2);\n    return 0;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "e56637de-0fdd-5b61-a3de-621640d06050",
+        "position": 1,
+        "label": "A2"
+       },
+       {
+        "id": "19996962-e51f-5748-87a0-5f13df5154b3",
+        "position": 2,
+        "label": "C"
+       },
+       {
+        "id": "4b41190a-43b3-5836-ba4e-05aebfdf8feb",
+        "position": 3,
+        "label": "67"
+       },
+       {
+        "id": "94feff6c-8d57-5725-9368-d6e1533893b9",
+        "position": 4,
+        "label": "B"
+       }
+      ],
+      "correct": [
+       "19996962-e51f-5748-87a0-5f13df5154b3"
+      ],
+      "explanation": "Un char est un nombre : 'A' vaut 65, 'A' + 2 vaut 67, que %c affiche comme le caractère C."
+     },
+     {
+      "id": "1bb536c6-05b1-573c-95e8-37ddb5ae040e",
+      "position": 6,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur sizeof sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6bb0d66f-9cee-555e-a4fe-a64887f04478",
+        "position": 1,
+        "label": "sizeof(char) vaut toujours 1"
+       },
+       {
+        "id": "1c302466-6bc2-54f7-a025-10aab115c80b",
+        "position": 2,
+        "label": "sizeof(int) vaut 4 sur toutes les machines"
+       },
+       {
+        "id": "1b269e3c-239d-50af-b031-cb43e69c77a9",
+        "position": 3,
+        "label": "Le résultat de sizeof s'affiche avec %zu"
+       },
+       {
+        "id": "00e822df-cb50-5105-9e5d-0b3507fe4d86",
+        "position": 4,
+        "label": "sizeof donne une taille en octets"
+       }
+      ],
+      "correct": [
+       "6bb0d66f-9cee-555e-a4fe-a64887f04478",
+       "1b269e3c-239d-50af-b031-cb43e69c77a9",
+       "00e822df-cb50-5105-9e5d-0b3507fe4d86"
+      ],
+      "explanation": "Seule la taille de char est fixée par la norme ; celle d'un int dépend de la plateforme (souvent 4 octets). sizeof renvoie un size_t, exprimé en octets, affiché avec %zu."
+     },
+     {
+      "id": "74816a20-8c2c-5aef-ae47-d1dafa38a932",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie scanf(\"%d\", &age) si l'utilisateur tape « abc » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7839cc4e-a242-5f50-99ee-cba42e34b962",
+        "position": 1,
+        "label": "0, et age n'est pas modifié"
+       },
+       {
+        "id": "fd26653f-18d1-5202-a841-71b0173a3f47",
+        "position": 2,
+        "label": "1"
+       },
+       {
+        "id": "1a92e42a-118b-57a7-90c6-8e3cde191b95",
+        "position": 3,
+        "label": "La valeur 0 est placée dans age"
+       },
+       {
+        "id": "097fc298-86de-5b7a-ac2e-29c82e5274a5",
+        "position": 4,
+        "label": "Le programme s'arrête avec une erreur de compilation"
+       }
+      ],
+      "correct": [
+       "7839cc4e-a242-5f50-99ee-cba42e34b962"
+      ],
+      "explanation": "scanf renvoie le nombre de valeurs lues avec succès : ici aucune. age garde sa valeur précédente, d'où l'importance de tester ce retour."
+     },
+     {
+      "id": "f5d15ef6-2408-5478-97a6-44f787c16a52",
+      "position": 8,
+      "kind": "true_false",
+      "prompt": "Dépasser la valeur maximale d'un int signé (INT_MAX + 1) est un comportement indéfini en C.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "03be126c-13b8-5658-b2ac-2e3f17f728ad",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "7eedf5cc-d798-5d5a-b6f1-0ab40bc91dfe",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "03be126c-13b8-5658-b2ac-2e3f17f728ad"
+      ],
+      "explanation": "Le dépassement d'un entier signé est un comportement indéfini : la norme n'impose aucun résultat. Seuls les types non signés « font le tour » de façon définie."
+     },
+     {
+      "id": "33cc0915-9db9-57eb-99e0-ecd8c92cc344",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Pourquoi compiler avec -Wall -Wextra ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "928bbbf1-4955-58cd-a4e8-589bd3a29f45",
+        "position": 1,
+        "label": "Pour rendre le programme plus rapide"
+       },
+       {
+        "id": "4dfa4341-8876-5904-9c25-86dd84c9eec3",
+        "position": 2,
+        "label": "Pour activer des avertissements qui signalent des erreurs probables"
+       },
+       {
+        "id": "a257fdd5-e5ec-5d26-b987-22a4ec1bf92e",
+        "position": 3,
+        "label": "Pour inclure automatiquement stdio.h"
+       },
+       {
+        "id": "10ed1931-f009-5b33-a6f7-6a072a912615",
+        "position": 4,
+        "label": "Pour produire un exécutable Windows"
+       }
+      ],
+      "correct": [
+       "4dfa4341-8876-5904-9c25-86dd84c9eec3"
+      ],
+      "explanation": "Ces options activent les principaux avertissements : ils repèrent des bogues fréquents (confusion = / ==, format printf incorrect, variable non initialisée…)."
+     },
+     {
+      "id": "bb6bcabc-4753-52df-9636-59dbc6ae974a",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quel format faut-il utiliser pour lire un double avec scanf ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e1eb24db-12ec-5779-8b83-8af89d391b63",
+        "position": 1,
+        "label": "%f"
+       },
+       {
+        "id": "445f985a-0f48-5aef-b489-fe6766e1f8d8",
+        "position": 2,
+        "label": "%d"
+       },
+       {
+        "id": "edc58529-eda7-502f-a457-9c709864f97e",
+        "position": 3,
+        "label": "%lf"
+       },
+       {
+        "id": "ad45093e-f4e3-5095-9bd8-a62318f7a89f",
+        "position": 4,
+        "label": "%lld"
+       }
+      ],
+      "correct": [
+       "edc58529-eda7-502f-a457-9c709864f97e"
+      ],
+      "explanation": "Pour la lecture, scanf distingue float (%f) et double (%lf). printf, lui, affiche un double avec %f."
+     }
+    ]
+   }
+  },
+  {
+   "id": "f9188bce-93bd-56c2-825e-8a19afe5c4f9",
+   "position": 2,
+   "title": "Contrôle et fonctions",
+   "description": "Conditions, boucles et fonctions pour structurer un programme C.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "9280ef5d-6384-5c52-8e0e-71068ba7f519",
+     "slug": "conditions-c",
+     "title": "Les conditions",
+     "summary": "if, else, opérateurs logiques, switch et ternaire.",
+     "content_md": "## Prendre une décision : `if`\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int note = 14;\n    if (note >= 10) {\n        printf(\"Module validé\\n\");\n    } else {\n        printf(\"Module à repasser\\n\");\n    }\n    return 0;\n}\n```\n\n```text\nModule validé\n```\n\nLa condition s'écrit **entre parenthèses**, le bloc **entre accolades**. Plusieurs cas s'enchaînent avec `else if` : le premier cas vrai l'emporte, les suivants ne sont pas testés.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int note = 17;\n    if (note >= 16) {\n        printf(\"Très bien\\n\");\n    } else if (note >= 10) {\n        printf(\"Validé\\n\");\n    } else {\n        printf(\"À retravailler\\n\");\n    }\n    return 0;\n}\n```\n\n```text\nTrès bien\n```\n\n> Écrivez **toujours** les accolades, même pour une seule instruction. Sans elles, seule la première instruction dépend du `if` : ajouter une ligne plus tard crée un bogue invisible à la lecture.\n\n## Comparaisons et vérité en C\n\n| Opérateur | Signification |\n|---|---|\n| `==` | égal |\n| `!=` | différent |\n| `<`, `<=`, `>`, `>=` | comparaisons |\n\nEn C, une comparaison produit un **entier** : 1 si elle est vraie, 0 si elle est fausse. Dans une condition, **0 est faux et toute autre valeur est vraie**.\n\n```c\n#include <stdio.h>\n#include <stdbool.h>\n\nint main(void)\n{\n    printf(\"%d\\n\", 5 > 3);\n    printf(\"%d\\n\", 5 == 3);\n    bool majeur = true;\n    if (majeur) {\n        printf(\"Accès autorisé\\n\");\n    }\n    return 0;\n}\n```\n\n```text\n1\n0\nAccès autorisé\n```\n\nL'en-tête `<stdbool.h>` fournit le type `bool` et les valeurs `true` (1) et `false` (0), plus lisibles qu'un `int`.\n\n## Le piège `=` au lieu de `==`\n\n`=` **affecte** une valeur ; `==` **compare**. Écrire `if (note = 10)` met 10 dans `note`, puis teste 10, toujours vrai. Ce code compile, mais `-Wall` le signale :\n\n```text\negal.c:6:9: warning: suggest parentheses around assignment used as truth value [-Wparentheses]\n    6 |     if (note = 10) {\n      |         ^~~~\n```\n\nC'est une excellente raison de ne jamais compiler sans avertissements.\n\n## Combiner des conditions\n\n- `&&` (ET) : vrai si les deux conditions sont vraies ;\n- `||` (OU) : vrai si au moins une est vraie ;\n- `!` (NON) : inverse la condition.\n\nCes opérateurs sont **paresseux** (*short-circuit*) : si la première partie suffit à décider, la seconde n'est pas évaluée. On s'en sert pour protéger un calcul :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int total = 50;\n    int nb = 0;\n    if (nb != 0 && total / nb > 10) {\n        printf(\"Moyenne élevée\\n\");\n    } else {\n        printf(\"Pas de moyenne calculable ou moyenne faible\\n\");\n    }\n    return 0;\n}\n```\n\n```text\nPas de moyenne calculable ou moyenne faible\n```\n\nComme `nb != 0` est faux, la division `total / nb` n'est jamais exécutée. Une **division entière par zéro** est un comportement indéfini (en pratique, le programme plante souvent).\n\n## Choisir parmi plusieurs valeurs : `switch`\n\n`switch` compare une valeur **entière** (ou un caractère) à des constantes :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    char choix = 'b';\n    switch (choix) {\n    case 'a':\n        printf(\"Ajouter\\n\");\n        break;\n    case 'b':\n    case 'B':\n        printf(\"Supprimer\\n\");\n        break;\n    default:\n        printf(\"Choix inconnu\\n\");\n    }\n    return 0;\n}\n```\n\n```text\nSupprimer\n```\n\n- chaque `case` se termine par `break`, sinon l'exécution **continue** dans le cas suivant ;\n- deux `case` consécutifs partagent le même bloc (`'b'` et `'B'`) ;\n- `default` traite toutes les autres valeurs.\n\n`switch` ne fonctionne pas avec des chaînes de caractères ni des décimaux.\n\n## Comparer des nombres décimaux\n\nLes `double` sont stockés de façon **approchée** : `0.1 + 0.2` ne vaut pas exactement `0.3`. Une comparaison avec `==` entre décimaux calculés est donc risquée ; on compare plutôt l'écart à une petite tolérance :\n\n```c\n#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n    double a = 0.1 + 0.2;\n    printf(\"%d\\n\", a == 0.3);\n    printf(\"%d\\n\", fabs(a - 0.3) < 1e-9);\n    return 0;\n}\n```\n\n```text\n0\n1\n```\n\n`fabs` (de `<math.h>`) donne la valeur absolue ; `1e-9` s'écrit en notation scientifique et vaut 0,000000001. Pour des montants d'argent, une autre solution courante consiste à compter en **centimes** avec des entiers.\n\n## L'opérateur ternaire\n\n`condition ? valeur_si_vrai : valeur_si_faux` choisit entre deux valeurs :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int stock = 0;\n    printf(\"%s\\n\", stock > 0 ? \"En stock\" : \"Rupture de stock\");\n    return 0;\n}\n```\n\n```text\nRupture de stock\n```\n\n## À retenir\n\n- `if (…) { … } else if (…) { … } else { … }`, toujours avec accolades.\n- En C, 0 est faux, toute autre valeur est vraie ; `<stdbool.h>` apporte `bool`, `true`, `false`.\n- `=` affecte, `==` compare : `-Wall` vous prévient de la confusion.\n- `&&` et `||` s'arrêtent dès que le résultat est connu : utile pour éviter une division par zéro.\n- `switch` sur des entiers ou caractères, avec `break` à la fin de chaque `case`.\n\n## Exercices\n\n### Exercice 1 — Tarif\n\nUn billet coûte 12 euros, 8 euros pour les moins de 18 ans et les plus de 65 ans. Avec `int age = 70;`, affichez le prix.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int age = 70;\n    int prix = 12;\n    if (age < 18 || age > 65) {\n        prix = 8;\n    }\n    printf(\"Prix : %d euros\\n\", prix);\n    return 0;\n}\n```\n\n```text\nPrix : 8 euros\n```\n\n### Exercice 2 — Année bissextile\n\nUne année est bissextile si elle est divisible par 4 mais pas par 100, ou si elle est divisible par 400. Testez 1900, 2000 et 2024.\n\n```solution-c\n#include <stdio.h>\n#include <stdbool.h>\n\nint main(void)\n{\n    int annees[] = {1900, 2000, 2024};\n    for (int i = 0; i < 3; i++) {\n        int a = annees[i];\n        bool bissextile = (a % 4 == 0 && a % 100 != 0) || a % 400 == 0;\n        printf(\"%d : %s\\n\", a, bissextile ? \"bissextile\" : \"non bissextile\");\n    }\n    return 0;\n}\n```\n\n```text\n1900 : non bissextile\n2000 : bissextile\n2024 : bissextile\n```\n\nLa boucle `for` et le tableau `annees` sont présentés dans les leçons suivantes ; ils évitent ici de répéter trois fois le même test.\n\n### Exercice 3 — Menu\n\nAvec `int jour = 3;`, affichez `Lundi`, `Mardi` ou `Mercredi` pour 1, 2 ou 3, et `Autre jour` sinon, à l'aide d'un `switch`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int jour = 3;\n    switch (jour) {\n    case 1:\n        printf(\"Lundi\\n\");\n        break;\n    case 2:\n        printf(\"Mardi\\n\");\n        break;\n    case 3:\n        printf(\"Mercredi\\n\");\n        break;\n    default:\n        printf(\"Autre jour\\n\");\n    }\n    return 0;\n}\n```\n\n```text\nMercredi\n```",
+     "duration_minutes": 40,
+     "position": 1
+    },
+    {
+     "id": "6f268bd4-8c02-5a2c-a12d-9d8f8e18d063",
+     "slug": "boucles-c",
+     "title": "Les boucles",
+     "summary": "for, while, do … while, break, continue et erreurs décalées d'un.",
+     "content_md": "## La boucle `for`\n\nUne **boucle** répète un bloc d'instructions. La boucle `for` convient quand on connaît le nombre de tours :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    for (int i = 1; i <= 3; i++) {\n        printf(\"Tour %d\\n\", i);\n    }\n    return 0;\n}\n```\n\n```text\nTour 1\nTour 2\nTour 3\n```\n\nLes trois parties entre parenthèses :\n\n1. `int i = 1` : **initialisation**, exécutée une seule fois ;\n2. `i <= 3` : **condition**, testée avant chaque tour ;\n3. `i++` : **incrémentation**, exécutée après chaque tour.\n\nLa variable `i`, déclarée dans le `for`, n'existe qu'à l'intérieur de la boucle.\n\n## Accumuler un résultat\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int total = 0;\n    for (int i = 1; i <= 100; i++) {\n        total += i;\n    }\n    printf(\"Somme de 1 à 100 : %d\\n\", total);\n    return 0;\n}\n```\n\n```text\nSomme de 1 à 100 : 5050\n```\n\nLe schéma « variable initialisée à 0, puis ajout à chaque tour » s'appelle un **accumulateur**. Sans `= 0`, `total` partirait d'une valeur imprévisible.\n\n## La boucle `while`\n\n`while` répète **tant que** la condition est vraie. On l'utilise quand le nombre de tours n'est pas connu à l'avance :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    double capital = 1000.0;\n    int annees = 0;\n    while (capital < 1500.0) {\n        capital = capital * 1.05;\n        annees++;\n    }\n    printf(\"%d ans, capital : %.2f\\n\", annees, capital);\n    return 0;\n}\n```\n\n```text\n9 ans, capital : 1551.33\n```\n\n> Vérifiez qu'une boucle `while` fait **évoluer sa condition**. Sinon, c'est une **boucle infinie** : le programme ne s'arrête jamais (interrompez-le avec `Ctrl + C` dans le terminal).\n\n## La boucle `do … while`\n\n`do … while` teste la condition **après** le bloc : celui-ci est donc exécuté **au moins une fois**. C'est utile pour un menu ou une saisie à répéter.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int n = 10;\n    do {\n        printf(\"n = %d\\n\", n);\n        n++;\n    } while (n < 3);\n    return 0;\n}\n```\n\n```text\nn = 10\n```\n\nBien que `n < 3` soit faux dès le départ, le bloc s'exécute une fois. Notez le **point-virgule** après `while (…)`.\n\n## `break` et `continue`\n\n- `break` sort immédiatement de la boucle ;\n- `continue` passe directement au tour suivant.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    for (int i = 1; i <= 10; i++) {\n        if (i % 2 == 0) {\n            continue;   /* on saute les nombres pairs */\n        }\n        if (i > 7) {\n            break;      /* on s'arrête après 7 */\n        }\n        printf(\"%d \", i);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n```\n\n```text\n1 3 5 7\n```\n\n## Boucles imbriquées\n\nUne boucle peut en contenir une autre : pour chaque tour de la boucle extérieure, la boucle intérieure fait tous ses tours.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    for (int ligne = 1; ligne <= 3; ligne++) {\n        for (int col = 1; col <= 4; col++) {\n            printf(\"%4d\", ligne * col);\n        }\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n\n```text\n   1   2   3   4\n   2   4   6   8\n   3   6   9  12\n```\n\n## Choisir la bonne boucle\n\n| Situation | Boucle conseillée |\n|---|---|\n| nombre de tours connu (parcourir 10 éléments) | `for` |\n| répéter jusqu'à un événement (capital atteint, fin de fichier) | `while` |\n| exécuter au moins une fois (afficher un menu, puis demander un choix) | `do … while` |\n\nLes trois boucles sont interchangeables en théorie : choisissez celle qui exprime le plus clairement votre intention. Une boucle volontairement infinie s'écrit `for (;;)` ou `while (1)`, avec un `break` à l'intérieur pour en sortir.\n\n## L'erreur « décalée d'un » (*off-by-one*)\n\nC'est l'erreur de boucle la plus fréquente : un tour de trop ou de moins.\n\n| Boucle | Valeurs de `i` | Nombre de tours |\n|---|---|---|\n| `for (i = 0; i < 5; i++)` | 0, 1, 2, 3, 4 | 5 |\n| `for (i = 1; i <= 5; i++)` | 1, 2, 3, 4, 5 | 5 |\n| `for (i = 0; i <= 5; i++)` | 0 à 5 | **6** |\n\nPour parcourir N éléments numérotés à partir de 0 (le cas des tableaux, module 3), la forme standard est `for (int i = 0; i < N; i++)`. En C, un tour de trop sur un tableau ne provoque pas d'erreur claire : il lit ou écrit **hors du tableau**, ce qui est un comportement indéfini.\n\n## Déboguer une boucle\n\nQuand une boucle ne donne pas le résultat attendu, affichez l'état des variables à chaque tour :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int total = 0;\n    for (int i = 1; i <= 3; i++) {\n        total += i;\n        printf(\"i = %d, total = %d\\n\", i, total);\n    }\n    return 0;\n}\n```\n\n```text\ni = 1, total = 1\ni = 2, total = 3\ni = 3, total = 6\n```\n\nPour aller plus loin, le débogueur **gdb** permet d'exécuter un programme pas à pas et d'examiner les variables (compilez alors avec l'option `-g`).\n\n## À retenir\n\n- `for (int i = 0; i < n; i++)` pour un nombre de tours connu.\n- `while (condition)` tant qu'une condition est vraie ; `do … while` s'exécute au moins une fois.\n- `break` sort de la boucle, `continue` passe au tour suivant.\n- Initialisez les accumulateurs ; vérifiez les bornes (`<` ou `<=`) pour éviter les erreurs décalées d'un.\n\n## Exercices\n\n### Exercice 1 — Table de multiplication\n\nAffichez la table de 7, de `7 x 1 = 7` à `7 x 5 = 35`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    for (int i = 1; i <= 5; i++) {\n        printf(\"7 x %d = %d\\n\", i, 7 * i);\n    }\n    return 0;\n}\n```\n\n```text\n7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n```\n\n### Exercice 2 — Somme des chiffres\n\nAvec une boucle `while`, calculez la somme des chiffres de 4072 (indice : `n % 10` donne le dernier chiffre, `n / 10` le retire).\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int n = 4072;\n    int somme = 0;\n    while (n > 0) {\n        somme += n % 10;\n        n /= 10;\n    }\n    printf(\"Somme des chiffres : %d\\n\", somme);\n    return 0;\n}\n```\n\n```text\nSomme des chiffres : 13\n```\n\n### Exercice 3 — Triangle d'étoiles\n\nAffichez un triangle de 4 lignes : 1 étoile, puis 2, 3 et 4.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    for (int ligne = 1; ligne <= 4; ligne++) {\n        for (int k = 0; k < ligne; k++) {\n            printf(\"*\");\n        }\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n\n```text\n*\n**\n***\n****\n```",
+     "duration_minutes": 40,
+     "position": 2
+    },
+    {
+     "id": "8ae0dfd4-6301-59ce-8671-3abd713ddf30",
+     "slug": "fonctions-c",
+     "title": "Les fonctions",
+     "summary": "Paramètres, retour, prototypes, portée, récursivité et fichiers d'en-tête.",
+     "content_md": "## Pourquoi des fonctions ?\n\nUne **fonction** regroupe des instructions sous un nom, pour les réutiliser et rendre le programme lisible. Vous en utilisez déjà : `main`, `printf`, `sqrt`.\n\n```c\n#include <stdio.h>\n\ndouble prix_ttc(double prix_ht, double taux)\n{\n    return prix_ht * (1.0 + taux);\n}\n\nint main(void)\n{\n    printf(\"%.2f\\n\", prix_ttc(100.0, 0.20));\n    printf(\"%.2f\\n\", prix_ttc(50.0, 0.055));\n    return 0;\n}\n```\n\n```text\n120.00\n52.75\n```\n\nUne définition de fonction indique :\n\n- le **type de retour** (`double`) : le type de la valeur renvoyée par `return` ;\n- le **nom** (`prix_ttc`) ;\n- les **paramètres**, chacun avec son type (`double prix_ht, double taux`) ;\n- le **corps**, entre accolades.\n\nUne fonction qui ne renvoie rien a le type de retour `void`. Une fonction sans paramètre s'écrit `f(void)`.\n\n## Déclarer avant d'utiliser : le prototype\n\nLe compilateur lit le fichier de haut en bas : une fonction doit être **connue** avant d'être appelée. Si on préfère écrire `main` en premier, on place avant elle un **prototype** (la première ligne de la fonction suivie d'un point-virgule) :\n\n```c\n#include <stdio.h>\n\nvoid afficher_ligne(int longueur);   /* prototype */\n\nint main(void)\n{\n    afficher_ligne(5);\n    afficher_ligne(10);\n    return 0;\n}\n\nvoid afficher_ligne(int longueur)\n{\n    for (int i = 0; i < longueur; i++) {\n        printf(\"-\");\n    }\n    printf(\"\\n\");\n}\n```\n\n```text\n-----\n----------\n```\n\n## Le passage par valeur\n\nEn C, les arguments sont **copiés** dans les paramètres. Modifier un paramètre ne modifie donc **pas** la variable de l'appelant :\n\n```c\n#include <stdio.h>\n\nvoid doubler(int x)\n{\n    x = x * 2;\n    printf(\"Dans la fonction : %d\\n\", x);\n}\n\nint main(void)\n{\n    int n = 5;\n    doubler(n);\n    printf(\"Après l'appel : %d\\n\", n);\n    return 0;\n}\n```\n\n```text\nDans la fonction : 10\nAprès l'appel : 5\n```\n\nDeux solutions : **renvoyer** la nouvelle valeur (`n = doubler(n);` avec une fonction qui fait `return x * 2;`), ou transmettre l'**adresse** de la variable grâce à un pointeur. C'est l'objet du module 3, et c'est ce que fait `scanf(\"%d\", &age)`.\n\n## Portée des variables\n\nUne variable déclarée dans une fonction (ou dans un bloc `{ }`) est **locale** : elle n'existe que pendant l'exécution de ce bloc et disparaît ensuite. Deux fonctions peuvent donc avoir chacune leur variable `i` sans conflit.\n\nUne variable déclarée en dehors de toute fonction est **globale** : visible partout dans le fichier. Évitez-les autant que possible : n'importe quelle fonction peut les modifier, ce qui rend les bogues difficiles à trouver.\n\nLe mot-clé `static` devant une variable locale la fait **survivre** entre deux appels :\n\n```c\n#include <stdio.h>\n\nint prochain_numero(void)\n{\n    static int compteur = 0;   /* initialisée une seule fois */\n    compteur++;\n    return compteur;\n}\n\nint main(void)\n{\n    printf(\"%d\\n\", prochain_numero());\n    printf(\"%d\\n\", prochain_numero());\n    printf(\"%d\\n\", prochain_numero());\n    return 0;\n}\n```\n\n```text\n1\n2\n3\n```\n\n> Une fonction ne doit **jamais renvoyer l'adresse d'une de ses variables locales** (non `static`) : la variable n'existe plus après le `return`, et l'utiliser est un comportement indéfini. Nous y reviendrons avec les pointeurs.\n\n## La récursivité\n\nUne fonction **récursive** s'appelle elle-même. Il lui faut un **cas de base** qui arrête les appels :\n\n```c\n#include <stdio.h>\n\nunsigned long long factorielle(unsigned int n)\n{\n    if (n <= 1) {\n        return 1;                       /* cas de base */\n    }\n    return n * factorielle(n - 1);      /* appel récursif */\n}\n\nint main(void)\n{\n    printf(\"5! = %llu\\n\", factorielle(5));\n    printf(\"20! = %llu\\n\", factorielle(20));\n    return 0;\n}\n```\n\n```text\n5! = 120\n20! = 2432902008176640000\n```\n\n`%llu` affiche un `unsigned long long`. 21! dépasse la capacité de ce type (64 bits) : le résultat serait faux. Sans cas de base, les appels s'empilent jusqu'à épuiser la **pile** (*stack overflow*) et le programme plante.\n\n## Organiser un programme en plusieurs fichiers\n\nPour un projet plus grand, on range les fonctions dans plusieurs fichiers. On sépare :\n\n- un **fichier d'en-tête** `calcul.h`, qui contient les prototypes ;\n- un **fichier source** `calcul.c`, qui contient les définitions ;\n- le programme principal `main.c`, qui inclut l'en-tête.\n\n```h\n/* calcul.h */\n#ifndef CALCUL_H\n#define CALCUL_H\n\nint carre(int x);\n\n#endif\n```\n\n```c\n/* calcul.c */\n#include \"calcul.h\"\n\nint carre(int x)\n{\n    return x * x;\n}\n```\n\n```c\n/* main.c */\n#include <stdio.h>\n#include \"calcul.h\"\n\nint main(void)\n{\n    printf(\"%d\\n\", carre(7));\n    return 0;\n}\n```\n\n```bash\ngcc -std=c17 -Wall -Wextra -o programme main.c calcul.c\n./programme\n```\n\nLes guillemets `\"calcul.h\"` désignent un en-tête de votre projet, les chevrons `<stdio.h>` un en-tête du système. Les lignes `#ifndef … #define … #endif` (*include guard*) empêchent d'inclure deux fois le même en-tête. Le programme affiche `49`.\n\n## À retenir\n\n- `type_retour nom(type param, …) { … return valeur; }` ; `void` si rien n'est renvoyé.\n- Une fonction doit être déclarée avant d'être appelée : sinon, ajoutez un **prototype**.\n- Les arguments sont **copiés** : modifier un paramètre ne change pas la variable de l'appelant.\n- Variables locales de préférence ; `static` conserve une valeur entre deux appels.\n- Une fonction récursive a toujours un cas de base.\n- Projet en plusieurs fichiers : prototypes dans le `.h`, définitions dans le `.c`.\n\n## Exercices\n\n### Exercice 1 — Maximum\n\nÉcrivez une fonction `int max2(int a, int b)` qui renvoie le plus grand des deux nombres, et testez-la avec (3, 8) et (12, 5).\n\n```solution-c\n#include <stdio.h>\n\nint max2(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nint main(void)\n{\n    printf(\"%d\\n\", max2(3, 8));\n    printf(\"%d\\n\", max2(12, 5));\n    return 0;\n}\n```\n\n```text\n8\n12\n```\n\n### Exercice 2 — Nombre premier\n\nÉcrivez `bool est_premier(int n)` (vrai si `n` n'a que deux diviseurs, 1 et lui-même) et affichez les nombres premiers inférieurs à 30.\n\n```solution-c\n#include <stdio.h>\n#include <stdbool.h>\n\nbool est_premier(int n)\n{\n    if (n < 2) {\n        return false;\n    }\n    for (int d = 2; d * d <= n; d++) {\n        if (n % d == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n\nint main(void)\n{\n    for (int i = 1; i < 30; i++) {\n        if (est_premier(i)) {\n            printf(\"%d \", i);\n        }\n    }\n    printf(\"\\n\");\n    return 0;\n}\n```\n\n```text\n2 3 5 7 11 13 17 19 23 29\n```\n\nIl suffit de tester les diviseurs jusqu'à la racine carrée de `n` (`d * d <= n`).\n\n### Exercice 3 — Puissance récursive\n\nÉcrivez une fonction récursive `long long puissance(int base, int exposant)` (exposant positif ou nul) et calculez 2 puissance 10 et 3 puissance 4.\n\n```solution-c\n#include <stdio.h>\n\nlong long puissance(int base, int exposant)\n{\n    if (exposant == 0) {\n        return 1;\n    }\n    return base * puissance(base, exposant - 1);\n}\n\nint main(void)\n{\n    printf(\"%lld\\n\", puissance(2, 10));\n    printf(\"%lld\\n\", puissance(3, 4));\n    return 0;\n}\n```\n\n```text\n1024\n81\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "098834b3-c678-5acd-8f06-a1b3f6579d00",
+    "title": "Quiz — Contrôle et fonctions",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "fcc45b12-af4d-512f-afe4-2184288e214d",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 0;\n    if (x) {\n        printf(\"oui\\n\");\n    } else {\n        printf(\"non\\n\");\n    }\n    return 0;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "800bff82-14c4-5740-b40c-37d1ee7f7a16",
+        "position": 1,
+        "label": "oui"
+       },
+       {
+        "id": "9b7935f8-992e-53b8-869b-73c40303266b",
+        "position": 2,
+        "label": "non"
+       },
+       {
+        "id": "9370eb5c-d63d-50b7-a06a-fe95c5e97db5",
+        "position": 3,
+        "label": "0"
+       },
+       {
+        "id": "f1ce7cea-b7b2-594a-931b-d9b77ce013c2",
+        "position": 4,
+        "label": "Rien"
+       }
+      ],
+      "correct": [
+       "9b7935f8-992e-53b8-869b-73c40303266b"
+      ],
+      "explanation": "En C, 0 est faux et toute autre valeur est vraie : la condition est fausse, le bloc else s'exécute."
+     },
+     {
+      "id": "e6e55a3b-2d8f-5df1-a7d8-ece7aa9db481",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quel est le problème de if (note = 10) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "659d4b9b-f8a8-5ad5-8af4-7ec830720ecb",
+        "position": 1,
+        "label": "Aucun, c'est une comparaison"
+       },
+       {
+        "id": "db837b61-8c16-58a4-8fc1-d133555f366c",
+        "position": 2,
+        "label": "Il affecte 10 à note, et la condition est toujours vraie"
+       },
+       {
+        "id": "16a490cb-8838-5378-b22c-a6f39ab1e56b",
+        "position": 3,
+        "label": "Il provoque une erreur de compilation"
+       },
+       {
+        "id": "f5fd8767-84f6-568b-a7f2-2791b27247a9",
+        "position": 4,
+        "label": "Il compare l'adresse de note à 10"
+       }
+      ],
+      "correct": [
+       "db837b61-8c16-58a4-8fc1-d133555f366c"
+      ],
+      "explanation": "Un seul = affecte la valeur : note prend la valeur 10, qui est non nulle donc vraie. Il faut écrire ==. -Wall le signale."
+     },
+     {
+      "id": "df2257be-e123-5a25-93c6-448a842ddfdb",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Combien de fois ce code affiche-t-il un message ?",
+      "code": "for (int i = 0; i <= 5; i++) {\n    printf(\"x\\n\");\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "072425bb-f0a8-5757-bbbc-153f39161532",
+        "position": 1,
+        "label": "6"
+       },
+       {
+        "id": "df0fa280-4378-5e80-a0a4-eb8ae4ac05ad",
+        "position": 2,
+        "label": "5"
+       },
+       {
+        "id": "c2293a5a-3c22-51b4-ba1f-825a4c609301",
+        "position": 3,
+        "label": "4"
+       },
+       {
+        "id": "8920f193-f2da-5305-80fd-20393e1f90b9",
+        "position": 4,
+        "label": "Une infinité"
+       }
+      ],
+      "correct": [
+       "072425bb-f0a8-5757-bbbc-153f39161532"
+      ],
+      "explanation": "i prend les valeurs 0, 1, 2, 3, 4 et 5 : six tours. C'est un exemple d'erreur « décalée d'un » si l'on voulait 5 tours."
+     },
+     {
+      "id": "42b6ba33-4a7b-5964-afa5-eef2f277ad2d",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle boucle exécute son bloc au moins une fois ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "34fe6e8c-6a0c-5eaa-b809-d26eb37e9e21",
+        "position": 1,
+        "label": "for"
+       },
+       {
+        "id": "f79439ca-16ef-5f58-bf35-bea864221357",
+        "position": 2,
+        "label": "while"
+       },
+       {
+        "id": "134fd86d-d1fb-5c8b-aa87-66c09d7e24f9",
+        "position": 3,
+        "label": "Aucune"
+       },
+       {
+        "id": "f27ae638-c6e6-55aa-a0ce-c36814582a4b",
+        "position": 4,
+        "label": "do … while"
+       }
+      ],
+      "correct": [
+       "f27ae638-c6e6-55aa-a0ce-c36814582a4b"
+      ],
+      "explanation": "do … while teste la condition après le bloc : celui-ci s'exécute donc toujours une première fois."
+     },
+     {
+      "id": "85aef1d8-c8fc-558b-b9ba-6025e1aea6ab",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Dans un switch, que se passe-t-il si l'on oublie break à la fin d'un case ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b7a22577-00cc-5811-90d1-64f9932df641",
+        "position": 1,
+        "label": "L'exécution continue dans le case suivant"
+       },
+       {
+        "id": "637fc174-8118-500f-bb5c-c706d1d8ff1a",
+        "position": 2,
+        "label": "Une erreur de compilation"
+       },
+       {
+        "id": "a6fc22be-9550-5933-9267-b1a5953e55e2",
+        "position": 3,
+        "label": "Le switch recommence"
+       },
+       {
+        "id": "0c12d806-b427-5189-88ec-122808e17685",
+        "position": 4,
+        "label": "Le default est exécuté immédiatement"
+       }
+      ],
+      "correct": [
+       "b7a22577-00cc-5811-90d1-64f9932df641"
+      ],
+      "explanation": "Sans break, l'exécution « tombe » dans le cas suivant. C'est voulu seulement quand plusieurs cas partagent un même bloc."
+     },
+     {
+      "id": "c93a82bf-c8b5-537b-8521-cd3d2f1a7934",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "#include <stdio.h>\n\nvoid ajouter_un(int n)\n{\n    n = n + 1;\n}\n\nint main(void)\n{\n    int a = 4;\n    ajouter_un(a);\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "f0843e33-8d1b-508b-b28e-d577c8de9e99",
+        "position": 1,
+        "label": "5"
+       },
+       {
+        "id": "03b6b11d-cee1-5db1-b571-72d4bd4e33b9",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "1a658d7b-c7d5-55a2-b6db-75abee971563",
+        "position": 3,
+        "label": "0"
+       },
+       {
+        "id": "aa2e0138-5210-56c2-a4d2-6ffbe0a5610a",
+        "position": 4,
+        "label": "Un comportement indéfini"
+       }
+      ],
+      "correct": [
+       "03b6b11d-cee1-5db1-b571-72d4bd4e33b9"
+      ],
+      "explanation": "Les arguments sont passés par valeur : la fonction modifie une copie, a vaut toujours 4."
+     },
+     {
+      "id": "2d1f1407-196d-5eeb-bc62-49a3439bc25a",
+      "position": 7,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur les fonctions sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3b98cc92-d43c-5d2c-9b14-b5a92429ad37",
+        "position": 1,
+        "label": "Une fonction qui ne renvoie rien a le type de retour void"
+       },
+       {
+        "id": "42df0047-b48f-5427-8605-0e30d1b4ea20",
+        "position": 2,
+        "label": "Un prototype permet d'appeler une fonction définie plus bas dans le fichier"
+       },
+       {
+        "id": "9d0c7c86-cf21-5b60-b129-b0e1759db932",
+        "position": 3,
+        "label": "Une fonction récursive a besoin d'un cas de base"
+       },
+       {
+        "id": "c87d06bb-4ad7-5ef0-9321-279a4b4c5eea",
+        "position": 4,
+        "label": "Une fonction peut renvoyer sans risque l'adresse de sa variable locale"
+       }
+      ],
+      "correct": [
+       "3b98cc92-d43c-5d2c-9b14-b5a92429ad37",
+       "42df0047-b48f-5427-8605-0e30d1b4ea20",
+       "9d0c7c86-cf21-5b60-b129-b0e1759db932"
+      ],
+      "explanation": "Une variable locale disparaît à la fin de la fonction : utiliser son adresse ensuite est un comportement indéfini. Les trois autres affirmations sont exactes."
+     },
+     {
+      "id": "7f44b18d-8de7-5282-ba41-51a11e786e62",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que permet le mot-clé static devant une variable locale ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7f9621dd-482a-5cdb-adcc-d616e2e7db41",
+        "position": 1,
+        "label": "De la rendre constante"
+       },
+       {
+        "id": "6d8c5b6b-906e-5b8d-9f4f-7b6d4c091acc",
+        "position": 2,
+        "label": "De la rendre visible dans tous les fichiers"
+       },
+       {
+        "id": "63c96b80-154c-5f81-a5d2-dc1016c1eadf",
+        "position": 3,
+        "label": "De l'allouer dans le tas"
+       },
+       {
+        "id": "4678d910-f6d2-5d96-bee6-1111d466fa2f",
+        "position": 4,
+        "label": "De conserver sa valeur entre deux appels de la fonction"
+       }
+      ],
+      "correct": [
+       "4678d910-f6d2-5d96-bee6-1111d466fa2f"
+      ],
+      "explanation": "Une variable locale static est initialisée une seule fois et survit entre les appels, tout en restant visible seulement dans la fonction."
+     },
+     {
+      "id": "ee2ebbf9-2c30-58a7-b388-fe506a5e74e4",
+      "position": 9,
+      "kind": "true_false",
+      "prompt": "Dans if (b != 0 && a / b > 2), la division n'est pas effectuée lorsque b vaut 0.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2ca306c3-6ebc-5a34-bf73-fa155cac0228",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "1f4f3fa2-40f0-5921-a9d7-be1455c7a41a",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "2ca306c3-6ebc-5a34-bf73-fa155cac0228"
+      ],
+      "explanation": "&& est évalué de gauche à droite et s'arrête dès que la première partie est fausse : la division par zéro est évitée."
+     },
+     {
+      "id": "c6150f3d-ee1d-5da0-b836-553c7d7a4a47",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Que contient habituellement un fichier d'en-tête .h ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5c82628e-6316-533a-a02d-0f8aa888ef69",
+        "position": 1,
+        "label": "Le code de la fonction main"
+       },
+       {
+        "id": "30f5fb64-5b45-5064-b05b-4faa45f81246",
+        "position": 2,
+        "label": "Le programme compilé"
+       },
+       {
+        "id": "0da98b6e-464f-5b74-9074-8612ff18f28a",
+        "position": 3,
+        "label": "Les prototypes des fonctions et des définitions partagées"
+       },
+       {
+        "id": "a2e6fdaf-ccbd-55f1-8ab5-ad36fd805dbf",
+        "position": 4,
+        "label": "Les options de compilation"
+       }
+      ],
+      "correct": [
+       "0da98b6e-464f-5b74-9074-8612ff18f28a"
+      ],
+      "explanation": "Le .h déclare ce qu'un module offre (prototypes, constantes, types) ; les définitions sont dans le .c correspondant."
+     }
+    ]
+   }
+  },
+  {
+   "id": "089f5317-a20e-5dc4-9a29-4ee127fff192",
+   "position": 3,
+   "title": "Tableaux, chaînes et pointeurs",
+   "description": "Ranger des séries de valeurs, manipuler du texte et comprendre les adresses mémoire.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "cb17c119-376c-5fe7-9e0b-c09be32405d0",
+     "slug": "tableaux-c",
+     "title": "Les tableaux",
+     "summary": "Déclarer, parcourir, passer à une fonction ; dépassements et tableaux 2D.",
+     "content_md": "## Ranger plusieurs valeurs : le tableau\n\nUn **tableau** est une suite de valeurs du **même type**, rangées les unes à la suite des autres en mémoire. Sa taille est fixée à la déclaration.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int notes[5] = {12, 8, 15, 19, 10};\n\n    printf(\"Première note : %d\\n\", notes[0]);\n    printf(\"Dernière note : %d\\n\", notes[4]);\n    notes[1] = 9;   /* modification de la deuxième case */\n    printf(\"Deuxième note corrigée : %d\\n\", notes[1]);\n    return 0;\n}\n```\n\n```text\nPremière note : 12\nDernière note : 10\nDeuxième note corrigée : 9\n```\n\n- les cases sont numérotées **à partir de 0** : un tableau de 5 cases va de `notes[0]` à `notes[4]` ;\n- le numéro entre crochets s'appelle l'**indice** (*index*).\n\nSi l'on fournit moins de valeurs que de cases, les cases restantes valent 0. `int compteurs[26] = {0};` crée ainsi 26 compteurs à zéro. En revanche, un tableau local déclaré **sans** initialisation (`int t[5];`) contient des valeurs imprévisibles.\n\n## Parcourir un tableau\n\nOn parcourt un tableau avec une boucle `for` dont l'indice va de 0 à la taille moins 1. Pour connaître le nombre de cases, on divise la taille totale du tableau par celle d'une case :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int notes[] = {12, 8, 15, 19, 10, 6};\n    size_t n = sizeof notes / sizeof notes[0];\n    int somme = 0;\n    int meilleure = notes[0];\n\n    for (size_t i = 0; i < n; i++) {\n        somme += notes[i];\n        if (notes[i] > meilleure) {\n            meilleure = notes[i];\n        }\n    }\n    printf(\"%zu notes, moyenne %.2f, meilleure %d\\n\", n, (double) somme / n, meilleure);\n    return 0;\n}\n```\n\n```text\n6 notes, moyenne 11.67, meilleure 19\n```\n\nAvec `int notes[] = {…}`, le compilateur compte lui-même les cases. Le type `size_t` est le type naturel d'une taille ou d'un indice (entier non signé, affiché avec `%zu`).\n\n## Le danger n°1 : sortir du tableau\n\nLe C **ne vérifie pas** les indices. Écrire `notes[6]` dans un tableau de 6 cases ne provoque aucune erreur de compilation : le programme lit ou écrit dans la mémoire **située après** le tableau, qui appartient peut-être à une autre variable. C'est un **comportement indéfini** : le programme peut sembler marcher, corrompre silencieusement d'autres données ou planter.\n\nCes **dépassements de tampon** (*buffer overflows*) sont historiquement l'une des principales causes de failles de sécurité : un attaquant qui contrôle les données écrites hors du tableau peut parfois prendre le contrôle du programme.\n\n> Règles de sûreté : boucle `i < n` (jamais `i <= n`), indice toujours vérifié avant usage s'il vient de l'extérieur (saisie, fichier), et taille du tableau toujours transmise avec lui. Au module 4, vous verrez des outils (*sanitizers*) qui détectent ces erreurs à l'exécution.\n\n## Passer un tableau à une fonction\n\nQuand on passe un tableau à une fonction, celle-ci ne reçoit **que l'adresse de sa première case**, pas une copie, et elle ne connaît **pas sa taille**. Il faut donc toujours transmettre la taille en paramètre :\n\n```c\n#include <stdio.h>\n\nvoid afficher(const int t[], size_t n)\n{\n    for (size_t i = 0; i < n; i++) {\n        printf(\"%d \", t[i]);\n    }\n    printf(\"\\n\");\n}\n\nvoid doubler_tout(int t[], size_t n)\n{\n    for (size_t i = 0; i < n; i++) {\n        t[i] *= 2;\n    }\n}\n\nint main(void)\n{\n    int valeurs[] = {1, 2, 3, 4};\n    size_t n = sizeof valeurs / sizeof valeurs[0];\n    afficher(valeurs, n);\n    doubler_tout(valeurs, n);\n    afficher(valeurs, n);\n    return 0;\n}\n```\n\n```text\n1 2 3 4\n2 4 6 8\n```\n\nDeux remarques importantes :\n\n- contrairement aux variables simples, la fonction **modifie le tableau d'origine** : elle travaille sur la même mémoire ;\n- `const` dans `afficher` promet que la fonction ne modifiera pas le tableau ; le compilateur refusera toute écriture. Utilisez-le pour toute fonction en lecture seule.\n\nDans une fonction, `sizeof t` ne donne **pas** la taille du tableau mais celle d'une adresse (gcc vous avertit d'ailleurs avec `-Wall`) : l'astuce `sizeof t / sizeof t[0]` ne fonctionne qu'à l'endroit où le tableau est déclaré.\n\n## Rechercher dans un tableau\n\nUne **recherche linéaire** parcourt le tableau jusqu'à trouver la valeur. Par convention, on renvoie l'indice trouvé, ou -1 si la valeur est absente :\n\n```c\n#include <stdio.h>\n\nint chercher(const int t[], int n, int valeur)\n{\n    for (int i = 0; i < n; i++) {\n        if (t[i] == valeur) {\n            return i;\n        }\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int codes[] = {40, 12, 77, 5};\n    printf(\"77 est à l'indice %d\\n\", chercher(codes, 4, 77));\n    printf(\"99 est à l'indice %d\\n\", chercher(codes, 4, 99));\n    return 0;\n}\n```\n\n```text\n77 est à l'indice 2\n99 est à l'indice -1\n```\n\n## Les tableaux à deux dimensions\n\nUn tableau peut avoir plusieurs dimensions, par exemple des lignes et des colonnes :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int ventes[2][3] = {\n        {10, 20, 30},\n        {5, 15, 25},\n    };\n    for (int magasin = 0; magasin < 2; magasin++) {\n        int total = 0;\n        for (int mois = 0; mois < 3; mois++) {\n            total += ventes[magasin][mois];\n        }\n        printf(\"Magasin %d : %d ventes\\n\", magasin + 1, total);\n    }\n    return 0;\n}\n```\n\n```text\nMagasin 1 : 60 ventes\nMagasin 2 : 45 ventes\n```\n\n`ventes[1][2]` désigne la ligne 1, colonne 2 (en comptant à partir de 0), soit 25. En mémoire, les lignes sont rangées les unes après les autres.\n\n## À retenir\n\n- `int t[5]` : 5 cases, de `t[0]` à `t[4]` ; `{0}` initialise tout à zéro.\n- Nombre de cases : `sizeof t / sizeof t[0]`, uniquement là où le tableau est déclaré.\n- Le C ne vérifie pas les indices : sortir du tableau est un **comportement indéfini**, source de failles.\n- Une fonction reçoit l'adresse du tableau : passez toujours la **taille**, et `const` si elle ne modifie rien.\n- Recherche linéaire : renvoyer l'indice, ou -1 si absent.\n\n## Exercices\n\n### Exercice 1 — Inverser un tableau\n\nÉcrivez `void inverser(int t[], size_t n)` qui inverse l'ordre des éléments sur place, et testez-la sur `{1, 2, 3, 4, 5}`.\n\n```solution-c\n#include <stdio.h>\n\nvoid inverser(int t[], size_t n)\n{\n    for (size_t i = 0; i < n / 2; i++) {\n        int tmp = t[i];\n        t[i] = t[n - 1 - i];\n        t[n - 1 - i] = tmp;\n    }\n}\n\nint main(void)\n{\n    int t[] = {1, 2, 3, 4, 5};\n    size_t n = sizeof t / sizeof t[0];\n    inverser(t, n);\n    for (size_t i = 0; i < n; i++) {\n        printf(\"%d \", t[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n```\n\n```text\n5 4 3 2 1\n```\n\nOn échange la première et la dernière case, puis la deuxième et l'avant-dernière, etc. : `n / 2` échanges suffisent.\n\n### Exercice 2 — Au-dessus de la moyenne\n\nAvec les températures `{18, 22, 25, 19, 30, 27}`, affichez la moyenne puis le nombre de valeurs strictement supérieures à cette moyenne.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int temp[] = {18, 22, 25, 19, 30, 27};\n    size_t n = sizeof temp / sizeof temp[0];\n    int somme = 0;\n    for (size_t i = 0; i < n; i++) {\n        somme += temp[i];\n    }\n    double moyenne = (double) somme / n;\n    int au_dessus = 0;\n    for (size_t i = 0; i < n; i++) {\n        if (temp[i] > moyenne) {\n            au_dessus++;\n        }\n    }\n    printf(\"Moyenne : %.2f\\n\", moyenne);\n    printf(\"Au-dessus : %d\\n\", au_dessus);\n    return 0;\n}\n```\n\n```text\nMoyenne : 23.50\nAu-dessus : 3\n```\n\n### Exercice 3 — Trouvez le bogue\n\nCe code doit additionner les 4 cases du tableau. Quel est le problème ?\n\n```text\nint t[4] = {1, 2, 3, 4};\nint somme = 0;\nfor (int i = 1; i <= 4; i++) {\n    somme += t[i];\n}\n```\n\n```solution-text\nLes indices vont de 0 à 3. La boucle commence à 1 (elle oublie t[0]) et va jusqu'à 4 :\nt[4] est hors du tableau, ce qui est un comportement indéfini.\nCorrection : for (int i = 0; i < 4; i++)\n```",
+     "duration_minutes": 45,
+     "position": 1
+    },
+    {
+     "id": "6d9a3017-cb7b-525e-9478-49c29f5bc0e7",
+     "slug": "pointeurs",
+     "title": "Les pointeurs",
+     "summary": "Adresses, déréférencement, passage par adresse et arithmétique des pointeurs.",
+     "content_md": "## La mémoire et les adresses\n\nLa mémoire de l'ordinateur est une immense suite d'**octets**, chacun repéré par un numéro : son **adresse**. Chaque variable occupe un ou plusieurs octets consécutifs ; son adresse est celle de son premier octet.\n\nL'opérateur `&` donne l'adresse d'une variable. On l'affiche avec `%p`, après une conversion en `void *` (le type « adresse de n'importe quoi ») :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int age = 25;\n    printf(\"Valeur : %d\\n\", age);\n    printf(\"Adresse : %p\\n\", (void *) &age);\n    printf(\"Taille : %zu octets\\n\", sizeof age);\n    return 0;\n}\n```\n\nExemple d'affichage (les adresses changent d'une machine et d'une exécution à l'autre) :\n\n```text\nValeur : 25\nAdresse : 0x7ffd5e8a3b4c\nTaille : 4 octets\n```\n\n## Qu'est-ce qu'un pointeur ?\n\nUn **pointeur** est une variable qui contient une **adresse**. Son type indique ce qui se trouve à cette adresse : `int *` est un « pointeur vers un `int` ».\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int age = 25;\n    int *p = &age;      /* p contient l'adresse de age */\n\n    printf(\"*p vaut %d\\n\", *p);\n    *p = 30;            /* on écrit à l'adresse contenue dans p */\n    printf(\"age vaut maintenant %d\\n\", age);\n    return 0;\n}\n```\n\n```text\n*p vaut 25\nage vaut maintenant 30\n```\n\n| Écriture | Signification |\n|---|---|\n| `int *p;` | déclare un pointeur vers un `int` |\n| `p = &age;` | `p` reçoit l'adresse de `age` |\n| `*p` | la valeur **pointée** (on dit qu'on **déréférence** `p`) |\n| `*p = 30;` | modifie la variable pointée |\n\nLe symbole `*` a donc deux rôles : dans une **déclaration**, il indique un type pointeur ; dans une **expression**, il accède à la valeur pointée.\n\n## Le pointeur nul et les pointeurs non initialisés\n\nUn pointeur qui ne pointe sur rien de valide doit valoir **`NULL`** (défini notamment dans `<stdio.h>` et `<stdlib.h>`). Avant de déréférencer un pointeur qui peut être nul, on le teste :\n\n```c\n#include <stdio.h>\n\nvoid afficher_valeur(const int *p)\n{\n    if (p == NULL) {\n        printf(\"Aucune valeur\\n\");\n        return;\n    }\n    printf(\"Valeur : %d\\n\", *p);\n}\n\nint main(void)\n{\n    int x = 7;\n    afficher_valeur(&x);\n    afficher_valeur(NULL);\n    return 0;\n}\n```\n\n```text\nValeur : 7\nAucune valeur\n```\n\n> Trois erreurs graves, toutes des **comportements indéfinis** : déréférencer `NULL` (en pratique, le programme plante souvent avec une *segmentation fault*), utiliser un pointeur **non initialisé** (`int *p; *p = 3;` écrit à une adresse aléatoire), et utiliser l'adresse d'une variable qui **n'existe plus** (variable locale d'une fonction terminée). Initialisez toujours un pointeur : avec une adresse valide ou avec `NULL`.\n\n## Modifier une variable depuis une fonction\n\nAu module 2, une fonction ne pouvait pas modifier la variable de l'appelant, car elle en recevait une copie. En lui passant l'**adresse** de la variable, elle le peut : c'est le **passage par adresse**.\n\n```c\n#include <stdio.h>\n\nvoid echanger(int *a, int *b)\n{\n    int tmp = *a;\n    *a = *b;\n    *b = tmp;\n}\n\nint main(void)\n{\n    int x = 3, y = 8;\n    echanger(&x, &y);\n    printf(\"x = %d, y = %d\\n\", x, y);\n    return 0;\n}\n```\n\n```text\nx = 8, y = 3\n```\n\nC'est exactement ce que fait `scanf(\"%d\", &age)` : il reçoit l'adresse de `age` pour pouvoir y écrire.\n\nLe passage par adresse sert aussi à **renvoyer plusieurs résultats**. La valeur de retour indique souvent si l'opération a réussi, et les résultats sont écrits via des pointeurs :\n\n```c\n#include <stdio.h>\n#include <stdbool.h>\n\nbool diviser(int a, int b, int *quotient, int *reste)\n{\n    if (b == 0) {\n        return false;\n    }\n    *quotient = a / b;\n    *reste = a % b;\n    return true;\n}\n\nint main(void)\n{\n    int q = 0, r = 0;\n    if (diviser(17, 5, &q, &r)) {\n        printf(\"17 = 5 x %d + %d\\n\", q, r);\n    }\n    if (!diviser(4, 0, &q, &r)) {\n        printf(\"Division par zéro refusée\\n\");\n    }\n    return 0;\n}\n```\n\n```text\n17 = 5 x 3 + 2\nDivision par zéro refusée\n```\n\n## Pointeurs et tableaux\n\nLe nom d'un tableau, utilisé dans une expression, est converti en **l'adresse de sa première case** : `t` équivaut à `&t[0]`. On peut alors **ajouter un entier** à un pointeur : `p + 1` désigne la case **suivante** (le compilateur avance de `sizeof(int)` octets pour un `int *`, pas d'un seul octet).\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    int t[] = {10, 20, 30, 40};\n    int *p = t;          /* équivaut à &t[0] */\n\n    printf(\"%d\\n\", *p);\n    printf(\"%d\\n\", *(p + 2));\n    printf(\"%d\\n\", p[3]);\n    p++;\n    printf(\"%d\\n\", *p);\n    return 0;\n}\n```\n\n```text\n10\n30\n40\n20\n```\n\n`t[i]` et `*(t + i)` sont strictement équivalents : la notation avec crochets n'est qu'une écriture plus lisible. C'est pourquoi une fonction qui reçoit un tableau peut s'écrire indifféremment `void f(int t[], size_t n)` ou `void f(int *t, size_t n)`.\n\nL'arithmétique des pointeurs n'est valable **qu'à l'intérieur d'un même tableau** (ou juste après sa dernière case, sans la déréférencer). Calculer ou lire une adresse au-delà est un comportement indéfini, comme un indice hors limites.\n\n## `const` et pointeurs\n\n`const int *p` signifie « pointeur vers un `int` qu'on ne modifiera pas par ce pointeur ». C'est la façon idiomatique de dire qu'une fonction **lit** une donnée sans la modifier, comme `afficher_valeur` plus haut. Le compilateur refuse alors `*p = 5;`.\n\n## À retenir\n\n- `&x` donne l'adresse de `x` ; un pointeur `int *p` contient une adresse ; `*p` est la valeur pointée.\n- Initialisez toujours un pointeur (adresse valide ou `NULL`) et testez `NULL` avant de déréférencer.\n- Passer `&x` à une fonction lui permet de modifier `x` ou de renvoyer plusieurs résultats.\n- `t[i]` équivaut à `*(t + i)` ; `p + 1` avance d'un élément, pas d'un octet.\n- Restez dans les limites du tableau ; `const` pour les données en lecture seule.\n\n## Exercices\n\n### Exercice 1 — Prédire l'affichage\n\nQu'affiche ce programme ?\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 5;\n    int b = 10;\n    int *p = &a;\n    *p = *p + 1;\n    p = &b;\n    *p = *p * 2;\n    printf(\"a = %d, b = %d\\n\", a, b);\n    return 0;\n}\n```\n\n```text\na = 6, b = 20\n```\n\n`p` pointe d'abord sur `a` (qui passe à 6), puis sur `b` (qui passe à 20).\n\n### Exercice 2 — Minimum et maximum\n\nÉcrivez `void min_max(const int *t, size_t n, int *min, int *max)` (avec `n` au moins égal à 1) et testez-la sur `{7, 2, 9, 4}`.\n\n```solution-c\n#include <stdio.h>\n\nvoid min_max(const int *t, size_t n, int *min, int *max)\n{\n    *min = t[0];\n    *max = t[0];\n    for (size_t i = 1; i < n; i++) {\n        if (t[i] < *min) {\n            *min = t[i];\n        }\n        if (t[i] > *max) {\n            *max = t[i];\n        }\n    }\n}\n\nint main(void)\n{\n    int t[] = {7, 2, 9, 4};\n    int mini = 0, maxi = 0;\n    min_max(t, 4, &mini, &maxi);\n    printf(\"min = %d, max = %d\\n\", mini, maxi);\n    return 0;\n}\n```\n\n```text\nmin = 2, max = 9\n```\n\n### Exercice 3 — Somme avec un pointeur\n\nCalculez la somme du tableau `{3, 6, 9, 12}` en le parcourant **uniquement avec un pointeur** (sans crochets).\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    int t[] = {3, 6, 9, 12};\n    int somme = 0;\n    for (const int *p = t; p < t + 4; p++) {\n        somme += *p;\n    }\n    printf(\"Somme : %d\\n\", somme);\n    return 0;\n}\n```\n\n```text\nSomme : 30\n```\n\n`t + 4` est l'adresse juste après la dernière case : on a le droit de la calculer et de la comparer, mais pas de la déréférencer.",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "f521322d-cf0d-5056-8b47-d3fd6ac3d437",
+     "slug": "chaines-c",
+     "title": "Les chaînes de caractères",
+     "summary": "Le caractère nul, string.h, copies sûres et lecture avec fgets.",
+     "content_md": "## Une chaîne, c'est un tableau de `char`\n\nLe C n'a pas de type « chaîne » à proprement parler. Une **chaîne de caractères** est un tableau de `char` terminé par le **caractère nul** `'\\0'` (l'octet de valeur 0), qui marque la fin du texte.\n\n```c\n#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    char mot[] = \"Bonjour\";\n    printf(\"Texte : %s\\n\", mot);\n    printf(\"strlen : %zu\\n\", strlen(mot));\n    printf(\"sizeof : %zu\\n\", sizeof mot);\n    return 0;\n}\n```\n\n```text\nTexte : Bonjour\nstrlen : 7\nsizeof : 8\n```\n\n`strlen` compte les caractères **avant** le `'\\0'` ; le tableau, lui, occupe une case de plus pour stocker ce `'\\0'`. Retenez-le : **une chaîne de N caractères a besoin de N + 1 octets**.\n\nToutes les fonctions de chaînes parcourent la mémoire **jusqu'au `'\\0'`**. Une chaîne sans `'\\0'` les fait lire au-delà du tableau : comportement indéfini.\n\n## Parcourir une chaîne\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    const char *texte = \"langage C\";\n    int espaces = 0;\n    for (int i = 0; texte[i] != '\\0'; i++) {\n        if (texte[i] == ' ') {\n            espaces++;\n        }\n    }\n    printf(\"%d espace(s)\\n\", espaces);\n    return 0;\n}\n```\n\n```text\n1 espace(s)\n```\n\n## Littéraux et tableaux modifiables\n\n- `char mot[] = \"Bonjour\";` crée un **tableau** initialisé avec une copie du texte : on peut le modifier (`mot[0] = 'b';`).\n- `const char *texte = \"langage C\";` crée un **pointeur** vers un texte constant, stocké dans une zone en lecture seule. Le modifier est un comportement indéfini : déclarez ces pointeurs `const`, le compilateur vous protégera.\n\n## Les fonctions de `<string.h>`\n\n| Fonction | Rôle |\n|---|---|\n| `strlen(s)` | longueur (sans le `'\\0'`) |\n| `strcmp(a, b)` | compare : 0 si égales, négatif si `a` avant `b`, positif sinon |\n| `strcpy(dest, src)` | copie `src` dans `dest` (**sans vérifier la place**) |\n| `strcat(dest, src)` | ajoute `src` à la fin de `dest` (**sans vérifier la place**) |\n| `strchr(s, c)` | adresse de la première occurrence de `c`, ou `NULL` |\n| `strstr(s, motif)` | adresse de la première occurrence de `motif`, ou `NULL` |\n\n**Comparer deux chaînes** : `a == b` compare deux **adresses**, pas les textes ! Utilisez `strcmp` :\n\n```c\n#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    char saisie[] = \"admin\";\n    if (strcmp(saisie, \"admin\") == 0) {\n        printf(\"Identiques\\n\");\n    }\n    printf(\"%d\\n\", strcmp(\"abricot\", \"banane\") < 0);\n    return 0;\n}\n```\n\n```text\nIdentiques\n1\n```\n\n## Copier sans déborder\n\n`strcpy` et `strcat` écrivent sans vérifier la taille du tableau de destination : si le texte est trop long, ils débordent. C'est la cause de nombreuses failles. Préférez **`snprintf`**, qui reçoit la taille de la destination, **coupe** si nécessaire et ajoute toujours le `'\\0'` :\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    char court[8];\n    int n = snprintf(court, sizeof court, \"%s\", \"Bonjour tout le monde\");\n    printf(\"Copié : \\\"%s\\\"\\n\", court);\n    if (n >= (int) sizeof court) {\n        printf(\"Texte tronqué (%d caractères nécessaires)\\n\", n);\n    }\n\n    char message[40];\n    snprintf(message, sizeof message, \"%s a %d ans\", \"Lina\", 22);\n    printf(\"%s\\n\", message);\n    return 0;\n}\n```\n\n```text\nCopié : \"Bonjour\"\nTexte tronqué (21 caractères nécessaires)\nLina a 22 ans\n```\n\n`snprintf` renvoie la longueur qu'**aurait** eue le texte complet : si elle est supérieure ou égale à la taille, le texte a été coupé. Ici, seuls les 7 premiers caractères tiennent : le huitième octet est réservé au `'\\0'`. Lorsque les textes sont connus dès la compilation, comme ici, gcc peut même signaler la troncature par un avertissement `-Wformat-truncation` : dans cet exemple, elle est volontaire.\n\n> `strncpy` semble être la version sûre de `strcpy`, mais elle **n'ajoute pas** le `'\\0'` si le texte est trop long. Elle est donc piégeuse : `snprintf` est plus simple à utiliser correctement.\n\n## Lire une ligne au clavier avec `fgets`\n\n`fgets(tampon, taille, stdin)` lit une ligne en écrivant **au plus** `taille - 1` caractères, puis le `'\\0'` : elle ne peut pas déborder. Elle conserve le retour à la ligne `'\\n'` final s'il y a la place ; on le retire avec `strcspn`, qui donne la position du premier `'\\n'`.\n\n```c\n#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    char nom[32];\n    printf(\"Votre nom : \");\n    if (fgets(nom, sizeof nom, stdin) == NULL) {\n        printf(\"\\nAucune saisie.\\n\");\n        return 0;\n    }\n    nom[strcspn(nom, \"\\n\")] = '\\0';\n    printf(\"Bonjour %s !\\n\", nom);\n    return 0;\n}\n```\n\n`fgets` renvoie `NULL` si rien n'a pu être lu (fin de l'entrée ou erreur). N'utilisez jamais `gets`, qui ne connaît pas la taille du tampon : elle a d'ailleurs été retirée du langage en C11.\n\n## Transformer des caractères : `<ctype.h>`\n\n`toupper`, `tolower`, `isdigit`, `isalpha`, `isspace` travaillent sur un caractère. Passez-leur un `unsigned char` converti, car leur argument doit être positif (ou `EOF`) :\n\n```c\n#include <stdio.h>\n#include <ctype.h>\n\nint main(void)\n{\n    char code[] = \"ab12cd\";\n    int chiffres = 0;\n    for (int i = 0; code[i] != '\\0'; i++) {\n        unsigned char c = (unsigned char) code[i];\n        if (isdigit(c)) {\n            chiffres++;\n        }\n        code[i] = (char) toupper(c);\n    }\n    printf(\"%s (%d chiffres)\\n\", code, chiffres);\n    return 0;\n}\n```\n\n```text\nAB12CD (2 chiffres)\n```\n\nCes fonctions traitent les caractères **un octet à la fois** : les lettres accentuées en UTF-8, qui occupent plusieurs octets, ne sont pas converties correctement.\n\n## À retenir\n\n- Une chaîne = tableau de `char` terminé par `'\\0'` ; N caractères demandent N + 1 octets.\n- `strlen` compte sans le `'\\0'` ; `strcmp(a, b) == 0` pour tester l'égalité, jamais `a == b`.\n- Un littéral pointé par `const char *` ne se modifie pas.\n- `strcpy`, `strcat` et `gets` peuvent déborder : préférez `snprintf` et `fgets`, qui reçoivent la taille.\n- `<ctype.h>` : passez un `unsigned char`.\n\n## Exercices\n\n### Exercice 1 — Votre propre `strlen`\n\nÉcrivez `size_t longueur(const char *s)` sans utiliser `<string.h>`, et testez-la sur `\"pointeur\"`.\n\n```solution-c\n#include <stdio.h>\n\nsize_t longueur(const char *s)\n{\n    size_t n = 0;\n    while (s[n] != '\\0') {\n        n++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    printf(\"%zu\\n\", longueur(\"pointeur\"));\n    printf(\"%zu\\n\", longueur(\"\"));\n    return 0;\n}\n```\n\n```text\n8\n0\n```\n\n### Exercice 2 — Compter une lettre\n\nComptez le nombre de `'e'` dans `\"excellente semaine\"`.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    const char *texte = \"excellente semaine\";\n    int n = 0;\n    for (const char *p = texte; *p != '\\0'; p++) {\n        if (*p == 'e') {\n            n++;\n        }\n    }\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n\n```text\n6\n```\n\n### Exercice 3 — Identifiant sûr\n\nConstruisez dans un tableau `char id[12]` le texte `prenom-annee` à partir de `\"Alexandre\"` et `2025`, sans jamais déborder, et indiquez si le texte a été tronqué.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    char id[12];\n    int n = snprintf(id, sizeof id, \"%s-%d\", \"Alexandre\", 2025);\n    printf(\"%s\\n\", id);\n    printf(\"%s\\n\", n >= (int) sizeof id ? \"tronqué\" : \"complet\");\n    return 0;\n}\n```\n\n```text\nAlexandre-2\ntronqué\n```\n\nLe texte complet `Alexandre-2025` compte 14 caractères : seuls les 11 premiers tiennent avec le `'\\0'`.",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "4b9d7e6b-c6bd-52ec-a553-33e14e8f8abd",
+    "title": "Quiz — Tableaux, chaînes et pointeurs",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "fccd63a9-e1af-5fd5-ba5f-93891d8c6fc3",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Un tableau déclaré int t[8] possède des cases d'indices…",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "84f3523a-031c-58ad-924c-710a353f972c",
+        "position": 1,
+        "label": "1 à 8"
+       },
+       {
+        "id": "4f33ac56-97bd-5369-9c28-1739db9f07c7",
+        "position": 2,
+        "label": "0 à 8"
+       },
+       {
+        "id": "8519141b-4a0e-5996-a261-65b6ed82a56a",
+        "position": 3,
+        "label": "0 à 7"
+       },
+       {
+        "id": "c836980e-b971-597d-8280-25ca98f207f8",
+        "position": 4,
+        "label": "1 à 7"
+       }
+      ],
+      "correct": [
+       "8519141b-4a0e-5996-a261-65b6ed82a56a"
+      ],
+      "explanation": "Les indices commencent à 0 : un tableau de 8 cases va de t[0] à t[7]. t[8] est hors du tableau."
+     },
+     {
+      "id": "85139b16-8b99-5cc0-a42d-b79e87a64522",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que se passe-t-il si un programme écrit dans t[10] alors que t ne compte que 5 cases ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "49f744a6-b9f5-5c0f-b374-0371ee5c22ab",
+        "position": 1,
+        "label": "Le compilateur refuse de compiler"
+       },
+       {
+        "id": "d6717a40-5eb3-5b17-8fcb-62de07629e50",
+        "position": 2,
+        "label": "Le tableau s'agrandit automatiquement"
+       },
+       {
+        "id": "3ef75602-2713-5c58-a864-0d0411da4c80",
+        "position": 3,
+        "label": "Un comportement indéfini : corruption possible ou plantage"
+       },
+       {
+        "id": "4b7bfea7-1d2c-509a-a26f-2bc762ec9bb1",
+        "position": 4,
+        "label": "L'écriture est ignorée"
+       }
+      ],
+      "correct": [
+       "3ef75602-2713-5c58-a864-0d0411da4c80"
+      ],
+      "explanation": "Le C ne vérifie pas les indices : l'écriture touche la mémoire voisine. C'est un comportement indéfini, source de failles de sécurité."
+     },
+     {
+      "id": "976e8951-0521-5027-9933-b464ea8ad7bd",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 4;\n    int *p = &x;\n    *p = *p * 3;\n    printf(\"%d\\n\", x);\n    return 0;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "5f884153-8720-5e76-a34a-31c43ce11108",
+        "position": 1,
+        "label": "4"
+       },
+       {
+        "id": "4070e750-328e-5979-abcc-26b7e699d9c3",
+        "position": 2,
+        "label": "12"
+       },
+       {
+        "id": "3217fef1-8f55-5c5c-aaa5-59948ede5462",
+        "position": 3,
+        "label": "L'adresse de x"
+       },
+       {
+        "id": "e6cf79a6-4641-570f-825f-644fc10b3235",
+        "position": 4,
+        "label": "7"
+       }
+      ],
+      "correct": [
+       "4070e750-328e-5979-abcc-26b7e699d9c3"
+      ],
+      "explanation": "p contient l'adresse de x : *p = *p * 3 modifie directement x, qui vaut 12."
+     },
+     {
+      "id": "9c278bd2-52fe-59b7-9cc2-575651f679c7",
+      "position": 4,
+      "kind": "multiple",
+      "prompt": "Quelles expressions désignent la même valeur que t[2] pour un tableau int t[5] ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4a46b23e-7f65-5b4a-a400-fdd13585ca07",
+        "position": 1,
+        "label": "*(t + 2)"
+       },
+       {
+        "id": "4dfa34d5-1873-55ac-8cf3-48ca9be2f45f",
+        "position": 2,
+        "label": "*t + 2"
+       },
+       {
+        "id": "d74cd358-2c6d-5e03-afe1-98120479bb4f",
+        "position": 3,
+        "label": "2[t]"
+       },
+       {
+        "id": "8c4860f3-5360-5856-85ac-e81885fb3ba3",
+        "position": 4,
+        "label": "&t[2]"
+       }
+      ],
+      "correct": [
+       "4a46b23e-7f65-5b4a-a400-fdd13585ca07",
+       "d74cd358-2c6d-5e03-afe1-98120479bb4f"
+      ],
+      "explanation": "t[i] est défini comme *(t + i), donc aussi *(i + t), ce qui rend 2[t] valide (mais à éviter). *t + 2 ajoute 2 à t[0], et &t[2] est une adresse."
+     },
+     {
+      "id": "e3cb0c34-4799-5c30-a059-afee26c1e8f7",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Pourquoi une fonction qui reçoit un tableau doit-elle aussi recevoir sa taille ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "35ee7d00-c5ad-5019-a4dc-20ade16c99c1",
+        "position": 1,
+        "label": "Parce qu'elle ne reçoit que l'adresse de la première case"
+       },
+       {
+        "id": "54001149-78a5-5eaa-bc6f-4111c5fcfd3d",
+        "position": 2,
+        "label": "Parce que sizeof y est interdit"
+       },
+       {
+        "id": "9e9671fa-79d9-519f-851f-eb8fe4272064",
+        "position": 3,
+        "label": "Parce que les tableaux sont copiés"
+       },
+       {
+        "id": "f076a148-e08c-5ba7-92d7-576425665117",
+        "position": 4,
+        "label": "Ce n'est pas nécessaire"
+       }
+      ],
+      "correct": [
+       "35ee7d00-c5ad-5019-a4dc-20ade16c99c1"
+      ],
+      "explanation": "Le tableau est converti en pointeur vers sa première case : la fonction ne peut pas connaître le nombre d'éléments, sizeof y donne la taille d'une adresse."
+     },
+     {
+      "id": "28136f08-d862-5a83-b071-594716ece396",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Combien d'octets faut-il pour stocker la chaîne \"Paris\" ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b80437eb-9752-5b3c-800a-cc7a2ea50dc2",
+        "position": 1,
+        "label": "5"
+       },
+       {
+        "id": "dd40a56f-044e-5639-9189-9982a4d9d1d5",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "c7740de5-83a8-5091-8c07-651ad0003c85",
+        "position": 3,
+        "label": "6"
+       },
+       {
+        "id": "ba307915-a21d-5f79-8cbb-da79e64e97ee",
+        "position": 4,
+        "label": "7"
+       }
+      ],
+      "correct": [
+       "c7740de5-83a8-5091-8c07-651ad0003c85"
+      ],
+      "explanation": "5 caractères plus le caractère nul '\\0' qui termine la chaîne : 6 octets."
+     },
+     {
+      "id": "faf4c53a-e2b3-5bbc-a7e9-46aa4ab0f8b9",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment tester correctement si deux chaînes a et b ont le même contenu ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "87b2fad1-4ad2-566b-90bf-ef3c622a3e04",
+        "position": 1,
+        "label": "a == b"
+       },
+       {
+        "id": "818ff9f1-44bc-53d0-8f03-3e56fc9f95e2",
+        "position": 2,
+        "label": "strcmp(a, b) == 0"
+       },
+       {
+        "id": "6202dbd2-c2df-5ea2-b71e-b8fd5e6fc953",
+        "position": 3,
+        "label": "strlen(a) == strlen(b)"
+       },
+       {
+        "id": "55e53758-87fc-5fbd-a5de-75fbf5de5b3a",
+        "position": 4,
+        "label": "*a == *b"
+       }
+      ],
+      "correct": [
+       "818ff9f1-44bc-53d0-8f03-3e56fc9f95e2"
+      ],
+      "explanation": "a == b compare deux adresses ; strlen ne compare que les longueurs et *a == *b le premier caractère. strcmp compare le contenu et renvoie 0 si les chaînes sont égales."
+     },
+     {
+      "id": "e4f6e04c-e2d9-585f-9978-88bbe7738783",
+      "position": 8,
+      "kind": "true_false",
+      "prompt": "snprintf(dest, sizeof dest, \"%s\", src) ne peut pas écrire au-delà du tableau dest et le termine toujours par '\\0'.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "d206e68f-4142-5ff4-a052-c20173cfb50b",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "391cc147-ecc3-5e5b-b56d-b07e89a0f8f4",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "d206e68f-4142-5ff4-a052-c20173cfb50b"
+      ],
+      "explanation": "snprintf reçoit la taille de la destination, tronque si nécessaire et ajoute le '\\0' (pour une taille non nulle). C'est la façon sûre de copier ou composer une chaîne."
+     },
+     {
+      "id": "13d29e02-da7c-532a-ad36-f194fb95b209",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Que vaut un pointeur après la déclaration int *p; à l'intérieur d'une fonction ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6aad7061-813b-5847-8176-75faa9e6ec3c",
+        "position": 1,
+        "label": "NULL"
+       },
+       {
+        "id": "ab21b379-8558-5bb4-a8ac-bec9f8814bb3",
+        "position": 2,
+        "label": "L'adresse d'une variable libre"
+       },
+       {
+        "id": "841f2dbd-f1a2-58da-9bcf-43104768ac6d",
+        "position": 3,
+        "label": "Une valeur indéterminée : l'utiliser est un comportement indéfini"
+       },
+       {
+        "id": "a9e60baa-f77f-55ae-bc4f-963b708aacb5",
+        "position": 4,
+        "label": "0x0 garanti"
+       }
+      ],
+      "correct": [
+       "841f2dbd-f1a2-58da-9bcf-43104768ac6d"
+      ],
+      "explanation": "Une variable locale non initialisée, pointeur compris, contient une valeur imprévisible. Il faut l'initialiser avec une adresse valide ou NULL."
+     },
+     {
+      "id": "92f383c4-4583-5c83-a31c-064a8cea4bf9",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quelle fonction lire pour obtenir une ligne au clavier sans risque de débordement ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c5ce53b6-6a5b-537a-af60-bd22da6d1192",
+        "position": 1,
+        "label": "gets"
+       },
+       {
+        "id": "30e22840-155e-5d4f-9393-c78d30c39903",
+        "position": 2,
+        "label": "fgets"
+       },
+       {
+        "id": "d8ccf707-1f5f-5bea-8bb2-bbf748d2b9a4",
+        "position": 3,
+        "label": "scanf(\"%s\", …)"
+       },
+       {
+        "id": "366d8b24-b858-5eff-8b6f-4569e3280e3d",
+        "position": 4,
+        "label": "strcpy"
+       }
+      ],
+      "correct": [
+       "30e22840-155e-5d4f-9393-c78d30c39903"
+      ],
+      "explanation": "fgets reçoit la taille du tampon et n'écrit jamais au-delà. gets a été retirée du langage, scanf(\"%s\") sans largeur peut déborder."
+     }
+    ]
+   }
+  },
+  {
+   "id": "29ad2e29-e7d1-5847-a18d-2e8db6df686b",
+   "position": 4,
+   "title": "Mémoire dynamique et structures",
+   "description": "Allouer et libérer la mémoire, regrouper des données et traquer les erreurs mémoire.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "a6c1a74b-49ed-5bf2-8fd6-554bc2e7177e",
+     "slug": "memoire-dynamique",
+     "title": "Allocation dynamique",
+     "summary": "Pile et tas, malloc, calloc, realloc et free ; fuites et pointeurs pendants.",
+     "content_md": "## La pile et le tas\n\nJusqu'ici, toutes nos variables étaient **automatiques** : déclarées dans une fonction, elles sont rangées dans une zone appelée la **pile** (*stack*) et disparaissent automatiquement à la fin de la fonction. Cette mémoire a deux limites :\n\n- sa **taille doit être connue** à la compilation (un `int t[100]`) ;\n- sa **durée de vie** est celle de la fonction.\n\nPour un nombre d'éléments connu seulement à l'exécution (un fichier de taille inconnue, une liste qui grandit), on utilise le **tas** (*heap*) : une zone où le programme **demande** de la mémoire quand il en a besoin, et la **rend** quand il a fini. C'est l'**allocation dynamique**, déclarée dans `<stdlib.h>`.\n\n| | Pile (variables locales) | Tas (allocation dynamique) |\n|---|---|---|\n| Réservation | automatique | `malloc`, `calloc`, `realloc` |\n| Libération | automatique, en fin de bloc | **manuelle**, avec `free` |\n| Taille | fixée à la compilation | choisie à l'exécution |\n| Durée de vie | celle de la fonction | jusqu'au `free` |\n\n## `malloc` et `free`\n\n`malloc(taille)` réserve `taille` octets et renvoie l'adresse du début de la zone, ou **`NULL`** si la mémoire manque. `free(p)` rend la mémoire.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    size_t n = 5;\n    int *carres = malloc(n * sizeof *carres);\n    if (carres == NULL) {\n        printf(\"Mémoire insuffisante\\n\");\n        return 1;\n    }\n    for (size_t i = 0; i < n; i++) {\n        carres[i] = (int) (i * i);\n    }\n    for (size_t i = 0; i < n; i++) {\n        printf(\"%d \", carres[i]);\n    }\n    printf(\"\\n\");\n    free(carres);\n    carres = NULL;\n    return 0;\n}\n```\n\n```text\n0 1 4 9 16\n```\n\nLes quatre gestes à répéter **à chaque allocation** :\n\n1. calculer la taille avec `sizeof` : `n * sizeof *carres` (la taille d'un élément pointé, qui reste juste même si l'on change le type) ;\n2. **tester `NULL`** avant toute utilisation ;\n3. utiliser la zone comme un tableau, **sans dépasser** les `n` éléments ;\n4. **libérer** avec `free` une fois terminé, puis mettre le pointeur à `NULL`.\n\nLa zone renvoyée par `malloc` n'est **pas initialisée** : elle contient des valeurs imprévisibles tant que vous n'y avez pas écrit.\n\n## `calloc` : une zone remise à zéro\n\n`calloc(nombre, taille_element)` réserve `nombre` éléments et les met tous à zéro :\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int *compteurs = calloc(4, sizeof *compteurs);\n    if (compteurs == NULL) {\n        return 1;\n    }\n    compteurs[2] += 3;\n    for (int i = 0; i < 4; i++) {\n        printf(\"%d \", compteurs[i]);\n    }\n    printf(\"\\n\");\n    free(compteurs);\n    return 0;\n}\n```\n\n```text\n0 0 3 0\n```\n\n## `realloc` : agrandir une zone\n\n`realloc(p, nouvelle_taille)` agrandit (ou réduit) une zone. Elle peut **déplacer** les données ailleurs en mémoire et renvoie alors une nouvelle adresse ; en cas d'échec, elle renvoie `NULL` **sans libérer** l'ancienne zone. D'où le schéma sûr, avec un pointeur temporaire :\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    size_t capacite = 2;\n    int *t = malloc(capacite * sizeof *t);\n    if (t == NULL) {\n        return 1;\n    }\n    t[0] = 10;\n    t[1] = 20;\n\n    size_t nouvelle = capacite * 2;\n    int *tmp = realloc(t, nouvelle * sizeof *t);\n    if (tmp == NULL) {\n        free(t);              /* l'ancienne zone est toujours valide : on la libère */\n        return 1;\n    }\n    t = tmp;\n    capacite = nouvelle;\n    t[2] = 30;\n    t[3] = 40;\n\n    for (size_t i = 0; i < capacite; i++) {\n        printf(\"%d \", t[i]);\n    }\n    printf(\"(capacité %zu)\\n\", capacite);\n    free(t);\n    return 0;\n}\n```\n\n```text\n10 20 30 40 (capacité 4)\n```\n\nÉcrire directement `t = realloc(t, …)` est une erreur classique : en cas d'échec, `t` devient `NULL` et l'adresse de l'ancienne zone est perdue, donc impossible à libérer.\n\n## Une fonction qui alloue\n\nUne fonction peut renvoyer une zone allouée sur le tas : elle survit à la fin de la fonction. **L'appelant devient alors responsable de la libérer**, ce qu'il faut indiquer clairement dans un commentaire.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n/* Renvoie une copie de s allouée sur le tas (à libérer avec free), ou NULL. */\nchar *dupliquer(const char *s)\n{\n    size_t taille = strlen(s) + 1;          /* + 1 pour le '\\0' */\n    char *copie = malloc(taille);\n    if (copie == NULL) {\n        return NULL;\n    }\n    memcpy(copie, s, taille);\n    return copie;\n}\n\nint main(void)\n{\n    char *nom = dupliquer(\"Camille\");\n    if (nom == NULL) {\n        return 1;\n    }\n    nom[0] = 'K';\n    printf(\"%s\\n\", nom);\n    free(nom);\n    return 0;\n}\n```\n\n```text\nKamille\n```\n\nOublier le `+ 1` du `'\\0'` est une erreur fréquente : la copie déborderait d'un octet.\n\n## Les erreurs mémoire à connaître\n\n| Erreur | Description | Conséquence |\n|---|---|---|\n| Fuite de mémoire (*memory leak*) | oublier `free` | la mémoire du programme grossit sans cesse |\n| Utilisation après libération (*use after free*) | utiliser un pointeur après `free` | comportement indéfini, faille possible |\n| Double libération (*double free*) | appeler `free` deux fois sur la même zone | comportement indéfini, souvent un plantage |\n| Libération invalide | `free` sur une adresse non allouée par `malloc` | comportement indéfini |\n| Dépassement (*overflow*) | écrire au-delà de la taille allouée | corruption de la mémoire |\n\nAprès `free(p)`, `p` contient toujours l'ancienne adresse : on parle de **pointeur pendant** (*dangling pointer*). Le mettre à `NULL` juste après le `free` rend une utilisation accidentelle plus facile à détecter, et `free(NULL)` ne fait rien, ce qui protège d'une double libération par ce même pointeur.\n\n## Détecter une fuite avec Valgrind\n\n**Valgrind** (outil libre, disponible sous Linux) exécute votre programme en surveillant chaque accès mémoire. Prenons un programme qui alloue 10 `int` et oublie le `free` :\n\n```bash\ngcc -std=c17 -Wall -Wextra -g -o fuite fuite.c\nvalgrind --leak-check=full ./fuite\n```\n\nExtrait de la sortie (le nombre entre `==` est l'identifiant du processus, il change à chaque fois) :\n\n```text\n==12345== HEAP SUMMARY:\n==12345==     in use at exit: 40 bytes in 1 blocks\n==12345== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1\n==12345==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12345==    by 0x10917E: main (fuite.c:6)\n==12345== LEAK SUMMARY:\n==12345==    definitely lost: 40 bytes in 1 blocks\n```\n\nValgrind indique **40 octets perdus** (10 `int` de 4 octets) et la **ligne de l'allocation** (`fuite.c:6`), grâce à l'option `-g` qui ajoute les informations de débogage. Un programme correct doit afficher `All heap blocks were freed`.\n\n## À retenir\n\n- Le tas sert aux données de taille ou de durée de vie inconnues à la compilation.\n- `malloc(n * sizeof *p)`, **tester `NULL`**, utiliser sans dépasser, `free(p)`, puis `p = NULL`.\n- `calloc` met la zone à zéro ; `realloc` s'utilise avec un pointeur temporaire.\n- Chaque `malloc` doit avoir exactement un `free` ; documentez qui libère.\n- Fuite, *use after free*, *double free*, dépassement : Valgrind les détecte.\n\n## Exercices\n\n### Exercice 1 — Tableau de taille choisie\n\nAllouez dynamiquement un tableau de `n = 6` `double`, remplissez-le avec `i * 0.5`, affichez la somme, puis libérez-le.\n\n```solution-c\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    size_t n = 6;\n    double *t = malloc(n * sizeof *t);\n    if (t == NULL) {\n        return 1;\n    }\n    double somme = 0.0;\n    for (size_t i = 0; i < n; i++) {\n        t[i] = i * 0.5;\n        somme += t[i];\n    }\n    printf(\"Somme : %.1f\\n\", somme);\n    free(t);\n    return 0;\n}\n```\n\n```text\nSomme : 7.5\n```\n\n### Exercice 2 — Concaténer en allouant\n\nÉcrivez `char *concatener(const char *a, const char *b)` qui renvoie une nouvelle chaîne allouée contenant `a` puis `b`. Testez avec `\"pointeur\"` et `\"s\"`.\n\n```solution-c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n/* Résultat à libérer avec free ; NULL si la mémoire manque. */\nchar *concatener(const char *a, const char *b)\n{\n    size_t la = strlen(a), lb = strlen(b);\n    char *r = malloc(la + lb + 1);\n    if (r == NULL) {\n        return NULL;\n    }\n    memcpy(r, a, la);\n    memcpy(r + la, b, lb + 1);   /* copie aussi le '\\0' de b */\n    return r;\n}\n\nint main(void)\n{\n    char *mot = concatener(\"pointeur\", \"s\");\n    if (mot == NULL) {\n        return 1;\n    }\n    printf(\"%s (%zu caractères)\\n\", mot, strlen(mot));\n    free(mot);\n    return 0;\n}\n```\n\n```text\npointeurs (9 caractères)\n```\n\n### Exercice 3 — Trouvez les erreurs\n\nRelevez les trois problèmes de ce code.\n\n```text\nint *t = malloc(3 * sizeof(int));\nt[0] = 1; t[1] = 2; t[2] = 3; t[3] = 4;\nfree(t);\nprintf(\"%d\\n\", t[0]);\n```\n\n```solution-text\n1. Le résultat de malloc n'est pas testé : si t vaut NULL, t[0] = 1 est un comportement indéfini.\n2. t[3] = 4 écrit au-delà des 3 cases allouées (dépassement de tas).\n3. t[0] est lu après free(t) : utilisation après libération.\n```",
+     "duration_minutes": 45,
+     "position": 1
+    },
+    {
+     "id": "3527dd1f-0f7e-5da6-ac42-25e0b2a7a354",
+     "slug": "structures",
+     "title": "Les structures",
+     "summary": "struct, typedef, accès avec . et ->, tableaux de structures, enum.",
+     "content_md": "## Regrouper des données : `struct`\n\nUne **structure** regroupe plusieurs variables, appelées **champs** (ou membres), éventuellement de types différents, sous un même nom. Elle permet de représenter un objet du monde réel : un étudiant, un produit, un point.\n\n```c\n#include <stdio.h>\n\nstruct etudiant {\n    char nom[32];\n    int age;\n    double moyenne;\n};\n\nint main(void)\n{\n    struct etudiant e = {\"Amina\", 21, 14.5};\n    printf(\"%s, %d ans, moyenne %.1f\\n\", e.nom, e.age, e.moyenne);\n    e.age = 22;\n    printf(\"Nouvel âge : %d\\n\", e.age);\n    return 0;\n}\n```\n\n```text\nAmina, 21 ans, moyenne 14.5\nNouvel âge : 22\n```\n\n- la définition `struct etudiant { … };` crée un **nouveau type** (n'oubliez pas le point-virgule final) ;\n- on accède à un champ avec le **point** : `e.age`.\n\n## `typedef` et initialisation nommée\n\n`typedef` donne un nom plus court à un type. Les **initialiseurs désignés** (`.champ = valeur`) rendent l'initialisation lisible et indépendante de l'ordre des champs ; les champs non cités valent 0.\n\n```c\n#include <stdio.h>\n\ntypedef struct {\n    char nom[32];\n    int quantite;\n    double prix;\n} Produit;\n\nint main(void)\n{\n    Produit p = {.nom = \"Clavier\", .prix = 29.90, .quantite = 3};\n    Produit vide = {0};\n    printf(\"%s : %d x %.2f = %.2f\\n\", p.nom, p.quantite, p.prix, p.quantite * p.prix);\n    printf(\"Quantité du produit vide : %d\\n\", vide.quantite);\n    return 0;\n}\n```\n\n```text\nClavier : 3 x 29.90 = 89.70\nQuantité du produit vide : 0\n```\n\n## Structures et fonctions : la flèche `->`\n\nPasser une structure **par valeur** copie tous ses champs : la fonction ne modifie que sa copie, et la copie coûte cher pour une grosse structure. On passe donc généralement un **pointeur**. Pour accéder à un champ via un pointeur, on utilise la **flèche** : `p->prix` est une abréviation de `(*p).prix`.\n\n```c\n#include <stdio.h>\n\ntypedef struct {\n    char nom[32];\n    double prix;\n} Produit;\n\nvoid appliquer_remise(Produit *p, double pourcentage)\n{\n    p->prix = p->prix * (1.0 - pourcentage / 100.0);\n}\n\nvoid afficher(const Produit *p)\n{\n    printf(\"%s : %.2f euros\\n\", p->nom, p->prix);\n}\n\nint main(void)\n{\n    Produit souris = {.nom = \"Souris\", .prix = 20.0};\n    afficher(&souris);\n    appliquer_remise(&souris, 15.0);\n    afficher(&souris);\n    return 0;\n}\n```\n\n```text\nSouris : 20.00 euros\nSouris : 17.00 euros\n```\n\nLe `const` de `afficher` garantit que la fonction ne modifie pas le produit.\n\n## Tableaux de structures\n\n```c\n#include <stdio.h>\n\ntypedef struct {\n    char nom[32];\n    double moyenne;\n} Etudiant;\n\nint main(void)\n{\n    Etudiant classe[] = {\n        {\"Amina\", 14.5},\n        {\"Lucas\", 11.0},\n        {\"Sofia\", 16.25},\n    };\n    size_t n = sizeof classe / sizeof classe[0];\n    size_t meilleur = 0;\n    for (size_t i = 1; i < n; i++) {\n        if (classe[i].moyenne > classe[meilleur].moyenne) {\n            meilleur = i;\n        }\n    }\n    printf(\"Meilleure moyenne : %s (%.2f)\\n\", classe[meilleur].nom, classe[meilleur].moyenne);\n    return 0;\n}\n```\n\n```text\nMeilleure moyenne : Sofia (16.25)\n```\n\n## Copier une structure\n\nL'affectation `b = a;` copie **tous les champs**, y compris les tableaux qu'elle contient. Attention cependant : si un champ est un **pointeur**, seule l'adresse est copiée, pas la zone pointée. Les deux structures partagent alors la même mémoire, et libérer cette zone deux fois (une fois par structure) serait une double libération.\n\n## Allouer une structure sur le tas\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\ntypedef struct {\n    char nom[32];\n    int points;\n} Joueur;\n\nint main(void)\n{\n    Joueur *j = malloc(sizeof *j);\n    if (j == NULL) {\n        return 1;\n    }\n    snprintf(j->nom, sizeof j->nom, \"%s\", \"Nora\");\n    j->points = 120;\n    j->points += 30;\n    printf(\"%s a %d points\\n\", j->nom, j->points);\n    free(j);\n    return 0;\n}\n```\n\n```text\nNora a 150 points\n```\n\nPour remplir un champ texte, utilisez `snprintf` avec `sizeof j->nom` : aucun risque de débordement.\n\n## Les énumérations : `enum`\n\nUne **énumération** donne des noms à une liste de constantes entières. Elle rend le code plus lisible qu'une série de nombres « magiques » :\n\n```c\n#include <stdio.h>\n\ntypedef enum { EN_ATTENTE, PAYEE, EXPEDIEE } Statut;\n\nconst char *statut_texte(Statut s)\n{\n    switch (s) {\n    case EN_ATTENTE:\n        return \"en attente\";\n    case PAYEE:\n        return \"payée\";\n    case EXPEDIEE:\n        return \"expédiée\";\n    }\n    return \"inconnu\";\n}\n\nint main(void)\n{\n    Statut commande = PAYEE;\n    printf(\"Commande %s (code %d)\\n\", statut_texte(commande), commande);\n    return 0;\n}\n```\n\n```text\nCommande payée (code 1)\n```\n\nPar défaut, les valeurs commencent à 0 et augmentent de 1. Avec `-Wall`, gcc signale un `switch` sur une énumération qui oublie l'une des valeurs.\n\n## La taille d'une structure\n\nLa taille d'une structure peut dépasser la somme de ses champs : le compilateur ajoute parfois des octets de **remplissage** (*padding*) pour aligner les champs en mémoire. Utilisez donc toujours `sizeof(Produit)` (ou `sizeof *p`), jamais une somme calculée à la main.\n\n## À retenir\n\n- `typedef struct { … } Nom;` crée un type ; `.champ` pour une variable, `->champ` pour un pointeur.\n- Initialisation nommée : `{.nom = \"…\", .prix = 9.5}` ; `{0}` met tout à zéro.\n- Passez les structures par pointeur (`const` si lecture seule).\n- La copie d'une structure ne copie pas la mémoire pointée par ses champs pointeurs.\n- `enum` pour nommer des constantes ; `sizeof` pour la taille d'une structure.\n\n## Exercices\n\n### Exercice 1 — Rectangle\n\nDéfinissez `Rectangle` (largeur et hauteur en `double`) et deux fonctions `aire` et `perimetre` qui reçoivent un `const Rectangle *`. Testez avec 4 x 2,5.\n\n```solution-c\n#include <stdio.h>\n\ntypedef struct {\n    double largeur;\n    double hauteur;\n} Rectangle;\n\ndouble aire(const Rectangle *r)\n{\n    return r->largeur * r->hauteur;\n}\n\ndouble perimetre(const Rectangle *r)\n{\n    return 2.0 * (r->largeur + r->hauteur);\n}\n\nint main(void)\n{\n    Rectangle r = {.largeur = 4.0, .hauteur = 2.5};\n    printf(\"Aire : %.2f\\n\", aire(&r));\n    printf(\"Périmètre : %.2f\\n\", perimetre(&r));\n    return 0;\n}\n```\n\n```text\nAire : 10.00\nPérimètre : 13.00\n```\n\n### Exercice 2 — Stock total\n\nAvec un tableau de trois `Produit` (nom, quantité, prix) — Stylo 10 x 1.20, Cahier 4 x 3.50, Règle 2 x 2.00 — affichez la valeur totale du stock.\n\n```solution-c\n#include <stdio.h>\n\ntypedef struct {\n    char nom[32];\n    int quantite;\n    double prix;\n} Produit;\n\ndouble valeur_stock(const Produit *t, size_t n)\n{\n    double total = 0.0;\n    for (size_t i = 0; i < n; i++) {\n        total += t[i].quantite * t[i].prix;\n    }\n    return total;\n}\n\nint main(void)\n{\n    Produit stock[] = {\n        {\"Stylo\", 10, 1.20},\n        {\"Cahier\", 4, 3.50},\n        {\"Règle\", 2, 2.00},\n    };\n    printf(\"Valeur du stock : %.2f euros\\n\", valeur_stock(stock, 3));\n    return 0;\n}\n```\n\n```text\nValeur du stock : 30.00 euros\n```\n\n### Exercice 3 — Point milieu\n\nDéfinissez `Point` (x, y en `double`) et une fonction `Point milieu(Point a, Point b)` qui renvoie le milieu du segment. Testez avec (0, 0) et (4, 6).\n\n```solution-c\n#include <stdio.h>\n\ntypedef struct {\n    double x;\n    double y;\n} Point;\n\nPoint milieu(Point a, Point b)\n{\n    Point m = {(a.x + b.x) / 2.0, (a.y + b.y) / 2.0};\n    return m;\n}\n\nint main(void)\n{\n    Point a = {0.0, 0.0};\n    Point b = {4.0, 6.0};\n    Point m = milieu(a, b);\n    printf(\"Milieu : (%.1f, %.1f)\\n\", m.x, m.y);\n    return 0;\n}\n```\n\n```text\nMilieu : (2.0, 3.0)\n```\n\nPour une petite structure comme `Point`, le passage et le retour par valeur sont simples et sans danger.",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "c58d21d5-c0a9-5180-99ae-408573748778",
+     "slug": "surete-memoire",
+     "title": "Sûreté mémoire et outils",
+     "summary": "Comportements indéfinis, sanitizers, Valgrind et tableau dynamique.",
+     "content_md": "## Les comportements indéfinis : récapitulatif\n\nVous avez rencontré plusieurs **comportements indéfinis** (*undefined behavior*). Rappelons ce que cela signifie : la norme du C n'impose **aucun** résultat. Le programme peut fonctionner sur votre machine, échouer chez un client, ou changer de comportement avec une autre option d'optimisation, car le compilateur a le droit de supposer qu'ils n'arrivent jamais.\n\n| Comportement indéfini | Exemple | Prévention |\n|---|---|---|\n| Indice hors limites | `t[n]` dans un tableau de `n` cases | boucles `i < n`, vérifier les indices externes |\n| Variable non initialisée | `int total; total += 5;` | initialiser à la déclaration |\n| Déréférencement de `NULL` | `*p` avec `p == NULL` | tester `NULL` (résultat de `malloc`, `fopen`…) |\n| Utilisation après `free` | lire `p[0]` après `free(p)` | `p = NULL` après `free` |\n| Double `free` | `free(p); free(p);` | un seul propriétaire par zone |\n| Dépassement d'entier signé | `INT_MAX + 1` | vérifier les bornes, types plus grands |\n| Division entière par zéro | `a / 0` | tester le diviseur |\n| Chaîne sans `'\\0'` | `strlen` sur un tableau non terminé | `snprintf`, `fgets` |\n| Mauvais format `printf` | `printf(\"%d\", 2.5)` | compiler avec `-Wall` |\n\nDans un programme exposé à des données extérieures (réseau, fichiers), ces erreurs deviennent des **failles de sécurité** : un dépassement de tampon peut permettre à un attaquant de lire des données secrètes ou d'exécuter son propre code.\n\n## Première ligne de défense : le compilateur\n\nCompilez toujours avec les avertissements, et faites-en des erreurs pendant le développement :\n\n```bash\ngcc -std=c17 -Wall -Wextra -Werror -g -o prog prog.c\n```\n\n`-Werror` transforme chaque avertissement en erreur : impossible de l'ignorer. gcc repère ainsi de nombreuses fautes, par exemple une utilisation après `free` évidente :\n\n```text\nuaf.c:12:5: warning: pointer 'p' used after 'free' [-Wuse-after-free]\n   12 |     printf(\"%d\\n\", *p);   /* erreur : utilisation après libération */\n      |     ^~~~~~~~~~~~~~~~~~\n```\n\nMais le compilateur ne voit pas tout : la plupart des erreurs mémoire dépendent des données et n'apparaissent qu'à l'**exécution**.\n\n## Deuxième ligne de défense : les *sanitizers*\n\nLes **sanitizers** sont des options de gcc et de clang qui ajoutent des vérifications au programme compilé. Le programme est plus lent : on les active pendant le développement et les tests, pas en production.\n\n| Option | Détecte |\n|---|---|\n| `-fsanitize=address` (ASan) | dépassements (tas, pile, globales), *use after free*, *double free*, fuites (sous Linux) |\n| `-fsanitize=undefined` (UBSan) | dépassement d'entier signé, division par zéro, décalages invalides… |\n\nLes deux se combinent : `-fsanitize=address,undefined`. Ajoutez `-g` pour obtenir les numéros de ligne.\n\n**Exemple 1 — un dépassement sur le tas.** Ce programme alloue 5 `int`, mais sa boucle `for (int i = 0; i <= 5; i++)` écrit 6 cases :\n\n```bash\ngcc -std=c17 -Wall -Wextra -g -fsanitize=address -o debord debord.c\n./debord\n```\n\nExtrait du rapport (les adresses varient) :\n\n```text\n==7235==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000054 at pc 0x55ca2d9122c9 bp 0x7ffedd9899b0 sp 0x7ffedd9899a0\nWRITE of size 4 at 0x503000000054 thread T0\n    #0 0x55ca2d9122c8 in main /tmp/cwork/debord.c:11\n\n0x503000000054 is located 0 bytes after 20-byte region [0x503000000040,0x503000000054)\nSUMMARY: AddressSanitizer: heap-buffer-overflow /tmp/cwork/debord.c:11 in main\n```\n\nLe rapport se lit ainsi : une **écriture de 4 octets** (`WRITE of size 4`, un `int`) a eu lieu **juste après** (`0 bytes after`) une zone de **20 octets** (5 `int`), à la **ligne 11** de `debord.c`. Sans ASan, ce même programme s'exécute souvent sans aucun message : le bogue resterait caché.\n\n**Exemple 2 — un dépassement d'entier.** Avec `-fsanitize=undefined`, l'instruction `x = x + 1;` sur un `int` valant `INT_MAX` produit :\n\n```text\nub.c:7:7: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'\n```\n\n## Troisième outil : Valgrind\n\n**Valgrind** (vu à la leçon précédente) n'exige pas de recompiler avec une option spéciale : il exécute le programme dans une machine virtuelle qui surveille la mémoire. Il est plus lent qu'ASan mais pratique pour vérifier les fuites :\n\n```bash\nvalgrind --leak-check=full ./prog\n```\n\nN'utilisez pas Valgrind sur un programme compilé avec `-fsanitize=address` : les deux outils sont incompatibles. Valgrind est disponible principalement sous Linux ; ASan fonctionne aussi sous macOS avec clang.\n\n> Aucun outil ne prouve qu'un programme est correct : ils ne détectent que les erreurs **survenues pendant l'exécution testée**. Testez donc aussi les cas limites : tableau vide, un seul élément, texte très long, fichier absent.\n\n## Mettre en pratique : un tableau dynamique sûr\n\nAssemblons tout ce que vous savez dans une petite bibliothèque de **tableau dynamique** : une structure qui garde l'adresse des données, le nombre d'éléments et la capacité, et qui double sa capacité quand elle est pleine.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n\ntypedef struct {\n    int *donnees;\n    size_t taille;     /* nombre d'éléments utilisés */\n    size_t capacite;   /* nombre d'éléments alloués */\n} Tableau;\n\nvoid tab_init(Tableau *t)\n{\n    t->donnees = NULL;\n    t->taille = 0;\n    t->capacite = 0;\n}\n\nbool tab_ajouter(Tableau *t, int valeur)\n{\n    if (t->taille == t->capacite) {\n        size_t nouvelle = t->capacite == 0 ? 4 : t->capacite * 2;\n        int *tmp = realloc(t->donnees, nouvelle * sizeof *tmp);\n        if (tmp == NULL) {\n            return false;            /* l'ancien contenu reste intact */\n        }\n        t->donnees = tmp;\n        t->capacite = nouvelle;\n    }\n    t->donnees[t->taille] = valeur;\n    t->taille++;\n    return true;\n}\n\nbool tab_lire(const Tableau *t, size_t i, int *valeur)\n{\n    if (i >= t->taille) {\n        return false;                /* indice refusé au lieu d'un dépassement */\n    }\n    *valeur = t->donnees[i];\n    return true;\n}\n\nvoid tab_liberer(Tableau *t)\n{\n    free(t->donnees);\n    tab_init(t);                     /* plus de pointeur pendant */\n}\n\nint main(void)\n{\n    Tableau t;\n    tab_init(&t);\n    for (int i = 1; i <= 10; i++) {\n        if (!tab_ajouter(&t, i * 10)) {\n            tab_liberer(&t);\n            return 1;\n        }\n    }\n    printf(\"Taille %zu, capacité %zu\\n\", t.taille, t.capacite);\n\n    int v = 0;\n    if (tab_lire(&t, 9, &v)) {\n        printf(\"Élément 9 : %d\\n\", v);\n    }\n    if (!tab_lire(&t, 10, &v)) {\n        printf(\"Indice 10 refusé\\n\");\n    }\n    tab_liberer(&t);\n    printf(\"Après libération : taille %zu\\n\", t.taille);\n    return 0;\n}\n```\n\n```text\nTaille 10, capacité 16\nÉlément 9 : 100\nIndice 10 refusé\nAprès libération : taille 0\n```\n\nLes choix de sûreté de ce code :\n\n- `realloc(NULL, …)` se comporte comme `malloc` : le premier ajout fonctionne sans cas particulier ;\n- un échec d'allocation est **signalé** (`false`) au lieu de faire planter le programme ;\n- `tab_lire` **vérifie l'indice** : l'accès hors limites devient une erreur gérée ;\n- `tab_liberer` remet la structure dans un état vide et cohérent : un second appel ne provoque pas de double libération, car `free(NULL)` ne fait rien.\n\nCompilé avec `-fsanitize=address,undefined` ou exécuté sous Valgrind, ce programme ne signale aucune erreur ni fuite.\n\n## À retenir\n\n- Un comportement indéfini peut rester invisible longtemps : il faut le **prévenir** et le **chercher**.\n- Développez avec `-Wall -Wextra -Werror -g`.\n- Testez avec `-fsanitize=address,undefined` ; vérifiez les fuites avec ASan ou `valgrind --leak-check=full`.\n- Les outils ne voient que les chemins exécutés : testez les cas limites.\n- Encapsulez la mémoire dans des fonctions (`init`, `ajouter`, `liberer`) qui vérifient tout.\n\n## Exercices\n\n### Exercice 1 — Somme d'un tableau dynamique\n\nAjoutez au tableau dynamique une fonction `long long tab_somme(const Tableau *t)` et vérifiez-la avec les valeurs 5, 15 et 25.\n\n```solution-c\n#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n\ntypedef struct {\n    int *donnees;\n    size_t taille;\n    size_t capacite;\n} Tableau;\n\nbool tab_ajouter(Tableau *t, int valeur)\n{\n    if (t->taille == t->capacite) {\n        size_t nouvelle = t->capacite == 0 ? 4 : t->capacite * 2;\n        int *tmp = realloc(t->donnees, nouvelle * sizeof *tmp);\n        if (tmp == NULL) {\n            return false;\n        }\n        t->donnees = tmp;\n        t->capacite = nouvelle;\n    }\n    t->donnees[t->taille++] = valeur;\n    return true;\n}\n\nlong long tab_somme(const Tableau *t)\n{\n    long long somme = 0;\n    for (size_t i = 0; i < t->taille; i++) {\n        somme += t->donnees[i];\n    }\n    return somme;\n}\n\nint main(void)\n{\n    Tableau t = {NULL, 0, 0};\n    int valeurs[] = {5, 15, 25};\n    for (size_t i = 0; i < 3; i++) {\n        if (!tab_ajouter(&t, valeurs[i])) {\n            free(t.donnees);\n            return 1;\n        }\n    }\n    printf(\"Somme : %lld\\n\", tab_somme(&t));\n    free(t.donnees);\n    return 0;\n}\n```\n\n```text\nSomme : 45\n```\n\n`long long` évite un dépassement si la somme de nombreux `int` devient grande.\n\n### Exercice 2 — Quel outil ?\n\nPour chaque situation, indiquez l'outil le plus adapté : (a) savoir si un programme déjà compilé libère toute sa mémoire, sans le recompiler ; (b) détecter un dépassement d'entier signé ; (c) repérer `if (x = 3)` avant même d'exécuter.\n\n```solution-text\n(a) Valgrind : valgrind --leak-check=full ./prog (aucune recompilation nécessaire, même si -g aide à lire le rapport).\n(b) UndefinedBehaviorSanitizer : compiler avec -fsanitize=undefined.\n(c) Les avertissements du compilateur : -Wall (option -Wparentheses), idéalement avec -Werror.\n```\n\n### Exercice 3 — Corriger une fuite\n\nCe programme fuit : `char *a = dupliquer(\"x\"); a = dupliquer(\"y\"); free(a);`. Expliquez pourquoi et corrigez-le.\n\n```solution-text\nLa première zone (copie de \"x\") n'est jamais libérée : son adresse est écrasée par la\nseconde affectation, elle est donc perdue. Il faut libérer avant de réaffecter :\nchar *a = dupliquer(\"x\");\nfree(a);\na = dupliquer(\"y\");\nfree(a);\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "a1aa6e86-b5fb-53ee-a68d-2ac86c9f039a",
+    "title": "Quiz — Mémoire dynamique et structures",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "687fa689-aa4f-5fd2-a506-6facf1c4b335",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que faut-il faire juste après un appel à malloc ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1c967c3a-5d21-5650-ba8f-5f58c3b99cb5",
+        "position": 1,
+        "label": "Appeler free"
+       },
+       {
+        "id": "2f401bc3-5d9b-5769-b5b1-d3e4a518855a",
+        "position": 2,
+        "label": "Appeler realloc"
+       },
+       {
+        "id": "95ed887a-e64a-575d-8fb4-31d85df581f9",
+        "position": 3,
+        "label": "Rien de particulier"
+       },
+       {
+        "id": "e10958b3-9275-5a48-ab84-bb0f062842ca",
+        "position": 4,
+        "label": "Tester si le résultat vaut NULL"
+       }
+      ],
+      "correct": [
+       "e10958b3-9275-5a48-ab84-bb0f062842ca"
+      ],
+      "explanation": "malloc renvoie NULL si la mémoire manque ; utiliser ce pointeur serait un comportement indéfini. On teste donc toujours le résultat."
+     },
+     {
+      "id": "30831f45-c3f7-57b3-8dc4-d4a971490814",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle est la différence entre malloc et calloc ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "67e54327-36fd-514e-bf99-eaac5f515f4c",
+        "position": 1,
+        "label": "calloc met la zone allouée à zéro"
+       },
+       {
+        "id": "46aa1cfe-dff9-56d3-b8ff-ac5b48bdf082",
+        "position": 2,
+        "label": "malloc alloue sur la pile"
+       },
+       {
+        "id": "fb7ed82b-8935-50e6-8506-ca9751909ef1",
+        "position": 3,
+        "label": "calloc ne nécessite pas de free"
+       },
+       {
+        "id": "878d2edf-a379-5925-a6d9-6c78ffedf226",
+        "position": 4,
+        "label": "Aucune"
+       }
+      ],
+      "correct": [
+       "67e54327-36fd-514e-bf99-eaac5f515f4c"
+      ],
+      "explanation": "calloc(n, taille) alloue n éléments et les initialise à zéro ; malloc laisse un contenu indéterminé. Les deux nécessitent free."
+     },
+     {
+      "id": "cb2af033-72f1-5d8f-8de2-b195bc664654",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Pourquoi éviter t = realloc(t, nouvelle_taille); ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c55addc8-b783-5fc1-b8ba-061ae0f2ebce",
+        "position": 1,
+        "label": "realloc ne peut pas agrandir"
+       },
+       {
+        "id": "82b0fb87-59df-5226-a580-3b3757d03248",
+        "position": 2,
+        "label": "En cas d'échec, t devient NULL et l'ancienne zone est perdue (fuite)"
+       },
+       {
+        "id": "83b17fb6-280d-5901-978a-91b2dce3cb15",
+        "position": 3,
+        "label": "realloc libère toujours t"
+       },
+       {
+        "id": "110fe094-66de-53e9-b7e3-bc9430b65bf5",
+        "position": 4,
+        "label": "Cela provoque une erreur de compilation"
+       }
+      ],
+      "correct": [
+       "82b0fb87-59df-5226-a580-3b3757d03248"
+      ],
+      "explanation": "Si realloc échoue, elle renvoie NULL sans libérer l'ancienne zone. Avec un pointeur temporaire, on garde l'adresse pour la libérer ou continuer."
+     },
+     {
+      "id": "a568d657-4302-5db3-9f03-8aa9597f1d77",
+      "position": 4,
+      "kind": "multiple",
+      "prompt": "Lesquelles de ces situations sont des comportements indéfinis ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "497f71f2-0805-5984-99c6-a5c27c807269",
+        "position": 1,
+        "label": "Lire une zone après l'avoir libérée avec free"
+       },
+       {
+        "id": "9c8326d3-b14a-54e0-8a61-985f6865a0a6",
+        "position": 2,
+        "label": "Appeler free deux fois sur la même adresse"
+       },
+       {
+        "id": "334315d1-ed87-557e-9093-d2a5d0345043",
+        "position": 3,
+        "label": "Appeler free(NULL)"
+       },
+       {
+        "id": "74da8a9b-a9c8-5ab9-97a7-b39079fe9b2b",
+        "position": 4,
+        "label": "Écrire une case après la fin d'une zone allouée"
+       }
+      ],
+      "correct": [
+       "497f71f2-0805-5984-99c6-a5c27c807269",
+       "9c8326d3-b14a-54e0-8a61-985f6865a0a6",
+       "74da8a9b-a9c8-5ab9-97a7-b39079fe9b2b"
+      ],
+      "explanation": "free(NULL) est explicitement autorisé et ne fait rien. Les trois autres sont des comportements indéfinis : use after free, double free et dépassement."
+     },
+     {
+      "id": "f880c5e7-3ecf-5904-9e24-e7df324e985b",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Comment accéder au champ prix d'une structure à partir d'un pointeur p vers cette structure ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e753bc4-8a51-5f18-a4cf-d3d2afb28a23",
+        "position": 1,
+        "label": "p.prix"
+       },
+       {
+        "id": "607493a5-3e82-52be-8c84-4b4fc53dfc9f",
+        "position": 2,
+        "label": "*p.prix"
+       },
+       {
+        "id": "d418f57c-6919-5163-9f5f-f31df9aab59d",
+        "position": 3,
+        "label": "p->prix"
+       },
+       {
+        "id": "38a1eee4-6017-50ae-8e13-eb1550d864f2",
+        "position": 4,
+        "label": "&p.prix"
+       }
+      ],
+      "correct": [
+       "d418f57c-6919-5163-9f5f-f31df9aab59d"
+      ],
+      "explanation": "p->prix est l'abréviation de (*p).prix. *p.prix est interprété comme *(p.prix), ce qui est incorrect."
+     },
+     {
+      "id": "69d473ff-9702-5b11-bee2-c0276f4c2d5f",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Qu'est-ce qu'une fuite de mémoire ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "14c00241-22f4-5806-9a5e-61e8e24b5a05",
+        "position": 1,
+        "label": "Une zone allouée jamais libérée et dont l'adresse est perdue"
+       },
+       {
+        "id": "28540b13-2ef6-59f0-8751-8e51c3c15624",
+        "position": 2,
+        "label": "Une écriture hors d'un tableau"
+       },
+       {
+        "id": "d6034f52-0784-555d-bfc0-0ab8868a02ce",
+        "position": 3,
+        "label": "Un pointeur NULL"
+       },
+       {
+        "id": "c3cfdea1-dbae-5e8f-ab4c-df8b2dd3ad80",
+        "position": 4,
+        "label": "Une variable non initialisée"
+       }
+      ],
+      "correct": [
+       "14c00241-22f4-5806-9a5e-61e8e24b5a05"
+      ],
+      "explanation": "Une fuite survient quand une zone allouée n'est jamais rendue avec free ; la mémoire utilisée par le programme grossit inutilement."
+     },
+     {
+      "id": "29d103fd-2d70-507e-8864-0c06081345a0",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quel outil s'active en ajoutant une option à la compilation pour détecter dépassements et use after free ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a9ab8901-911d-5129-8194-56399c457de4",
+        "position": 1,
+        "label": "Valgrind"
+       },
+       {
+        "id": "4658d113-515c-58e2-b112-b6fa87af8338",
+        "position": 2,
+        "label": "gdb"
+       },
+       {
+        "id": "e73c434e-93d9-55d9-aefc-2960840b522b",
+        "position": 3,
+        "label": "-fsanitize=address"
+       },
+       {
+        "id": "e53a270f-0c91-5cb8-a1d0-3b589f109c61",
+        "position": 4,
+        "label": "-O2"
+       }
+      ],
+      "correct": [
+       "e73c434e-93d9-55d9-aefc-2960840b522b"
+      ],
+      "explanation": "AddressSanitizer s'active avec -fsanitize=address. Valgrind s'utilise sans recompiler, gdb est un débogueur et -O2 une option d'optimisation."
+     },
+     {
+      "id": "f163e97f-1af9-5790-a895-ab681a1293c7",
+      "position": 8,
+      "kind": "true_false",
+      "prompt": "Copier une structure avec b = a; copie aussi la mémoire pointée par ses champs pointeurs.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "80a405a8-ceb8-57f4-87f5-98d704ce674b",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "e73c5fdb-6209-5066-bd32-a629ae67d134",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "e73c5fdb-6209-5066-bd32-a629ae67d134"
+      ],
+      "explanation": "Seule l'adresse contenue dans un champ pointeur est copiée : a et b partagent alors la même zone, qu'il ne faut libérer qu'une fois."
+     },
+     {
+      "id": "a6bd1e79-26c8-5b04-ad03-8443371a1987",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Pourquoi utiliser sizeof(struct …) plutôt que la somme des tailles des champs ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "880f4450-4a17-5e55-874c-e9c9b06bf31b",
+        "position": 1,
+        "label": "Parce que sizeof est plus rapide"
+       },
+       {
+        "id": "20fc5181-83eb-504c-a523-f7626c08155f",
+        "position": 2,
+        "label": "Parce que les champs n'ont pas de taille"
+       },
+       {
+        "id": "d9b65221-8a4b-5f00-9dbf-b1c293ebc880",
+        "position": 3,
+        "label": "Parce que le compilateur peut ajouter des octets de remplissage (padding)"
+       },
+       {
+        "id": "28a330ef-2308-57ce-85e7-51e43efd3aac",
+        "position": 4,
+        "label": "Il n'y a aucune différence possible"
+       }
+      ],
+      "correct": [
+       "d9b65221-8a4b-5f00-9dbf-b1c293ebc880"
+      ],
+      "explanation": "Pour aligner les champs, le compilateur peut insérer du remplissage : la taille réelle peut dépasser la somme des champs. sizeof donne toujours la bonne valeur."
+     },
+     {
+      "id": "82affa46-7c8b-5c42-8a6b-5d7386fec4d8",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Un programme passe tous ses tests sous AddressSanitizer sans rapport. Que peut-on en conclure ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "64e81466-6ff1-5fcb-b8aa-ff3f390b1893",
+        "position": 1,
+        "label": "Qu'il ne contient aucune erreur mémoire"
+       },
+       {
+        "id": "7d7e21f6-0ec6-5845-a1d3-2fea3433cf0f",
+        "position": 2,
+        "label": "Qu'aucune erreur détectable n'est survenue sur les chemins exécutés par ces tests"
+       },
+       {
+        "id": "42cc48f8-b094-57ae-83a5-6eb09de86e7b",
+        "position": 3,
+        "label": "Qu'il peut être compilé sans -Wall"
+       },
+       {
+        "id": "5ae0613e-44f0-5d89-9bd6-d8d3739780f4",
+        "position": 4,
+        "label": "Qu'il ne contient aucun comportement indéfini"
+       }
+      ],
+      "correct": [
+       "7d7e21f6-0ec6-5845-a1d3-2fea3433cf0f"
+      ],
+      "explanation": "Les sanitizers ne contrôlent que ce qui est réellement exécuté. D'autres entrées peuvent révéler des erreurs : il faut tester aussi les cas limites."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c130167e-0e6d-5f52-9784-f1b43cdba8b3",
+   "position": 5,
+   "title": "Fichiers et mini-projet",
+   "description": "Lire et écrire des fichiers, gérer les erreurs, puis réaliser un programme complet.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "d092b889-252a-54ae-ae8f-e72a8e323d89",
+     "slug": "fichiers-texte",
+     "title": "Fichiers texte",
+     "summary": "fopen, fprintf, fgets, fclose et gestion des erreurs.",
+     "content_md": "## Pourquoi des fichiers ?\n\nLes variables disparaissent quand le programme s'arrête. Pour **conserver** des données (scores, réglages, inventaire), on les écrit dans un **fichier**. La bibliothèque `<stdio.h>` fournit tout le nécessaire, à travers le type `FILE *` : un pointeur vers une structure qui représente un fichier ouvert (on parle de **flux**, *stream*).\n\nVous utilisez déjà trois flux ouverts automatiquement : `stdin` (le clavier), `stdout` (l'écran) et `stderr` (l'écran, réservé aux messages d'erreur).\n\n## Ouvrir et fermer : `fopen` et `fclose`\n\n`fopen(chemin, mode)` ouvre un fichier et renvoie un `FILE *`, ou **`NULL`** en cas d'échec (fichier absent, droits insuffisants, dossier inexistant…).\n\n| Mode | Effet | Si le fichier n'existe pas |\n|---|---|---|\n| `\"r\"` | lecture | échec (`NULL`) |\n| `\"w\"` | écriture, **efface** le contenu existant | il est créé |\n| `\"a\"` | ajout à la fin (*append*) | il est créé |\n| `\"r+\"` | lecture et écriture | échec |\n| `\"rb\"`, `\"wb\"`… | même chose en mode **binaire** | (voir leçon suivante) |\n\nChaque `fopen` réussi doit être suivi d'un **`fclose`** : il vide les données encore en attente dans la mémoire tampon vers le disque et libère les ressources. Un fichier non fermé est une **fuite**, comme un `malloc` sans `free`.\n\n## Écrire dans un fichier : `fprintf`\n\n`fprintf` fonctionne comme `printf`, avec un premier argument supplémentaire : le fichier.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"notes.txt\", \"w\");\n    if (f == NULL) {\n        perror(\"notes.txt\");\n        return 1;\n    }\n    fprintf(f, \"Amina 15\\n\");\n    fprintf(f, \"Lucas 12\\n\");\n    fprintf(f, \"Sofia 17\\n\");\n    if (fclose(f) != 0) {\n        perror(\"fclose\");\n        return 1;\n    }\n    printf(\"Fichier écrit.\\n\");\n    return 0;\n}\n```\n\n```text\nFichier écrit.\n```\n\n`perror` affiche sur `stderr` le texte fourni suivi de la cause de la dernière erreur système, par exemple `notes.txt: Permission denied`. `fclose` peut lui-même échouer (disque plein) : pour un fichier écrit, tester son retour est une bonne habitude.\n\n## Lire ligne par ligne : `fgets`\n\nLa façon la plus sûre de lire un fichier texte est `fgets`, qui lit **une ligne à la fois** dans un tampon de taille connue, sans jamais déborder. Elle renvoie `NULL` à la fin du fichier.\n\n```c\n#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"courses.txt\", \"w\");\n    if (f == NULL) {\n        perror(\"courses.txt\");\n        return 1;\n    }\n    fprintf(f, \"pain\\nlait\\npommes\\n\");\n    fclose(f);\n\n    f = fopen(\"courses.txt\", \"r\");\n    if (f == NULL) {\n        perror(\"courses.txt\");\n        return 1;\n    }\n    char ligne[128];\n    int numero = 1;\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        ligne[strcspn(ligne, \"\\n\")] = '\\0';\n        printf(\"%d. %s\\n\", numero, ligne);\n        numero++;\n    }\n    fclose(f);\n    return 0;\n}\n```\n\n```text\n1. pain\n2. lait\n3. pommes\n```\n\n> Si une ligne dépasse la taille du tampon, `fgets` la lit en plusieurs morceaux : le morceau lu ne se termine alors pas par `'\\n'`. Choisissez une taille confortable et, pour un programme robuste, détectez ce cas.\n\n## Lire caractère par caractère : `fgetc`\n\n`fgetc(f)` renvoie le caractère suivant, ou la constante **`EOF`** (*end of file*) à la fin. Son résultat est un **`int`**, pas un `char` : `EOF` est une valeur négative distincte de tous les caractères, et la stocker dans un `char` empêcherait de la reconnaître de façon fiable.\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"texte.txt\", \"w\");\n    if (f == NULL) {\n        return 1;\n    }\n    fprintf(f, \"Le C\\nest un langage\\ncompilé.\\n\");\n    fclose(f);\n\n    f = fopen(\"texte.txt\", \"r\");\n    if (f == NULL) {\n        return 1;\n    }\n    int c;\n    int lignes = 0, caracteres = 0;\n    while ((c = fgetc(f)) != EOF) {\n        caracteres++;\n        if (c == '\\n') {\n            lignes++;\n        }\n    }\n    fclose(f);\n    printf(\"%d lignes, %d octets\\n\", lignes, caracteres);\n    return 0;\n}\n```\n\n```text\n3 lignes, 30 octets\n```\n\nLe décompte est en **octets** : le `é` de « compilé » en occupe deux en UTF-8.\n\n## Gérer un fichier absent\n\nAvant d'ouvrir un fichier en lecture, on ne peut pas savoir s'il existe : il faut **toujours** tester le résultat de `fopen`. La variable `errno` (déclarée dans `<errno.h>`) contient alors le code de l'erreur, que `strerror` traduit en texte :\n\n```c\n#include <stdio.h>\n#include <string.h>\n#include <errno.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"inexistant.txt\", \"r\");\n    if (f == NULL) {\n        printf(\"Impossible d'ouvrir le fichier : %s\\n\", strerror(errno));\n        return 0;\n    }\n    fclose(f);\n    return 0;\n}\n```\n\n```text\nImpossible d'ouvrir le fichier : No such file or directory\n```\n\nLe texte du message dépend du système et de sa langue. Sous Linux et macOS, `fopen` renseigne `errno` ; la norme du C ne l'exige pas, d'où l'intérêt de `perror` et `strerror` plutôt que de codes écrits en dur.\n\n## Ajouter à la fin : le mode `\"a\"`\n\nLe mode `\"a\"` est idéal pour un **journal** (*log*) : chaque exécution ajoute ses lignes sans effacer les précédentes.\n\n```c\n#include <stdio.h>\n\nint journaliser(const char *message)\n{\n    FILE *f = fopen(\"journal.txt\", \"a\");\n    if (f == NULL) {\n        return -1;\n    }\n    fprintf(f, \"%s\\n\", message);\n    return fclose(f);\n}\n\nint main(void)\n{\n    journaliser(\"Démarrage\");\n    journaliser(\"Traitement terminé\");\n\n    FILE *f = fopen(\"journal.txt\", \"r\");\n    if (f == NULL) {\n        return 1;\n    }\n    char ligne[100];\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        printf(\"> %s\", ligne);\n    }\n    fclose(f);\n    return 0;\n}\n```\n\n```text\n> Démarrage\n> Traitement terminé\n```\n\n## À retenir\n\n- `FILE *f = fopen(chemin, mode)` puis **tester `NULL`** ; toujours `fclose(f)`.\n- `\"w\"` efface, `\"a\"` ajoute, `\"r\"` lit et échoue si le fichier n'existe pas.\n- Écrire : `fprintf` ; lire une ligne : `fgets` dans un tampon de taille connue.\n- `fgetc` renvoie un `int` à comparer à `EOF`.\n- `perror` et `strerror(errno)` expliquent la cause d'un échec.\n\n## Exercices\n\n### Exercice 1 — Table dans un fichier\n\nÉcrivez la table de 9 (de 1 à 5) dans `table9.txt`, puis relisez le fichier et affichez son contenu.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"table9.txt\", \"w\");\n    if (f == NULL) {\n        perror(\"table9.txt\");\n        return 1;\n    }\n    for (int i = 1; i <= 5; i++) {\n        fprintf(f, \"9 x %d = %d\\n\", i, 9 * i);\n    }\n    fclose(f);\n\n    f = fopen(\"table9.txt\", \"r\");\n    if (f == NULL) {\n        perror(\"table9.txt\");\n        return 1;\n    }\n    char ligne[64];\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        printf(\"%s\", ligne);\n    }\n    fclose(f);\n    return 0;\n}\n```\n\n```text\n9 x 1 = 9\n9 x 2 = 18\n9 x 3 = 27\n9 x 4 = 36\n9 x 5 = 45\n```\n\n### Exercice 2 — Copier un fichier\n\nÉcrivez `int copier(const char *source, const char *destination)` qui copie un fichier caractère par caractère et renvoie 0 en cas de succès, -1 sinon. Testez-la.\n\n```solution-c\n#include <stdio.h>\n\nint copier(const char *source, const char *destination)\n{\n    FILE *in = fopen(source, \"r\");\n    if (in == NULL) {\n        return -1;\n    }\n    FILE *out = fopen(destination, \"w\");\n    if (out == NULL) {\n        fclose(in);              /* ne pas oublier le premier fichier */\n        return -1;\n    }\n    int c;\n    while ((c = fgetc(in)) != EOF) {\n        fputc(c, out);\n    }\n    fclose(in);\n    return fclose(out) == 0 ? 0 : -1;\n}\n\nint main(void)\n{\n    FILE *f = fopen(\"original.txt\", \"w\");\n    if (f == NULL) {\n        return 1;\n    }\n    fprintf(f, \"Bonjour\\n\");\n    fclose(f);\n\n    printf(\"Copie : %d\\n\", copier(\"original.txt\", \"copie.txt\"));\n    printf(\"Source absente : %d\\n\", copier(\"absent.txt\", \"copie2.txt\"));\n    return 0;\n}\n```\n\n```text\nCopie : 0\nSource absente : -1\n```\n\nRemarquez le `fclose(in)` dans le cas d'échec : chaque chemin de sortie de la fonction doit fermer ce qui a été ouvert.",
+     "duration_minutes": 40,
+     "position": 1
+    },
+    {
+     "id": "ca6bf729-dc71-5677-b7ef-6414d3ad9df0",
+     "slug": "fichiers-donnees",
+     "title": "Analyser et enregistrer des données",
+     "summary": "Lire un fichier ligne par ligne, sscanf, strtol et fichiers binaires.",
+     "content_md": "## Des données structurées dans un fichier texte\n\nUn format très courant pour échanger des données est le **CSV** (*comma-separated values*) : une ligne par enregistrement, des champs séparés par un caractère (souvent `,` ou `;`). Par exemple, un fichier `ventes.csv` :\n\n```text\nStylo;10;1.20\nCahier;4;3.50\nRègle;2;2.00\n```\n\nPour le lire, on combine `fgets` (une ligne à la fois) et `sscanf` (analyser la ligne).\n\n## Analyser une ligne avec `sscanf`\n\n```c\n#include <stdio.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"ventes.csv\", \"w\");\n    if (f == NULL) {\n        return 1;\n    }\n    fprintf(f, \"Stylo;10;1.20\\nCahier;4;3.50\\nligne invalide\\nRègle;2;2.00\\n\");\n    fclose(f);\n\n    f = fopen(\"ventes.csv\", \"r\");\n    if (f == NULL) {\n        perror(\"ventes.csv\");\n        return 1;\n    }\n    char ligne[128];\n    char nom[32];\n    int quantite;\n    double prix;\n    double total = 0.0;\n    int numero = 0;\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        numero++;\n        if (sscanf(ligne, \"%31[^;];%d;%lf\", nom, &quantite, &prix) != 3) {\n            printf(\"Ligne %d ignorée\\n\", numero);\n            continue;\n        }\n        printf(\"%-8s %3d x %5.2f\\n\", nom, quantite, prix);\n        total += quantite * prix;\n    }\n    fclose(f);\n    printf(\"Total : %.2f\\n\", total);\n    return 0;\n}\n```\n\n```text\nStylo     10 x  1.20\nCahier     4 x  3.50\nLigne 3 ignorée\nRègle     2 x  2.00\nTotal : 30.00\n```\n\nLe format `%31[^;]` signifie : « lire au plus **31** caractères différents de `;` ». Deux points essentiels :\n\n- **la largeur 31** protège le tableau `nom[32]` (31 caractères + `'\\0'`). Un `%s` ou `%[^;]` sans largeur déborderait sur une ligne trop longue : c'est une faille classique ;\n- le **retour de `sscanf`** (3 valeurs attendues) permet d'ignorer proprement une ligne mal formée au lieu d'utiliser des variables non remplies.\n\nL'alignement de `Règle` est décalé d'un espace : `é` occupe deux octets en UTF-8 et `%-8s` compte des octets.\n\n## Convertir un texte en nombre avec contrôle : `strtol`\n\n`sscanf(\"12abc\", \"%d\", &n)` accepte `12` et ignore la suite sans le signaler. Pour une **validation stricte**, on utilise `strtol` (*string to long*) de `<stdlib.h>`, qui indique où la conversion s'est arrêtée :\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n#include <errno.h>\n#include <limits.h>\n\nbool lire_entier(const char *texte, int *resultat)\n{\n    char *fin = NULL;\n    errno = 0;\n    long valeur = strtol(texte, &fin, 10);\n    if (fin == texte || *fin != '\\0') {\n        return false;                 /* rien lu, ou caractères en trop */\n    }\n    if (errno == ERANGE || valeur < INT_MIN || valeur > INT_MAX) {\n        return false;                 /* nombre trop grand */\n    }\n    *resultat = (int) valeur;\n    return true;\n}\n\nint main(void)\n{\n    const char *essais[] = {\"42\", \"-7\", \"12abc\", \"\", \"99999999999999999999\"};\n    for (int i = 0; i < 5; i++) {\n        int n = 0;\n        if (lire_entier(essais[i], &n)) {\n            printf(\"\\\"%s\\\" -> %d\\n\", essais[i], n);\n        } else {\n            printf(\"\\\"%s\\\" -> invalide\\n\", essais[i]);\n        }\n    }\n    return 0;\n}\n```\n\n```text\n\"42\" -> 42\n\"-7\" -> -7\n\"12abc\" -> invalide\n\"\" -> invalide\n\"99999999999999999999\" -> invalide\n```\n\n- `fin` reçoit l'adresse du premier caractère **non converti** : s'il ne pointe pas sur le `'\\0'` final, il reste des caractères en trop ;\n- si le nombre dépasse la capacité d'un `long`, `strtol` met `errno` à `ERANGE` ;\n- le dernier argument, `10`, est la base (décimale).\n\n> Toute donnée venant de l'extérieur (fichier, saisie, réseau) doit être **validée** avant d'être utilisée, surtout si elle sert d'indice de tableau ou de taille d'allocation.\n\n## Les fichiers binaires : `fwrite` et `fread`\n\nUn fichier **binaire** contient directement les octets de la mémoire, sans conversion en texte. On l'ouvre avec `\"wb\"` ou `\"rb\"` et on utilise `fwrite(adresse, taille_element, nombre, f)` et `fread(...)`, qui renvoient le **nombre d'éléments** réellement écrits ou lus.\n\n```c\n#include <stdio.h>\n\ntypedef struct {\n    int id;\n    double solde;\n} Compte;\n\nint main(void)\n{\n    Compte comptes[3] = {{1, 120.5}, {2, 0.0}, {3, 87.25}};\n    FILE *f = fopen(\"comptes.bin\", \"wb\");\n    if (f == NULL) {\n        return 1;\n    }\n    size_t ecrits = fwrite(comptes, sizeof comptes[0], 3, f);\n    fclose(f);\n    printf(\"%zu comptes écrits\\n\", ecrits);\n\n    Compte relus[3];\n    f = fopen(\"comptes.bin\", \"rb\");\n    if (f == NULL) {\n        return 1;\n    }\n    size_t lus = fread(relus, sizeof relus[0], 3, f);\n    fclose(f);\n    for (size_t i = 0; i < lus; i++) {\n        printf(\"Compte %d : %.2f\\n\", relus[i].id, relus[i].solde);\n    }\n    return 0;\n}\n```\n\n```text\n3 comptes écrits\nCompte 1 : 120.50\nCompte 2 : 0.00\nCompte 3 : 87.25\n```\n\n| | Fichier texte | Fichier binaire |\n|---|---|---|\n| Lisible par un humain | oui | non |\n| Taille | souvent plus grande | compacte |\n| Portabilité entre machines | bonne | **fragile** : tailles des types, remplissage des structures et ordre des octets peuvent différer |\n| Usage typique | configuration, export, échange | cache local, données volumineuses |\n\nPour des données échangées entre programmes ou machines, préférez un **format texte** bien défini.\n\n## Codes de retour du programme\n\n`<stdlib.h>` définit `EXIT_SUCCESS` et `EXIT_FAILURE`, plus explicites que `0` et `1`. Le code de retour de `main` est récupérable par le terminal (`echo $?` sous Linux et macOS) : les scripts s'en servent pour savoir si un programme a réussi.\n\n## À retenir\n\n- Lire un fichier structuré : `fgets` + `sscanf`, en testant le nombre de valeurs lues.\n- Toujours une **largeur** pour lire du texte : `%31s`, `%31[^;]` pour un tableau de 32 octets.\n- `strtol` + contrôle de `fin` et `errno` pour valider strictement un nombre.\n- `fwrite` / `fread` en mode `\"wb\"` / `\"rb\"` ; vérifiez le nombre d'éléments traités.\n- Le binaire est compact mais peu portable ; le texte est préférable pour l'échange.\n\n## Exercices\n\n### Exercice 1 — Moyenne d'un fichier de notes\n\nCréez un fichier `notes.txt` contenant une note entière par ligne (12, 15, 9, 18), relisez-le avec `fgets` et `sscanf`, et affichez la moyenne.\n\n```solution-c\n#include <stdio.h>\n\nint main(void)\n{\n    FILE *f = fopen(\"notes.txt\", \"w\");\n    if (f == NULL) {\n        return 1;\n    }\n    fprintf(f, \"12\\n15\\n9\\n18\\n\");\n    fclose(f);\n\n    f = fopen(\"notes.txt\", \"r\");\n    if (f == NULL) {\n        return 1;\n    }\n    char ligne[32];\n    int somme = 0, nb = 0, note;\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        if (sscanf(ligne, \"%d\", &note) == 1) {\n            somme += note;\n            nb++;\n        }\n    }\n    fclose(f);\n    if (nb > 0) {\n        printf(\"Moyenne de %d notes : %.2f\\n\", nb, (double) somme / nb);\n    }\n    return 0;\n}\n```\n\n```text\nMoyenne de 4 notes : 13.50\n```\n\nLe test `nb > 0` évite une division par zéro si le fichier est vide.\n\n### Exercice 2 — Valider un âge\n\nAvec la fonction `lire_entier` de la leçon, écrivez `bool lire_age(const char *texte, int *age)` qui n'accepte que les entiers de 0 à 130. Testez `\"34\"`, `\"-2\"` et `\"trente\"`.\n\n```solution-c\n#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n#include <errno.h>\n#include <limits.h>\n\nbool lire_entier(const char *texte, int *resultat)\n{\n    char *fin = NULL;\n    errno = 0;\n    long valeur = strtol(texte, &fin, 10);\n    if (fin == texte || *fin != '\\0' || errno == ERANGE || valeur < INT_MIN || valeur > INT_MAX) {\n        return false;\n    }\n    *resultat = (int) valeur;\n    return true;\n}\n\nbool lire_age(const char *texte, int *age)\n{\n    int n = 0;\n    if (!lire_entier(texte, &n) || n < 0 || n > 130) {\n        return false;\n    }\n    *age = n;\n    return true;\n}\n\nint main(void)\n{\n    const char *essais[] = {\"34\", \"-2\", \"trente\"};\n    for (int i = 0; i < 3; i++) {\n        int age = 0;\n        printf(\"%s : %s\\n\", essais[i], lire_age(essais[i], &age) ? \"valide\" : \"refusé\");\n    }\n    return 0;\n}\n```\n\n```text\n34 : valide\n-2 : refusé\ntrente : refusé\n```",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "6dec7d52-c729-5376-b176-8dc89d64bef2",
+     "slug": "mini-projet-c",
+     "title": "Mini-projet : gestionnaire d'inventaire",
+     "summary": "Structures, tableau dynamique, fichiers et libération de la mémoire.",
+     "content_md": "## Le projet\n\nPour terminer, vous allez réaliser un **gestionnaire d'inventaire** en ligne de commande, qui mobilise toute la formation :\n\n- une **structure** `Article` (nom, quantité, prix) ;\n- un **tableau dynamique** d'articles qui grandit avec `realloc` ;\n- des **fonctions** avec passage par pointeur et `const` ;\n- des **chaînes** copiées sans débordement avec `snprintf` ;\n- la **sauvegarde** dans un fichier CSV et le **rechargement** avec `fgets` et `sscanf` ;\n- une **libération** complète de la mémoire, vérifiable avec les sanitizers.\n\n## Étape 1 — Les types\n\n```h\ntypedef struct {\n    char nom[32];\n    int quantite;\n    double prix;\n} Article;\n\ntypedef struct {\n    Article *articles;   /* zone allouée sur le tas */\n    size_t taille;       /* nombre d'articles utilisés */\n    size_t capacite;     /* nombre d'articles alloués */\n} Inventaire;\n```\n\nC'est le même principe que le tableau dynamique du module 4, appliqué à des structures.\n\n## Étape 2 — Le programme complet\n\nLisez attentivement chaque fonction : chacune vérifie ses entrées et signale ses échecs.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <stdbool.h>\n\ntypedef struct {\n    char nom[32];\n    int quantite;\n    double prix;\n} Article;\n\ntypedef struct {\n    Article *articles;\n    size_t taille;\n    size_t capacite;\n} Inventaire;\n\nvoid inv_init(Inventaire *inv)\n{\n    inv->articles = NULL;\n    inv->taille = 0;\n    inv->capacite = 0;\n}\n\nvoid inv_liberer(Inventaire *inv)\n{\n    free(inv->articles);\n    inv_init(inv);\n}\n\n/* Renvoie l'indice de l'article, ou -1 s'il est absent. */\nlong inv_trouver(const Inventaire *inv, const char *nom)\n{\n    for (size_t i = 0; i < inv->taille; i++) {\n        if (strcmp(inv->articles[i].nom, nom) == 0) {\n            return (long) i;\n        }\n    }\n    return -1;\n}\n\n/* Ajoute un article, ou augmente sa quantité s'il existe déjà. */\nbool inv_ajouter(Inventaire *inv, const char *nom, int quantite, double prix)\n{\n    if (quantite < 0 || prix < 0.0 || strlen(nom) >= sizeof inv->articles[0].nom) {\n        return false;                       /* données refusées */\n    }\n    long i = inv_trouver(inv, nom);\n    if (i >= 0) {\n        inv->articles[i].quantite += quantite;\n        inv->articles[i].prix = prix;\n        return true;\n    }\n    if (inv->taille == inv->capacite) {\n        size_t nouvelle = inv->capacite == 0 ? 2 : inv->capacite * 2;\n        Article *tmp = realloc(inv->articles, nouvelle * sizeof *tmp);\n        if (tmp == NULL) {\n            return false;\n        }\n        inv->articles = tmp;\n        inv->capacite = nouvelle;\n    }\n    Article *a = &inv->articles[inv->taille];\n    snprintf(a->nom, sizeof a->nom, \"%s\", nom);\n    a->quantite = quantite;\n    a->prix = prix;\n    inv->taille++;\n    return true;\n}\n\nbool inv_retirer(Inventaire *inv, const char *nom, int quantite)\n{\n    long i = inv_trouver(inv, nom);\n    if (i < 0 || quantite < 0 || inv->articles[i].quantite < quantite) {\n        return false;\n    }\n    inv->articles[i].quantite -= quantite;\n    return true;\n}\n\ndouble inv_valeur(const Inventaire *inv)\n{\n    double total = 0.0;\n    for (size_t i = 0; i < inv->taille; i++) {\n        total += inv->articles[i].quantite * inv->articles[i].prix;\n    }\n    return total;\n}\n\nvoid inv_afficher(const Inventaire *inv)\n{\n    printf(\"%-12s %8s %8s\\n\", \"Article\", \"Quantité\", \"Prix\");\n    for (size_t i = 0; i < inv->taille; i++) {\n        const Article *a = &inv->articles[i];\n        printf(\"%-12s %8d %8.2f\\n\", a->nom, a->quantite, a->prix);\n    }\n    printf(\"Valeur totale : %.2f euros\\n\", inv_valeur(inv));\n}\n\nbool inv_sauvegarder(const Inventaire *inv, const char *chemin)\n{\n    FILE *f = fopen(chemin, \"w\");\n    if (f == NULL) {\n        return false;\n    }\n    for (size_t i = 0; i < inv->taille; i++) {\n        const Article *a = &inv->articles[i];\n        fprintf(f, \"%s;%d;%.2f\\n\", a->nom, a->quantite, a->prix);\n    }\n    return fclose(f) == 0;\n}\n\n/* Ajoute à inv les articles du fichier ; renvoie le nombre de lignes ignorées, ou -1. */\nint inv_charger(Inventaire *inv, const char *chemin)\n{\n    FILE *f = fopen(chemin, \"r\");\n    if (f == NULL) {\n        return -1;\n    }\n    char ligne[128];\n    char nom[32];\n    int quantite;\n    double prix;\n    int ignorees = 0;\n    while (fgets(ligne, sizeof ligne, f) != NULL) {\n        if (sscanf(ligne, \"%31[^;];%d;%lf\", nom, &quantite, &prix) != 3\n            || !inv_ajouter(inv, nom, quantite, prix)) {\n            ignorees++;\n        }\n    }\n    fclose(f);\n    return ignorees;\n}\n\nint main(void)\n{\n    Inventaire inv;\n    inv_init(&inv);\n\n    inv_ajouter(&inv, \"Clavier\", 5, 29.90);\n    inv_ajouter(&inv, \"Souris\", 12, 14.50);\n    inv_ajouter(&inv, \"Ecran\", 3, 189.00);\n    inv_ajouter(&inv, \"Souris\", 3, 14.50);   /* article existant : quantité cumulée */\n    if (!inv_retirer(&inv, \"Ecran\", 5)) {\n        printf(\"Retrait impossible : stock insuffisant\\n\");\n    }\n    inv_retirer(&inv, \"Clavier\", 2);\n    inv_afficher(&inv);\n\n    if (!inv_sauvegarder(&inv, \"inventaire.csv\")) {\n        printf(\"Échec de la sauvegarde\\n\");\n        inv_liberer(&inv);\n        return EXIT_FAILURE;\n    }\n    inv_liberer(&inv);\n\n    /* Rechargement dans un inventaire neuf */\n    FILE *f = fopen(\"inventaire.csv\", \"a\");\n    if (f != NULL) {\n        fprintf(f, \"ligne abîmée\\n\");        /* simulons une ligne corrompue */\n        fclose(f);\n    }\n    Inventaire copie;\n    inv_init(&copie);\n    int ignorees = inv_charger(&copie, \"inventaire.csv\");\n    printf(\"\\nRechargé : %zu articles, %d ligne(s) ignorée(s)\\n\", copie.taille, ignorees);\n    printf(\"Valeur totale : %.2f euros\\n\", inv_valeur(&copie));\n    inv_liberer(&copie);\n    return EXIT_SUCCESS;\n}\n```\n\n```text\nRetrait impossible : stock insuffisant\nArticle      Quantité     Prix\nClavier             3    29.90\nSouris             15    14.50\nEcran               3   189.00\nValeur totale : 874.20 euros\n\nRechargé : 3 articles, 1 ligne(s) ignorée(s)\nValeur totale : 874.20 euros\n```\n\nL'en-tête `Quantité` paraît décalé d'un espace pour la même raison que précédemment : `%8s` compte les octets, et `é` en occupe deux.\n\n## Étape 3 — Comprendre les choix de conception\n\n| Fonction | Garantie de sûreté |\n|---|---|\n| `inv_ajouter` | refuse les quantités et prix négatifs et les noms trop longs ; `realloc` via un pointeur temporaire ; copie du nom avec `snprintf` |\n| `inv_retirer` | refuse un article absent ou un stock insuffisant au lieu de passer en négatif |\n| `inv_trouver` | renvoie -1 plutôt qu'un indice invalide |\n| `inv_charger` | largeur `%31` dans `sscanf`, ligne mal formée ignorée et comptée |\n| `inv_sauvegarder` | teste `fopen` et `fclose` |\n| `inv_liberer` | libère et remet la structure à zéro : aucun pointeur pendant |\n\nChaque `fopen` a son `fclose`, chaque allocation est libérée par `inv_liberer`, sur **tous** les chemins de sortie de `main`, y compris celui d'erreur.\n\n## Étape 4 — Vérifier avec les outils\n\nCompilez avec tous les avertissements et les sanitizers, puis exécutez :\n\n```bash\ngcc -std=c17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -o inventaire inventaire.c\n./inventaire\n```\n\nLe programme doit afficher le même résultat **sans aucun rapport** d'ASan ou d'UBSan. Faites ensuite l'expérience : supprimez l'appel `inv_liberer(&copie);` à la fin de `main`, recompilez et relancez. Sous Linux, LeakSanitizer signale alors une fuite (`detected memory leaks`) et indique la ligne du `realloc` responsable. Remettez l'appel en place.\n\nVous pouvez aussi vérifier une version compilée **sans** sanitizer avec `valgrind --leak-check=full ./inventaire`.\n\n## Étape 5 — Pour aller plus loin\n\nQuelques améliorations à réaliser seul, dans l'ordre de difficulté :\n\n1. **Supprimer un article** : décaler les articles suivants d'une case vers la gauche, puis décrémenter `taille`.\n2. **Trier** l'inventaire par valeur décroissante avec la fonction standard `qsort` de `<stdlib.h>`.\n3. **Menu interactif** : lire des commandes au clavier avec `fgets` (`ajouter Clavier 2 29.90`, `afficher`, `quitter`) et les analyser avec `sscanf`, en validant chaque saisie.\n4. **Plusieurs fichiers** : déplacer les types et prototypes dans `inventaire.h`, les fonctions dans `inventaire.c`, et garder `main` dans `main.c`.\n\nVoici deux pistes corrigées, sur un tableau simple d'articles pour rester court.\n\n**Suppression par décalage** :\n\n```c\n#include <stdio.h>\n#include <string.h>\n\ntypedef struct {\n    char nom[32];\n    int quantite;\n} Article;\n\n/* Supprime l'article d'indice i ; renvoie la nouvelle taille. */\nsize_t supprimer(Article *t, size_t n, size_t i)\n{\n    if (i >= n) {\n        return n;                      /* indice invalide : rien à faire */\n    }\n    memmove(&t[i], &t[i + 1], (n - i - 1) * sizeof t[0]);\n    return n - 1;\n}\n\nint main(void)\n{\n    Article t[] = {{\"Clavier\", 3}, {\"Souris\", 15}, {\"Ecran\", 3}};\n    size_t n = supprimer(t, 3, 1);\n    for (size_t i = 0; i < n; i++) {\n        printf(\"%s (%d)\\n\", t[i].nom, t[i].quantite);\n    }\n    return 0;\n}\n```\n\n```text\nClavier (3)\nEcran (3)\n```\n\n`memmove` copie un bloc d'octets en gérant correctement le cas où source et destination se chevauchent (ce que `memcpy` ne garantit pas).\n\n**Tri avec `qsort`** : `qsort` reçoit le tableau, le nombre d'éléments, la taille d'un élément et une **fonction de comparaison** qui renvoie un nombre négatif, nul ou positif.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct {\n    char nom[32];\n    int quantite;\n    double prix;\n} Article;\n\nint comparer_valeur_desc(const void *a, const void *b)\n{\n    const Article *x = a;\n    const Article *y = b;\n    double vx = x->quantite * x->prix;\n    double vy = y->quantite * y->prix;\n    return (vx < vy) - (vx > vy);      /* ordre décroissant */\n}\n\nint main(void)\n{\n    Article t[] = {\n        {\"Clavier\", 3, 29.90},\n        {\"Souris\", 15, 14.50},\n        {\"Ecran\", 3, 189.00},\n    };\n    size_t n = sizeof t / sizeof t[0];\n    qsort(t, n, sizeof t[0], comparer_valeur_desc);\n    for (size_t i = 0; i < n; i++) {\n        printf(\"%-8s %7.2f\\n\", t[i].nom, t[i].quantite * t[i].prix);\n    }\n    return 0;\n}\n```\n\n```text\nEcran     567.00\nSouris    217.50\nClavier    89.70\n```\n\nL'expression `(vx < vy) - (vx > vy)` donne 1, 0 ou -1 sans risque de dépassement, contrairement à une soustraction convertie en `int`.\n\n## À retenir\n\n- Un programme C solide se construit avec des **fonctions courtes** qui vérifient leurs entrées et **signalent** leurs échecs.\n- Chaque ressource (mémoire, fichier) a un propriétaire et est libérée sur tous les chemins.\n- Les entrées externes (fichiers, saisies) sont lues avec des **largeurs** et **validées**.\n- `-Wall -Wextra -Werror` et `-fsanitize=address,undefined` font partie du développement, pas d'une étape facultative.\n- Bravo : vous savez maintenant écrire, compiler, déboguer et sécuriser un programme C complet.",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e2f190ff-5d05-57a7-a076-95a92c363030",
+    "title": "Quiz — Fichiers et mini-projet",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "6acde94d-fe9e-5a1e-8034-186b90af71e3",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que renvoie fopen si le fichier ne peut pas être ouvert ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4fa9bda9-616b-5058-b4cb-36e1dbdaa394",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "17c1426c-3dd2-5e7b-8079-c46aa2833a98",
+        "position": 2,
+        "label": "EOF"
+       },
+       {
+        "id": "05d8f9e7-9f1c-5299-881f-308487e2dea5",
+        "position": 3,
+        "label": "NULL"
+       },
+       {
+        "id": "82fcf912-667d-581f-a205-c7e542d795fd",
+        "position": 4,
+        "label": "-1"
+       }
+      ],
+      "correct": [
+       "05d8f9e7-9f1c-5299-881f-308487e2dea5"
+      ],
+      "explanation": "fopen renvoie un FILE * ; en cas d'échec, c'est NULL, qu'il faut tester avant toute lecture ou écriture."
+     },
+     {
+      "id": "e3cf1cdc-3357-59f0-bc04-8d88f6eff084",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quel mode d'ouverture ajoute des lignes à la fin d'un fichier sans effacer son contenu ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7de59b67-baf7-5864-baa3-f7dbfb154f2b",
+        "position": 1,
+        "label": "\"w\""
+       },
+       {
+        "id": "b767c5bf-ad80-526c-9a3a-eedee2151ce3",
+        "position": 2,
+        "label": "\"r\""
+       },
+       {
+        "id": "8466150a-717f-59f6-b9ca-9a69bda48fb0",
+        "position": 3,
+        "label": "\"r+\""
+       },
+       {
+        "id": "ce007bbd-e5d2-5160-8f35-f1242ed9e546",
+        "position": 4,
+        "label": "\"a\""
+       }
+      ],
+      "correct": [
+       "ce007bbd-e5d2-5160-8f35-f1242ed9e546"
+      ],
+      "explanation": "Le mode \"a\" (append) écrit à la fin et crée le fichier s'il n'existe pas ; \"w\" efface le contenu existant."
+     },
+     {
+      "id": "d91cea90-eb4f-5734-a910-62d653686683",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Pourquoi le résultat de fgetc doit-il être stocké dans un int plutôt qu'un char ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2f330309-0dfc-5575-81c9-68b580171f02",
+        "position": 1,
+        "label": "Pour gagner de la mémoire"
+       },
+       {
+        "id": "3f42f422-ba81-508d-9280-7d341d6ced81",
+        "position": 2,
+        "label": "Pour pouvoir distinguer EOF de tous les caractères valides"
+       },
+       {
+        "id": "66544cc7-9cf7-5b26-a55c-0c5e9191c745",
+        "position": 3,
+        "label": "Parce que fgetc renvoie un pointeur"
+       },
+       {
+        "id": "454f3352-b271-5ce5-be77-4cba8004db9f",
+        "position": 4,
+        "label": "Ce n'est pas nécessaire"
+       }
+      ],
+      "correct": [
+       "3f42f422-ba81-508d-9280-7d341d6ced81"
+      ],
+      "explanation": "fgetc renvoie soit un caractère (comme unsigned char converti en int), soit EOF, une valeur négative. Un char ne permet pas de les distinguer de façon fiable."
+     },
+     {
+      "id": "17ff9745-1ffa-546f-b08d-404d752f428b",
+      "position": 4,
+      "kind": "multiple",
+      "prompt": "Quelles pratiques sont correctes pour lire le fichier CSV « nom;quantité » dans char nom[32] ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cb576386-9702-5e59-b2db-77fb91eb18dc",
+        "position": 1,
+        "label": "Lire chaque ligne avec fgets"
+       },
+       {
+        "id": "4d7bb56a-3ae1-5464-9021-df9e7b2e6dbb",
+        "position": 2,
+        "label": "Analyser avec sscanf(ligne, \"%31[^;];%d\", nom, &q)"
+       },
+       {
+        "id": "498e00e7-5db4-54d5-bfd0-1e9f8a54fb15",
+        "position": 3,
+        "label": "Analyser avec sscanf(ligne, \"%[^;];%d\", nom, &q)"
+       },
+       {
+        "id": "06b3b3b4-921a-5c36-be4a-65ed35855f08",
+        "position": 4,
+        "label": "Vérifier que sscanf renvoie 2"
+       }
+      ],
+      "correct": [
+       "cb576386-9702-5e59-b2db-77fb91eb18dc",
+       "4d7bb56a-3ae1-5464-9021-df9e7b2e6dbb",
+       "06b3b3b4-921a-5c36-be4a-65ed35855f08"
+      ],
+      "explanation": "Sans largeur, %[^;] peut déborder du tableau nom. fgets, la largeur 31 et le test du nombre de valeurs lues rendent la lecture sûre."
+     },
+     {
+      "id": "cce0ead2-594a-5f58-8c0b-c75817883dd7",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que fait fclose ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "af98b452-d258-51c8-9a29-909219a687d0",
+        "position": 1,
+        "label": "Vide le tampon vers le disque et libère les ressources du flux"
+       },
+       {
+        "id": "4a47c7e3-e1d0-54bd-ad07-7e59c4c91d37",
+        "position": 2,
+        "label": "Supprime le fichier"
+       },
+       {
+        "id": "d5734476-253a-5d97-9734-88039ff9ba93",
+        "position": 3,
+        "label": "Remet le fichier à zéro"
+       },
+       {
+        "id": "3887196a-852b-5b34-bcb9-66d44175deae",
+        "position": 4,
+        "label": "Ferme le programme"
+       }
+      ],
+      "correct": [
+       "af98b452-d258-51c8-9a29-909219a687d0"
+      ],
+      "explanation": "fclose écrit les données encore en attente et libère le flux. Oublier fclose est une fuite de ressource."
+     },
+     {
+      "id": "09430b8b-e862-5194-b063-1dafc2e9a1f0",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Avec strtol(texte, &fin, 10), comment savoir qu'il reste des caractères non numériques après le nombre ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f29bfde0-2d86-582a-a3fe-cec41e5a1ba9",
+        "position": 1,
+        "label": "errno vaut ERANGE"
+       },
+       {
+        "id": "7bf0de83-209e-5809-9153-11d66ac9119e",
+        "position": 2,
+        "label": "fin pointe sur un caractère différent de '\\0'"
+       },
+       {
+        "id": "b48bd569-80ee-53a9-9a91-0811cd34ffc2",
+        "position": 3,
+        "label": "strtol renvoie -1"
+       },
+       {
+        "id": "1f61d661-3df6-575a-920a-e8fe05ab263a",
+        "position": 4,
+        "label": "fin vaut NULL"
+       }
+      ],
+      "correct": [
+       "7bf0de83-209e-5809-9153-11d66ac9119e"
+      ],
+      "explanation": "fin reçoit l'adresse du premier caractère non converti. S'il n'est pas le '\\0' final, le texte contenait autre chose qu'un nombre. ERANGE signale un dépassement."
+     },
+     {
+      "id": "9afbad28-5f57-503e-85a5-26c1569b9a90",
+      "position": 7,
+      "kind": "true_false",
+      "prompt": "Un fichier binaire écrit avec fwrite à partir d'un tableau de structures est parfaitement portable entre toutes les machines.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a5d69b91-95a3-5bed-ab1e-6a637676c4d9",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "7fb9b081-b5cf-572e-8ef4-bb40bdd31dae",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "7fb9b081-b5cf-572e-8ef4-bb40bdd31dae"
+      ],
+      "explanation": "La taille des types, le remplissage des structures et l'ordre des octets peuvent varier : un format texte bien défini est préférable pour l'échange."
+     },
+     {
+      "id": "fe296277-83c1-55a8-acec-f3f39ee72ca0",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que renvoie fread ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6afcb363-4a4d-50d8-b925-d26cc509e7c1",
+        "position": 1,
+        "label": "Le nombre d'octets du fichier"
+       },
+       {
+        "id": "95df303b-35e8-5f93-9066-630970a544ab",
+        "position": 2,
+        "label": "Toujours 0 en cas de succès"
+       },
+       {
+        "id": "dbcacc17-a2f7-5765-8236-dfa1b5418e56",
+        "position": 3,
+        "label": "Un pointeur vers les données"
+       },
+       {
+        "id": "89d03067-893e-5464-bd5e-2b7b9cd86f7b",
+        "position": 4,
+        "label": "Le nombre d'éléments effectivement lus"
+       }
+      ],
+      "correct": [
+       "89d03067-893e-5464-bd5e-2b7b9cd86f7b"
+      ],
+      "explanation": "fread renvoie le nombre d'éléments complets lus, qui peut être inférieur à celui demandé (fin de fichier ou erreur) : il faut le vérifier."
+     },
+     {
+      "id": "9c93591e-4c57-5d2b-b679-f9a263b8b319",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Dans une fonction qui ouvre deux fichiers, que faire si le second fopen échoue ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "406389b2-718a-5f39-b86c-180d64d150e3",
+        "position": 1,
+        "label": "Rien, le système fermera tout"
+       },
+       {
+        "id": "3aba4eac-c885-59fe-a9a6-2b5dd3f5b1da",
+        "position": 2,
+        "label": "Appeler free sur le second pointeur"
+       },
+       {
+        "id": "c063f00e-2482-5998-9247-5a2087a6f6e7",
+        "position": 3,
+        "label": "Fermer le premier fichier avant de renvoyer une erreur"
+       },
+       {
+        "id": "0dd998ab-e798-5c50-adb9-99892c6c3ca8",
+        "position": 4,
+        "label": "Relancer fopen en boucle"
+       }
+      ],
+      "correct": [
+       "c063f00e-2482-5998-9247-5a2087a6f6e7"
+      ],
+      "explanation": "Le premier fichier est ouvert : chaque chemin de sortie doit libérer ce qui a été acquis, sinon la ressource fuit."
+     },
+     {
+      "id": "92f90650-463b-5baa-a7a1-c7d9455c4fd7",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Pourquoi memmove plutôt que memcpy pour décaler les éléments d'un tableau vers la gauche ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7baccedf-7b12-5377-b433-4ab9a5fbfa52",
+        "position": 1,
+        "label": "memmove est la seule à copier des structures"
+       },
+       {
+        "id": "f5ac3294-a0ef-5248-9247-4c61aa301aab",
+        "position": 2,
+        "label": "La source et la destination se chevauchent, cas que memcpy ne gère pas"
+       },
+       {
+        "id": "3e76f07c-d43b-55d1-9a4d-4c7694fa13f1",
+        "position": 3,
+        "label": "memcpy ne fonctionne que sur des chaînes"
+       },
+       {
+        "id": "37faeb66-3a98-5a85-b741-d90d0e766d91",
+        "position": 4,
+        "label": "memmove libère la mémoire"
+       }
+      ],
+      "correct": [
+       "f5ac3294-a0ef-5248-9247-4c61aa301aab"
+      ],
+      "explanation": "Lors d'un décalage, les zones source et destination se recouvrent. memmove gère ce cas ; avec memcpy, le résultat serait un comportement indéfini."
+     }
+    ]
+   }
+  }
+ ]
+}

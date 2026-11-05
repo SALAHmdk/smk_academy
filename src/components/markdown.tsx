@@ -5,6 +5,37 @@ import remarkGfm from "remark-gfm";
 
 type CodeElement = ReactElement<{ className?: string; children?: ReactNode }>;
 
+// ```solution-<suffixe> → langage highlight.js utilisé pour la coloration.
+const SOLUTION_LANGUAGES: Record<string, string[]> = {
+  python: ["", "py", "python"],
+  sql: ["sql"],
+  plaintext: ["text"],
+  javascript: ["js", "jsx", "javascript"],
+  typescript: ["ts", "tsx", "typescript"],
+  xml: ["html", "xml"],
+  css: ["css"],
+  c: ["c", "h"],
+  cpp: ["cpp", "c++"],
+  csharp: ["cs", "csharp"],
+  java: ["java"],
+  php: ["php"],
+  go: ["go"],
+  rust: ["rust", "rs"],
+  r: ["r"],
+  kotlin: ["kotlin", "kt"],
+  swift: ["swift"],
+  bash: ["bash", "sh", "shell"],
+  json: ["json"],
+  yaml: ["yaml", "yml"],
+};
+
+const highlightAliases = Object.fromEntries(
+  Object.entries(SOLUTION_LANGUAGES).map(([language, suffixes]) => [
+    language,
+    suffixes.map((s) => (s === "" ? "solution" : `solution-${s}`)),
+  ]),
+);
+
 const components: Components = {
   // Les blocs ```solution (Python), ```solution-sql, ```solution-text deviennent une correction repliable.
   pre({ children }) {
@@ -38,7 +69,7 @@ export function Markdown({ source }: { source: string }) {
     <div className="lesson">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[[rehypeHighlight, { aliases: { python: ["solution"], sql: ["solution-sql"], plaintext: ["solution-text"], javascript: ["solution-js"], xml: ["solution-html"], css: ["solution-css"] }, detect: false }]]}
+        rehypePlugins={[[rehypeHighlight, { aliases: highlightAliases, detect: false }]]}
         components={components}
         skipHtml
       >

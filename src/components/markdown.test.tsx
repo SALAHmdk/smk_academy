@@ -47,3 +47,13 @@ describe("Markdown des leçons", () => {
     expect(html).toContain("<table>");
   });
 });
+
+describe("alias des corrections", () => {
+  it("colore les corrections de chaque langage enseigné", () => {
+    for (const lang of ["c", "java", "ts", "jsx", "cpp", "rust", "go", "php", "kotlin", "swift", "csharp", "r", "bash"]) {
+      const html = renderToStaticMarkup(<Markdown source={"```solution-" + lang + "\nint x = 1;\n```"} />);
+      expect(html).toContain("Voir la correction");
+      expect(html).toContain("hljs");
+    }
+  });
+});

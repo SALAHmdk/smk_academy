@@ -1,0 +1,1902 @@
+{
+ "course": {
+  "slug": "java-debutant",
+  "title": "Java pour débutants",
+  "subtitle": "Les bases de la programmation orientée objet.",
+  "description": "Java est un langage très répandu en entreprise, dans les applications serveur et dans l'enseignement. Cette formation part de zéro : installation du JDK, compilation, variables, conditions, boucles et méthodes, puis programmation orientée objet (classes, encapsulation, héritage, interfaces, polymorphisme). Vous manipulerez ensuite les collections, les exceptions et les records, avant de réaliser un mini-projet : la gestion d'une bibliothèque en console. Chaque leçon propose des exemples exécutés et des exercices corrigés ; chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 900,
+  "objectives": [
+   "Écrire et compiler un programme Java",
+   "Utiliser classes, objets et héritage",
+   "Manipuler les collections"
+  ],
+  "prerequisites": [
+   "Aucun prérequis"
+  ],
+  "is_premium": false,
+  "position": 11,
+  "status": "published",
+  "id": "6ab59187-2636-59e1-b6ec-1b034aae2072",
+  "category_slug": "programmation",
+  "topic": "Java",
+  "cover_label": "Jv"
+ },
+ "modules": [
+  {
+   "id": "26eb7e04-2584-5a6d-89db-6265c61ea7dc",
+   "position": 1,
+   "title": "Premiers pas en Java",
+   "description": "Installer le JDK, compiler et exécuter un programme, utiliser variables, types, opérateurs, chaînes et saisie au clavier.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "a3d89356-a81f-514b-9a7a-8de74f56da24",
+     "slug": "jdk-et-premier-programme",
+     "title": "Le JDK et votre premier programme",
+     "summary": "JDK, JVM, javac et java : écrire, compiler et exécuter une classe.",
+     "content_md": "## Qu'est-ce que Java ?\n\n**Java** est un langage de programmation généraliste, apparu au milieu des années 1990. On le retrouve dans les applications d'entreprise, les serveurs web, les outils de traitement de données, et il est historiquement lié au développement Android. Il est aussi très utilisé pour enseigner la programmation orientée objet.\n\nTrois idées résument Java :\n\n- **Typage statique** : chaque variable a un type connu dès l'écriture du programme (nombre entier, texte…). Beaucoup d'erreurs sont détectées **avant** l'exécution.\n- **Orienté objet** : un programme Java est organisé en **classes**, qui décrivent des objets (un client, un livre, un compte bancaire).\n- **Portable** : le code est compilé en un format intermédiaire, le **bytecode**, exécuté par une **machine virtuelle** (la JVM). Le même fichier compilé fonctionne sur Windows, macOS ou Linux.\n\n> Malgré la ressemblance des noms, Java et JavaScript sont deux langages différents.\n\n## JDK, JVM : de quoi a-t-on besoin ?\n\n| Sigle | Signification | Rôle |\n|---|---|---|\n| **JVM** | *Java Virtual Machine* | Exécute le bytecode (fichiers `.class`). |\n| **JDK** | *Java Development Kit* | Kit du développeur : contient le compilateur `javac`, la commande `java` et la bibliothèque standard. |\n\nPour programmer, installez un **JDK** récent. Plusieurs distributions gratuites existent (par exemple OpenJDK, Eclipse Temurin). Choisissez de préférence une version dite **LTS** (*Long-Term Support*, support à long terme) : cette formation utilise du Java moderne, compatible avec Java 17 et les versions suivantes.\n\nVérifiez l'installation dans un terminal :\n\n```bash\njavac -version\njava -version\n```\n\nChaque commande affiche un numéro de version. Si le terminal répond « commande introuvable », le JDK n'est pas installé ou n'est pas dans le `PATH` (la liste des dossiers où le système cherche les programmes).\n\n## Votre premier programme\n\nCréez un fichier nommé **exactement** `Bonjour.java` :\n\n```java\npublic class Bonjour {\n    public static void main(String[] args) {\n        System.out.println(\"Bonjour, SMK Academy !\");\n    }\n}\n```\n\n```text\nBonjour, SMK Academy !\n```\n\nDécortiquons-le :\n\n- `public class Bonjour { … }` déclare une **classe** nommée `Bonjour`. Tout code Java vit dans une classe. Une classe `public` doit se trouver dans un fichier qui porte **son nom** : `Bonjour.java`.\n- `public static void main(String[] args)` est la **méthode principale** : le point d'entrée du programme. La JVM commence toujours par elle. Vous comprendrez chaque mot clé au fil de la formation ; pour l'instant, recopiez cette ligne telle quelle.\n- `System.out.println(…)` affiche une ligne dans la console (*print line*).\n- Chaque **instruction** se termine par un point-virgule `;`. Les accolades `{ }` délimitent des **blocs**.\n\n## Compiler puis exécuter\n\nLe travail se fait en deux étapes :\n\n```bash\njavac Bonjour.java   # compile : produit Bonjour.class (le bytecode)\njava Bonjour         # exécute la classe Bonjour (sans extension)\n```\n\n1. `javac` (le **compilateur**) vérifie le code et le traduit en bytecode dans `Bonjour.class`. S'il trouve une erreur, il l'affiche et ne produit rien.\n2. `java` démarre la JVM, qui charge la classe et appelle sa méthode `main`.\n\nDepuis Java 11, on peut aussi lancer directement un programme tenant en un seul fichier : `java Bonjour.java` compile en mémoire puis exécute. C'est pratique pour s'entraîner ; pour un vrai projet, on utilise `javac` ou un outil de construction (Maven, Gradle) via un environnement de développement comme IntelliJ IDEA, Eclipse ou VS Code.\n\n## print, println et commentaires\n\n```java\npublic class Affichage {\n    public static void main(String[] args) {\n        // Commentaire sur une ligne : ignoré par le compilateur\n        System.out.print(\"Java \");      // print ne passe pas à la ligne\n        System.out.print(\"est \");\n        System.out.println(\"compilé.\");  // println passe à la ligne\n        /* Commentaire\n           sur plusieurs lignes */\n        System.out.println(2 + 3);\n        System.out.println(\"2 + 3 = \" + (2 + 3));\n    }\n}\n```\n\n```text\nJava est compilé.\n5\n2 + 3 = 5\n```\n\nL'opérateur `+` appliqué à un texte **concatène** (met bout à bout). Les parenthèses autour de `2 + 3` forcent le calcul avant la concaténation.\n\n## Lire une erreur de compilation\n\nJava distingue les majuscules et les minuscules, et le compilateur est exigeant. Voici un programme avec une faute de frappe (`system` au lieu de `System`) :\n\n```java\npublic class Erreur {\n    public static void main(String[] args) {\n        system.out.println(\"Oups\");\n    }\n}\n```\n\n```text\nErreur.java:3: error: package system does not exist\n        system.out.println(\"Oups\");\n              ^\n1 error\n```\n\nLe message indique **le fichier et la ligne** (`Erreur.java:3`), **la nature du problème**, et un accent circonflexe `^` montre l'endroit repéré. Le message ne désigne pas toujours la cause exacte (ici, il croit à un *package* inconnu), mais la ligne indiquée est le bon point de départ. Corrigez **la première erreur** d'abord : les suivantes en découlent souvent.\n\n> Les messages du compilateur sont généralement en anglais. Lisez-les en entier : *cannot find symbol* (nom inconnu, souvent une faute de frappe), *';' expected* (point-virgule manquant), *incompatible types* (mauvais type de valeur).\n\n## À retenir\n\n- Le **JDK** fournit `javac` (compilateur) et `java` (lanceur de la JVM).\n- `javac Fichier.java` produit un `.class` ; `java Fichier` l'exécute ; `java Fichier.java` fait les deux pour un fichier unique.\n- Une classe `public` se place dans un fichier du même nom ; le programme démarre dans `public static void main(String[] args)`.\n- `System.out.println` affiche une ligne, `System.out.print` n'ajoute pas de retour à la ligne.\n- Java distingue les majuscules ; chaque instruction se termine par `;` ; commentaires `//` et `/* */`.\n\n## Exercices\n\n### Exercice 1 — Carte de visite\n\nÉcrivez une classe `Carte` qui affiche, sur trois lignes, un prénom, une ville et le résultat de `12 * 4`.\n\n```solution-java\npublic class Carte {\n    public static void main(String[] args) {\n        System.out.println(\"Amina\");\n        System.out.println(\"Lyon\");\n        System.out.println(12 * 4);\n    }\n}\n```\n\n```text\nAmina\nLyon\n48\n```\n\n### Exercice 2 — Trouvez les erreurs\n\nCe programme, enregistré dans `Salut.java`, ne compile pas. Trouvez les trois erreurs.\n\n```text\npublic class salut {\n    public static void main(String[] args) {\n        System.out.println(\"Salut\")\n        System.out.Println(\"à tous\");\n    }\n}\n```\n\n```solution-text\n1. La classe publique doit porter le nom du fichier : public class Salut (S majuscule).\n2. Il manque le point-virgule après System.out.println(\"Salut\").\n3. Println n'existe pas : Java distingue les majuscules, la méthode s'écrit println.\n```\n\n### Exercice 3 — Les deux commandes\n\nVous avez écrit `Calcul.java`. Quelles commandes tapez-vous pour le compiler puis l'exécuter, et quel fichier apparaît après la première ?\n\n```solution-text\njavac Calcul.java   → crée Calcul.class (le bytecode)\njava Calcul         → exécute la classe (sans l'extension .class)\nVariante pour un programme en un seul fichier : java Calcul.java\n```",
+     "duration_minutes": 40,
+     "position": 1
+    },
+    {
+     "id": "456df56b-a9e6-53ac-b5c2-54426550c61e",
+     "slug": "variables-types-operateurs",
+     "title": "Variables, types et opérateurs",
+     "summary": "Types primitifs, var, final, calculs, division entière et conversions.",
+     "content_md": "## Déclarer une variable\n\nUne **variable** est un emplacement nommé qui contient une valeur. En Java, on indique son **type** lors de la déclaration :\n\n```java\npublic class Variables {\n    public static void main(String[] args) {\n        int age = 25;\n        double taille = 1.68;\n        String prenom = \"Sofia\";\n        boolean inscrit = true;\n\n        System.out.println(prenom + \" a \" + age + \" ans.\");\n        age = age + 1;  // réaffectation : même type obligatoire\n        System.out.println(\"Un an plus tard : \" + age + \" ans.\");\n        System.out.println(\"Taille : \" + taille + \" m, inscrite : \" + inscrit);\n    }\n}\n```\n\n```text\nSofia a 25 ans.\nUn an plus tard : 26 ans.\nTaille : 1.68 m, inscrite : true\n```\n\nRègles de nommage : une lettre au début, puis lettres, chiffres ou `_` ; pas d'espace ni de mot réservé (`class`, `int`…). Par convention, on écrit les variables en **camelCase** : `prixTotal`, `nombreDeLivres`.\n\n## Les types primitifs\n\nJava propose huit **types primitifs** (des valeurs simples, stockées directement). Les plus utilisés :\n\n| Type | Contenu | Exemple |\n|---|---|---|\n| `int` | entier (environ ± 2,1 milliards) | `int stock = 42;` |\n| `long` | grand entier (suffixe `L`) | `long population = 8_000_000_000L;` |\n| `double` | nombre à virgule (point décimal) | `double prix = 19.99;` |\n| `boolean` | `true` ou `false` | `boolean actif = false;` |\n| `char` | un caractère, entre apostrophes | `char note = 'A';` |\n\nLes autres (`byte`, `short`, `float`) servent dans des cas particuliers. Le tiret bas `_` dans `8_000_000_000L` améliore seulement la lisibilité.\n\n`String` (le texte) n'est **pas** un type primitif mais une **classe** : d'où sa majuscule. Une chaîne s'écrit entre guillemets doubles `\"…\"`, un `char` entre apostrophes `'…'`.\n\n## Le typage statique en action\n\nUne variable ne peut pas changer de type. Le compilateur refuse ce programme :\n\n```java\npublic class TypeIncorrect {\n    public static void main(String[] args) {\n        int age = \"vingt\";\n    }\n}\n```\n\n```text\nTypeIncorrect.java:3: error: incompatible types: String cannot be converted to int\n        int age = \"vingt\";\n                  ^\n1 error\n```\n\nL'erreur est détectée **avant** toute exécution : c'est l'un des grands atouts de Java.\n\n## var et final\n\n- `var` laisse le compilateur **déduire** le type à partir de la valeur (pour les variables locales). Le type reste fixe : `var n = 10;` fait de `n` un `int` pour toujours.\n- `final` interdit la réaffectation : on l'utilise pour les **constantes**, écrites par convention en MAJUSCULES.\n\n```java\npublic class VarFinal {\n    public static void main(String[] args) {\n        var quantite = 3;          // int déduit\n        var libelle = \"Cahier\";    // String déduit\n        final double TVA = 0.20;\n        double prixHT = 5.0;\n        System.out.println(quantite + \" x \" + libelle);\n        System.out.println(\"Prix TTC unitaire : \" + prixHT * (1 + TVA));\n    }\n}\n```\n\n```text\n3 x Cahier\nPrix TTC unitaire : 6.0\n```\n\nÉcrire `TVA = 0.10;` plus loin provoquerait une erreur de compilation : *cannot assign a value to final variable TVA*.\n\n## Les opérateurs arithmétiques\n\n| Opérateur | Sens | Exemple | Résultat |\n|---|---|---|---|\n| `+` `-` `*` | addition, soustraction, multiplication | `7 * 3` | `21` |\n| `/` | division | `7 / 2` | `3` (entre entiers !) |\n| `%` | reste de la division (modulo) | `7 % 2` | `1` |\n\n**Piège classique** : la division de deux `int` donne un `int`, la partie décimale est **tronquée**. Pour obtenir un résultat décimal, au moins un des opérandes doit être un `double` :\n\n```java\npublic class Division {\n    public static void main(String[] args) {\n        int a = 7;\n        int b = 2;\n        System.out.println(a / b);\n        System.out.println(a % b);\n        System.out.println(a / 2.0);\n        System.out.println((double) a / b);\n        System.out.println(0.1 + 0.2);\n    }\n}\n```\n\n```text\n3\n1\n3.5\n3.5\n0.30000000000000004\n```\n\n- `(double) a` est une **conversion explicite** (*cast*) : on demande de traiter `a` comme un `double`.\n- La dernière ligne montre que les `double` sont des **approximations** binaires. Pour de l'argent, les professionnels utilisent la classe `BigDecimal` ou comptent en centimes avec des entiers.\n\n## Conversions et raccourcis\n\nJava convertit automatiquement vers un type « plus large » (`int` → `double`), mais exige un *cast* dans l'autre sens, car on peut perdre de l'information :\n\n```java\npublic class Conversions {\n    public static void main(String[] args) {\n        double moyenne = 14.8;\n        int arrondiInf = (int) moyenne;           // tronque : 14\n        long arrondi = Math.round(moyenne);       // arrondit : 15\n        int compteur = 10;\n        compteur += 5;   // compteur = compteur + 5\n        compteur++;      // compteur = compteur + 1\n        compteur *= 2;   // compteur = compteur * 2\n        System.out.println(arrondiInf + \" \" + arrondi + \" \" + compteur);\n        System.out.println(Math.max(3, 9) + \" \" + Math.sqrt(16) + \" \" + Math.pow(2, 10));\n        System.out.println(Integer.MAX_VALUE + 1);\n    }\n}\n```\n\n```text\n14 15 32\n9 4.0 1024.0\n-2147483648\n```\n\nLa dernière ligne illustre le **dépassement de capacité** : au-delà de sa valeur maximale, un `int` « repart » du côté négatif, sans erreur. Si vos nombres peuvent devenir très grands, utilisez `long`.\n\n## À retenir\n\n- Une variable se déclare avec un type : `int`, `double`, `boolean`, `char`, `String`… et ne change jamais de type.\n- `var` déduit le type ; `final` crée une constante (en MAJUSCULES par convention).\n- La division de deux entiers est entière : `7 / 2` vaut `3` ; `%` donne le reste.\n- `(double)` ou `(int)` convertissent explicitement ; `Math.round`, `Math.max`, `Math.sqrt`, `Math.pow` sont prêts à l'emploi.\n- Les `double` sont des approximations ; un `int` peut dépasser sa capacité.\n\n## Exercices\n\n### Exercice 1 — Moyenne de trois notes\n\nDéclarez trois notes entières `12`, `15` et `16`, puis affichez leur moyenne **avec** sa partie décimale.\n\n```solution-java\npublic class Moyenne {\n    public static void main(String[] args) {\n        int n1 = 12;\n        int n2 = 15;\n        int n3 = 16;\n        double moyenne = (n1 + n2 + n3) / 3.0;\n        System.out.println(\"Moyenne : \" + moyenne);\n    }\n}\n```\n\n```text\nMoyenne : 14.333333333333334\n```\n\nAvec `/ 3` au lieu de `/ 3.0`, vous obtiendriez `14` : division entière.\n\n### Exercice 2 — Heures et minutes\n\nConvertissez `135` minutes en heures et minutes avec `/` et `%`.\n\n```solution-java\npublic class Duree {\n    public static void main(String[] args) {\n        int total = 135;\n        int heures = total / 60;\n        int minutes = total % 60;\n        System.out.println(total + \" min = \" + heures + \" h \" + minutes + \" min\");\n    }\n}\n```\n\n```text\n135 min = 2 h 15 min\n```\n\n### Exercice 3 — Quel type ?\n\nQuel type choisiriez-vous pour : un nombre d'élèves, un prix, une réponse oui/non, une initiale, le nombre d'habitants de la Terre ?\n\n```solution-text\nNombre d'élèves : int\nPrix : double (ou BigDecimal en contexte bancaire)\nRéponse oui/non : boolean\nInitiale : char\nHabitants de la Terre : long (dépasse la capacité d'un int)\n```",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "d064465f-cc26-5a10-b537-72c5f9911095",
+     "slug": "texte-et-saisie",
+     "title": "Le texte et la saisie au clavier",
+     "summary": "Méthodes de String, equals, String.format, conversions et Scanner.",
+     "content_md": "## Les chaînes de caractères\n\nUne `String` est une suite de caractères. C'est un **objet** : on lui applique des **méthodes** avec un point.\n\n```java\npublic class Chaines {\n    public static void main(String[] args) {\n        String ville = \"Marseille\";\n        System.out.println(ville.length());          // nombre de caractères\n        System.out.println(ville.toUpperCase());\n        System.out.println(ville.charAt(0));          // premier caractère\n        System.out.println(ville.substring(0, 4));    // de 0 inclus à 4 exclu\n        System.out.println(ville.indexOf(\"se\"));      // position de \"se\"\n        System.out.println(ville.contains(\"eill\"));\n        System.out.println(\"  espaces  \".trim() + \"|\");\n        System.out.println(ville.replace(\"e\", \"E\"));\n    }\n}\n```\n\n```text\n9\nMARSEILLE\nM\nMars\n3\ntrue\nespaces|\nMarsEillE\n```\n\nLes positions commencent à **0** : le premier caractère est à l'indice 0, le dernier à l'indice `length() - 1`.\n\n> Les chaînes sont **immuables** : `toUpperCase()` ne modifie pas `ville`, elle renvoie une **nouvelle** chaîne. Pour garder le résultat : `ville = ville.toUpperCase();`.\n\n## Comparer deux chaînes : equals, pas ==\n\nPour comparer le **contenu** de deux chaînes, utilisez toujours `equals` (ou `equalsIgnoreCase` pour ignorer les majuscules). L'opérateur `==` compare si ce sont **le même objet** en mémoire, ce qui peut être faux même pour un texte identique :\n\n```java\npublic class Comparer {\n    public static void main(String[] args) {\n        String a = \"java\";\n        String b = new String(\"java\");\n        System.out.println(a.equals(b));\n        System.out.println(a == b);\n        System.out.println(\"JAVA\".equalsIgnoreCase(a));\n        System.out.println(\"abc\".compareTo(\"abd\") < 0);  // ordre alphabétique\n    }\n}\n```\n\n```text\ntrue\nfalse\ntrue\ntrue\n```\n\n`compareTo` renvoie un nombre négatif si la première chaîne vient avant dans l'ordre, zéro si elles sont égales, un nombre positif sinon.\n\n## Mettre en forme : String.format et printf\n\nConcaténer avec `+` devient vite illisible. `String.format` (et son équivalent `System.out.printf`) insère des valeurs dans un **gabarit** :\n\n| Code | Insère | Exemple |\n|---|---|---|\n| `%s` | du texte (ou n'importe quelle valeur) | `\"Bonjour %s\"` |\n| `%d` | un entier | `\"%d articles\"` |\n| `%.2f` | un décimal avec 2 chiffres après la virgule | `\"%.2f €\"` |\n| `%n` | un retour à la ligne | — |\n\n```java\npublic class Format {\n    public static void main(String[] args) {\n        String produit = \"Clavier\";\n        int quantite = 3;\n        double prix = 24.9;\n        String ligne = String.format(\"%s x%d : %.2f EUR\", produit, quantite, quantite * prix);\n        System.out.println(ligne);\n        System.out.printf(\"Total arrondi : %.1f%n\", 74.75);\n        System.out.printf(\"|%-8s|%5d|%n\", \"Stylo\", 12);  // largeurs fixes\n    }\n}\n```\n\n```text\nClavier x3 : 74.70 EUR\nTotal arrondi : 74.8\n|Stylo   |   12|\n```\n\n`%-8s` réserve 8 caractères alignés à gauche ; `%5d` réserve 5 caractères alignés à droite : pratique pour des tableaux en console.\n\n> Le séparateur décimal de `%f` dépend de la **langue du système** : sur un ordinateur configuré en français, vous pourriez voir `74,70` au lieu de `74.70`.\n\n## Convertir du texte en nombre\n\nUne saisie au clavier ou une ligne de fichier arrive sous forme de texte. Pour calculer, il faut la convertir :\n\n```java\npublic class Conversion {\n    public static void main(String[] args) {\n        int annee = Integer.parseInt(\"2024\");\n        double note = Double.parseDouble(\"15.5\");\n        String texte = String.valueOf(42);   // nombre → texte\n        System.out.println(annee + 1);\n        System.out.println(note * 2);\n        System.out.println(texte + \"1\");\n    }\n}\n```\n\n```text\n2025\n31.0\n421\n```\n\nSi le texte n'est pas un nombre valide, `Integer.parseInt(\"abc\")` provoque une **exception** `NumberFormatException` (une erreur à l'exécution). Vous apprendrez à les intercepter au module 5.\n\n## Lire le clavier avec Scanner\n\nLa classe `Scanner` lit ce que tape l'utilisateur. Elle se trouve dans le *package* (bibliothèque) `java.util`, qu'il faut **importer** en haut du fichier :\n\n```java\nimport java.util.Scanner;\n\npublic class Saisie {\n    public static void main(String[] args) {\n        Scanner clavier = new Scanner(System.in);\n        System.out.print(\"Votre prénom : \");\n        String prenom = clavier.nextLine();\n        System.out.print(\"Votre âge : \");\n        int age = clavier.nextInt();\n        System.out.println(\"Bonjour \" + prenom + \", dans 10 ans vous aurez \" + (age + 10) + \" ans.\");\n        clavier.close();\n    }\n}\n```\n\nExemple d'exécution, où l'utilisateur tape `Lina` puis `31` (chaque saisie est validée par la touche Entrée) :\n\n```text\nVotre prénom : Lina\nVotre âge : 31\nBonjour Lina, dans 10 ans vous aurez 41 ans.\n```\n\nLes méthodes principales :\n\n| Méthode | Lit |\n|---|---|\n| `nextLine()` | toute la ligne, jusqu'à Entrée |\n| `next()` | un mot (jusqu'au prochain espace) |\n| `nextInt()`, `nextDouble()` | un nombre |\n| `hasNextInt()` | vérifie, sans lire, que la prochaine saisie est un entier |\n\n> **Piège** : `nextInt()` lit le nombre mais laisse le retour à la ligne dans le tampon. Un `nextLine()` appelé juste après renvoie alors une chaîne vide. Solution simple : lire toutes les saisies avec `nextLine()` puis convertir avec `Integer.parseInt(…)`.\n\nUn `Scanner` peut aussi lire une **chaîne** au lieu du clavier, ce qui est pratique pour tester un traitement sans rien taper :\n\n```java\nimport java.util.Scanner;\n\npublic class ScannerTexte {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(\"Lina 31 1.62\");\n        String prenom = sc.next();\n        int age = sc.nextInt();\n        double taille = sc.nextDouble();\n        System.out.println(prenom + \" / \" + age + \" / \" + taille);\n    }\n}\n```\n\n```text\nLina / 31 / 1.62\n```\n\n## À retenir\n\n- Les méthodes de `String` : `length`, `charAt`, `substring`, `indexOf`, `contains`, `toUpperCase`, `trim`, `replace`… Les positions commencent à 0.\n- Les chaînes sont immuables ; comparez-les avec `equals`, jamais avec `==`.\n- `String.format` et `printf` construisent un texte à partir d'un gabarit (`%s`, `%d`, `%.2f`, `%n`).\n- `Integer.parseInt` et `Double.parseDouble` convertissent du texte en nombre.\n- `Scanner` (à importer depuis `java.util`) lit le clavier avec `nextLine`, `nextInt`…\n\n## Exercices\n\n### Exercice 1 — Initiales\n\nÀ partir de `String prenom = \"marie\";` et `String nom = \"curie\";`, affichez `M.C.` puis `Marie CURIE`.\n\n```solution-java\npublic class Initiales {\n    public static void main(String[] args) {\n        String prenom = \"marie\";\n        String nom = \"curie\";\n        String initiales = Character.toUpperCase(prenom.charAt(0)) + \".\" + Character.toUpperCase(nom.charAt(0)) + \".\";\n        String complet = prenom.substring(0, 1).toUpperCase() + prenom.substring(1) + \" \" + nom.toUpperCase();\n        System.out.println(initiales);\n        System.out.println(complet);\n    }\n}\n```\n\n```text\nM.C.\nMarie CURIE\n```\n\n`Character.toUpperCase` met un `char` en majuscule ; concaténé avec `\".\"`, le résultat devient une `String`.\n\n### Exercice 2 — Ticket de caisse\n\nAvec `printf`, affichez une ligne `Café        2 x  1.80 =  3.60` : nom sur 10 caractères aligné à gauche, quantité sur 2, prix unitaire et total sur 5 avec deux décimales.\n\n```solution-java\npublic class Ticket {\n    public static void main(String[] args) {\n        String article = \"Café\";\n        int quantite = 2;\n        double prix = 1.8;\n        System.out.printf(\"%-10s %2d x %5.2f = %5.2f%n\", article, quantite, prix, quantite * prix);\n    }\n}\n```\n\n```text\nCafé        2 x  1.80 =  3.60\n```\n\n### Exercice 3 — Saisie robuste\n\nPourquoi ce programme affiche-t-il un nom vide si l'utilisateur tape `30`, Entrée, puis `Paul`, Entrée ? Comment le corriger ?\n\n```text\nint age = clavier.nextInt();\nString nom = clavier.nextLine();\n```\n\n```solution-text\nnextInt() lit « 30 » mais laisse le retour à la ligne dans le tampon ; nextLine() lit ce\nreste de ligne vide et renvoie \"\". Correction : lire chaque saisie avec nextLine(), puis convertir :\nint age = Integer.parseInt(clavier.nextLine());\nString nom = clavier.nextLine();\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e8779ba3-ff80-57bc-8b20-51903916a5ff",
+    "title": "Quiz — Premiers pas en Java",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "ca9d7803-97ad-5687-b649-288bb64b8a0f",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel outil du JDK transforme un fichier .java en bytecode (.class) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c92f8159-a7c0-5335-a696-33093cbff62e",
+        "position": 1,
+        "label": "java"
+       },
+       {
+        "id": "68633521-bb68-561d-847f-ba19ddb8c727",
+        "position": 2,
+        "label": "javac"
+       },
+       {
+        "id": "0309a617-e3f0-5b7f-bd6f-0757b0bf5a67",
+        "position": 3,
+        "label": "jar"
+       },
+       {
+        "id": "c5d404cb-81f2-5c4f-a3e6-113774bcf398",
+        "position": 4,
+        "label": "la JVM"
+       }
+      ],
+      "correct": [
+       "68633521-bb68-561d-847f-ba19ddb8c727"
+      ],
+      "explanation": "javac est le compilateur : il vérifie le code source et produit le fichier .class. La commande java lance ensuite la JVM qui l'exécute."
+     },
+     {
+      "id": "db2ce948-8f33-56b8-8406-c60e692e3f14",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Votre fichier contient public class Facture. Comment doit-il s'appeler ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cca1c784-a27d-5dcb-ac1f-2129a1928cec",
+        "position": 1,
+        "label": "facture.java"
+       },
+       {
+        "id": "09a42815-e6ed-506c-b922-7cba59c1c78f",
+        "position": 2,
+        "label": "Facture.class"
+       },
+       {
+        "id": "2279de7f-00db-57e3-9db8-fdf3a0fff6e9",
+        "position": 3,
+        "label": "Facture.java"
+       },
+       {
+        "id": "ff5fb874-e177-5daf-b52d-20f599cf87ce",
+        "position": 4,
+        "label": "N'importe quel nom se terminant par .java"
+       }
+      ],
+      "correct": [
+       "2279de7f-00db-57e3-9db8-fdf3a0fff6e9"
+      ],
+      "explanation": "Une classe publique doit être enregistrée dans un fichier portant exactement son nom, majuscules comprises, avec l'extension .java."
+     },
+     {
+      "id": "c28034d6-5bd6-5d19-8d44-ea184c7757bc",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "System.out.println(7 / 2);\nSystem.out.println(7 % 2);",
+      "points": 2,
+      "options": [
+       {
+        "id": "364f6622-1f30-5145-8efd-78e98b4d137c",
+        "position": 1,
+        "label": "3.5 puis 1"
+       },
+       {
+        "id": "aa2929f2-cc3f-56ba-8377-f5db37187375",
+        "position": 2,
+        "label": "3 puis 1"
+       },
+       {
+        "id": "69f5a15a-7a79-51e0-8c95-22028f0f1129",
+        "position": 3,
+        "label": "3 puis 0.5"
+       },
+       {
+        "id": "d9108c73-28c7-5af8-8c0c-60b7b4cdb082",
+        "position": 4,
+        "label": "3.5 puis 0"
+       }
+      ],
+      "correct": [
+       "aa2929f2-cc3f-56ba-8377-f5db37187375"
+      ],
+      "explanation": "7 et 2 sont des int : la division est entière (3) et % donne le reste de la division (1)."
+     },
+     {
+      "id": "af3f349b-6722-5a7f-bcf4-823293332be9",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle déclaration est refusée par le compilateur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a098449c-dcd2-5b35-acd4-b40e6556a733",
+        "position": 1,
+        "label": "double prix = 10;"
+       },
+       {
+        "id": "bd13167a-98c1-5a65-a4aa-21de52627bca",
+        "position": 2,
+        "label": "long n = 5;"
+       },
+       {
+        "id": "85f9a1e9-39bf-52fc-9725-3959f285509e",
+        "position": 3,
+        "label": "int age = \"vingt\";"
+       },
+       {
+        "id": "3ab617d7-8689-543c-b659-bd82ba7b5351",
+        "position": 4,
+        "label": "var nom = \"Léa\";"
+       }
+      ],
+      "correct": [
+       "85f9a1e9-39bf-52fc-9725-3959f285509e"
+      ],
+      "explanation": "Une chaîne ne peut pas être rangée dans un int : erreur « incompatible types ». Les autres déclarations sont valides (int vers double ou long est une conversion automatique)."
+     },
+     {
+      "id": "5a21e2c2-6f78-59a3-ba2f-7fb769b9f0d8",
+      "position": 5,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur String sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "defb2c0b-5b72-557d-bc91-250ccfcc25e3",
+        "position": 1,
+        "label": "String est une classe, pas un type primitif."
+       },
+       {
+        "id": "e1707a75-0436-5778-baec-973d896cd5e8",
+        "position": 2,
+        "label": "Pour comparer le contenu de deux chaînes, on utilise equals."
+       },
+       {
+        "id": "ac207b86-da5f-535a-adb5-e3ea8672e085",
+        "position": 3,
+        "label": "toUpperCase() modifie la chaîne d'origine."
+       },
+       {
+        "id": "7ed6c1ae-ef5d-507b-a498-abb17a905d39",
+        "position": 4,
+        "label": "Le premier caractère d'une chaîne est à l'indice 0."
+       }
+      ],
+      "correct": [
+       "defb2c0b-5b72-557d-bc91-250ccfcc25e3",
+       "e1707a75-0436-5778-baec-973d896cd5e8",
+       "7ed6c1ae-ef5d-507b-a498-abb17a905d39"
+      ],
+      "explanation": "Les chaînes sont immuables : toUpperCase() renvoie une nouvelle chaîne sans modifier l'originale. Les trois autres affirmations sont exactes."
+     },
+     {
+      "id": "b7b3f5cb-184c-514e-9548-dacc7ad38e0f",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que vaut \"Bonjour\".substring(0, 3) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3754ad14-1ebc-522d-b1bc-965b87e6afc7",
+        "position": 1,
+        "label": "\"Bon\""
+       },
+       {
+        "id": "bc529800-9e1c-5b54-84bc-e5a3e99ac9e0",
+        "position": 2,
+        "label": "\"Bonj\""
+       },
+       {
+        "id": "46d49899-040b-56ec-90a4-a14659120511",
+        "position": 3,
+        "label": "\"onj\""
+       },
+       {
+        "id": "a121cac0-209d-538b-9df2-7b516e4da5b9",
+        "position": 4,
+        "label": "\"Bo\""
+       }
+      ],
+      "correct": [
+       "3754ad14-1ebc-522d-b1bc-965b87e6afc7"
+      ],
+      "explanation": "substring(début, fin) prend les caractères de l'indice 0 inclus à l'indice 3 exclu : B, o, n."
+     },
+     {
+      "id": "c4f185b1-1640-55e0-8b32-db93d8decf70",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que produit String.format(\"%.2f\", 3.14159) sur un système configuré en anglais ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7037867e-4760-5dca-a18c-a6f5f028893b",
+        "position": 1,
+        "label": "3.14159"
+       },
+       {
+        "id": "75aa2cd0-1a72-5792-94b5-d83a6a7648d8",
+        "position": 2,
+        "label": "3.1"
+       },
+       {
+        "id": "b45ad69c-e95f-5f5a-a507-86dec26bed32",
+        "position": 3,
+        "label": "3.14"
+       },
+       {
+        "id": "aa5ab0eb-3386-5e7c-806f-7d8bc6bc9510",
+        "position": 4,
+        "label": "3"
+       }
+      ],
+      "correct": [
+       "b45ad69c-e95f-5f5a-a507-86dec26bed32"
+      ],
+      "explanation": "%.2f affiche un nombre décimal avec deux chiffres après la virgule. Sur un système en français, le séparateur pourrait être une virgule."
+     },
+     {
+      "id": "f81e607f-485b-5fa6-8544-276a6fa53d29",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que faut-il écrire en haut du fichier pour utiliser Scanner ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "eba669bf-8b8c-5eef-b3f6-e49fb7e0be96",
+        "position": 1,
+        "label": "include java.util.Scanner;"
+       },
+       {
+        "id": "72af4514-5cc1-544e-b5e5-38dff4a9dc7a",
+        "position": 2,
+        "label": "import java.util.Scanner;"
+       },
+       {
+        "id": "04311d59-50fa-5a90-8775-6a4831b02b0a",
+        "position": 3,
+        "label": "using Scanner;"
+       },
+       {
+        "id": "eb0cfe5c-2478-594d-aa26-0b1873824683",
+        "position": 4,
+        "label": "Rien, Scanner est toujours disponible"
+       }
+      ],
+      "correct": [
+       "72af4514-5cc1-544e-b5e5-38dff4a9dc7a"
+      ],
+      "explanation": "Scanner appartient au package java.util, qu'il faut importer avec import java.util.Scanner;."
+     },
+     {
+      "id": "3f9d4102-3c4c-5196-abde-bf597d86b543",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Que vaut l'expression (int) 9.99 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "462b2a20-0ef8-5871-b778-0e3a0467f8de",
+        "position": 1,
+        "label": "10"
+       },
+       {
+        "id": "767aeccb-93dd-5f4c-8a25-419770088fc4",
+        "position": 2,
+        "label": "9"
+       },
+       {
+        "id": "117ac27c-b9dd-5118-a709-b0fe6ce14fb0",
+        "position": 3,
+        "label": "9.99"
+       },
+       {
+        "id": "a51aeccd-9186-5a3a-94b4-840981c2e935",
+        "position": 4,
+        "label": "Une erreur de compilation"
+       }
+      ],
+      "correct": [
+       "767aeccb-93dd-5f4c-8a25-419770088fc4"
+      ],
+      "explanation": "Le cast (int) tronque la partie décimale sans arrondir : on obtient 9. Pour arrondir, on utilise Math.round."
+     },
+     {
+      "id": "1d0d42fd-1eab-557a-a78b-1cb8f8bc30d7",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Une variable déclarée avec var peut recevoir plus tard une valeur d'un autre type.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4d89c1c6-6d94-56ae-a77f-76e3f0b03b74",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "995f6d8d-393d-556e-965d-f3a9deb77241",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "995f6d8d-393d-556e-965d-f3a9deb77241"
+      ],
+      "explanation": "var laisse seulement le compilateur déduire le type à la déclaration ; ce type reste ensuite fixe, comme pour toute variable Java."
+     }
+    ]
+   }
+  },
+  {
+   "id": "50a279d7-31e6-594f-81d7-12bf6e9345b5",
+   "position": 2,
+   "title": "Contrôler l'exécution",
+   "description": "Prendre des décisions, répéter des instructions, utiliser des tableaux et découper un programme en méthodes.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "b16848ec-bf77-5e8d-8b33-7532f4c4c54f",
+     "slug": "conditions-et-switch",
+     "title": "Conditions et switch",
+     "summary": "if, else, opérateurs logiques, ternaire et switch moderne.",
+     "content_md": "## Comparer des valeurs\n\nUne condition est une expression de type `boolean`, qui vaut `true` ou `false`. On la construit avec des **opérateurs de comparaison** :\n\n| Opérateur | Sens | Exemple (avec `x = 7`) |\n|---|---|---|\n| `==` | égal à | `x == 7` → `true` |\n| `!=` | différent de | `x != 7` → `false` |\n| `<`, `<=` | inférieur (ou égal) | `x < 10` → `true` |\n| `>`, `>=` | supérieur (ou égal) | `x >= 8` → `false` |\n\n> `=` **affecte** une valeur, `==` **compare** deux valeurs primitives. Pour les chaînes, utilisez `equals`.\n\n## if, else if, else\n\n```java\npublic class Mention {\n    public static void main(String[] args) {\n        double moyenne = 13.5;\n        if (moyenne >= 16) {\n            System.out.println(\"Mention très bien\");\n        } else if (moyenne >= 14) {\n            System.out.println(\"Mention bien\");\n        } else if (moyenne >= 12) {\n            System.out.println(\"Mention assez bien\");\n        } else if (moyenne >= 10) {\n            System.out.println(\"Admis\");\n        } else {\n            System.out.println(\"Non admis\");\n        }\n    }\n}\n```\n\n```text\nMention assez bien\n```\n\nLes conditions sont testées **dans l'ordre** ; seul le premier bloc dont la condition est vraie s'exécute. La condition se place toujours entre **parenthèses**. Mettez toujours des accolades, même pour une seule instruction : c'est plus sûr quand on ajoute une ligne plus tard.\n\n## Combiner des conditions\n\n| Opérateur | Nom | Vrai si… |\n|---|---|---|\n| `&&` | ET | les deux conditions sont vraies |\n| `\\|\\|` | OU | au moins une est vraie |\n| `!` | NON | la condition est fausse |\n\n```java\npublic class Acces {\n    public static void main(String[] args) {\n        int age = 17;\n        boolean accompagne = true;\n        boolean estMembre = false;\n\n        if (age >= 18 || accompagne) {\n            System.out.println(\"Entrée autorisée\");\n        }\n        if (age >= 18 && !estMembre) {\n            System.out.println(\"Tarif adulte\");\n        } else {\n            System.out.println(\"Tarif réduit ou membre\");\n        }\n        boolean adolescent = age >= 13 && age <= 19;\n        System.out.println(\"Adolescent : \" + adolescent);\n    }\n}\n```\n\n```text\nEntrée autorisée\nTarif réduit ou membre\nAdolescent : true\n```\n\n`&&` et `||` sont **paresseux** (*short-circuit*) : si la première partie suffit à décider, la seconde n'est pas évaluée. On en profite pour écrire `texte != null && texte.length() > 3` sans risque d'erreur si `texte` est `null` (absence d'objet).\n\n## L'opérateur ternaire\n\nPour choisir entre **deux valeurs**, l'opérateur ternaire `condition ? valeurSiVrai : valeurSiFaux` est plus compact qu'un `if` :\n\n```java\npublic class Ternaire {\n    public static void main(String[] args) {\n        int stock = 0;\n        String etat = stock > 0 ? \"disponible\" : \"en rupture\";\n        System.out.println(\"Article \" + etat);\n        int articles = 1;\n        System.out.println(articles + \" article\" + (articles > 1 ? \"s\" : \"\"));\n    }\n}\n```\n\n```text\nArticle en rupture\n1 article\n```\n\nRéservez-le aux choix simples ; au-delà, un `if` reste plus lisible.\n\n## switch : choisir parmi plusieurs cas\n\nQuand on compare **une même valeur** à plusieurs constantes, `switch` est plus clair qu'une suite de `else if`. Java moderne propose une syntaxe avec des flèches `->`, sans risque d'« oublier un `break` » :\n\n```java\npublic class Jours {\n    public static void main(String[] args) {\n        String jour = \"samedi\";\n        switch (jour) {\n            case \"samedi\", \"dimanche\" -> System.out.println(\"Week-end\");\n            case \"mercredi\" -> System.out.println(\"Milieu de semaine\");\n            default -> System.out.println(\"Jour ouvré\");\n        }\n\n        int numeroMois = 4;\n        int nbJours = switch (numeroMois) {\n            case 2 -> 28;\n            case 4, 6, 9, 11 -> 30;\n            default -> 31;\n        };\n        System.out.println(\"Mois \" + numeroMois + \" : \" + nbJours + \" jours\");\n    }\n}\n```\n\n```text\nWeek-end\nMois 4 : 30 jours\n```\n\n- Plusieurs valeurs peuvent partager une branche : `case 4, 6, 9, 11`.\n- `default` traite tous les autres cas.\n- La seconde forme est une **expression `switch`** : elle **produit une valeur** que l'on range dans `nbJours` (notez le `;` final). Le compilateur exige alors que tous les cas soient couverts, d'où le `default`.\n\n> Vous rencontrerez aussi l'ancienne syntaxe `case 1: … break;`. Sans `break`, l'exécution « tombe » dans le cas suivant, une source fréquente de bugs : préférez les flèches.\n\n## Imbriquer avec modération\n\nUne condition peut en contenir une autre, mais au-delà de deux niveaux le code devient difficile à lire. Souvent, combiner les conditions avec `&&` ou tester d'abord les cas d'erreur suffit :\n\n```java\npublic class Livraison {\n    public static void main(String[] args) {\n        double montant = 42.0;\n        boolean premium = false;\n        double frais;\n        if (montant <= 0) {\n            System.out.println(\"Panier vide\");\n            return;  // quitte main immédiatement\n        }\n        if (premium || montant >= 50) {\n            frais = 0;\n        } else {\n            frais = 4.99;\n        }\n        System.out.println(\"Frais de livraison : \" + frais);\n    }\n}\n```\n\n```text\nFrais de livraison : 4.99\n```\n\nTraiter le cas particulier d'abord, puis sortir avec `return`, évite d'imbriquer tout le reste dans un `else`.\n\n## À retenir\n\n- Comparaisons : `==`, `!=`, `<`, `<=`, `>`, `>=` ; chaînes avec `equals`.\n- `if` / `else if` / `else` : la première condition vraie l'emporte ; toujours des accolades.\n- `&&` (ET), `||` (OU), `!` (NON) ; `&&` et `||` n'évaluent la seconde partie que si nécessaire.\n- Ternaire `cond ? a : b` pour choisir entre deux valeurs.\n- `switch` avec `->` : plusieurs valeurs par `case`, `default`, et forme expression qui renvoie une valeur.\n\n## Exercices\n\n### Exercice 1 — Pair ou impair, positif ou négatif\n\nPour `int n = -7;`, affichez `-7 est impair et négatif`.\n\n```solution-java\npublic class Parite {\n    public static void main(String[] args) {\n        int n = -7;\n        String parite = n % 2 == 0 ? \"pair\" : \"impair\";\n        String signe;\n        if (n > 0) {\n            signe = \"positif\";\n        } else if (n < 0) {\n            signe = \"négatif\";\n        } else {\n            signe = \"nul\";\n        }\n        System.out.println(n + \" est \" + parite + \" et \" + signe);\n    }\n}\n```\n\n```text\n-7 est impair et négatif\n```\n\nRemarque : `-7 % 2` vaut `-1` en Java, d'où le test `== 0` plutôt que `== 1`.\n\n### Exercice 2 — Tarif de cinéma\n\nPlein tarif 11 €, moins de 14 ans 6 €, étudiant ou plus de 65 ans 8 €. Affichez le tarif pour `age = 22` et `etudiant = true`.\n\n```solution-java\npublic class Cinema {\n    public static void main(String[] args) {\n        int age = 22;\n        boolean etudiant = true;\n        int tarif;\n        if (age < 14) {\n            tarif = 6;\n        } else if (etudiant || age > 65) {\n            tarif = 8;\n        } else {\n            tarif = 11;\n        }\n        System.out.println(\"Tarif : \" + tarif + \" EUR\");\n    }\n}\n```\n\n```text\nTarif : 8 EUR\n```\n\n### Exercice 3 — Saison\n\nAvec une expression `switch`, associez un numéro de mois (1 à 12) à une saison (hiver : 12, 1, 2 ; printemps : 3, 4, 5 ; été : 6, 7, 8 ; automne : 9, 10, 11) et affichez celle du mois 10.\n\n```solution-java\npublic class Saison {\n    public static void main(String[] args) {\n        int mois = 10;\n        String saison = switch (mois) {\n            case 12, 1, 2 -> \"hiver\";\n            case 3, 4, 5 -> \"printemps\";\n            case 6, 7, 8 -> \"été\";\n            case 9, 10, 11 -> \"automne\";\n            default -> \"mois invalide\";\n        };\n        System.out.println(\"Mois \" + mois + \" : \" + saison);\n    }\n}\n```\n\n```text\nMois 10 : automne\n```",
+     "duration_minutes": 40,
+     "position": 1
+    },
+    {
+     "id": "3f9f3220-cdd1-5865-80a4-620325776cc3",
+     "slug": "boucles-et-tableaux",
+     "title": "Boucles et tableaux",
+     "summary": "while, for, for-each, tableaux, break et continue.",
+     "content_md": "## Pourquoi des boucles ?\n\nUne **boucle** répète un bloc d'instructions. Plutôt que d'écrire dix fois `System.out.println`, on écrit une boucle qui tourne dix fois. Java en propose quatre formes.\n\n## La boucle while\n\n`while` répète **tant que** la condition est vraie. Elle convient quand on ne sait pas à l'avance combien de tours seront nécessaires :\n\n```java\npublic class Epargne {\n    public static void main(String[] args) {\n        double capital = 1000;\n        int annees = 0;\n        while (capital < 1200) {\n            capital = capital * 1.05;   // +5 % par an\n            annees++;\n        }\n        System.out.printf(\"Objectif atteint en %d ans (%.2f)%n\", annees, capital);\n    }\n}\n```\n\n```text\nObjectif atteint en 4 ans (1215.51)\n```\n\n> Si la condition ne devient jamais fausse, la boucle est **infinie** : le programme ne s'arrête pas (interrompez-le avec `Ctrl + C`). Vérifiez toujours que quelque chose, dans le corps de la boucle, rapproche de la sortie.\n\n`do { … } while (condition);` est une variante qui exécute le corps **au moins une fois** avant de tester ; elle sert surtout à redemander une saisie jusqu'à ce qu'elle soit valide.\n\n## La boucle for\n\n`for` regroupe sur une ligne **l'initialisation**, **la condition** et **la mise à jour**. C'est la boucle idéale pour compter :\n\n```java\npublic class Table {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 5; i++) {\n            System.out.println(\"7 x \" + i + \" = \" + (7 * i));\n        }\n        for (int i = 10; i > 0; i -= 3) {\n            System.out.print(i + \" \");\n        }\n        System.out.println();\n    }\n}\n```\n\n```text\n7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n10 7 4 1\n```\n\nLecture de `for (int i = 1; i <= 5; i++)` : « commencer avec `i = 1` ; tant que `i <= 5`, exécuter le bloc puis ajouter 1 à `i` ». La variable `i` n'existe qu'à l'intérieur de la boucle.\n\n## Les tableaux\n\nUn **tableau** (*array*) range plusieurs valeurs **du même type** sous un seul nom. Sa taille est fixée à la création :\n\n```java\npublic class Tableaux {\n    public static void main(String[] args) {\n        int[] notes = {12, 15, 9, 17};\n        String[] jours = new String[3];   // 3 cases, vides (null) au départ\n        jours[0] = \"lundi\";\n        jours[1] = \"mardi\";\n        jours[2] = \"mercredi\";\n\n        System.out.println(notes.length);   // taille : un attribut, sans parenthèses\n        System.out.println(notes[0]);       // premier élément\n        System.out.println(notes[notes.length - 1]);\n        notes[2] = 10;                      // modification\n        System.out.println(java.util.Arrays.toString(notes));\n        System.out.println(jours[1]);\n    }\n}\n```\n\n```text\n4\n12\n17\n[12, 15, 10, 17]\nmardi\n```\n\n- Les indices vont de `0` à `length - 1`. Accéder à `notes[4]` provoque une erreur à l'exécution (`ArrayIndexOutOfBoundsException`).\n- `Arrays.toString` (classe `java.util.Arrays`) produit un affichage lisible ; `System.out.println(notes)` seul afficherait une référence peu parlante.\n- Pour une liste dont la taille **varie**, on utilisera plutôt `ArrayList` (module 4).\n\n## Parcourir un tableau : for et for-each\n\n```java\npublic class Parcours {\n    public static void main(String[] args) {\n        double[] prix = {4.5, 12.0, 7.25};\n        double total = 0;\n        for (double p : prix) {          // « pour chaque p dans prix »\n            total += p;\n        }\n        System.out.println(\"Total : \" + total);\n\n        for (int i = 0; i < prix.length; i++) {   // quand l'indice est utile\n            System.out.println(\"Article \" + (i + 1) + \" : \" + prix[i]);\n        }\n    }\n}\n```\n\n```text\nTotal : 23.75\nArticle 1 : 4.5\nArticle 2 : 12.0\nArticle 3 : 7.25\n```\n\nLa boucle **for-each** (`for (type element : tableau)`) est la plus lisible pour lire chaque élément. Utilisez le `for` classique quand vous avez besoin de la position ou que vous modifiez le tableau.\n\n## break et continue\n\n- `break` **sort** immédiatement de la boucle.\n- `continue` **passe** directement au tour suivant.\n\n```java\npublic class Recherche {\n    public static void main(String[] args) {\n        int[] valeurs = {3, -1, 8, 0, 42, 5};\n        for (int v : valeurs) {\n            if (v <= 0) {\n                continue;          // ignore les valeurs nulles ou négatives\n            }\n            if (v > 40) {\n                System.out.println(\"Trop grand : arrêt sur \" + v);\n                break;             // sort de la boucle\n            }\n            System.out.println(\"Valeur traitée : \" + v);\n        }\n    }\n}\n```\n\n```text\nValeur traitée : 3\nValeur traitée : 8\nTrop grand : arrêt sur 42\n```\n\n## Boucles imbriquées\n\nUne boucle peut en contenir une autre : pour chaque tour de la boucle extérieure, la boucle intérieure fait tous ses tours.\n\n```java\npublic class Grille {\n    public static void main(String[] args) {\n        for (int ligne = 1; ligne <= 3; ligne++) {\n            for (int col = 1; col <= ligne; col++) {\n                System.out.print(\"* \");\n            }\n            System.out.println();\n        }\n    }\n}\n```\n\n```text\n*\n* *\n* * *\n```\n\n## À retenir\n\n- `while` répète tant qu'une condition est vraie ; `do … while` au moins une fois.\n- `for (init; condition; mise à jour)` est idéal pour compter.\n- Un tableau a une taille fixe : `int[] t = {1, 2};`, `new String[3]`, indices de `0` à `length - 1`.\n- `for (type x : tableau)` parcourt chaque élément ; `Arrays.toString` affiche un tableau.\n- `break` sort de la boucle, `continue` passe au tour suivant.\n\n## Exercices\n\n### Exercice 1 — Somme et maximum\n\nPour `int[] ventes = {120, 340, 90, 410, 205};`, calculez la somme, la moyenne et la plus grande valeur.\n\n```solution-java\npublic class Ventes {\n    public static void main(String[] args) {\n        int[] ventes = {120, 340, 90, 410, 205};\n        int somme = 0;\n        int max = ventes[0];\n        for (int v : ventes) {\n            somme += v;\n            if (v > max) {\n                max = v;\n            }\n        }\n        double moyenne = (double) somme / ventes.length;\n        System.out.println(\"Somme : \" + somme);\n        System.out.println(\"Moyenne : \" + moyenne);\n        System.out.println(\"Maximum : \" + max);\n    }\n}\n```\n\n```text\nSomme : 1165\nMoyenne : 233.0\nMaximum : 410\n```\n\nOn initialise `max` avec le premier élément, et non avec `0`, pour que le calcul reste juste si toutes les valeurs sont négatives.\n\n### Exercice 2 — FizzBuzz\n\nAffichez les nombres de 1 à 15 sur une ligne, en remplaçant les multiples de 3 par `Fizz`, ceux de 5 par `Buzz` et ceux de 15 par `FizzBuzz`.\n\n```solution-java\npublic class FizzBuzz {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 15; i++) {\n            if (i % 15 == 0) {\n                System.out.print(\"FizzBuzz \");\n            } else if (i % 3 == 0) {\n                System.out.print(\"Fizz \");\n            } else if (i % 5 == 0) {\n                System.out.print(\"Buzz \");\n            } else {\n                System.out.print(i + \" \");\n            }\n        }\n        System.out.println();\n    }\n}\n```\n\n```text\n1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz\n```\n\nLe test sur 15 doit venir **en premier**, sinon les multiples de 15 seraient capturés par le test sur 3.\n\n### Exercice 3 — Compte à rebours\n\nAvec une boucle `while`, affichez `5 4 3 2 1 Décollage !`.\n\n```solution-java\npublic class Rebours {\n    public static void main(String[] args) {\n        int n = 5;\n        while (n > 0) {\n            System.out.print(n + \" \");\n            n--;\n        }\n        System.out.println(\"Décollage !\");\n    }\n}\n```\n\n```text\n5 4 3 2 1 Décollage !\n```",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "3047ce13-f49c-55e2-8761-421ba2e82bab",
+     "slug": "methodes",
+     "title": "Les méthodes",
+     "summary": "Paramètres, valeur de retour, surcharge, portée et passage par valeur.",
+     "content_md": "## Pourquoi des méthodes ?\n\nUne **méthode** regroupe des instructions sous un nom pour pouvoir les réutiliser. Vous en utilisez déjà : `println`, `length`, `Math.max`… Écrire vos propres méthodes permet de **découper** un problème en petites étapes, d'éviter le copier-coller et de tester chaque partie séparément.\n\nDans ce module, nos méthodes sont déclarées `static` : elles appartiennent à la classe et s'appellent directement, comme `main`. Le module 3 présentera les méthodes liées aux objets.\n\n## Déclarer et appeler une méthode\n\n```java\npublic class Salutations {\n    static void saluer(String prenom) {\n        System.out.println(\"Bonjour \" + prenom + \" !\");\n    }\n\n    public static void main(String[] args) {\n        saluer(\"Amina\");\n        saluer(\"Lucas\");\n    }\n}\n```\n\n```text\nBonjour Amina !\nBonjour Lucas !\n```\n\nLa **signature** `static void saluer(String prenom)` indique :\n\n- `void` : la méthode ne **renvoie** rien, elle agit (ici, elle affiche) ;\n- `saluer` : son nom, en camelCase et de préférence un **verbe** ;\n- `(String prenom)` : un **paramètre** de type `String`. À l'appel, la valeur fournie (l'**argument**) est copiée dans `prenom`.\n\n## Renvoyer une valeur avec return\n\nUne méthode peut **calculer** un résultat et le renvoyer avec `return`. Son type de retour remplace alors `void` :\n\n```java\npublic class Calculs {\n    static double prixTTC(double prixHT, double taux) {\n        return prixHT * (1 + taux);\n    }\n\n    static boolean estPair(int n) {\n        return n % 2 == 0;\n    }\n\n    static int maximum(int[] valeurs) {\n        int max = valeurs[0];\n        for (int v : valeurs) {\n            if (v > max) {\n                max = v;\n            }\n        }\n        return max;\n    }\n\n    public static void main(String[] args) {\n        double ttc = prixTTC(50, 0.2);\n        System.out.println(\"TTC : \" + ttc);\n        System.out.println(\"8 pair ? \" + estPair(8));\n        System.out.println(\"Max : \" + maximum(new int[] {4, 19, 7}));\n    }\n}\n```\n\n```text\nTTC : 60.0\n8 pair ? true\nMax : 19\n```\n\n- `return` **termine** la méthode immédiatement.\n- Le compilateur vérifie que la valeur renvoyée a le bon type, et que **tous les chemins** se terminent par un `return`.\n- Une méthode qui renvoie une valeur ne l'affiche pas : c'est l'appelant qui décide quoi en faire. Séparer **calcul** et **affichage** rend le code réutilisable.\n\n## Plusieurs paramètres et surcharge\n\nUne méthode peut recevoir plusieurs paramètres, séparés par des virgules. Java autorise aussi la **surcharge** (*overloading*) : plusieurs méthodes de même nom, à condition que leurs paramètres diffèrent (en nombre ou en type).\n\n```java\npublic class Surcharge {\n    static int aire(int cote) {\n        return cote * cote;\n    }\n\n    static int aire(int longueur, int largeur) {\n        return longueur * largeur;\n    }\n\n    static double aire(double rayon) {\n        return Math.PI * rayon * rayon;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(aire(4));\n        System.out.println(aire(4, 3));\n        System.out.printf(\"%.2f%n\", aire(1.5));\n    }\n}\n```\n\n```text\n16\n12\n7.07\n```\n\nLe compilateur choisit la bonne version selon les arguments : `aire(4)` → un `int`, `aire(1.5)` → un `double`.\n\n## Portée des variables et passage par valeur\n\nUne variable déclarée dans une méthode (ou dans un bloc `{ }`) n'existe **que là** : c'est sa **portée**. Deux méthodes peuvent donc utiliser le même nom de variable sans conflit.\n\nJava transmet les arguments **par valeur** : la méthode reçoit une **copie**. Modifier un paramètre de type primitif n'a aucun effet chez l'appelant. En revanche, pour un tableau (ou un objet), la copie porte sur la **référence** : la méthode accède au **même** tableau et peut modifier son contenu.\n\n```java\nimport java.util.Arrays;\n\npublic class Passage {\n    static void doubler(int n) {\n        n = n * 2;  // modifie la copie locale seulement\n    }\n\n    static void doublerTout(int[] t) {\n        for (int i = 0; i < t.length; i++) {\n            t[i] = t[i] * 2;  // modifie le tableau partagé\n        }\n    }\n\n    public static void main(String[] args) {\n        int x = 5;\n        doubler(x);\n        System.out.println(x);\n\n        int[] valeurs = {1, 2, 3};\n        doublerTout(valeurs);\n        System.out.println(Arrays.toString(valeurs));\n    }\n}\n```\n\n```text\n5\n[2, 4, 6]\n```\n\nCette distinction entre **valeur primitive** et **référence** est essentielle en Java ; elle reviendra avec les objets.\n\n## Découper un programme\n\nVoici un petit programme d'analyse de notes, découpé en méthodes courtes qui font chacune **une seule chose** :\n\n```java\npublic class Bulletin {\n    static double moyenne(double[] notes) {\n        double somme = 0;\n        for (double n : notes) {\n            somme += n;\n        }\n        return somme / notes.length;\n    }\n\n    static String appreciation(double moy) {\n        if (moy >= 14) {\n            return \"Très bon travail\";\n        } else if (moy >= 10) {\n            return \"Résultats corrects\";\n        }\n        return \"Des efforts sont nécessaires\";\n    }\n\n    static void afficherBulletin(String nom, double[] notes) {\n        double moy = moyenne(notes);\n        System.out.printf(\"%s : %.2f — %s%n\", nom, moy, appreciation(moy));\n    }\n\n    public static void main(String[] args) {\n        afficherBulletin(\"Inès\", new double[] {15, 13.5, 17});\n        afficherBulletin(\"Hugo\", new double[] {9, 11, 8.5});\n    }\n}\n```\n\n```text\nInès : 15.17 — Très bon travail\nHugo : 9.50 — Des efforts sont nécessaires\n```\n\nChaque méthode est courte, nommée par ce qu'elle fait, et peut être testée seule : c'est la clé d'un code lisible.\n\n## À retenir\n\n- Une méthode : `static typeRetour nom(type param, …) { … }` ; `void` si elle ne renvoie rien.\n- `return valeur;` renvoie un résultat et termine la méthode.\n- La surcharge permet plusieurs méthodes de même nom avec des paramètres différents.\n- Les variables locales n'existent que dans leur bloc ; les arguments sont passés par valeur (copie de la valeur ou de la référence).\n- Découpez : une méthode = une tâche, un nom explicite ; séparez calcul et affichage.\n\n## Exercices\n\n### Exercice 1 — Conversion de température\n\nÉcrivez `celsiusVersFahrenheit(double c)` (formule `c * 9 / 5 + 32`) et affichez le résultat pour 0, 37 et 100.\n\n```solution-java\npublic class Temperature {\n    static double celsiusVersFahrenheit(double c) {\n        return c * 9 / 5 + 32;\n    }\n\n    public static void main(String[] args) {\n        double[] valeurs = {0, 37, 100};\n        for (double c : valeurs) {\n            System.out.println(c + \" °C = \" + celsiusVersFahrenheit(c) + \" °F\");\n        }\n    }\n}\n```\n\n```text\n0.0 °C = 32.0 °F\n37.0 °C = 98.6 °F\n100.0 °C = 212.0 °F\n```\n\n### Exercice 2 — Compter les voyelles\n\nÉcrivez `compterVoyelles(String texte)` qui renvoie le nombre de voyelles (a, e, i, o, u, y), sans tenir compte des majuscules.\n\n```solution-java\npublic class Voyelles {\n    static int compterVoyelles(String texte) {\n        int compte = 0;\n        String minuscules = texte.toLowerCase();\n        for (int i = 0; i < minuscules.length(); i++) {\n            char c = minuscules.charAt(i);\n            if (\"aeiouy\".indexOf(c) >= 0) {\n                compte++;\n            }\n        }\n        return compte;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(compterVoyelles(\"Programmation Java\"));\n    }\n}\n```\n\n```text\n7\n```\n\n`\"aeiouy\".indexOf(c)` renvoie `-1` si le caractère n'est pas une voyelle : une astuce simple pour tester l'appartenance à une liste de caractères.\n\n### Exercice 3 — Nombre premier\n\nÉcrivez `estPremier(int n)` (un nombre premier a exactement deux diviseurs : 1 et lui-même), puis affichez les nombres premiers inférieurs à 30.\n\n```solution-java\npublic class Premiers {\n    static boolean estPremier(int n) {\n        if (n < 2) {\n            return false;\n        }\n        for (int d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        for (int i = 1; i < 30; i++) {\n            if (estPremier(i)) {\n                System.out.print(i + \" \");\n            }\n        }\n        System.out.println();\n    }\n}\n```\n\n```text\n2 3 5 7 11 13 17 19 23 29\n```\n\nIl suffit de tester les diviseurs jusqu'à la racine carrée de `n` (`d * d <= n`) : si `n` avait un diviseur plus grand, il en aurait aussi un plus petit.",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "c94444c6-31c1-54d0-b331-fd78a2720716",
+    "title": "Quiz — Contrôler l'exécution",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "8e868840-74e3-5081-831c-27c46b60fe33",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "int note = 12;\nif (note >= 14) {\n    System.out.println(\"Bien\");\n} else if (note >= 10) {\n    System.out.println(\"Passable\");\n} else {\n    System.out.println(\"Insuffisant\");\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "a0ce67fc-b5e8-5f66-ad89-f834f287bc72",
+        "position": 1,
+        "label": "Bien"
+       },
+       {
+        "id": "1fc741c6-a799-5a1c-b71a-9691fca83820",
+        "position": 2,
+        "label": "Insuffisant"
+       },
+       {
+        "id": "cf3ef507-d35a-5698-a953-9a304a7fe028",
+        "position": 3,
+        "label": "Passable puis Insuffisant"
+       },
+       {
+        "id": "66cb7543-e1e1-5b22-9abf-c97c8b9872ae",
+        "position": 4,
+        "label": "Passable"
+       }
+      ],
+      "correct": [
+       "66cb7543-e1e1-5b22-9abf-c97c8b9872ae"
+      ],
+      "explanation": "12 n'est pas ≥ 14, mais il est ≥ 10 : seule la première branche vraie s'exécute, donc « Passable »."
+     },
+     {
+      "id": "f5bbb968-b79a-5a82-a197-2678c17d9cc5",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que vaut (5 > 3) && !(2 == 2) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0d2a6b48-050e-5ec8-846d-1b8c0e4583e5",
+        "position": 1,
+        "label": "true"
+       },
+       {
+        "id": "dab6231f-d17a-5bf1-b260-9697c3ea7833",
+        "position": 2,
+        "label": "false"
+       },
+       {
+        "id": "9f5595cb-034b-5ef5-8a7e-7caf4fa38650",
+        "position": 3,
+        "label": "Erreur de compilation"
+       },
+       {
+        "id": "0d3477d8-7a66-57d9-b51f-25780446a6ee",
+        "position": 4,
+        "label": "null"
+       }
+      ],
+      "correct": [
+       "dab6231f-d17a-5bf1-b260-9697c3ea7833"
+      ],
+      "explanation": "5 > 3 est vrai, 2 == 2 est vrai donc !(2 == 2) est faux ; vrai ET faux donne false."
+     },
+     {
+      "id": "38d7dbe8-6b53-5a9e-8c92-26bf3ac6b279",
+      "position": 3,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur le switch avec flèches (->) sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "9133d6d2-334b-5fad-8340-c4bf2ea26826",
+        "position": 1,
+        "label": "Un case peut regrouper plusieurs valeurs : case 4, 6 ->"
+       },
+       {
+        "id": "2f27474d-5720-514a-9677-02a8298312b1",
+        "position": 2,
+        "label": "Il faut un break à la fin de chaque branche."
+       },
+       {
+        "id": "01ddba8a-6ac0-5df7-8ce1-33771c7537a0",
+        "position": 3,
+        "label": "Une expression switch peut renvoyer une valeur rangée dans une variable."
+       },
+       {
+        "id": "58b50bf8-2123-569c-9bb5-64c94fdf2556",
+        "position": 4,
+        "label": "default traite les valeurs non listées."
+       }
+      ],
+      "correct": [
+       "9133d6d2-334b-5fad-8340-c4bf2ea26826",
+       "01ddba8a-6ac0-5df7-8ce1-33771c7537a0",
+       "58b50bf8-2123-569c-9bb5-64c94fdf2556"
+      ],
+      "explanation": "Avec les flèches, il n'y a pas de « chute » d'un cas au suivant : aucun break n'est nécessaire. Les trois autres affirmations sont exactes."
+     },
+     {
+      "id": "5b455c4e-8875-583b-a362-9d26ab6193dc",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Combien de fois ce code affiche-t-il « Java » ?",
+      "code": "for (int i = 0; i < 4; i++) {\n    System.out.println(\"Java\");\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "39f850f7-eba6-58c1-9b4d-5d7a31402a2b",
+        "position": 1,
+        "label": "3"
+       },
+       {
+        "id": "d7d19b89-34c9-5b8a-b419-0713fcd6ee6e",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "d997ff28-836f-53fe-8d7c-fd07c09fbbf3",
+        "position": 3,
+        "label": "5"
+       },
+       {
+        "id": "c0ffc2af-2d92-5fa2-8135-dc27cc33e7be",
+        "position": 4,
+        "label": "Une infinité"
+       }
+      ],
+      "correct": [
+       "d7d19b89-34c9-5b8a-b419-0713fcd6ee6e"
+      ],
+      "explanation": "i prend les valeurs 0, 1, 2 et 3 ; à 4, la condition i < 4 devient fausse. La boucle fait donc 4 tours."
+     },
+     {
+      "id": "5f1005f6-4514-56da-833d-98e8fa9f40cf",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quel est l'indice du dernier élément d'un tableau t ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "9b83a8b8-b993-5925-8ac7-91cde08feb91",
+        "position": 1,
+        "label": "t.length"
+       },
+       {
+        "id": "90b01c9a-7287-5ff5-a5f9-9ec6cb74ea47",
+        "position": 2,
+        "label": "t.length - 1"
+       },
+       {
+        "id": "759b2c54-d592-5ace-9c5d-0054b51dfa90",
+        "position": 3,
+        "label": "t.length()"
+       },
+       {
+        "id": "065788e6-7b6a-5a09-bc4a-22076b8876e9",
+        "position": 4,
+        "label": "t.size() - 1"
+       }
+      ],
+      "correct": [
+       "90b01c9a-7287-5ff5-a5f9-9ec6cb74ea47"
+      ],
+      "explanation": "Les indices commencent à 0, donc le dernier est t.length - 1. Pour un tableau, length est un attribut sans parenthèses."
+     },
+     {
+      "id": "5b1dc7b1-7823-57bf-aa74-9b95b774b7fe",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que fait l'instruction continue dans une boucle ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b3f75959-fbf8-5805-b2bd-a85e300b281a",
+        "position": 1,
+        "label": "Elle passe directement au tour suivant."
+       },
+       {
+        "id": "d265ca5d-c8d8-518f-91ed-0a714ca8ef67",
+        "position": 2,
+        "label": "Elle sort de la boucle."
+       },
+       {
+        "id": "b4b80425-4c5f-5e8e-8b96-4bd5b9ea572c",
+        "position": 3,
+        "label": "Elle recommence la boucle depuis le début."
+       },
+       {
+        "id": "75903e7f-56db-52ce-a7c6-32313763894a",
+        "position": 4,
+        "label": "Elle arrête le programme."
+       }
+      ],
+      "correct": [
+       "b3f75959-fbf8-5805-b2bd-a85e300b281a"
+      ],
+      "explanation": "continue saute la fin du tour en cours et passe au suivant ; c'est break qui sort de la boucle."
+     },
+     {
+      "id": "ed56f8c0-81a3-5239-b255-b4945025da34",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quelle boucle exécute toujours son corps au moins une fois ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1874e010-1fa0-53a0-9349-bb03f1e48230",
+        "position": 1,
+        "label": "while"
+       },
+       {
+        "id": "b775f956-ef4d-543d-ad5e-1428e90e7b3d",
+        "position": 2,
+        "label": "for"
+       },
+       {
+        "id": "10ce2eb8-af04-544a-a597-42f80218509b",
+        "position": 3,
+        "label": "do … while"
+       },
+       {
+        "id": "2c93a413-102b-562d-bf8d-8b195eeef433",
+        "position": 4,
+        "label": "for-each"
+       }
+      ],
+      "correct": [
+       "10ce2eb8-af04-544a-a597-42f80218509b"
+      ],
+      "explanation": "do … while teste la condition après avoir exécuté le corps, qui s'exécute donc au moins une fois."
+     },
+     {
+      "id": "d9da25f1-90ff-58a4-880c-17ff525cd3fb",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quelle est la bonne signature pour une méthode qui reçoit deux entiers et renvoie leur moyenne décimale ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "82ed400d-76e1-5f79-af6f-965d16a5ed1b",
+        "position": 1,
+        "label": "static void moyenne(int a, int b)"
+       },
+       {
+        "id": "10cd9449-a8df-51e5-a399-fddfdbb577b5",
+        "position": 2,
+        "label": "static int moyenne(double a, b)"
+       },
+       {
+        "id": "2cf3d975-5e27-5af3-a704-c510b14790a5",
+        "position": 3,
+        "label": "static double moyenne(int a, int b)"
+       },
+       {
+        "id": "5bcf87d9-0e98-5ff6-bd8a-9ac9ffc7d275",
+        "position": 4,
+        "label": "static moyenne(int a, int b) double"
+       }
+      ],
+      "correct": [
+       "2cf3d975-5e27-5af3-a704-c510b14790a5"
+      ],
+      "explanation": "Le type de retour (double) précède le nom, et chaque paramètre a son propre type. void signifierait que la méthode ne renvoie rien."
+     },
+     {
+      "id": "24150d78-04cb-502d-9d88-cc14bfb63f52",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Qu'affiche ce programme ?",
+      "code": "static void ajouter(int n) {\n    n = n + 10;\n}\n\npublic static void main(String[] args) {\n    int x = 1;\n    ajouter(x);\n    System.out.println(x);\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "9eaf07bd-26f9-5fe5-9313-9c3b88cc81ce",
+        "position": 1,
+        "label": "11"
+       },
+       {
+        "id": "34c3c7dc-8970-5943-abdd-9eb63e3decea",
+        "position": 2,
+        "label": "10"
+       },
+       {
+        "id": "23876128-d4da-508c-8f4f-4b5aeb59c0db",
+        "position": 3,
+        "label": "Erreur de compilation"
+       },
+       {
+        "id": "a9db672f-35f3-5328-bd0a-785b91879e5c",
+        "position": 4,
+        "label": "1"
+       }
+      ],
+      "correct": [
+       "a9db672f-35f3-5328-bd0a-785b91879e5c"
+      ],
+      "explanation": "Java passe les arguments par valeur : la méthode modifie une copie de x. La variable x de main vaut toujours 1."
+     },
+     {
+      "id": "e702e45c-b6fa-51e8-8830-2342a772b8a0",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Deux méthodes d'une même classe peuvent porter le même nom si leurs paramètres diffèrent.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e2cc92a7-db1d-5d89-ba91-e8a3ea95acbd",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "5c65f0cc-d686-5969-b249-d71791018d59",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "e2cc92a7-db1d-5d89-ba91-e8a3ea95acbd"
+      ],
+      "explanation": "C'est la surcharge : le compilateur choisit la version adaptée selon le nombre et le type des arguments."
+     }
+    ]
+   }
+  },
+  {
+   "id": "8dd15b77-74e8-5287-9171-31108ad5828c",
+   "position": 3,
+   "title": "Programmation orientée objet",
+   "description": "Créer des classes et des objets, protéger leurs données par l'encapsulation et réutiliser du code par l'héritage.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "dc41be6b-f742-55a1-83c3-a5e97b73bcd1",
+     "slug": "classes-et-objets",
+     "title": "Classes, objets et constructeurs",
+     "summary": "Attributs, méthodes, constructeurs, this, toString et références.",
+     "content_md": "## Penser en objets\n\nJusqu'ici, vos programmes manipulaient des valeurs isolées : un prix, un nom, un tableau de notes. Dès qu'un programme grandit, il devient naturel de **regrouper** les données qui vont ensemble avec les opérations qui les concernent. C'est l'idée de la **programmation orientée objet** (POO).\n\n- Une **classe** est un **plan** : elle décrit ce qu'est un compte bancaire (un titulaire, un solde) et ce qu'il sait faire (déposer, retirer).\n- Un **objet** est un exemplaire concret construit à partir de ce plan : le compte d'Amina, le compte de Lucas. On dit aussi une **instance** de la classe.\n\n| Notion | Rôle | Exemple pour un compte |\n|---|---|---|\n| **Attribut** (*field*) | une donnée de l'objet | `titulaire`, `solde` |\n| **Méthode** | une action de l'objet | `deposer(montant)` |\n| **Constructeur** | initialise un nouvel objet | `new Compte(\"Amina\", 100)` |\n\n## Une première classe\n\n```java\nclass Compte {\n    String titulaire;\n    double solde;\n\n    void deposer(double montant) {\n        solde = solde + montant;\n    }\n\n    void afficher() {\n        System.out.println(titulaire + \" : \" + solde + \" EUR\");\n    }\n}\n\npublic class Banque {\n    public static void main(String[] args) {\n        Compte c1 = new Compte();\n        c1.titulaire = \"Amina\";\n        c1.deposer(150);\n\n        Compte c2 = new Compte();\n        c2.titulaire = \"Lucas\";\n        c2.deposer(40);\n        c2.deposer(10);\n\n        c1.afficher();\n        c2.afficher();\n    }\n}\n```\n\n```text\nAmina : 150.0 EUR\nLucas : 50.0 EUR\n```\n\n- `new Compte()` **crée** un objet ; la variable `c1` contient une **référence** vers lui.\n- Chaque objet a **ses propres** attributs : déposer sur `c1` ne change pas `c2`.\n- On accède à un attribut ou à une méthode avec le **point** : `c1.titulaire`, `c2.deposer(40)`.\n- Les méthodes ne sont plus `static` : elles s'appliquent **à un objet précis**, celui placé avant le point.\n- Un attribut non initialisé reçoit une valeur par défaut : `0` pour les nombres, `false` pour un `boolean`, `null` pour un objet.\n\n> Dans cet exemple, les deux classes sont dans le même fichier `Banque.java` pour simplifier. Dans un vrai projet, chaque classe a **son propre fichier** (`Compte.java`, `Banque.java`).\n\n## Le constructeur\n\nRemplir les attributs un par un après `new` est fastidieux et risqué (on peut en oublier). Un **constructeur** est une méthode spéciale, **du même nom que la classe** et **sans type de retour**, appelée automatiquement par `new` :\n\n```java\nclass Livre {\n    String titre;\n    String auteur;\n    int pages;\n\n    Livre(String titre, String auteur, int pages) {\n        this.titre = titre;\n        this.auteur = auteur;\n        this.pages = pages;\n    }\n\n    Livre(String titre, String auteur) {\n        this(titre, auteur, 0);  // appelle l'autre constructeur\n    }\n\n    String resume() {\n        return titre + \" (\" + auteur + \", \" + pages + \" p.)\";\n    }\n}\n\npublic class Constructeurs {\n    public static void main(String[] args) {\n        Livre a = new Livre(\"Le Petit Prince\", \"Saint-Exupéry\", 96);\n        Livre b = new Livre(\"Carnet de notes\", \"Anonyme\");\n        System.out.println(a.resume());\n        System.out.println(b.resume());\n    }\n}\n```\n\n```text\nLe Petit Prince (Saint-Exupéry, 96 p.)\nCarnet de notes (Anonyme, 0 p.)\n```\n\n- Le mot clé `this` désigne **l'objet en cours**. `this.titre = titre;` signifie : « l'attribut `titre` de cet objet reçoit le paramètre `titre` ». Sans `this`, le paramètre masquerait l'attribut.\n- Une classe peut avoir **plusieurs constructeurs** (surcharge) ; `this(…)` en appelle un autre, en première instruction.\n- Si vous n'écrivez aucun constructeur, Java en fournit un **par défaut**, sans paramètre. Dès que vous en écrivez un, ce constructeur par défaut disparaît.\n\n## toString : un affichage lisible\n\nAfficher directement un objet avec `println` donne par défaut quelque chose comme `Livre@1b6d3586` : le nom de la classe suivi d'un code peu parlant. En écrivant une méthode `toString()`, vous choisissez ce qui s'affiche :\n\n```java\nclass Point {\n    int x;\n    int y;\n\n    Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    void deplacer(int dx, int dy) {\n        x += dx;\n        y += dy;\n    }\n\n    @Override\n    public String toString() {\n        return \"(\" + x + \", \" + y + \")\";\n    }\n}\n\npublic class Points {\n    public static void main(String[] args) {\n        Point p = new Point(2, 3);\n        System.out.println(p);\n        p.deplacer(1, -1);\n        System.out.println(\"Après déplacement : \" + p);\n    }\n}\n```\n\n```text\n(2, 3)\nAprès déplacement : (3, 2)\n```\n\n`println` et la concaténation avec `+` appellent automatiquement `toString()`. L'annotation `@Override` sera expliquée avec l'héritage : elle indique que l'on **redéfinit** une méthode existante.\n\n## Références et null\n\nUne variable de type objet ne contient pas l'objet lui-même, mais une **référence** (une sorte d'adresse). Copier la variable copie la référence : les deux variables désignent alors **le même objet**.\n\n```java\nclass Compteur {\n    int valeur;\n}\n\npublic class References {\n    public static void main(String[] args) {\n        Compteur a = new Compteur();\n        Compteur b = a;          // même objet, deux noms\n        b.valeur = 10;\n        System.out.println(a.valeur);\n\n        Compteur c = new Compteur();\n        System.out.println(a == b);   // même objet ?\n        System.out.println(a == c);\n\n        Compteur vide = null;    // aucune référence\n        System.out.println(vide == null);\n    }\n}\n```\n\n```text\n10\ntrue\nfalse\ntrue\n```\n\n`null` signifie « aucun objet ». Appeler une méthode sur une variable `null` provoque une `NullPointerException` à l'exécution : vérifiez avec `!= null` quand une valeur peut être absente.\n\n## À retenir\n\n- Une **classe** est un plan (attributs + méthodes) ; un **objet** est une instance créée avec `new`.\n- Le **constructeur** porte le nom de la classe, n'a pas de type de retour et initialise l'objet ; `this` désigne l'objet en cours.\n- Chaque objet a ses propres valeurs d'attributs ; les méthodes non `static` agissent sur l'objet avant le point.\n- Redéfinissez `toString()` pour obtenir un affichage lisible.\n- Une variable objet contient une **référence** ; `==` compare des références ; `null` = aucun objet.\n\n## Exercices\n\n### Exercice 1 — Rectangle\n\nÉcrivez une classe `Rectangle` (largeur, hauteur) avec un constructeur, les méthodes `aire()` et `perimetre()`, et un `toString()`. Testez avec un rectangle 4 × 2,5.\n\n```solution-java\nclass Rectangle {\n    double largeur;\n    double hauteur;\n\n    Rectangle(double largeur, double hauteur) {\n        this.largeur = largeur;\n        this.hauteur = hauteur;\n    }\n\n    double aire() {\n        return largeur * hauteur;\n    }\n\n    double perimetre() {\n        return 2 * (largeur + hauteur);\n    }\n\n    @Override\n    public String toString() {\n        return \"Rectangle \" + largeur + \" x \" + hauteur;\n    }\n}\n\npublic class TestRectangle {\n    public static void main(String[] args) {\n        Rectangle r = new Rectangle(4, 2.5);\n        System.out.println(r);\n        System.out.println(\"Aire : \" + r.aire());\n        System.out.println(\"Périmètre : \" + r.perimetre());\n    }\n}\n```\n\n```text\nRectangle 4.0 x 2.5\nAire : 10.0\nPérimètre : 13.0\n```\n\n### Exercice 2 — Prévoir l'affichage\n\nQu'affiche ce code, avec la classe `Point` de la leçon ?\n\n```text\nPoint p1 = new Point(0, 0);\nPoint p2 = p1;\np2.deplacer(5, 5);\nPoint p3 = new Point(5, 5);\nSystem.out.println(p1 + \" \" + (p1 == p2) + \" \" + (p1 == p3));\n```\n\n```solution-text\n(5, 5) true false\np1 et p2 désignent le même objet : le déplacement via p2 se voit sur p1, et p1 == p2 est vrai.\np3 est un autre objet, même avec les mêmes coordonnées : p1 == p3 est faux.\n```\n\n### Exercice 3 — Thermostat\n\nCréez une classe `Thermostat` avec un attribut `temperature` (initialisé par le constructeur) et les méthodes `augmenter()` et `baisser()` qui modifient la température de 0,5 degré. Partez de 19, augmentez trois fois, baissez une fois.\n\n```solution-java\nclass Thermostat {\n    double temperature;\n\n    Thermostat(double temperature) {\n        this.temperature = temperature;\n    }\n\n    void augmenter() {\n        temperature += 0.5;\n    }\n\n    void baisser() {\n        temperature -= 0.5;\n    }\n}\n\npublic class TestThermostat {\n    public static void main(String[] args) {\n        Thermostat t = new Thermostat(19);\n        t.augmenter();\n        t.augmenter();\n        t.augmenter();\n        t.baisser();\n        System.out.println(\"Température : \" + t.temperature + \" °C\");\n    }\n}\n```\n\n```text\nTempérature : 20.0 °C\n```",
+     "duration_minutes": 45,
+     "position": 1
+    },
+    {
+     "id": "5b1494f1-9c1e-5d34-975d-756fe8e5bf30",
+     "slug": "encapsulation",
+     "title": "L'encapsulation",
+     "summary": "private, accesseurs, validation, membres static et constantes.",
+     "content_md": "## Le problème : des attributs modifiables par tous\n\nAvec la classe `Compte` de la leçon précédente, rien n'empêche d'écrire `c1.solde = -5000;` n'importe où dans le programme. L'objet ne peut pas protéger sa propre cohérence. L'**encapsulation** consiste à **cacher** les données d'un objet et à n'autoriser leur modification que **par ses méthodes**, qui vérifient les règles.\n\n## Les modificateurs d'accès\n\n| Modificateur | Visible depuis… |\n|---|---|\n| `private` | la classe elle-même uniquement |\n| *(aucun)* | les classes du même *package* (dossier de classes) |\n| `protected` | le même package et les sous-classes |\n| `public` | partout |\n\nLa règle d'or : **attributs `private`**, méthodes `public` pour ce que l'objet propose au reste du programme.\n\n## Accesseurs et validation\n\nOn donne accès aux données par des méthodes appelées **accesseurs** : un *getter* (`getSolde()`) pour lire, éventuellement un *setter* (`setX(…)`) pour modifier. Mais on ne crée pas de setter systématiquement : pour un compte, on préfère des méthodes **métier** (`deposer`, `retirer`) qui contrôlent chaque opération.\n\n```java\nclass Compte {\n    private final String titulaire;\n    private double solde;\n\n    public Compte(String titulaire, double soldeInitial) {\n        if (soldeInitial < 0) {\n            throw new IllegalArgumentException(\"Solde initial négatif\");\n        }\n        this.titulaire = titulaire;\n        this.solde = soldeInitial;\n    }\n\n    public String getTitulaire() {\n        return titulaire;\n    }\n\n    public double getSolde() {\n        return solde;\n    }\n\n    public void deposer(double montant) {\n        if (montant <= 0) {\n            throw new IllegalArgumentException(\"Montant invalide : \" + montant);\n        }\n        solde += montant;\n    }\n\n    public boolean retirer(double montant) {\n        if (montant <= 0 || montant > solde) {\n            return false;   // opération refusée, le solde ne bouge pas\n        }\n        solde -= montant;\n        return true;\n    }\n}\n\npublic class Encapsulation {\n    public static void main(String[] args) {\n        Compte c = new Compte(\"Amina\", 100);\n        c.deposer(50);\n        System.out.println(\"Retrait de 500 : \" + c.retirer(500));\n        System.out.println(\"Retrait de 30 : \" + c.retirer(30));\n        System.out.println(c.getTitulaire() + \" : \" + c.getSolde());\n    }\n}\n```\n\n```text\nRetrait de 500 : false\nRetrait de 30 : true\nAmina : 120.0\n```\n\n- `private double solde` : depuis `main`, écrire `c.solde = -5000;` provoque maintenant une **erreur de compilation** (*solde has private access in Compte*).\n- `private final String titulaire` : le titulaire est fixé par le constructeur et ne peut plus changer. Il n'a qu'un getter.\n- `throw new IllegalArgumentException(…)` **signale une erreur** quand on passe un argument invalide : le programme s'arrête à cet endroit (sauf si l'erreur est interceptée, voir le module 5). Ainsi, un objet `Compte` est **toujours dans un état valide**.\n\n> Bénéfice majeur : si la règle change (découvert autorisé de 200 €, par exemple), vous ne modifiez **qu'une méthode**, et non tous les endroits du programme qui touchaient au solde.\n\n## Démonstration : un argument refusé\n\n```java\nclass Produit {\n    private final String nom;\n    private double prix;\n\n    Produit(String nom, double prix) {\n        this.nom = nom;\n        setPrix(prix);\n    }\n\n    public void setPrix(double prix) {\n        if (prix < 0) {\n            throw new IllegalArgumentException(\"Le prix ne peut pas être négatif\");\n        }\n        this.prix = prix;\n    }\n\n    public double getPrix() {\n        return prix;\n    }\n}\n\npublic class Validation {\n    public static void main(String[] args) {\n        Produit p = new Produit(\"Lampe\", 25);\n        System.out.println(\"Prix : \" + p.getPrix());\n        p.setPrix(-3);\n        System.out.println(\"Cette ligne n'est jamais atteinte\");\n    }\n}\n```\n\n```text\nPrix : 25.0\nException in thread \"main\" java.lang.IllegalArgumentException: Le prix ne peut pas être négatif\n\tat Produit.setPrix(Validation.java:12)\n\tat Validation.main(Validation.java:26)\n```\n\nLe message d'erreur (la **pile d'appels**, *stack trace*) se lit de haut en bas : le type d'exception, votre message, puis la méthode où l'erreur a été levée et celles qui l'ont appelée, avec les numéros de ligne. Le constructeur réutilise `setPrix`, ce qui évite de dupliquer la vérification.\n\n## Les membres static\n\nUn attribut `static` appartient **à la classe** et non à chaque objet : il est **partagé** par toutes les instances. Une méthode `static` s'appelle sur la classe (`Math.sqrt`, `Integer.parseInt`) et n'a pas accès à `this`.\n\n```java\nclass Ticket {\n    private static int compteur = 0;   // partagé par tous les tickets\n    public static final String PREFIXE = \"T-\";\n\n    private final int numero;\n\n    Ticket() {\n        compteur++;\n        numero = compteur;\n    }\n\n    public String getCode() {\n        return PREFIXE + numero;\n    }\n\n    public static int getNombreCrees() {\n        return compteur;\n    }\n}\n\npublic class Tickets {\n    public static void main(String[] args) {\n        Ticket a = new Ticket();\n        Ticket b = new Ticket();\n        Ticket c = new Ticket();\n        System.out.println(a.getCode() + \" \" + b.getCode() + \" \" + c.getCode());\n        System.out.println(\"Tickets créés : \" + Ticket.getNombreCrees());\n    }\n}\n```\n\n```text\nT-1 T-2 T-3\nTickets créés : 3\n```\n\n`public static final` est la façon habituelle de déclarer une **constante** de classe, comme `Math.PI`.\n\n## Conventions de nommage\n\n| Élément | Convention | Exemple |\n|---|---|---|\n| Classe | PascalCase, nom | `CompteBancaire` |\n| Méthode | camelCase, verbe | `calculerTotal()` |\n| Attribut, variable | camelCase | `dateCreation` |\n| Constante | MAJUSCULES_ET_TIRETS_BAS | `TAUX_MAX` |\n| Getter / setter | `getX()`, `setX(…)`, `isX()` pour un booléen | `isActif()` |\n\n## À retenir\n\n- Encapsuler : attributs `private`, accès par des méthodes `public` qui vérifient les règles.\n- Getters pour lire ; setters seulement si la modification a du sens, sinon des méthodes métier.\n- `final` sur un attribut : valeur fixée une fois pour toutes (en général dans le constructeur).\n- `throw new IllegalArgumentException(\"…\")` refuse un argument invalide ; l'objet reste cohérent.\n- `static` : membre partagé par la classe entière ; `public static final` pour les constantes.\n\n## Exercices\n\n### Exercice 1 — Note encadrée\n\nÉcrivez une classe `Note` avec un attribut privé `valeur` (entre 0 et 20) : constructeur, getter, et une méthode `ajouterBonus(double points)` qui plafonne la note à 20. Testez avec 18 puis un bonus de 3.\n\n```solution-java\nclass Note {\n    private double valeur;\n\n    Note(double valeur) {\n        if (valeur < 0 || valeur > 20) {\n            throw new IllegalArgumentException(\"Note hors de [0, 20] : \" + valeur);\n        }\n        this.valeur = valeur;\n    }\n\n    public double getValeur() {\n        return valeur;\n    }\n\n    public void ajouterBonus(double points) {\n        valeur = Math.min(20, valeur + points);\n    }\n}\n\npublic class TestNote {\n    public static void main(String[] args) {\n        Note n = new Note(18);\n        n.ajouterBonus(3);\n        System.out.println(\"Note finale : \" + n.getValeur());\n    }\n}\n```\n\n```text\nNote finale : 20.0\n```\n\n### Exercice 2 — Identifiants automatiques\n\nCréez une classe `Membre` dont chaque instance reçoit automatiquement un identifiant `M001`, `M002`… (attribut `static` + `String.format(\"M%03d\", n)`). Créez trois membres et affichez leurs identifiants et leurs noms.\n\n```solution-java\nclass Membre {\n    private static int dernierNumero = 0;\n    private final String id;\n    private final String nom;\n\n    Membre(String nom) {\n        dernierNumero++;\n        this.id = String.format(\"M%03d\", dernierNumero);\n        this.nom = nom;\n    }\n\n    @Override\n    public String toString() {\n        return id + \" \" + nom;\n    }\n}\n\npublic class TestMembres {\n    public static void main(String[] args) {\n        System.out.println(new Membre(\"Inès\"));\n        System.out.println(new Membre(\"Hugo\"));\n        System.out.println(new Membre(\"Yanis\"));\n    }\n}\n```\n\n```text\nM001 Inès\nM002 Hugo\nM003 Yanis\n```\n\n`%03d` affiche un entier sur 3 chiffres, complété par des zéros à gauche.\n\n### Exercice 3 — Pourquoi pas de setSolde ?\n\nExpliquez en deux phrases pourquoi la classe `Compte` propose `deposer` et `retirer` plutôt qu'un `setSolde(double)` public.\n\n```solution-text\nUn setSolde public permettrait de fixer n'importe quel solde (négatif, par exemple) sans aucun contrôle,\nce qui casserait la cohérence de l'objet. Les méthodes métier deposer et retirer expriment les seules\nopérations autorisées et vérifient chacune leurs règles (montant positif, solde suffisant).\n```",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "8a00d71f-5570-5c00-b10d-2ba377bc29fd",
+     "slug": "heritage",
+     "title": "L'héritage",
+     "summary": "extends, super, redéfinition avec @Override et la classe Object.",
+     "content_md": "## Réutiliser avec l'héritage\n\nDans une application de ressources humaines, un **salarié** et un **stagiaire** partagent beaucoup de choses (un nom, une méthode de présentation), mais diffèrent sur d'autres (calcul de la rémunération). Plutôt que de dupliquer le code commun, on le place dans une classe **mère** (ou *superclasse*), dont héritent des classes **filles** (ou *sous-classes*).\n\nL'héritage exprime une relation « **est un** » : un stagiaire **est une** personne. Si la phrase sonne faux (« une voiture est un moteur »), l'héritage n'est pas le bon outil : on utilise plutôt un attribut (« une voiture **a un** moteur »).\n\n## extends et super\n\n```java\nclass Personne {\n    protected String nom;\n\n    Personne(String nom) {\n        this.nom = nom;\n    }\n\n    String sePresenter() {\n        return \"Je m'appelle \" + nom;\n    }\n}\n\nclass Salarie extends Personne {\n    private double salaireMensuel;\n\n    Salarie(String nom, double salaireMensuel) {\n        super(nom);   // appelle le constructeur de Personne\n        this.salaireMensuel = salaireMensuel;\n    }\n\n    double salaireAnnuel() {\n        return salaireMensuel * 12;\n    }\n}\n\npublic class Heritage {\n    public static void main(String[] args) {\n        Salarie s = new Salarie(\"Nadia\", 2500);\n        System.out.println(s.sePresenter());   // méthode héritée\n        System.out.println(\"Salaire annuel : \" + s.salaireAnnuel());\n    }\n}\n```\n\n```text\nJe m'appelle Nadia\nSalaire annuel : 30000.0\n```\n\n- `class Salarie extends Personne` : `Salarie` **hérite** des attributs et méthodes de `Personne`.\n- `super(nom)` appelle le constructeur de la classe mère ; c'est obligatoirement la **première instruction** du constructeur.\n- `protected` rend `nom` accessible aux sous-classes (tout en le cachant au reste du programme, hors package).\n- En Java, une classe n'hérite que d'**une seule** classe mère (héritage simple).\n\n## Redéfinir une méthode : @Override\n\nUne sous-classe peut **redéfinir** (*override*) une méthode héritée pour l'adapter. L'annotation `@Override` demande au compilateur de vérifier qu'une méthode de même signature existe bien dans la classe mère : une faute de frappe dans le nom devient alors une erreur de compilation au lieu d'un bug silencieux.\n\n```java\nclass Personne {\n    protected String nom;\n\n    Personne(String nom) {\n        this.nom = nom;\n    }\n\n    String sePresenter() {\n        return \"Je m'appelle \" + nom;\n    }\n}\n\nclass Stagiaire extends Personne {\n    private String ecole;\n\n    Stagiaire(String nom, String ecole) {\n        super(nom);\n        this.ecole = ecole;\n    }\n\n    @Override\n    String sePresenter() {\n        return super.sePresenter() + \", stagiaire de \" + ecole;\n    }\n}\n\npublic class Redefinition {\n    public static void main(String[] args) {\n        Personne p = new Personne(\"Marc\");\n        Stagiaire st = new Stagiaire(\"Zoé\", \"l'IUT de Nantes\");\n        System.out.println(p.sePresenter());\n        System.out.println(st.sePresenter());\n    }\n}\n```\n\n```text\nJe m'appelle Marc\nJe m'appelle Zoé, stagiaire de l'IUT de Nantes\n```\n\n`super.sePresenter()` appelle la version de la classe mère : on **complète** le comportement au lieu de le réécrire entièrement.\n\n| À ne pas confondre | Surcharge (*overloading*) | Redéfinition (*overriding*) |\n|---|---|---|\n| Où ? | dans une même classe | dans une sous-classe |\n| Signature | même nom, paramètres **différents** | même nom, **mêmes** paramètres |\n| But | plusieurs variantes d'une opération | adapter un comportement hérité |\n\n## Une variable de type mère\n\nUne variable de type `Personne` peut contenir **n'importe quelle sous-classe** de `Personne`. Au moment de l'appel, c'est la méthode de **l'objet réel** qui s'exécute :\n\n```java\nclass Animal {\n    String cri() {\n        return \"...\";\n    }\n}\n\nclass Chien extends Animal {\n    @Override\n    String cri() {\n        return \"Wouf\";\n    }\n}\n\nclass Chat extends Animal {\n    @Override\n    String cri() {\n        return \"Miaou\";\n    }\n\n    void ronronner() {\n        System.out.println(\"Rrrr\");\n    }\n}\n\npublic class TypeMere {\n    public static void main(String[] args) {\n        Animal[] animaux = {new Chien(), new Chat(), new Animal()};\n        for (Animal a : animaux) {\n            System.out.println(a.getClass().getSimpleName() + \" : \" + a.cri());\n        }\n        Animal x = new Chat();\n        if (x instanceof Chat c) {\n            c.ronronner();\n        }\n    }\n}\n```\n\n```text\nChien : Wouf\nChat : Miaou\nAnimal : ...\nRrrr\n```\n\n- La boucle traite tous les animaux de la même façon, et chacun répond avec **son** cri : c'est le **polymorphisme**, approfondi au module 4.\n- Avec une variable de type `Animal`, on ne peut appeler que les méthodes déclarées dans `Animal`. Pour utiliser `ronronner()`, on teste le type réel avec `instanceof` ; la forme `x instanceof Chat c` (Java moderne) déclare en même temps une variable `c` de type `Chat`.\n\n## La classe Object et final\n\nToute classe hérite, directement ou non, de la classe **`Object`**. C'est d'elle que viennent `toString()`, `equals(…)` et `getClass()` : voilà pourquoi on écrit `@Override` devant `toString()`.\n\nLe mot clé `final` a deux usages liés à l'héritage :\n\n- `final class Monnaie` : la classe ne peut pas avoir de sous-classe (c'est le cas de `String`) ;\n- `final` sur une méthode : elle ne peut pas être redéfinie.\n\n> Conseil : l'héritage crée un lien fort entre classes. Utilisez-le pour de vraies relations « est un » ; pour partager seulement un comportement, les **interfaces** (module 4) sont souvent plus souples.\n\n## À retenir\n\n- `class Fille extends Mere` : la fille hérite des attributs et méthodes ; une seule classe mère en Java.\n- `super(…)` appelle le constructeur parent (première instruction) ; `super.methode()` sa version d'une méthode.\n- `@Override` redéfinit une méthode héritée et fait vérifier la signature par le compilateur.\n- Une variable de type mère peut référencer un objet fille ; la méthode exécutée est celle de l'objet réel.\n- Toutes les classes héritent d'`Object` ; `final` empêche l'héritage ou la redéfinition.\n\n## Exercices\n\n### Exercice 1 — Véhicules\n\nCréez une classe `Vehicule` (marque, méthode `description()`) et une sous-classe `Voiture` avec un nombre de portes, qui redéfinit `description()` en réutilisant celle de la mère. Affichez la description d'une Renault 5 portes.\n\n```solution-java\nclass Vehicule {\n    protected String marque;\n\n    Vehicule(String marque) {\n        this.marque = marque;\n    }\n\n    String description() {\n        return \"Véhicule \" + marque;\n    }\n}\n\nclass Voiture extends Vehicule {\n    private int portes;\n\n    Voiture(String marque, int portes) {\n        super(marque);\n        this.portes = portes;\n    }\n\n    @Override\n    String description() {\n        return super.description() + \", \" + portes + \" portes\";\n    }\n}\n\npublic class TestVehicules {\n    public static void main(String[] args) {\n        Vehicule v = new Voiture(\"Renault\", 5);\n        System.out.println(v.description());\n    }\n}\n```\n\n```text\nVéhicule Renault, 5 portes\n```\n\n### Exercice 2 — Compte épargne\n\nÀ partir d'une classe `Compte` (solde, `deposer`), créez `CompteEpargne` avec un taux d'intérêt et une méthode `appliquerInterets()` qui dépose les intérêts. Testez avec 1 000 € à 3 %.\n\n```solution-java\nclass Compte {\n    protected double solde;\n\n    void deposer(double montant) {\n        solde += montant;\n    }\n\n    double getSolde() {\n        return solde;\n    }\n}\n\nclass CompteEpargne extends Compte {\n    private final double taux;\n\n    CompteEpargne(double taux) {\n        this.taux = taux;\n    }\n\n    void appliquerInterets() {\n        deposer(solde * taux);\n    }\n}\n\npublic class TestEpargne {\n    public static void main(String[] args) {\n        CompteEpargne ce = new CompteEpargne(0.03);\n        ce.deposer(1000);\n        ce.appliquerInterets();\n        System.out.println(\"Solde : \" + ce.getSolde());\n    }\n}\n```\n\n```text\nSolde : 1030.0\n```\n\n`CompteEpargne` n'a pas besoin d'appeler `super(…)` explicitement : `Compte` n'a que le constructeur par défaut, appelé automatiquement.\n\n### Exercice 3 — Héritage ou attribut ?\n\nPour chaque couple, indiquez s'il faut utiliser l'héritage ou un attribut : (a) `Livre` / `Auteur` ; (b) `Directeur` / `Salarie` ; (c) `Commande` / `Client`.\n\n```solution-text\n(a) Attribut : un livre « a un » auteur, il n'« est » pas un auteur.\n(b) Héritage : un directeur « est un » salarié → class Directeur extends Salarie.\n(c) Attribut : une commande « a un » client.\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "2f41153a-76b1-5133-a132-cc255939168d",
+    "title": "Quiz — Programmation orientée objet",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "9bd64432-62b7-52c2-b95e-842d2a0b7428",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quelle est la différence entre une classe et un objet ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3615d445-2e5c-5db5-adad-d681ffff8b32",
+        "position": 1,
+        "label": "La classe est un plan, l'objet est une instance créée à partir de ce plan."
+       },
+       {
+        "id": "9823fa5f-1a5d-5654-998a-83a34116b68b",
+        "position": 2,
+        "label": "Il n'y en a aucune."
+       },
+       {
+        "id": "28f96572-b361-5d8c-abf3-983531b20028",
+        "position": 3,
+        "label": "L'objet est un plan, la classe en est une copie."
+       },
+       {
+        "id": "206ffd63-8735-5d8f-b66a-a32c5f10f082",
+        "position": 4,
+        "label": "Une classe ne contient que des méthodes."
+       }
+      ],
+      "correct": [
+       "3615d445-2e5c-5db5-adad-d681ffff8b32"
+      ],
+      "explanation": "La classe décrit attributs et méthodes ; chaque appel à new crée un objet (une instance) qui possède ses propres valeurs."
+     },
+     {
+      "id": "6a50913e-e38e-5c0c-aefe-ace01236acf4",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle affirmation sur un constructeur est exacte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e69c202-d860-5926-b933-6e3e02201fda",
+        "position": 1,
+        "label": "Il a pour type de retour void."
+       },
+       {
+        "id": "f4f665ca-e882-5655-839f-87d8c2d9db07",
+        "position": 2,
+        "label": "Il doit s'appeler init."
+       },
+       {
+        "id": "7abe9492-ca59-564d-b067-830c7daee4ed",
+        "position": 3,
+        "label": "Une classe ne peut en avoir qu'un seul."
+       },
+       {
+        "id": "e814cdc9-109c-5228-a2d6-6c26ba7d4f60",
+        "position": 4,
+        "label": "Il porte le nom de la classe et n'a pas de type de retour."
+       }
+      ],
+      "correct": [
+       "e814cdc9-109c-5228-a2d6-6c26ba7d4f60"
+      ],
+      "explanation": "Un constructeur porte exactement le nom de la classe, sans type de retour ; il peut être surchargé (plusieurs constructeurs)."
+     },
+     {
+      "id": "03f134ad-6cd6-55a2-b8a9-1afcc11d05f0",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Dans un constructeur, que signifie this.nom = nom; ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8be6ec3a-9548-555e-b08b-27f814f64b20",
+        "position": 1,
+        "label": "Le paramètre nom reçoit la valeur de l'attribut."
+       },
+       {
+        "id": "da56eaf9-8bd2-5c21-bd30-06a9410d9c98",
+        "position": 2,
+        "label": "L'attribut nom de l'objet en cours reçoit la valeur du paramètre nom."
+       },
+       {
+        "id": "d6999def-ae25-504b-acfa-e6812ada528e",
+        "position": 3,
+        "label": "On crée une nouvelle variable locale nom."
+       },
+       {
+        "id": "66ac117a-6092-50ed-ad41-25823eb53d9c",
+        "position": 4,
+        "label": "On appelle la classe mère."
+       }
+      ],
+      "correct": [
+       "da56eaf9-8bd2-5c21-bd30-06a9410d9c98"
+      ],
+      "explanation": "this désigne l'objet en cours : this.nom est l'attribut, nom seul est le paramètre qui le masquerait sans this."
+     },
+     {
+      "id": "36ed0e08-e9e8-5f12-bf7e-62f0ae493a61",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "Compteur a = new Compteur();\nCompteur b = a;\nb.valeur = 7;\nSystem.out.println(a.valeur);",
+      "points": 2,
+      "options": [
+       {
+        "id": "7a87665c-ab35-5267-9fed-821b555205c5",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "03165b3c-3f61-5b34-96fc-c730b0612089",
+        "position": 2,
+        "label": "null"
+       },
+       {
+        "id": "65fdeaaf-4c7f-5781-af65-017c5190b006",
+        "position": 3,
+        "label": "7"
+       },
+       {
+        "id": "c87b109d-52d4-521b-9075-1839a81bc795",
+        "position": 4,
+        "label": "Erreur de compilation"
+       }
+      ],
+      "correct": [
+       "65fdeaaf-4c7f-5781-af65-017c5190b006"
+      ],
+      "explanation": "b = a copie la référence : a et b désignent le même objet. Modifier b.valeur modifie donc ce que l'on lit avec a.valeur."
+     },
+     {
+      "id": "b46ed56b-53cf-5bd6-8781-cd941f3f35f6",
+      "position": 5,
+      "kind": "multiple",
+      "prompt": "Quelles pratiques relèvent d'une bonne encapsulation ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c3c33982-cb33-5322-838a-9554a0b91838",
+        "position": 1,
+        "label": "Déclarer les attributs private."
+       },
+       {
+        "id": "596e3040-2a30-5c53-b01d-9faceb8d416f",
+        "position": 2,
+        "label": "Fournir systématiquement un setter public pour chaque attribut."
+       },
+       {
+        "id": "317e386a-b0b4-5075-84c6-f4ff74a79366",
+        "position": 3,
+        "label": "Vérifier les règles métier dans les méthodes qui modifient l'état."
+       },
+       {
+        "id": "c65ab7ab-2ac4-5acd-a5b9-2e467249d3fc",
+        "position": 4,
+        "label": "Déclarer final un attribut qui ne doit plus changer après la construction."
+       }
+      ],
+      "correct": [
+       "c3c33982-cb33-5322-838a-9554a0b91838",
+       "317e386a-b0b4-5075-84c6-f4ff74a79366",
+       "c65ab7ab-2ac4-5acd-a5b9-2e467249d3fc"
+      ],
+      "explanation": "Encapsuler, c'est cacher les données et contrôler leur modification. Des setters publics systématiques rouvriraient l'accès sans contrôle."
+     },
+     {
+      "id": "17f4ed36-4130-529e-acc5-70f7a455abff",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que signifie static devant un attribut ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "33547f68-8360-575e-b5b2-049cad75316f",
+        "position": 1,
+        "label": "L'attribut ne peut pas changer de valeur."
+       },
+       {
+        "id": "79f88c8d-c5c2-51e0-a0a6-09c2c766ce08",
+        "position": 2,
+        "label": "L'attribut est privé."
+       },
+       {
+        "id": "b1a6ebf1-a741-5cd0-8aad-e8e11cb829be",
+        "position": 3,
+        "label": "L'attribut est recalculé à chaque appel."
+       },
+       {
+        "id": "90bad1bb-a838-51a8-87eb-0d9f9f788542",
+        "position": 4,
+        "label": "L'attribut est partagé par toutes les instances de la classe."
+       }
+      ],
+      "correct": [
+       "90bad1bb-a838-51a8-87eb-0d9f9f788542"
+      ],
+      "explanation": "Un attribut static appartient à la classe et non à chaque objet : toutes les instances partagent la même valeur. C'est final qui empêche la modification."
+     },
+     {
+      "id": "89a18ec5-85bd-5cbc-aa3d-09514ac74d65",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment déclarer que Chat hérite d'Animal ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b65caf85-5460-56a4-9dc3-abee1817de5e",
+        "position": 1,
+        "label": "class Chat extends Animal"
+       },
+       {
+        "id": "2acffce5-27b5-5f51-aa9f-5dabb62f1a96",
+        "position": 2,
+        "label": "class Chat implements Animal"
+       },
+       {
+        "id": "801bf478-af40-5557-b661-1ae62d5d294b",
+        "position": 3,
+        "label": "class Chat inherits Animal"
+       },
+       {
+        "id": "56b26ae4-58d4-5e51-b6b9-ced59e299003",
+        "position": 4,
+        "label": "class Chat : Animal"
+       }
+      ],
+      "correct": [
+       "b65caf85-5460-56a4-9dc3-abee1817de5e"
+      ],
+      "explanation": "extends exprime l'héritage d'une classe ; implements sert pour les interfaces."
+     },
+     {
+      "id": "4e4e5729-b61d-5ae9-a0c8-94189530571c",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que fait super(nom) dans le constructeur d'une sous-classe ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "676d1f6a-b23b-5aa4-979f-9758323a33f9",
+        "position": 1,
+        "label": "Il appelle une méthode nommée super."
+       },
+       {
+        "id": "06b37ecb-bbf4-5ff2-9ad9-0e3c035c2d4f",
+        "position": 2,
+        "label": "Il appelle le constructeur de la classe mère avec l'argument nom."
+       },
+       {
+        "id": "9db45f49-cd8a-5fa2-a9b9-99005c4b7390",
+        "position": 3,
+        "label": "Il crée un nouvel objet de la classe mère."
+       },
+       {
+        "id": "acc74760-fe6b-59d4-8b32-d56d4e557617",
+        "position": 4,
+        "label": "Il rend l'attribut nom public."
+       }
+      ],
+      "correct": [
+       "06b37ecb-bbf4-5ff2-9ad9-0e3c035c2d4f"
+      ],
+      "explanation": "super(…) appelle le constructeur parent, obligatoirement en première instruction, pour initialiser la partie héritée de l'objet."
+     },
+     {
+      "id": "447156d3-bbff-5431-8bef-6a98a2cc545f",
+      "position": 9,
+      "kind": "single",
+      "prompt": "À quoi sert l'annotation @Override ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5ec97525-f58d-5be9-b3c5-96e918c55787",
+        "position": 1,
+        "label": "À rendre une méthode privée."
+       },
+       {
+        "id": "13b39a93-7911-5c1f-a68c-83180809c613",
+        "position": 2,
+        "label": "À surcharger une méthode avec d'autres paramètres."
+       },
+       {
+        "id": "befe35db-b0e2-5ec4-8575-b0d8b827b4fc",
+        "position": 3,
+        "label": "À demander au compilateur de vérifier qu'on redéfinit bien une méthode héritée."
+       },
+       {
+        "id": "b3a040b0-cd65-5ee5-8d6f-9a96a152f924",
+        "position": 4,
+        "label": "À empêcher toute redéfinition."
+       }
+      ],
+      "correct": [
+       "befe35db-b0e2-5ec4-8575-b0d8b827b4fc"
+      ],
+      "explanation": "@Override signale une redéfinition : si aucune méthode de même signature n'existe dans la classe mère (faute de frappe, par exemple), la compilation échoue."
+     },
+     {
+      "id": "59320662-7253-59ac-b6ac-7c320c806dc2",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "En Java, une classe peut hériter directement de deux classes.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4bd59a3e-76ce-5274-a8df-8426b01eebfd",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "d154cac0-c4c7-500c-8d53-91fc6131cb59",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "d154cac0-c4c7-500c-8d53-91fc6131cb59"
+      ],
+      "explanation": "Java n'autorise qu'une seule classe mère (héritage simple). En revanche, une classe peut implémenter plusieurs interfaces."
+     }
+    ]
+   }
+  },
+  {
+   "id": "430fd0e4-8112-5fb0-a552-a349ea264307",
+   "position": 4,
+   "title": "Abstraction et collections",
+   "description": "Classes abstraites, interfaces et polymorphisme, puis listes dynamiques et dictionnaires avec ArrayList et HashMap.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "ca6445e4-a4bc-50b8-ae70-78a4e39b243c",
+     "slug": "interfaces-et-polymorphisme",
+     "title": "Classes abstraites, interfaces et polymorphisme",
+     "summary": "abstract, interface, implements et traitement uniforme d'objets différents.",
+     "content_md": "## Les classes abstraites\n\nDans une application de dessin, « une forme » en général n'a pas de sens concret : on dessine des **cercles**, des **rectangles**… On veut pourtant garantir que **toute** forme sait calculer son aire. Une **classe abstraite** sert exactement à cela :\n\n```java\nabstract class Forme {\n    private final String nom;\n\n    Forme(String nom) {\n        this.nom = nom;\n    }\n\n    abstract double aire();   // pas de corps : chaque sous-classe doit l'écrire\n\n    String decrire() {\n        return String.format(\"%s d'aire %.2f\", nom, aire());\n    }\n}\n\nclass Cercle extends Forme {\n    private final double rayon;\n\n    Cercle(double rayon) {\n        super(\"Cercle\");\n        this.rayon = rayon;\n    }\n\n    @Override\n    double aire() {\n        return Math.PI * rayon * rayon;\n    }\n}\n\nclass Rectangle extends Forme {\n    private final double largeur;\n    private final double hauteur;\n\n    Rectangle(double largeur, double hauteur) {\n        super(\"Rectangle\");\n        this.largeur = largeur;\n        this.hauteur = hauteur;\n    }\n\n    @Override\n    double aire() {\n        return largeur * hauteur;\n    }\n}\n\npublic class Formes {\n    public static void main(String[] args) {\n        Forme[] formes = {new Cercle(1), new Rectangle(3, 4), new Cercle(2.5)};\n        double total = 0;\n        for (Forme f : formes) {\n            System.out.println(f.decrire());\n            total += f.aire();\n        }\n        System.out.printf(\"Aire totale : %.2f%n\", total);\n    }\n}\n```\n\n```text\nCercle d'aire 3.14\nRectangle d'aire 12.00\nCercle d'aire 19.63\nAire totale : 34.78\n```\n\n- `abstract class Forme` : on **ne peut pas** écrire `new Forme(…)` ; la classe sert de modèle commun.\n- `abstract double aire();` : une **méthode abstraite**, sans corps. Toute sous-classe concrète **doit** la redéfinir, sinon le code ne compile pas.\n- Une classe abstraite peut contenir des attributs, un constructeur et des méthodes complètes (`decrire`), qui peuvent appeler les méthodes abstraites.\n\n## Les interfaces\n\nUne **interface** décrit une **capacité** : une liste de méthodes qu'une classe s'engage à fournir, sans dire comment. Une classe l'adopte avec `implements`.\n\n```java\ninterface Payable {\n    double montantDu();\n\n    default String libelle() {          // méthode par défaut, avec un corps\n        return String.format(\"%.2f EUR à payer\", montantDu());\n    }\n}\n\nclass Facture implements Payable {\n    private final double montantHT;\n\n    Facture(double montantHT) {\n        this.montantHT = montantHT;\n    }\n\n    @Override\n    public double montantDu() {\n        return montantHT * 1.2;\n    }\n}\n\nclass Abonnement implements Payable {\n    private final double mensualite;\n    private final int mois;\n\n    Abonnement(double mensualite, int mois) {\n        this.mensualite = mensualite;\n        this.mois = mois;\n    }\n\n    @Override\n    public double montantDu() {\n        return mensualite * mois;\n    }\n\n    @Override\n    public String libelle() {\n        return mois + \" mois d'abonnement : \" + Payable.super.libelle();\n    }\n}\n\npublic class Paiements {\n    public static void main(String[] args) {\n        Payable[] aPayer = {new Facture(100), new Abonnement(9.99, 3)};\n        for (Payable p : aPayer) {\n            System.out.println(p.libelle());\n        }\n    }\n}\n```\n\n```text\n120.00 EUR à payer\n3 mois d'abonnement : 29.97 EUR à payer\n```\n\n- Les méthodes d'une interface sont implicitement `public` : leur implémentation doit donc être déclarée `public`.\n- Une méthode `default` fournit un comportement par défaut, que les classes peuvent garder ou redéfinir.\n- Une classe peut **implémenter plusieurs interfaces** (`class A implements X, Y`), alors qu'elle n'hérite que d'une seule classe.\n\n## Classe abstraite ou interface ?\n\n| | Classe abstraite | Interface |\n|---|---|---|\n| Relation | « est un » (famille d'objets) | « sait faire » (capacité) |\n| Attributs d'instance | oui | non (seulement des constantes) |\n| Constructeur | oui | non |\n| Combien par classe ? | une seule (`extends`) | plusieurs (`implements`) |\n| Exemple | `Forme`, `Animal` | `Payable`, `Comparable`, `Imprimable` |\n\nEn cas de doute, commencez par une **interface** : elle impose moins de contraintes.\n\n## Le polymorphisme\n\nLe **polymorphisme** (« plusieurs formes ») est la capacité de traiter des objets de classes différentes **à travers un type commun**, chacun réagissant à sa manière. Dans les deux exemples ci-dessus, les boucles ne savent pas si elles manipulent un cercle ou un rectangle, une facture ou un abonnement : elles appellent `aire()` ou `libelle()`, et Java exécute la bonne version selon l'objet réel.\n\nConséquence très pratique : pour ajouter un nouveau type (un `Triangle`, un `Don`), on écrit **une nouvelle classe**, sans toucher au code qui les utilise.\n\n```java\ninterface Notification {\n    void envoyer(String message);\n}\n\nclass Email implements Notification {\n    private final String adresse;\n\n    Email(String adresse) {\n        this.adresse = adresse;\n    }\n\n    @Override\n    public void envoyer(String message) {\n        System.out.println(\"[email \" + adresse + \"] \" + message);\n    }\n}\n\nclass Sms implements Notification {\n    private final String numero;\n\n    Sms(String numero) {\n        this.numero = numero;\n    }\n\n    @Override\n    public void envoyer(String message) {\n        String court = message.length() > 20 ? message.substring(0, 20) + \"…\" : message;\n        System.out.println(\"[sms \" + numero + \"] \" + court);\n    }\n}\n\npublic class Notifications {\n    static void prevenirTous(Notification[] canaux, String message) {\n        for (Notification n : canaux) {\n            n.envoyer(message);\n        }\n    }\n\n    public static void main(String[] args) {\n        Notification[] canaux = {new Email(\"lea@exemple.fr\"), new Sms(\"06 00 00 00 00\")};\n        prevenirTous(canaux, \"Votre commande a été expédiée\");\n    }\n}\n```\n\n```text\n[email lea@exemple.fr] Votre commande a été expédiée\n[sms 06 00 00 00 00] Votre commande a été…\n```\n\nLa méthode `prevenirTous` dépend seulement de l'interface `Notification` : on pourra demain ajouter une notification par messagerie instantanée sans la modifier.\n\n## Une interface de la bibliothèque standard : Comparable\n\nJava fournit de nombreuses interfaces prêtes à l'emploi. `Comparable<T>` définit un **ordre naturel** grâce à la méthode `compareTo` (négatif si « avant », 0 si égal, positif si « après »). Les méthodes de tri l'utilisent automatiquement :\n\n```java\nimport java.util.Arrays;\n\nclass Joueur implements Comparable<Joueur> {\n    final String nom;\n    final int score;\n\n    Joueur(String nom, int score) {\n        this.nom = nom;\n        this.score = score;\n    }\n\n    @Override\n    public int compareTo(Joueur autre) {\n        return Integer.compare(autre.score, this.score);  // score décroissant\n    }\n\n    @Override\n    public String toString() {\n        return nom + \"=\" + score;\n    }\n}\n\npublic class Classement {\n    public static void main(String[] args) {\n        Joueur[] joueurs = {new Joueur(\"Ana\", 120), new Joueur(\"Bilal\", 340), new Joueur(\"Chloé\", 210)};\n        Arrays.sort(joueurs);\n        System.out.println(Arrays.toString(joueurs));\n    }\n}\n```\n\n```text\n[Bilal=340, Chloé=210, Ana=120]\n```\n\n`<Joueur>` précise le type comparé : c'est un **type générique**, notion que vous retrouverez avec les collections.\n\n## À retenir\n\n- Une classe `abstract` ne s'instancie pas ; ses méthodes `abstract` doivent être redéfinies par les sous-classes.\n- Une `interface` décrit une capacité ; une classe peut en implémenter plusieurs avec `implements`.\n- Les méthodes d'interface sont publiques ; une méthode `default` a un corps par défaut.\n- Polymorphisme : un même appel, sur un type commun, exécute la version de l'objet réel.\n- `Comparable` définit l'ordre naturel utilisé par `Arrays.sort`.\n\n## Exercices\n\n### Exercice 1 — Triangle\n\nAjoutez une classe `Triangle` (base, hauteur) à la hiérarchie `Forme` et affichez sa description pour une base 6 et une hauteur 2.\n\n```solution-java\nabstract class Forme {\n    private final String nom;\n\n    Forme(String nom) {\n        this.nom = nom;\n    }\n\n    abstract double aire();\n\n    String decrire() {\n        return String.format(\"%s d'aire %.2f\", nom, aire());\n    }\n}\n\nclass Triangle extends Forme {\n    private final double base;\n    private final double hauteur;\n\n    Triangle(double base, double hauteur) {\n        super(\"Triangle\");\n        this.base = base;\n        this.hauteur = hauteur;\n    }\n\n    @Override\n    double aire() {\n        return base * hauteur / 2;\n    }\n}\n\npublic class TestTriangle {\n    public static void main(String[] args) {\n        Forme t = new Triangle(6, 2);\n        System.out.println(t.decrire());\n    }\n}\n```\n\n```text\nTriangle d'aire 6.00\n```\n\n### Exercice 2 — Interface Imprimable\n\nCréez une interface `Imprimable` avec une méthode `String imprimer()`, implémentée par `Etudiant` (nom, promotion) et `Salle` (numéro, places). Affichez un tableau contenant un objet de chaque.\n\n```solution-java\ninterface Imprimable {\n    String imprimer();\n}\n\nclass Etudiant implements Imprimable {\n    private final String nom;\n    private final int promotion;\n\n    Etudiant(String nom, int promotion) {\n        this.nom = nom;\n        this.promotion = promotion;\n    }\n\n    @Override\n    public String imprimer() {\n        return \"Étudiant \" + nom + \" (promo \" + promotion + \")\";\n    }\n}\n\nclass Salle implements Imprimable {\n    private final String numero;\n    private final int places;\n\n    Salle(String numero, int places) {\n        this.numero = numero;\n        this.places = places;\n    }\n\n    @Override\n    public String imprimer() {\n        return \"Salle \" + numero + \" : \" + places + \" places\";\n    }\n}\n\npublic class TestImprimable {\n    public static void main(String[] args) {\n        Imprimable[] elements = {new Etudiant(\"Sami\", 2025), new Salle(\"B204\", 30)};\n        for (Imprimable e : elements) {\n            System.out.println(e.imprimer());\n        }\n    }\n}\n```\n\n```text\nÉtudiant Sami (promo 2025)\nSalle B204 : 30 places\n```\n\n### Exercice 3 — Vrai ou faux ?\n\n(a) On peut écrire `new Forme(\"x\")` si `Forme` est abstraite. (b) Une classe peut implémenter deux interfaces. (c) Une interface peut avoir des attributs d'instance.\n\n```solution-text\n(a) Faux : une classe abstraite ne peut pas être instanciée directement.\n(b) Vrai : class A implements X, Y est autorisé.\n(c) Faux : une interface ne contient que des constantes (static final), pas d'état propre à chaque objet.\n```",
+     "duration_minutes": 45,
+     "position": 1
+    },
+    {
+     "id": "ad7eeb1b-2c49-5397-8b97-eac3f03723fe",
+     "slug": "arraylist",
+     "title": "Les listes avec ArrayList",
+     "summary": "Ajouter, retirer, parcourir et trier une liste dynamique.",
+     "content_md": "## Les limites des tableaux\n\nUn tableau a une **taille fixe** : impossible d'y ajouter un 11ᵉ élément s'il a été créé avec 10 cases. Pour une liste qui grandit ou rétrécit (un panier, des inscrits, des messages), Java propose les **collections**, dans le package `java.util`. La plus utilisée est **`ArrayList`**, une liste ordonnée de taille variable.\n\n## Créer et remplir une ArrayList\n\n```java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class Listes {\n    public static void main(String[] args) {\n        List<String> courses = new ArrayList<>();\n        courses.add(\"pain\");\n        courses.add(\"lait\");\n        courses.add(\"pommes\");\n        courses.add(1, \"beurre\");        // insère à l'indice 1\n\n        System.out.println(courses);\n        System.out.println(\"Taille : \" + courses.size());\n        System.out.println(\"Premier : \" + courses.get(0));\n        courses.set(2, \"lait d'avoine\"); // remplace l'élément d'indice 2\n        courses.remove(\"pain\");          // retire par valeur\n        System.out.println(courses);\n        System.out.println(courses.contains(\"pommes\") + \" \" + courses.indexOf(\"pommes\"));\n        System.out.println(\"Vide ? \" + courses.isEmpty());\n    }\n}\n```\n\n```text\n[pain, beurre, lait, pommes]\nTaille : 4\nPremier : pain\n[beurre, lait d'avoine, pommes]\ntrue 2\nVide ? false\n```\n\n- `List<String>` : le type entre chevrons `< >` est un **paramètre générique** : cette liste ne contient **que** des `String`. Le compilateur refuse `courses.add(42)`.\n- On déclare généralement la variable avec l'**interface** `List` et on crée l'objet avec la classe `ArrayList` : le reste du code ne dépend que de `List`. Les chevrons vides `<>` (*diamond*) laissent Java déduire le type.\n- Contrairement aux tableaux : `size()` au lieu de `length`, `get(i)` au lieu de `[i]`.\n\n| Méthode | Effet |\n|---|---|\n| `add(e)` / `add(i, e)` | ajoute à la fin / à la position `i` |\n| `get(i)` / `set(i, e)` | lit / remplace l'élément d'indice `i` |\n| `remove(i)` / `remove(objet)` | retire par position / par valeur |\n| `size()`, `isEmpty()`, `clear()` | taille, test de vide, vidage |\n| `contains(e)`, `indexOf(e)` | recherche (avec `equals`) |\n\n## Les types enveloppes\n\nUne collection ne contient que des **objets**, jamais des types primitifs. Pour stocker des nombres, on utilise les **classes enveloppes** (*wrappers*) : `Integer` pour `int`, `Double` pour `double`, `Boolean`, `Character`… Java convertit automatiquement dans les deux sens (*autoboxing*) :\n\n```java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class Enveloppes {\n    public static void main(String[] args) {\n        List<Integer> notes = new ArrayList<>();\n        notes.add(14);   // int → Integer automatiquement\n        notes.add(9);\n        notes.add(17);\n        int somme = 0;\n        for (int n : notes) {   // Integer → int automatiquement\n            somme += n;\n        }\n        System.out.println(\"Somme : \" + somme);\n\n        notes.remove(Integer.valueOf(9));  // retire la valeur 9\n        notes.remove(0);                   // retire l'élément d'indice 0\n        System.out.println(notes);\n    }\n}\n```\n\n```text\nSomme : 40\n[17]\n```\n\n> Piège : avec une `List<Integer>`, `remove(0)` retire l'élément **d'indice** 0. Pour retirer la **valeur** 9, écrivez `remove(Integer.valueOf(9))`.\n\n## Parcourir une liste\n\n```java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class Parcourir {\n    public static void main(String[] args) {\n        List<String> inscrits = new ArrayList<>(List.of(\"Léa\", \"Omar\", \"Jade\", \"Tom\"));\n\n        for (String nom : inscrits) {                   // for-each\n            System.out.print(nom + \" \");\n        }\n        System.out.println();\n\n        for (int i = 0; i < inscrits.size(); i++) {    // avec l'indice\n            System.out.println((i + 1) + \". \" + inscrits.get(i));\n        }\n\n        inscrits.removeIf(nom -> nom.length() <= 3);    // supprime selon une condition\n        System.out.println(inscrits);\n    }\n}\n```\n\n```text\nLéa Omar Jade Tom\n1. Léa\n2. Omar\n3. Jade\n4. Tom\n[Omar, Jade]\n```\n\n- `List.of(…)` crée une liste **non modifiable** ; on la copie dans une `ArrayList` pour pouvoir la modifier ensuite. Appeler `add` sur le résultat de `List.of` provoque une `UnsupportedOperationException`.\n- `nom -> nom.length() <= 3` est une **lambda** : une petite fonction anonyme (paramètre `nom`, résultat après la flèche). `removeIf` l'applique à chaque élément et retire ceux pour lesquels elle vaut `true`.\n\n> Ne retirez pas d'éléments **pendant** une boucle for-each sur la même liste : Java lève une `ConcurrentModificationException`. Utilisez `removeIf`.\n\n## Trier une liste\n\n```java\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.Comparator;\nimport java.util.List;\n\nclass Produit {\n    final String nom;\n    final double prix;\n\n    Produit(String nom, double prix) {\n        this.nom = nom;\n        this.prix = prix;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" (\" + prix + \")\";\n    }\n}\n\npublic class Tri {\n    public static void main(String[] args) {\n        List<Integer> nombres = new ArrayList<>(List.of(42, 7, 19, 3));\n        Collections.sort(nombres);                     // ordre naturel\n        System.out.println(nombres);\n\n        List<Produit> catalogue = new ArrayList<>();\n        catalogue.add(new Produit(\"Souris\", 19.9));\n        catalogue.add(new Produit(\"Écran\", 149.0));\n        catalogue.add(new Produit(\"Câble\", 7.5));\n\n        catalogue.sort(Comparator.comparingDouble(p -> p.prix));\n        System.out.println(catalogue);\n        catalogue.sort(Comparator.comparing((Produit p) -> p.nom).reversed());\n        System.out.println(catalogue);\n    }\n}\n```\n\n```text\n[3, 7, 19, 42]\n[Câble (7.5), Souris (19.9), Écran (149.0)]\n[Écran (149.0), Souris (19.9), Câble (7.5)]\n```\n\n- `Collections.sort` trie selon l'**ordre naturel** (nombres croissants, texte alphabétique), défini par `Comparable`.\n- `liste.sort(comparateur)` trie selon un critère choisi ; `Comparator.comparing…` fabrique ce critère à partir d'une lambda, `reversed()` inverse l'ordre.\n- Le tri des chaînes compare les **codes des caractères** : les lettres accentuées comme `É` sont classées après les lettres sans accent. Pour un ordre alphabétique adapté au français, Java propose la classe `java.text.Collator`.\n\n## À retenir\n\n- `List<Type> liste = new ArrayList<>();` crée une liste de taille variable, d'un seul type d'éléments.\n- `add`, `get`, `set`, `remove`, `size`, `contains`, `indexOf` sont les méthodes de base.\n- Les collections contiennent des objets : `Integer`, `Double`… avec conversion automatique.\n- Parcours par for-each ou par indice ; suppression conditionnelle avec `removeIf`.\n- Tri : `Collections.sort` (ordre naturel) ou `liste.sort(Comparator.comparing(…))`.\n\n## Exercices\n\n### Exercice 1 — Liste de notes\n\nCréez une `List<Double>` avec 12.5, 8, 15 et 17.5, ajoutez 10, puis affichez la moyenne et la liste triée.\n\n```solution-java\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\n\npublic class Notes {\n    public static void main(String[] args) {\n        List<Double> notes = new ArrayList<>(List.of(12.5, 8.0, 15.0, 17.5));\n        notes.add(10.0);\n        double somme = 0;\n        for (double n : notes) {\n            somme += n;\n        }\n        System.out.println(\"Moyenne : \" + somme / notes.size());\n        Collections.sort(notes);\n        System.out.println(\"Triées : \" + notes);\n    }\n}\n```\n\n```text\nMoyenne : 12.6\nTriées : [8.0, 10.0, 12.5, 15.0, 17.5]\n```\n\nAvec une `List<Double>`, écrivez `8.0` et non `8` : le littéral `8` est un `int`, qui ne peut pas être converti automatiquement en `Double`.\n\n### Exercice 2 — Filtrer des mots\n\nÀ partir de `\"java est un langage robuste et portable\"`, construisez une liste des mots de plus de 4 lettres, en majuscules.\n\n```solution-java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class FiltreMots {\n    public static void main(String[] args) {\n        String phrase = \"java est un langage robuste et portable\";\n        List<String> longs = new ArrayList<>();\n        for (String mot : phrase.split(\" \")) {\n            if (mot.length() > 4) {\n                longs.add(mot.toUpperCase());\n            }\n        }\n        System.out.println(longs);\n    }\n}\n```\n\n```text\n[LANGAGE, ROBUSTE, PORTABLE]\n```\n\n`split(\" \")` découpe une chaîne en un tableau de morceaux, selon le séparateur indiqué.\n\n### Exercice 3 — Classement de produits\n\nAvec la classe `Produit` de la leçon, triez une liste de trois produits du plus cher au moins cher et affichez seulement le nom du plus cher.\n\n```solution-java\nimport java.util.ArrayList;\nimport java.util.Comparator;\nimport java.util.List;\n\nclass Produit {\n    final String nom;\n    final double prix;\n\n    Produit(String nom, double prix) {\n        this.nom = nom;\n        this.prix = prix;\n    }\n}\n\npublic class PlusCher {\n    public static void main(String[] args) {\n        List<Produit> produits = new ArrayList<>();\n        produits.add(new Produit(\"Casque\", 59.0));\n        produits.add(new Produit(\"Clavier\", 89.0));\n        produits.add(new Produit(\"Tapis\", 12.0));\n        produits.sort(Comparator.comparingDouble((Produit p) -> p.prix).reversed());\n        System.out.println(\"Le plus cher : \" + produits.get(0).nom);\n    }\n}\n```\n\n```text\nLe plus cher : Clavier\n```",
+     "duration_minutes": 45,
+     "position": 2
+    },
+    {
+     "id": "f7c7ac15-a99b-5976-839f-6eb44f47b341",
+     "slug": "hashmap",
+     "title": "Les dictionnaires avec HashMap",
+     "summary": "Associer des clés à des valeurs, compter, regrouper et parcourir.",
+     "content_md": "## Associer une clé à une valeur\n\nUne liste range des éléments **par position**. Souvent, on veut plutôt retrouver une information **par un identifiant** : le prix d'un produit à partir de sa référence, le numéro de téléphone d'un contact à partir de son nom. C'est le rôle d'une **Map** (dictionnaire, ou table d'association) : chaque **clé** unique est associée à une **valeur**.\n\nL'implémentation la plus courante est **`HashMap`**, très rapide pour retrouver une valeur à partir de sa clé.\n\n```java\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class Annuaire {\n    public static void main(String[] args) {\n        Map<String, String> telephones = new HashMap<>();\n        telephones.put(\"Amina\", \"06 11 22 33 44\");\n        telephones.put(\"Lucas\", \"07 55 66 77 88\");\n        telephones.put(\"Amina\", \"06 99 99 99 99\");   // même clé : la valeur est remplacée\n\n        System.out.println(telephones.get(\"Amina\"));\n        System.out.println(telephones.get(\"Zoé\"));            // clé absente\n        System.out.println(telephones.containsKey(\"Lucas\"));\n        System.out.println(telephones.getOrDefault(\"Zoé\", \"inconnu\"));\n        System.out.println(\"Taille : \" + telephones.size());\n        telephones.remove(\"Lucas\");\n        System.out.println(\"Après suppression : \" + telephones.size());\n    }\n}\n```\n\n```text\n06 99 99 99 99\nnull\ntrue\ninconnu\nTaille : 2\nAprès suppression : 1\n```\n\n- `Map<String, String>` : deux paramètres génériques, le type des **clés** puis celui des **valeurs**.\n- `put` ajoute ou **remplace** : une clé ne peut apparaître qu'une fois.\n- `get` renvoie `null` si la clé est absente ; `getOrDefault` permet de fournir une valeur de repli.\n\n| Méthode | Effet |\n|---|---|\n| `put(k, v)` | associe `v` à la clé `k` (remplace l'ancienne valeur) |\n| `get(k)`, `getOrDefault(k, d)` | lit la valeur (ou `null` / `d` si absente) |\n| `containsKey(k)`, `containsValue(v)` | teste la présence |\n| `remove(k)` | supprime l'association |\n| `size()`, `isEmpty()` | taille, test de vide |\n| `keySet()`, `values()`, `entrySet()` | clés, valeurs, couples clé-valeur |\n\n## Compter des occurrences\n\nUn usage très fréquent : compter combien de fois apparaît chaque élément. La méthode `merge` simplifie ce travail :\n\n```java\nimport java.util.HashMap;\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Comptage {\n    public static void main(String[] args) {\n        String texte = \"le chat et le chien et le poisson\";\n        Map<String, Integer> compteur = new HashMap<>();\n        for (String mot : texte.split(\" \")) {\n            compteur.merge(mot, 1, Integer::sum);\n        }\n        System.out.println(compteur.get(\"le\") + \" \" + compteur.get(\"et\") + \" \" + compteur.get(\"chat\"));\n        System.out.println(new TreeMap<>(compteur));\n    }\n}\n```\n\n```text\n3 2 1\n{chat=1, chien=1, et=2, le=3, poisson=1}\n```\n\n- `compteur.merge(mot, 1, Integer::sum)` : si `mot` est absent, on lui associe `1` ; sinon on **additionne** `1` à la valeur existante. `Integer::sum` est une **référence de méthode**, une écriture compacte de la lambda `(a, b) -> a + b`.\n- Une écriture équivalente, plus longue : `compteur.put(mot, compteur.getOrDefault(mot, 0) + 1);`.\n\n## L'ordre des clés\n\nUne `HashMap` **ne garantit aucun ordre** de parcours : l'ordre d'affichage peut sembler aléatoire et changer quand on ajoute des éléments. Choisissez l'implémentation selon votre besoin :\n\n| Implémentation | Ordre de parcours |\n|---|---|\n| `HashMap` | aucun ordre garanti (la plus utilisée) |\n| `LinkedHashMap` | ordre d'insertion |\n| `TreeMap` | clés triées (ordre naturel) |\n\nC'est pourquoi l'exemple précédent copie la map dans une `TreeMap` avant de l'afficher : le résultat est trié par ordre alphabétique des clés, donc prévisible.\n\n## Parcourir une Map\n\n```java\nimport java.util.LinkedHashMap;\nimport java.util.Map;\n\npublic class Stock {\n    public static void main(String[] args) {\n        Map<String, Integer> stock = new LinkedHashMap<>();\n        stock.put(\"stylos\", 120);\n        stock.put(\"cahiers\", 8);\n        stock.put(\"classeurs\", 35);\n\n        for (Map.Entry<String, Integer> e : stock.entrySet()) {\n            String alerte = e.getValue() < 10 ? \"  <- à commander\" : \"\";\n            System.out.println(e.getKey() + \" : \" + e.getValue() + alerte);\n        }\n\n        int total = 0;\n        for (int quantite : stock.values()) {\n            total += quantite;\n        }\n        System.out.println(\"Articles en stock : \" + total);\n        System.out.println(\"Références : \" + stock.keySet());\n    }\n}\n```\n\n```text\nstylos : 120\ncahiers : 8  <- à commander\nclasseurs : 35\nArticles en stock : 163\nRéférences : [stylos, cahiers, classeurs]\n```\n\n- `entrySet()` donne les couples ; chaque `Map.Entry` offre `getKey()` et `getValue()`.\n- `keySet()` donne les clés, `values()` les valeurs.\n\n## Des objets comme valeurs\n\nLes valeurs d'une map peuvent être n'importe quels objets, y compris des listes. Exemple : regrouper des élèves par classe.\n\n```java\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Groupes {\n    public static void main(String[] args) {\n        String[][] eleves = {{\"Inès\", \"6A\"}, {\"Noah\", \"6B\"}, {\"Lina\", \"6A\"}, {\"Adam\", \"6B\"}, {\"Maël\", \"6C\"}};\n        Map<String, List<String>> parClasse = new TreeMap<>();\n        for (String[] eleve : eleves) {\n            String nom = eleve[0];\n            String classe = eleve[1];\n            parClasse.computeIfAbsent(classe, c -> new ArrayList<>()).add(nom);\n        }\n        for (String classe : parClasse.keySet()) {\n            List<String> noms = parClasse.get(classe);\n            System.out.println(classe + \" (\" + noms.size() + \") : \" + noms);\n        }\n    }\n}\n```\n\n```text\n6A (2) : [Inès, Lina]\n6B (2) : [Noah, Adam]\n6C (1) : [Maël]\n```\n\n`computeIfAbsent(classe, c -> new ArrayList<>())` renvoie la liste associée à `classe`, en la **créant** d'abord si elle n'existe pas encore : une seule ligne pour « ajouter l'élève dans le bon groupe ».\n\n> Une clé de map doit avoir des méthodes `equals` et `hashCode` cohérentes. `String`, `Integer` et les records (module 5) les fournissent ; pour vos propres classes utilisées comme clés, il faudrait les redéfinir.\n\n## À retenir\n\n- `Map<K, V> m = new HashMap<>();` associe des clés uniques à des valeurs.\n- `put` ajoute ou remplace ; `get` renvoie `null` si la clé manque ; `getOrDefault` fournit une valeur de repli.\n- `merge(cle, 1, Integer::sum)` compte des occurrences ; `computeIfAbsent` crée une valeur à la demande.\n- `HashMap` : pas d'ordre ; `LinkedHashMap` : ordre d'insertion ; `TreeMap` : clés triées.\n- Parcours avec `entrySet()`, `keySet()` ou `values()`.\n\n## Exercices\n\n### Exercice 1 — Prix des produits\n\nCréez une map référence → prix avec trois produits, augmentez de 10 % le prix de `\"REF-2\"`, puis affichez toutes les références triées avec leur prix sur deux décimales.\n\n```solution-java\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Prix {\n    public static void main(String[] args) {\n        Map<String, Double> prix = new TreeMap<>();\n        prix.put(\"REF-3\", 4.0);\n        prix.put(\"REF-1\", 12.5);\n        prix.put(\"REF-2\", 20.0);\n        prix.put(\"REF-2\", prix.get(\"REF-2\") * 1.1);\n        for (Map.Entry<String, Double> e : prix.entrySet()) {\n            System.out.printf(\"%s : %.2f%n\", e.getKey(), e.getValue());\n        }\n    }\n}\n```\n\n```text\nREF-1 : 12.50\nREF-2 : 22.00\nREF-3 : 4.00\n```\n\n### Exercice 2 — Fréquence des lettres\n\nComptez les lettres du mot `\"bibliotheque\"` avec une `TreeMap<Character, Integer>` et affichez le résultat.\n\n```solution-java\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Lettres {\n    public static void main(String[] args) {\n        String mot = \"bibliotheque\";\n        Map<Character, Integer> frequences = new TreeMap<>();\n        for (char c : mot.toCharArray()) {\n            frequences.merge(c, 1, Integer::sum);\n        }\n        System.out.println(frequences);\n    }\n}\n```\n\n```text\n{b=2, e=2, h=1, i=2, l=1, o=1, q=1, t=1, u=1}\n```\n\n`toCharArray()` transforme une chaîne en tableau de caractères, parcourable avec for-each.\n\n### Exercice 3 — Quelle implémentation ?\n\nQuelle Map choisir pour : (a) un cache de recherche rapide où l'ordre n'importe pas ; (b) un historique où l'on veut garder l'ordre d'ajout ; (c) un index alphabétique ?\n\n```solution-text\n(a) HashMap : la plus simple et rapide, sans ordre garanti.\n(b) LinkedHashMap : conserve l'ordre d'insertion.\n(c) TreeMap : maintient les clés triées.\n```",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "d0d44794-08e9-50c6-bb4e-86da3334f2a7",
+    "title": "Quiz — Abstraction et collections",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "a429d2b7-726b-525f-a64d-3d5df9f766cd",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que se passe-t-il si l'on écrit new Forme() alors que Forme est déclarée abstract ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "22a8a021-08c0-5a9e-8274-07e8fd7ba0c0",
+        "position": 1,
+        "label": "Erreur de compilation : une classe abstraite ne s'instancie pas."
+       },
+       {
+        "id": "bc42f685-404f-5946-8de5-c035cccf0e01",
+        "position": 2,
+        "label": "Un objet Forme vide est créé."
+       },
+       {
+        "id": "2648c2cf-77d1-501a-8dee-55d7b8248f97",
+        "position": 3,
+        "label": "Une exception est levée à l'exécution."
+       },
+       {
+        "id": "9f165f26-5f9c-5876-ac6a-ecb7e0d3f0ea",
+        "position": 4,
+        "label": "Java crée automatiquement une sous-classe."
+       }
+      ],
+      "correct": [
+       "22a8a021-08c0-5a9e-8274-07e8fd7ba0c0"
+      ],
+      "explanation": "Une classe abstraite sert de modèle : on ne peut créer que des objets de ses sous-classes concrètes."
+     },
+     {
+      "id": "86bee729-add1-58b5-8b40-556e0df4f967",
+      "position": 2,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur les interfaces sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "05182ee4-c72a-5fc3-9e26-bcd4c97ddd0e",
+        "position": 1,
+        "label": "Une classe peut implémenter plusieurs interfaces."
+       },
+       {
+        "id": "19efdd08-7b1e-5635-a122-04ee3c8cf5ca",
+        "position": 2,
+        "label": "Une méthode default possède un corps."
+       },
+       {
+        "id": "6ea9d889-3d99-5844-a2f3-9c329929071c",
+        "position": 3,
+        "label": "Une interface possède un constructeur."
+       },
+       {
+        "id": "a40730e3-fd54-5280-b787-a052cd4480f1",
+        "position": 4,
+        "label": "Les méthodes implémentées d'une interface doivent être public."
+       }
+      ],
+      "correct": [
+       "05182ee4-c72a-5fc3-9e26-bcd4c97ddd0e",
+       "19efdd08-7b1e-5635-a122-04ee3c8cf5ca",
+       "a40730e3-fd54-5280-b787-a052cd4480f1"
+      ],
+      "explanation": "Une interface n'a pas de constructeur ni d'attributs d'instance. Les trois autres affirmations sont exactes."
+     },
+     {
+      "id": "f7872d27-3893-5294-adbf-e8f4c62bc942",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Qu'est-ce que le polymorphisme ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "05da06f8-15b7-58cf-9cbe-80b124241a7c",
+        "position": 1,
+        "label": "Le fait d'avoir plusieurs constructeurs."
+       },
+       {
+        "id": "0d6a40fc-a027-5386-aec6-9b949be64802",
+        "position": 2,
+        "label": "Copier une classe sous un autre nom."
+       },
+       {
+        "id": "5a1968c9-a4e2-506f-8913-d81cf3a4010a",
+        "position": 3,
+        "label": "Convertir un int en double."
+       },
+       {
+        "id": "91aa3a26-c2cc-5897-9a80-a5c24458b9e6",
+        "position": 4,
+        "label": "Traiter des objets de classes différentes via un type commun, chacun exécutant sa propre version des méthodes."
+       }
+      ],
+      "correct": [
+       "91aa3a26-c2cc-5897-9a80-a5c24458b9e6"
+      ],
+      "explanation": "Avec une variable de type commun (classe mère ou interface), l'appel exécute la méthode de l'objet réel : un même code traite des objets différents."
+     },
+     {
+      "id": "b31aed8e-9039-50c5-ae33-55f14d8fe1ab",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Comment déclarer une liste de chaînes de taille variable ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c86d3f42-2abf-5570-89be-23547a8c6cff",
+        "position": 1,
+        "label": "String[] liste = new String[];"
+       },
+       {
+        "id": "9db1e738-76ee-50bd-b46d-a622541216d3",
+        "position": 2,
+        "label": "List<String> liste = new ArrayList<>();"
+       },
+       {
+        "id": "6707884f-f35e-5ded-b518-5f22d7f9e2ed",
+        "position": 3,
+        "label": "ArrayList liste = String[];"
+       },
+       {
+        "id": "14130cc4-7b44-5912-a417-61f1666abb00",
+        "position": 4,
+        "label": "List<string> liste = new List();"
+       }
+      ],
+      "correct": [
+       "9db1e738-76ee-50bd-b46d-a622541216d3"
+      ],
+      "explanation": "On déclare avec l'interface List, paramétrée par le type des éléments, et on crée l'objet avec ArrayList (les <> vides laissent Java déduire le type)."
+     },
+     {
+      "id": "59e16889-25b4-57cd-86ab-5249f065459c",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quelle méthode donne le nombre d'éléments d'une ArrayList ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b68288de-d6f4-5855-9531-a9b62d635206",
+        "position": 1,
+        "label": "length"
+       },
+       {
+        "id": "7bd9d5dd-0995-5f88-a25e-7b98a8cf0bf3",
+        "position": 2,
+        "label": "length()"
+       },
+       {
+        "id": "ba403dcb-8ef0-56ab-b349-36e07036c653",
+        "position": 3,
+        "label": "size()"
+       },
+       {
+        "id": "7a190ef7-5845-5df3-a6a9-fde7ac56878b",
+        "position": 4,
+        "label": "count()"
+       }
+      ],
+      "correct": [
+       "ba403dcb-8ef0-56ab-b349-36e07036c653"
+      ],
+      "explanation": "Les collections utilisent size(). length (sans parenthèses) est réservé aux tableaux, length() aux chaînes."
+     },
+     {
+      "id": "bd9eca89-ef2b-5eac-b728-ce09cef4c480",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Pourquoi écrit-on List<Integer> et non List<int> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8e52f1e4-d0f4-5bfe-8367-5fee668400d0",
+        "position": 1,
+        "label": "Integer est plus rapide."
+       },
+       {
+        "id": "d2f2f898-da53-53c8-8ff1-ad6d744fcfb0",
+        "position": 2,
+        "label": "Les collections ne contiennent que des objets : on utilise la classe enveloppe Integer."
+       },
+       {
+        "id": "f4ff0358-a2f3-5641-ac00-b2c4a4ad5ffb",
+        "position": 3,
+        "label": "int n'existe pas en Java."
+       },
+       {
+        "id": "8084545a-8559-5bb1-bb38-e467e18d8386",
+        "position": 4,
+        "label": "C'est une simple convention de style."
+       }
+      ],
+      "correct": [
+       "d2f2f898-da53-53c8-8ff1-ad6d744fcfb0"
+      ],
+      "explanation": "Les génériques n'acceptent pas les types primitifs ; Java convertit automatiquement entre int et Integer (autoboxing)."
+     },
+     {
+      "id": "be048ea7-890d-55d0-9f2b-a7c35e8929b7",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie map.get(cle) si la clé est absente d'une HashMap ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "232a18ae-66cf-5f95-8cee-b8a7aed60ab5",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "afb055c4-97ec-5a9d-99ec-78f48a2431f6",
+        "position": 2,
+        "label": "Une chaîne vide"
+       },
+       {
+        "id": "8a2c7364-22ed-58b0-83aa-85ec61060620",
+        "position": 3,
+        "label": "null"
+       },
+       {
+        "id": "fe9cf9c0-b78c-51f5-b357-ac6e603184a6",
+        "position": 4,
+        "label": "Une exception"
+       }
+      ],
+      "correct": [
+       "8a2c7364-22ed-58b0-83aa-85ec61060620"
+      ],
+      "explanation": "get renvoie null pour une clé absente. getOrDefault(cle, valeur) permet de fournir une valeur de repli."
+     },
+     {
+      "id": "ad53dd36-6402-5f38-b898-e092bacc1a83",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que fait compteur.merge(mot, 1, Integer::sum) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "eac9c20e-30a3-547e-b556-39250e0ba0de",
+        "position": 1,
+        "label": "Remplace toujours la valeur par 1."
+       },
+       {
+        "id": "c741d2d1-6701-532b-b995-3c3b59562f21",
+        "position": 2,
+        "label": "Associe 1 si le mot est absent, sinon ajoute 1 à la valeur existante."
+       },
+       {
+        "id": "ee0028eb-0955-5f62-aef5-44708d737134",
+        "position": 3,
+        "label": "Supprime le mot s'il existe."
+       },
+       {
+        "id": "dbbf7f0d-1bd7-5d54-a945-70964a7a83c8",
+        "position": 4,
+        "label": "Fusionne deux maps."
+       }
+      ],
+      "correct": [
+       "c741d2d1-6701-532b-b995-3c3b59562f21"
+      ],
+      "explanation": "merge insère la valeur donnée si la clé manque, sinon combine l'ancienne et la nouvelle avec la fonction fournie (ici l'addition)."
+     },
+     {
+      "id": "1483bc3c-9180-53b7-858a-7e0a1a94dc29",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Quelle Map garde les clés triées ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "33b46351-aa1f-5a17-b965-d53e154f79b1",
+        "position": 1,
+        "label": "HashMap"
+       },
+       {
+        "id": "47601643-77dc-565e-9876-06ea874fbeb9",
+        "position": 2,
+        "label": "LinkedHashMap"
+       },
+       {
+        "id": "e88cd25b-ec0b-5203-8396-5b12501be697",
+        "position": 3,
+        "label": "TreeMap"
+       },
+       {
+        "id": "58e4353a-5b64-5097-9157-a83413545780",
+        "position": 4,
+        "label": "ArrayList"
+       }
+      ],
+      "correct": [
+       "e88cd25b-ec0b-5203-8396-5b12501be697"
+      ],
+      "explanation": "TreeMap maintient ses clés dans l'ordre naturel ; LinkedHashMap conserve l'ordre d'insertion ; HashMap ne garantit aucun ordre."
+     },
+     {
+      "id": "b864daa6-e062-5bf7-bcf7-704667452888",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Dans une HashMap, deux associations peuvent avoir la même clé.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "46eefff5-e38f-552c-9f5b-721be7f4d140",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "8ed2b218-e52f-5a69-87f6-578c12f34a8f",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "8ed2b218-e52f-5a69-87f6-578c12f34a8f"
+      ],
+      "explanation": "Les clés sont uniques : un put avec une clé existante remplace l'ancienne valeur."
+     }
+    ]
+   }
+  },
+  {
+   "id": "6ed90875-75dc-5619-a16f-35378398d468",
+   "position": 5,
+   "title": "Exceptions, records et projet",
+   "description": "Gérer les erreurs avec les exceptions, modéliser des données avec les records, puis réaliser une gestion de bibliothèque en console.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "4ef8a5e3-297f-5415-b7b7-541f45299085",
+     "slug": "exceptions",
+     "title": "Les exceptions",
+     "summary": "try, catch, finally, throw, exceptions vérifiées et personnalisées.",
+     "content_md": "## Qu'est-ce qu'une exception ?\n\nUne **exception** est un objet qui signale un problème survenu **pendant l'exécution** : division par zéro, texte qui n'est pas un nombre, indice hors d'un tableau, fichier introuvable… Quand une exception est **levée** et que personne ne la traite, le programme s'arrête et affiche la pile d'appels :\n\n```java\npublic class Plantage {\n    public static void main(String[] args) {\n        int[] notes = {12, 15, 9};\n        System.out.println(\"Début\");\n        System.out.println(notes[3]);\n        System.out.println(\"Fin\");\n    }\n}\n```\n\n```text\nDébut\nException in thread \"main\" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3\n\tat Plantage.main(Plantage.java:5)\n```\n\n« Fin » ne s'affiche jamais. Pour qu'un programme résiste aux erreurs prévisibles (une saisie invalide, par exemple), on **intercepte** les exceptions.\n\n## try / catch\n\nOn place le code risqué dans un bloc `try`, et le traitement de l'erreur dans un bloc `catch` qui précise **quel type** d'exception il intercepte :\n\n```java\npublic class Conversion {\n    static int lireEntier(String texte) {\n        try {\n            return Integer.parseInt(texte);\n        } catch (NumberFormatException e) {\n            System.out.println(\"« \" + texte + \" » n'est pas un nombre (\" + e.getMessage() + \")\");\n            return 0;\n        }\n    }\n\n    public static void main(String[] args) {\n        System.out.println(lireEntier(\"42\"));\n        System.out.println(lireEntier(\"quarante\"));\n        System.out.println(\"Le programme continue.\");\n    }\n}\n```\n\n```text\n42\n« quarante » n'est pas un nombre (For input string: \"quarante\")\n0\nLe programme continue.\n```\n\n- Si aucune exception ne survient, le `catch` est ignoré.\n- Si une exception survient dans le `try`, l'exécution **saute** immédiatement au `catch` correspondant ; le reste du `try` n'est pas exécuté.\n- La variable `e` est l'objet exception : `e.getMessage()` donne son message.\n\n## Plusieurs catch et finally\n\n```java\npublic class Plusieurs {\n    static void traiter(String[] valeurs, int indice) {\n        try {\n            int n = Integer.parseInt(valeurs[indice]);\n            System.out.println(\"100 / \" + n + \" = \" + (100 / n));\n        } catch (NumberFormatException e) {\n            System.out.println(\"Valeur non numérique\");\n        } catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Calcul impossible : \" + e.getMessage());\n        } finally {\n            System.out.println(\"-- fin du traitement \" + indice);\n        }\n    }\n\n    public static void main(String[] args) {\n        String[] valeurs = {\"4\", \"abc\", \"0\"};\n        for (int i = 0; i <= 3; i++) {\n            traiter(valeurs, i);\n        }\n    }\n}\n```\n\n```text\n100 / 4 = 25\n-- fin du traitement 0\nValeur non numérique\n-- fin du traitement 1\nCalcul impossible : / by zero\n-- fin du traitement 2\nCalcul impossible : Index 3 out of bounds for length 3\n-- fin du traitement 3\n```\n\n- Les `catch` sont testés dans l'ordre ; le premier qui correspond est exécuté.\n- `catch (A | B e)` intercepte plusieurs types avec le même traitement.\n- Le bloc `finally` s'exécute **dans tous les cas**, erreur ou non : on y place le nettoyage (fermer une ressource, afficher un bilan).\n\n> N'interceptez pas une exception pour l'ignorer silencieusement (`catch (Exception e) {}`) : l'erreur disparaît mais le problème reste, et il devient très difficile à trouver.\n\n## Lever une exception : throw\n\nVotre code peut lui aussi **signaler** une situation anormale avec `throw`. C'est ce que vous avez fait pour valider des arguments au module 3 :\n\n```java\npublic class Retrait {\n    static double retirer(double solde, double montant) {\n        if (montant <= 0) {\n            throw new IllegalArgumentException(\"Le montant doit être positif\");\n        }\n        if (montant > solde) {\n            throw new IllegalStateException(\"Solde insuffisant : \" + solde);\n        }\n        return solde - montant;\n    }\n\n    public static void main(String[] args) {\n        double[] demandes = {30, -5, 500};\n        double solde = 100;\n        for (double d : demandes) {\n            try {\n                solde = retirer(solde, d);\n                System.out.println(\"Retrait de \" + d + \" OK, solde : \" + solde);\n            } catch (IllegalArgumentException | IllegalStateException e) {\n                System.out.println(\"Refusé : \" + e.getMessage());\n            }\n        }\n    }\n}\n```\n\n```text\nRetrait de 30.0 OK, solde : 70.0\nRefusé : Le montant doit être positif\nRefusé : Solde insuffisant : 70.0\n```\n\n## Exceptions vérifiées et non vérifiées\n\nJava distingue deux familles :\n\n| Famille | Hérite de | Le compilateur oblige-t-il à la traiter ? | Exemples |\n|---|---|---|---|\n| **Non vérifiées** (*unchecked*) | `RuntimeException` | non | `NullPointerException`, `IllegalArgumentException`, `ArithmeticException` |\n| **Vérifiées** (*checked*) | `Exception` (hors `RuntimeException`) | **oui** | `IOException` (lecture de fichier), exceptions métier |\n\nUne méthode susceptible de lever une exception vérifiée doit soit la **traiter** (`try/catch`), soit l'**annoncer** dans sa signature avec `throws`, pour que l'appelant s'en charge. Les exceptions non vérifiées signalent plutôt des **erreurs de programmation** (à corriger dans le code) ; les vérifiées, des situations **prévisibles** que l'appelant doit gérer.\n\n## Créer sa propre exception\n\nPour exprimer une erreur métier, on crée une classe qui hérite d'`Exception` (vérifiée) ou de `RuntimeException` (non vérifiée) :\n\n```java\nclass StockInsuffisantException extends Exception {\n    StockInsuffisantException(String message) {\n        super(message);\n    }\n}\n\nclass Entrepot {\n    private int stock = 5;\n\n    void sortir(int quantite) throws StockInsuffisantException {\n        if (quantite > stock) {\n            throw new StockInsuffisantException(\"Demande \" + quantite + \", disponible \" + stock);\n        }\n        stock -= quantite;\n    }\n\n    int getStock() {\n        return stock;\n    }\n}\n\npublic class Commandes {\n    public static void main(String[] args) {\n        Entrepot entrepot = new Entrepot();\n        int[] commandes = {2, 4, 3};\n        for (int q : commandes) {\n            try {\n                entrepot.sortir(q);\n                System.out.println(\"Commande de \" + q + \" expédiée, reste \" + entrepot.getStock());\n            } catch (StockInsuffisantException e) {\n                System.out.println(\"Commande de \" + q + \" en attente : \" + e.getMessage());\n            }\n        }\n    }\n}\n```\n\n```text\nCommande de 2 expédiée, reste 3\nCommande de 4 en attente : Demande 4, disponible 3\nCommande de 3 expédiée, reste 0\n```\n\nSi vous supprimez le `try/catch` dans `main`, le code **ne compile plus** (*unreported exception StockInsuffisantException*) : le compilateur vous oblige à prévoir ce cas.\n\n## try-with-resources\n\nCertaines ressources (fichiers, connexions, `Scanner`) doivent être **fermées** après usage. La forme `try (…)` les ferme automatiquement, même en cas d'exception :\n\n```java\nimport java.util.Scanner;\n\npublic class Ressources {\n    public static void main(String[] args) {\n        try (Scanner sc = new Scanner(\"10 20 x 30\")) {\n            int somme = 0;\n            while (sc.hasNext()) {\n                if (sc.hasNextInt()) {\n                    somme += sc.nextInt();\n                } else {\n                    System.out.println(\"Ignoré : \" + sc.next());\n                }\n            }\n            System.out.println(\"Somme : \" + somme);\n        }   // sc.close() est appelé automatiquement ici\n    }\n}\n```\n\n```text\nIgnoré : x\nSomme : 60\n```\n\nRemarquez `hasNextInt()` : tester **avant** de lire évite l'exception, ce qui est souvent préférable à un `try/catch` pour une erreur prévisible.\n\n## À retenir\n\n- Une exception non traitée arrête le programme et affiche la pile d'appels.\n- `try { … } catch (Type e) { … }` intercepte ; plusieurs `catch` ou `catch (A | B e)` ; `finally` s'exécute toujours.\n- `throw new …Exception(\"message\")` signale une erreur ; `e.getMessage()` la décrit.\n- Exceptions **vérifiées** : à traiter ou à déclarer avec `throws` ; **non vérifiées** (`RuntimeException`) : erreurs de programmation.\n- `try (ressource) { … }` ferme automatiquement la ressource ; ne jamais ignorer silencieusement une exception.\n\n## Exercices\n\n### Exercice 1 — Division sécurisée\n\nÉcrivez `diviser(String a, String b)` qui convertit les deux textes et affiche le quotient entier, ou un message clair si la conversion échoue ou si le diviseur est nul. Testez avec `(\"20\", \"4\")`, `(\"20\", \"zéro\")` et `(\"20\", \"0\")`.\n\n```solution-java\npublic class DivisionSure {\n    static void diviser(String a, String b) {\n        try {\n            int x = Integer.parseInt(a);\n            int y = Integer.parseInt(b);\n            System.out.println(x + \" / \" + y + \" = \" + (x / y));\n        } catch (NumberFormatException e) {\n            System.out.println(\"Saisie invalide : \" + a + \", \" + b);\n        } catch (ArithmeticException e) {\n            System.out.println(\"Division par zéro impossible\");\n        }\n    }\n\n    public static void main(String[] args) {\n        diviser(\"20\", \"4\");\n        diviser(\"20\", \"zéro\");\n        diviser(\"20\", \"0\");\n    }\n}\n```\n\n```text\n20 / 4 = 5\nSaisie invalide : 20, zéro\nDivision par zéro impossible\n```\n\n### Exercice 2 — Âge valide\n\nÉcrivez `verifierAge(int age)` qui lève une `IllegalArgumentException` si l'âge est hors de [0, 130], puis testez-la avec 25 et 150 en interceptant l'erreur.\n\n```solution-java\npublic class Age {\n    static int verifierAge(int age) {\n        if (age < 0 || age > 130) {\n            throw new IllegalArgumentException(\"Âge invalide : \" + age);\n        }\n        return age;\n    }\n\n    public static void main(String[] args) {\n        int[] ages = {25, 150};\n        for (int a : ages) {\n            try {\n                System.out.println(\"Âge accepté : \" + verifierAge(a));\n            } catch (IllegalArgumentException e) {\n                System.out.println(e.getMessage());\n            }\n        }\n    }\n}\n```\n\n```text\nÂge accepté : 25\nÂge invalide : 150\n```\n\n### Exercice 3 — Vérifiée ou non ?\n\nClassez : (a) `NullPointerException` ; (b) une `IOException` levée à la lecture d'un fichier ; (c) votre `StockInsuffisantException extends Exception` ; (d) `NumberFormatException`.\n\n```solution-text\n(a) Non vérifiée : hérite de RuntimeException (erreur de programmation).\n(b) Vérifiée : le compilateur oblige à la traiter ou à la déclarer avec throws.\n(c) Vérifiée : elle hérite directement d'Exception.\n(d) Non vérifiée : elle hérite (indirectement) de RuntimeException.\n```",
+     "duration_minutes": 45,
+     "position": 1
+    },
+    {
+     "id": "25b21434-f39f-5adb-b5a6-e6b4bc964254",
+     "slug": "records",
+     "title": "Les records et les données immuables",
+     "summary": "Déclarer un record, equals, validation et records dans les collections.",
+     "content_md": "## Des classes qui ne font que porter des données\n\nBeaucoup de classes servent uniquement à **transporter des données** : un point (x, y), une adresse, une ligne de commande. Écrites « à la main », elles demandent beaucoup de code répétitif : attributs `private final`, constructeur, getters, `toString`, `equals`, `hashCode`. Le **record**, introduit dans le Java moderne (disponible en Java 17), génère tout cela en une ligne.\n\n```java\nrecord Point(int x, int y) { }\n\npublic class Records {\n    public static void main(String[] args) {\n        Point p = new Point(3, 4);\n        System.out.println(p);\n        System.out.println(p.x() + \" \" + p.y());\n\n        Point q = new Point(3, 4);\n        System.out.println(p.equals(q));\n        System.out.println(p == q);\n    }\n}\n```\n\n```text\nPoint[x=3, y=4]\n3 4\ntrue\nfalse\n```\n\nLa déclaration `record Point(int x, int y)` fournit automatiquement :\n\n- deux attributs `private final` : `x` et `y` ;\n- un **constructeur** qui prend `x` et `y` ;\n- des **accesseurs** `x()` et `y()` (sans le préfixe `get`) ;\n- un `toString()` lisible, ainsi que `equals` et `hashCode` basés sur **les valeurs** : deux records aux composantes égales sont égaux (`equals` vaut `true`), même s'ils sont deux objets distincts (`==` vaut `false`).\n\n## Les records sont immuables\n\nLes composantes d'un record sont `final` : impossible de les modifier après la création. Pour « changer » une valeur, on crée un **nouveau** record :\n\n```java\nrecord Prix(String produit, double montant) {\n    Prix avecRemise(double pourcentage) {\n        return new Prix(produit, montant * (1 - pourcentage / 100));\n    }\n}\n\npublic class Immuable {\n    public static void main(String[] args) {\n        Prix original = new Prix(\"Chaise\", 80);\n        Prix solde = original.avecRemise(25);\n        System.out.println(original);\n        System.out.println(solde);\n    }\n}\n```\n\n```text\nPrix[produit=Chaise, montant=80.0]\nPrix[produit=Chaise, montant=60.0]\n```\n\nUn objet **immuable** est plus simple à comprendre : personne ne peut le modifier « dans votre dos », on peut le partager sans risque. Un record peut contenir des méthodes (comme `avecRemise`) et des méthodes `static`, mais pas d'attributs d'instance supplémentaires.\n\n## Valider dans un constructeur compact\n\nPour vérifier les valeurs à la création, on écrit un **constructeur compact** : sans liste de paramètres, il s'exécute avant l'affectation des composantes.\n\n```java\nrecord Email(String adresse) {\n    Email {\n        if (adresse == null || !adresse.contains(\"@\")) {\n            throw new IllegalArgumentException(\"Adresse invalide : \" + adresse);\n        }\n        adresse = adresse.trim().toLowerCase();   // normalisation\n    }\n}\n\npublic class Validation {\n    public static void main(String[] args) {\n        System.out.println(new Email(\"  Lea.Martin@Exemple.fr \"));\n        try {\n            new Email(\"pas-une-adresse\");\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Refusé : \" + e.getMessage());\n        }\n    }\n}\n```\n\n```text\nEmail[adresse=lea.martin@exemple.fr]\nRefusé : Adresse invalide : pas-une-adresse\n```\n\nDans le constructeur compact, `adresse` désigne le **paramètre** ; on peut le réaffecter (ici pour le normaliser) avant qu'il ne soit rangé dans le record.\n\n## Records et collections\n\nGrâce à leurs `equals` et `hashCode`, les records s'utilisent naturellement dans les listes et comme **clés de map** :\n\n```java\nimport java.util.ArrayList;\nimport java.util.Comparator;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\nrecord Vente(String vendeur, String produit, int quantite) { }\n\nrecord Case(int ligne, int colonne) { }\n\npublic class Collections2 {\n    public static void main(String[] args) {\n        List<Vente> ventes = new ArrayList<>(List.of(\n            new Vente(\"Nora\", \"clavier\", 3),\n            new Vente(\"Paul\", \"souris\", 10),\n            new Vente(\"Nora\", \"écran\", 1)\n        ));\n        ventes.sort(Comparator.comparingInt(Vente::quantite).reversed());\n        for (Vente v : ventes) {\n            System.out.println(v.vendeur() + \" : \" + v.quantite() + \" \" + v.produit());\n        }\n\n        Map<Case, String> plateau = new HashMap<>();\n        plateau.put(new Case(0, 0), \"X\");\n        plateau.put(new Case(1, 1), \"O\");\n        System.out.println(plateau.get(new Case(1, 1)));   // nouvel objet, même valeur\n        System.out.println(plateau.containsKey(new Case(2, 2)));\n    }\n}\n```\n\n```text\nPaul : 10 souris\nNora : 3 clavier\nNora : 1 écran\nO\nfalse\n```\n\n`plateau.get(new Case(1, 1))` fonctionne avec un **autre objet** que celui utilisé pour `put` : la map compare les clés avec `equals`, que le record définit d'après les valeurs. Avec une classe ordinaire sans `equals` redéfini, ce `get` renverrait `null`.\n\n`Vente::quantite` est une référence de méthode équivalente à la lambda `v -> v.quantite()`.\n\n## Bonus : les énumérations\n\nPour une valeur qui ne peut prendre qu'un **ensemble fixe** de possibilités (jours, statuts, niveaux), on utilise une **énumération** (`enum`). Elle se marie bien avec les records et le `switch` :\n\n```java\nenum Statut { EN_ATTENTE, EXPEDIEE, LIVREE }\n\nrecord Commande(int numero, Statut statut) { }\n\npublic class Enums {\n    public static void main(String[] args) {\n        Commande c = new Commande(1042, Statut.EXPEDIEE);\n        String message = switch (c.statut()) {\n            case EN_ATTENTE -> \"en préparation\";\n            case EXPEDIEE -> \"en route\";\n            case LIVREE -> \"livrée\";\n        };\n        System.out.println(\"Commande \" + c.numero() + \" : \" + message);\n        System.out.println(Statut.values().length + \" statuts possibles\");\n    }\n}\n```\n\n```text\nCommande 1042 : en route\n3 statuts possibles\n```\n\nIci, le `switch` n'a pas besoin de `default` : tous les cas de l'énumération sont couverts, et le compilateur le vérifie.\n\n## Record ou classe ?\n\n| Choisissez un **record** si… | Choisissez une **classe** si… |\n|---|---|\n| l'objet représente une **valeur** (point, prix, adresse) | l'objet a un **état qui évolue** (compte, livre emprunté ou non) |\n| ses données ne changent pas après création | il faut modifier ses attributs |\n| l'égalité dépend des valeurs | l'identité compte (deux comptes identiques restent deux comptes) |\n\n## À retenir\n\n- `record Nom(type a, type b) { }` génère attributs `final`, constructeur, accesseurs `a()`, `toString`, `equals` et `hashCode`.\n- Un record est **immuable** : pour changer une valeur, on crée un nouveau record.\n- Le **constructeur compact** valide ou normalise les valeurs à la création.\n- Deux records aux mêmes valeurs sont `equals` : idéal comme clé de map ou élément de liste.\n- `enum` représente un ensemble fixe de valeurs, compatible avec un `switch` exhaustif.\n\n## Exercices\n\n### Exercice 1 — Record Personne\n\nDéclarez `record Personne(String nom, int age)` avec une méthode `estMajeure()`, puis affichez une personne de 17 ans et le résultat de la méthode.\n\n```solution-java\nrecord Personne(String nom, int age) {\n    boolean estMajeure() {\n        return age >= 18;\n    }\n}\n\npublic class TestPersonne {\n    public static void main(String[] args) {\n        Personne p = new Personne(\"Elio\", 17);\n        System.out.println(p + \" majeure ? \" + p.estMajeure());\n    }\n}\n```\n\n```text\nPersonne[nom=Elio, age=17] majeure ? false\n```\n\n### Exercice 2 — Intervalle validé\n\nDéclarez `record Intervalle(int debut, int fin)` dont le constructeur compact refuse `debut > fin`, et une méthode `longueur()`. Testez avec (2, 9) puis (5, 1).\n\n```solution-java\nrecord Intervalle(int debut, int fin) {\n    Intervalle {\n        if (debut > fin) {\n            throw new IllegalArgumentException(\"debut > fin : \" + debut + \" > \" + fin);\n        }\n    }\n\n    int longueur() {\n        return fin - debut;\n    }\n}\n\npublic class TestIntervalle {\n    public static void main(String[] args) {\n        Intervalle i = new Intervalle(2, 9);\n        System.out.println(i + \" longueur \" + i.longueur());\n        try {\n            new Intervalle(5, 1);\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Erreur : \" + e.getMessage());\n        }\n    }\n}\n```\n\n```text\nIntervalle[debut=2, fin=9] longueur 7\nErreur : debut > fin : 5 > 1\n```\n\n### Exercice 3 — Total par vendeur\n\nAvec le record `Vente` de la leçon et les trois ventes données, calculez la quantité totale vendue par vendeur dans une `TreeMap`.\n\n```solution-java\nimport java.util.List;\nimport java.util.Map;\nimport java.util.TreeMap;\n\nrecord Vente(String vendeur, String produit, int quantite) { }\n\npublic class TotalVendeurs {\n    public static void main(String[] args) {\n        List<Vente> ventes = List.of(\n            new Vente(\"Nora\", \"clavier\", 3),\n            new Vente(\"Paul\", \"souris\", 10),\n            new Vente(\"Nora\", \"écran\", 1)\n        );\n        Map<String, Integer> totaux = new TreeMap<>();\n        for (Vente v : ventes) {\n            totaux.merge(v.vendeur(), v.quantite(), Integer::sum);\n        }\n        System.out.println(totaux);\n    }\n}\n```\n\n```text\n{Nora=4, Paul=10}\n```",
+     "duration_minutes": 40,
+     "position": 2
+    },
+    {
+     "id": "f3bccab6-7190-56f5-90ce-05d8ac5d829a",
+     "slug": "mini-projet-bibliotheque",
+     "title": "Mini-projet : gestion d'une bibliothèque",
+     "summary": "Une application console complète : classes, collections, exceptions et records.",
+     "content_md": "## Le projet\n\nVous allez réaliser une application console de **gestion de bibliothèque**. Elle mobilise toute la formation : classes et encapsulation, héritage d'exception, records, `ArrayList`, `HashMap`, `switch`, boucles, méthodes et gestion des erreurs.\n\nFonctionnalités attendues :\n\n1. ajouter des livres au catalogue (ISBN, titre, auteur, année) ;\n2. afficher le catalogue trié par titre, avec la disponibilité de chaque livre ;\n3. rechercher des livres par mot-clé (titre ou auteur, sans tenir compte des majuscules) ;\n4. emprunter et rendre un livre, en refusant les opérations impossibles avec un message clair ;\n5. afficher des statistiques : nombre de livres par auteur et emprunts en cours.\n\nL'application lit des **commandes texte** (`liste`, `chercher java`, `emprunter <isbn> <membre>`, `rendre <isbn>`, `stats`). Pour que le programme soit testable sans clavier, la méthode `main` exécute une **liste de commandes** préparée ; vous la brancherez ensuite sur le clavier.\n\n## La conception\n\n| Élément | Type | Pourquoi |\n|---|---|---|\n| `Livre` | classe | son état **évolue** (disponible ou emprunté) : attributs privés, méthodes `emprunter` / `rendre` |\n| `Emprunt` | record | une **valeur** immuable : quel livre, quel membre, quelle date |\n| `BibliothequeException` | exception vérifiée | les erreurs métier (livre inconnu, déjà emprunté) doivent être traitées par l'appelant |\n| `Bibliotheque` | classe | gère le catalogue (`Map` ISBN → livre) et les emprunts (`List`) |\n| `GestionBibliotheque` | classe principale | interprète les commandes et affiche les résultats |\n\nLe catalogue est une `HashMap<String, Livre>` : retrouver un livre par son ISBN est immédiat. Pour l'affichage, on copie les livres dans une liste triée par titre.\n\n> Dans un vrai projet, chaque classe serait dans son propre fichier. Ici, tout tient dans `GestionBibliotheque.java` pour pouvoir le compiler et l'exécuter d'un coup.\n\n## Le programme complet\n\n```java\nimport java.time.LocalDate;\nimport java.util.ArrayList;\nimport java.util.Comparator;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.TreeMap;\n\nclass BibliothequeException extends Exception {\n    BibliothequeException(String message) {\n        super(message);\n    }\n}\n\nclass Livre {\n    private final String isbn;\n    private final String titre;\n    private final String auteur;\n    private final int annee;\n    private boolean disponible = true;\n\n    Livre(String isbn, String titre, String auteur, int annee) {\n        if (isbn.isBlank() || titre.isBlank()) {\n            throw new IllegalArgumentException(\"ISBN et titre obligatoires\");\n        }\n        this.isbn = isbn;\n        this.titre = titre;\n        this.auteur = auteur;\n        this.annee = annee;\n    }\n\n    String getIsbn() { return isbn; }\n    String getTitre() { return titre; }\n    String getAuteur() { return auteur; }\n    boolean isDisponible() { return disponible; }\n\n    void emprunter() throws BibliothequeException {\n        if (!disponible) {\n            throw new BibliothequeException(\"« \" + titre + \" » est déjà emprunté\");\n        }\n        disponible = false;\n    }\n\n    void rendre() throws BibliothequeException {\n        if (disponible) {\n            throw new BibliothequeException(\"« \" + titre + \" » n'était pas emprunté\");\n        }\n        disponible = true;\n    }\n\n    boolean correspond(String motCle) {\n        String m = motCle.toLowerCase();\n        return titre.toLowerCase().contains(m) || auteur.toLowerCase().contains(m);\n    }\n\n    @Override\n    public String toString() {\n        return String.format(\"%-6s %-28s %-18s %d  %s\", isbn, titre, auteur, annee,\n                disponible ? \"disponible\" : \"emprunté\");\n    }\n}\n\nrecord Emprunt(String isbn, String membre, LocalDate date) { }\n\nclass Bibliotheque {\n    private final Map<String, Livre> catalogue = new HashMap<>();\n    private final List<Emprunt> emprunts = new ArrayList<>();\n\n    void ajouter(Livre livre) {\n        catalogue.put(livre.getIsbn(), livre);\n    }\n\n    Livre trouver(String isbn) throws BibliothequeException {\n        Livre livre = catalogue.get(isbn);\n        if (livre == null) {\n            throw new BibliothequeException(\"Aucun livre avec l'ISBN \" + isbn);\n        }\n        return livre;\n    }\n\n    List<Livre> livresTries() {\n        List<Livre> liste = new ArrayList<>(catalogue.values());\n        liste.sort(Comparator.comparing(Livre::getTitre));\n        return liste;\n    }\n\n    List<Livre> rechercher(String motCle) {\n        List<Livre> resultats = new ArrayList<>();\n        for (Livre l : livresTries()) {\n            if (l.correspond(motCle)) {\n                resultats.add(l);\n            }\n        }\n        return resultats;\n    }\n\n    void emprunter(String isbn, String membre, LocalDate date) throws BibliothequeException {\n        Livre livre = trouver(isbn);\n        livre.emprunter();\n        emprunts.add(new Emprunt(isbn, membre, date));\n    }\n\n    void rendre(String isbn) throws BibliothequeException {\n        Livre livre = trouver(isbn);\n        livre.rendre();\n        emprunts.removeIf(e -> e.isbn().equals(isbn));\n    }\n\n    Map<String, Integer> livresParAuteur() {\n        Map<String, Integer> stats = new TreeMap<>();\n        for (Livre l : catalogue.values()) {\n            stats.merge(l.getAuteur(), 1, Integer::sum);\n        }\n        return stats;\n    }\n\n    List<Emprunt> getEmprunts() {\n        return List.copyOf(emprunts);   // copie non modifiable : encapsulation\n    }\n}\n\npublic class GestionBibliotheque {\n    private final Bibliotheque biblio = new Bibliotheque();\n    private LocalDate aujourdhui = LocalDate.of(2025, 3, 10);\n\n    void executer(String ligne) {\n        System.out.println(\"> \" + ligne);\n        String[] mots = ligne.trim().split(\" \");\n        try {\n            switch (mots[0]) {\n                case \"liste\" -> biblio.livresTries().forEach(System.out::println);\n                case \"chercher\" -> {\n                    List<Livre> res = biblio.rechercher(mots[1]);\n                    if (res.isEmpty()) {\n                        System.out.println(\"Aucun résultat\");\n                    }\n                    res.forEach(System.out::println);\n                }\n                case \"emprunter\" -> {\n                    biblio.emprunter(mots[1], mots[2], aujourdhui);\n                    System.out.println(\"Emprunt enregistré pour \" + mots[2]);\n                }\n                case \"rendre\" -> {\n                    biblio.rendre(mots[1]);\n                    System.out.println(\"Retour enregistré\");\n                }\n                case \"stats\" -> {\n                    System.out.println(\"Livres par auteur : \" + biblio.livresParAuteur());\n                    for (Emprunt e : biblio.getEmprunts()) {\n                        System.out.println(\"En cours : \" + e.isbn() + \" par \" + e.membre() + \" depuis le \" + e.date());\n                    }\n                }\n                default -> System.out.println(\"Commande inconnue : \" + mots[0]);\n            }\n        } catch (BibliothequeException e) {\n            System.out.println(\"Erreur : \" + e.getMessage());\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Erreur : paramètre manquant pour « \" + mots[0] + \" »\");\n        }\n    }\n\n    void chargerCatalogue() {\n        biblio.ajouter(new Livre(\"B001\", \"Apprendre Java pas à pas\", \"C. Martin\", 2021));\n        biblio.ajouter(new Livre(\"B002\", \"Les algorithmes en douceur\", \"A. Benali\", 2019));\n        biblio.ajouter(new Livre(\"B003\", \"Java et les collections\", \"C. Martin\", 2023));\n        biblio.ajouter(new Livre(\"B004\", \"Bases de données\", \"L. Nguyen\", 2020));\n    }\n\n    public static void main(String[] args) {\n        GestionBibliotheque app = new GestionBibliotheque();\n        app.chargerCatalogue();\n        String[] commandes = {\n            \"liste\",\n            \"chercher java\",\n            \"emprunter B003 Amina\",\n            \"emprunter B003 Lucas\",\n            \"emprunter B999 Lucas\",\n            \"emprunter B002\",\n            \"rendre B004\",\n            \"stats\",\n            \"rendre B003\",\n            \"aide\"\n        };\n        for (String c : commandes) {\n            app.executer(c);\n        }\n    }\n}\n```\n\n```text\n> liste\nB001   Apprendre Java pas à pas     C. Martin          2021  disponible\nB004   Bases de données             L. Nguyen          2020  disponible\nB003   Java et les collections      C. Martin          2023  disponible\nB002   Les algorithmes en douceur   A. Benali          2019  disponible\n> chercher java\nB001   Apprendre Java pas à pas     C. Martin          2021  disponible\nB003   Java et les collections      C. Martin          2023  disponible\n> emprunter B003 Amina\nEmprunt enregistré pour Amina\n> emprunter B003 Lucas\nErreur : « Java et les collections » est déjà emprunté\n> emprunter B999 Lucas\nErreur : Aucun livre avec l'ISBN B999\n> emprunter B002\nErreur : paramètre manquant pour « emprunter »\n> rendre B004\nErreur : « Bases de données » n'était pas emprunté\n> stats\nLivres par auteur : {A. Benali=1, C. Martin=2, L. Nguyen=1}\nEn cours : B003 par Amina depuis le 2025-03-10\n> rendre B003\nRetour enregistré\n> aide\nCommande inconnue : aide\n```\n\n## Comprendre le code\n\n- **Encapsulation** : `Livre` garde `disponible` privé ; seules `emprunter()` et `rendre()` le modifient, et elles refusent les transitions impossibles. `getEmprunts()` renvoie une **copie non modifiable** (`List.copyOf`) : l'extérieur ne peut pas altérer la liste interne.\n- **Exception métier vérifiée** : `BibliothequeException` est déclarée avec `throws` jusqu'à `executer`, qui la traite en un seul endroit et affiche un message clair. Le programme ne s'arrête jamais sur une erreur d'utilisateur.\n- **Exception non vérifiée** : une commande incomplète (`emprunter B002`) provoque un `ArrayIndexOutOfBoundsException` sur `mots[2]`, intercepté pour afficher un message utile. Une validation explicite du nombre de mots serait encore plus propre (voir les améliorations).\n- **Collections** : `HashMap` pour retrouver un livre par ISBN, `ArrayList` triée avec `Comparator.comparing(Livre::getTitre)` pour l'affichage, `TreeMap` + `merge` pour les statistiques, `removeIf` pour clore un emprunt.\n- **Record** : `Emprunt` est une valeur immuable ; `LocalDate` (package `java.time`) représente une date sans heure et s'affiche au format `AAAA-MM-JJ`. Une date fixe est utilisée ici pour que la sortie soit reproductible ; dans une vraie application, on écrirait `LocalDate.now()`.\n- **switch moderne** et **références de méthodes** : `System.out::println` équivaut à la lambda `l -> System.out.println(l)`.\n- **Tri des titres** : « Bases de données » apparaît avant « Java… » car le tri compare les caractères un à un, et `B` vient avant `J`.\n\n## Brancher le clavier\n\nPour une utilisation interactive, remplacez le tableau de commandes de `main` par une lecture au clavier (ajoutez `import java.util.Scanner;` en haut du fichier) :\n\n```java\npublic static void main(String[] args) {\n    GestionBibliotheque app = new GestionBibliotheque();\n    app.chargerCatalogue();\n    try (Scanner clavier = new Scanner(System.in)) {\n        System.out.println(\"Commandes : liste, chercher <mot>, emprunter <isbn> <membre>, rendre <isbn>, stats, quitter\");\n        while (clavier.hasNextLine()) {\n            String ligne = clavier.nextLine();\n            if (ligne.equals(\"quitter\")) {\n                break;\n            }\n            if (!ligne.isBlank()) {\n                app.executer(ligne);\n            }\n        }\n    }\n}\n```\n\nGrâce à la méthode `executer`, la logique ne change pas : seule la **source** des commandes est différente. Séparer ainsi la lecture des entrées et le traitement rend le programme facile à tester.\n\n## Pistes d'amélioration\n\nUne fois le programme compris et exécuté, enrichissez-le :\n\n1. **Validation des commandes** : vérifiez le nombre de mots avant d'accéder à `mots[1]` ou `mots[2]`, et affichez la syntaxe attendue.\n2. **Limite d'emprunts** : refusez un emprunt si le membre a déjà 3 livres en cours (comptez dans `emprunts` ceux dont `membre()` correspond).\n3. **Retards** : ajoutez une commande `retards` qui liste les emprunts de plus de 21 jours, avec `e.date().plusDays(21).isBefore(aujourdhui)`.\n4. **Types de documents** : créez une classe abstraite `Document` dont héritent `Livre` et `Magazine`, chacun avec sa propre durée d'emprunt (polymorphisme).\n5. **Commande ajouter** : `ajouter <isbn> <année> <titre…>`, en utilisant `split(\" \", 4)` pour garder le titre en un seul morceau, et en interceptant la `NumberFormatException` sur l'année.\n\n## À retenir\n\n- Choisir le bon outil : une **classe** pour un état qui évolue, un **record** pour une valeur, une **exception vérifiée** pour une erreur métier, une **Map** pour un accès par identifiant.\n- Encapsuler l'état et faire respecter les règles **dans** les méthodes de l'objet concerné.\n- Centraliser la gestion des erreurs à un seul endroit (`executer`) et afficher des messages compréhensibles.\n- Séparer la **source des entrées** (tableau de test, clavier) du **traitement** : le code devient testable.\n- Félicitations : vous savez écrire, compiler et structurer un programme Java orienté objet complet !",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "860f92af-0b21-5657-b357-ac702d2abad0",
+    "title": "Quiz — Exceptions, records et projet",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "b6aa6547-7df2-52e4-b90e-274e3a57f7bc",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que se passe-t-il quand une exception est levée et que personne ne l'intercepte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "dbfbeaf9-3637-5c54-a9fa-6d8325f1c9e9",
+        "position": 1,
+        "label": "Elle est ignorée."
+       },
+       {
+        "id": "a9b0a7f9-c63e-52ee-9a5e-5744fd36f8ef",
+        "position": 2,
+        "label": "Le compilateur la corrige."
+       },
+       {
+        "id": "a6417107-9a82-584d-9e6d-318588f23db7",
+        "position": 3,
+        "label": "La ligne est exécutée une seconde fois."
+       },
+       {
+        "id": "003b5606-9e77-528c-955b-2fb60ae7135e",
+        "position": 4,
+        "label": "Le programme s'arrête et affiche la pile d'appels."
+       }
+      ],
+      "correct": [
+       "003b5606-9e77-528c-955b-2fb60ae7135e"
+      ],
+      "explanation": "Une exception non traitée remonte jusqu'à main puis arrête le programme, en affichant son type, son message et la pile d'appels."
+     },
+     {
+      "id": "666118e1-6aac-5e5c-8cdb-39c0d83cfbc0",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quand le bloc finally s'exécute-t-il ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "d57cfa94-b628-55ac-8a07-f0c43f6006ad",
+        "position": 1,
+        "label": "Uniquement si aucune exception ne survient."
+       },
+       {
+        "id": "8cd0752c-a0c0-5d24-8737-d9c0ed00f1be",
+        "position": 2,
+        "label": "Uniquement si une exception survient."
+       },
+       {
+        "id": "6ab28d82-c725-5c5e-8a72-4877f1660a7b",
+        "position": 3,
+        "label": "Dans tous les cas, après le try et l'éventuel catch."
+       },
+       {
+        "id": "bd407f78-b6c8-54d2-8c78-1a3393459c88",
+        "position": 4,
+        "label": "Jamais si un catch a été exécuté."
+       }
+      ],
+      "correct": [
+       "6ab28d82-c725-5c5e-8a72-4877f1660a7b"
+      ],
+      "explanation": "finally s'exécute toujours, erreur ou non : on y place le nettoyage."
+     },
+     {
+      "id": "d6732525-fefd-55d0-9ef3-b5f1587fcc7b",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quel mot clé permet de lever une exception ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "238258da-9681-5079-be2b-d7d18c569e0b",
+        "position": 1,
+        "label": "throws"
+       },
+       {
+        "id": "747a70e3-6b2c-5fc7-a11b-7325042e6dee",
+        "position": 2,
+        "label": "throw"
+       },
+       {
+        "id": "1e21fd5e-99a1-5c47-a869-befb17bff7d4",
+        "position": 3,
+        "label": "catch"
+       },
+       {
+        "id": "6c7c0ec9-f1d2-5b5b-8ca3-1aa0358244b1",
+        "position": 4,
+        "label": "raise"
+       }
+      ],
+      "correct": [
+       "747a70e3-6b2c-5fc7-a11b-7325042e6dee"
+      ],
+      "explanation": "throw lève une exception (throw new …). throws, dans une signature, annonce qu'une méthode peut en lever."
+     },
+     {
+      "id": "fe08a05a-67de-55be-adcc-425c87a81628",
+      "position": 4,
+      "kind": "multiple",
+      "prompt": "Lesquelles sont des exceptions non vérifiées (héritant de RuntimeException) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "39a32b57-240e-5a92-aad1-7f8843818bd3",
+        "position": 1,
+        "label": "NullPointerException"
+       },
+       {
+        "id": "8eeafd46-2d2d-5e16-83c3-fd0092e38283",
+        "position": 2,
+        "label": "IllegalArgumentException"
+       },
+       {
+        "id": "99205cb6-cfff-5ca3-94ff-9035bc6792d9",
+        "position": 3,
+        "label": "IOException"
+       },
+       {
+        "id": "367ebfc2-1ae8-509a-a2e5-49cde7a2cc72",
+        "position": 4,
+        "label": "ArithmeticException"
+       }
+      ],
+      "correct": [
+       "39a32b57-240e-5a92-aad1-7f8843818bd3",
+       "8eeafd46-2d2d-5e16-83c3-fd0092e38283",
+       "367ebfc2-1ae8-509a-a2e5-49cde7a2cc72"
+      ],
+      "explanation": "IOException est vérifiée : le compilateur oblige à la traiter ou à la déclarer. Les trois autres héritent de RuntimeException."
+     },
+     {
+      "id": "a8b1a31d-94ec-5af4-852b-1a4d44b9e495",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Votre classe StockException extends Exception est levée dans une méthode. Que faut-il faire ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "72055429-f4f6-5257-9bb6-04fc641da420",
+        "position": 1,
+        "label": "Rien de particulier."
+       },
+       {
+        "id": "d6fd32b0-895d-542e-b18f-fb4fcbfb286f",
+        "position": 2,
+        "label": "La traiter avec try/catch ou la déclarer avec throws dans la signature."
+       },
+       {
+        "id": "3cb347cb-ad16-5f0a-ace3-6e85421dd91c",
+        "position": 3,
+        "label": "La transformer en int."
+       },
+       {
+        "id": "5544be98-597a-569d-9cf3-29af484c4c08",
+        "position": 4,
+        "label": "Remplacer extends par implements."
+       }
+      ],
+      "correct": [
+       "d6fd32b0-895d-542e-b18f-fb4fcbfb286f"
+      ],
+      "explanation": "Une classe qui hérite d'Exception (hors RuntimeException) est vérifiée : le compilateur exige qu'elle soit traitée ou déclarée."
+     },
+     {
+      "id": "ab8d225c-a6b4-5831-bde2-cca523ee47cd",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "record Point(int x, int y) { }\n\nPoint a = new Point(1, 2);\nPoint b = new Point(1, 2);\nSystem.out.println(a.equals(b) + \" \" + (a == b));",
+      "points": 2,
+      "options": [
+       {
+        "id": "3f89e2ec-23ae-5a47-ad7a-a98d3500d33b",
+        "position": 1,
+        "label": "true true"
+       },
+       {
+        "id": "7107486d-e048-5592-b992-5369c49b3ee0",
+        "position": 2,
+        "label": "false false"
+       },
+       {
+        "id": "1aed382d-0137-574a-8c69-1a0fb26efa1e",
+        "position": 3,
+        "label": "true false"
+       },
+       {
+        "id": "4b1b0233-5094-52f3-94c5-79e495e8e40c",
+        "position": 4,
+        "label": "false true"
+       }
+      ],
+      "correct": [
+       "1aed382d-0137-574a-8c69-1a0fb26efa1e"
+      ],
+      "explanation": "Un record définit equals d'après ses valeurs : a.equals(b) est vrai. Mais ce sont deux objets distincts : a == b est faux."
+     },
+     {
+      "id": "ba233753-a7da-5c5e-8687-3b798e23bc72",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment lit-on la composante nom d'un record Personne(String nom, int age) p ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "59e0ec7f-8933-5d4d-b3a2-8bdfe5f9b821",
+        "position": 1,
+        "label": "p.nom()"
+       },
+       {
+        "id": "461fdbe8-3e49-5ee2-a327-f69f0c714709",
+        "position": 2,
+        "label": "p.getNom()"
+       },
+       {
+        "id": "dd3ab105-7561-59fa-ac9d-b5d79613f6e8",
+        "position": 3,
+        "label": "p.nom"
+       },
+       {
+        "id": "9f08e4e2-8ee0-5b5e-a710-670e12879694",
+        "position": 4,
+        "label": "Personne.nom(p)"
+       }
+      ],
+      "correct": [
+       "59e0ec7f-8933-5d4d-b3a2-8bdfe5f9b821"
+      ],
+      "explanation": "Les accesseurs générés par un record portent le nom de la composante, sans préfixe get : p.nom()."
+     },
+     {
+      "id": "16343407-b159-5fd8-82a0-8dd5227cde9f",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Pourquoi la classe Livre du mini-projet n'est-elle pas un record ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b18ed959-f06f-5908-adf3-b9acad144d60",
+        "position": 1,
+        "label": "Les records ne peuvent pas contenir de String."
+       },
+       {
+        "id": "04253670-ee19-5d46-b0da-3ad73e0b5ab6",
+        "position": 2,
+        "label": "Son état (disponible ou non) doit évoluer, alors qu'un record est immuable."
+       },
+       {
+        "id": "728ff4e4-77ff-5808-ba78-a8ca2f2f805c",
+        "position": 3,
+        "label": "Un record ne peut pas avoir de méthode."
+       },
+       {
+        "id": "d12010f0-3ba7-5c73-96a8-accb2b381e95",
+        "position": 4,
+        "label": "Un record ne peut pas être stocké dans une Map."
+       }
+      ],
+      "correct": [
+       "04253670-ee19-5d46-b0da-3ad73e0b5ab6"
+      ],
+      "explanation": "Un record est immuable ; un livre passe de disponible à emprunté, donc une classe avec un attribut modifiable et encapsulé convient mieux."
+     },
+     {
+      "id": "38ac60ef-9ea1-56b6-b31f-dfd6c656b5e8",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Dans le mini-projet, pourquoi getEmprunts() renvoie-t-il List.copyOf(emprunts) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0666aff5-69ef-55e3-9a2d-120fbdf4ee80",
+        "position": 1,
+        "label": "Pour trier la liste."
+       },
+       {
+        "id": "0a58d88e-d27d-57d8-9561-62d83d85bdc8",
+        "position": 2,
+        "label": "Parce que ArrayList ne peut pas être renvoyée."
+       },
+       {
+        "id": "d35b952d-629b-5b53-87fd-9fece4b43b0b",
+        "position": 3,
+        "label": "Pour accélérer le programme."
+       },
+       {
+        "id": "6c458704-d656-5eef-a587-b8a61e656bf9",
+        "position": 4,
+        "label": "Pour que l'extérieur ne puisse pas modifier la liste interne de la bibliothèque."
+       }
+      ],
+      "correct": [
+       "6c458704-d656-5eef-a587-b8a61e656bf9"
+      ],
+      "explanation": "List.copyOf renvoie une copie non modifiable : c'est de l'encapsulation, la bibliothèque reste seule maîtresse de ses emprunts."
+     },
+     {
+      "id": "33d2e6e2-951d-599e-ad9c-a67e9b8432fb",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Écrire catch (Exception e) { } pour faire disparaître toutes les erreurs est une bonne pratique.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "08404801-e1c4-5459-bd82-c12d2fdcbb4f",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "a335dd84-031c-51aa-9600-35025b5411bd",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "a335dd84-031c-51aa-9600-35025b5411bd"
+      ],
+      "explanation": "Ignorer silencieusement une exception masque le problème sans le résoudre et rend les bugs très difficiles à trouver."
+     }
+    ]
+   }
+  }
+ ]
+}
