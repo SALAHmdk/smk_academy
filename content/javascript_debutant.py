@@ -978,7 +978,7 @@ QUIZ_M2 = [
      "i prend les valeurs 0, 1, 2 et 3 : 4 affichages. La boucle s'arrête quand i vaut 4."),
     ("single", "Que vaut total à la fin ?", "let total = 0;\nfor (let i = 1; i <= 4; i++) {\n  total += i;\n}",
      ["4", "6", "10", "24"], [2],
-     "1 + 2 + 3 + 4 = 10."),
+     "La boucle ajoute successivement 1, 2, 3 et 4 à total, qui part de 0 : 1 + 2 + 3 + 4 = 10."),
     ("single", "Que fait l'instruction break dans une boucle ?", None,
      ["Passe au tour suivant", "Sort immédiatement de la boucle", "Recommence la boucle", "Provoque une erreur"], [1],
      "break interrompt la boucle ; continue passe au tour suivant."),

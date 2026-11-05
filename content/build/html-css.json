@@ -1870,36 +1870,38 @@
      {
       "id": "6b0ad655-4550-5c22-b87d-8687a5557c14",
       "position": 9,
-      "kind": "single",
-      "prompt": "Quelle est la taille minimale recommandée d'une zone tactile ?",
+      "kind": "multiple",
+      "prompt": "Quelles pratiques rendent un site responsive ?",
       "code": null,
       "points": 2,
       "options": [
        {
         "id": "8983dd11-27ff-5a12-a4dd-abd175e414db",
         "position": 1,
-        "label": "16 × 16 px"
+        "label": "Ajouter la balise meta viewport"
        },
        {
         "id": "94e15cd4-6dbf-5037-b481-8028a59fa14b",
         "position": 2,
-        "label": "24 × 24 px"
+        "label": "Fixer toutes les largeurs en pixels"
        },
        {
         "id": "e7877189-d4a8-5bc8-95fa-a609dfe2d466",
         "position": 3,
-        "label": "44 × 44 px"
+        "label": "Utiliser des media queries min-width"
        },
        {
         "id": "e9f03889-fd74-5380-bb68-74aeb5fbfc1e",
         "position": 4,
-        "label": "100 × 100 px"
+        "label": "Limiter les images avec max-width: 100%"
        }
       ],
       "correct": [
-       "e7877189-d4a8-5bc8-95fa-a609dfe2d466"
+       "8983dd11-27ff-5a12-a4dd-abd175e414db",
+       "e7877189-d4a8-5bc8-95fa-a609dfe2d466",
+       "e9f03889-fd74-5380-bb68-74aeb5fbfc1e"
       ],
-      "explanation": "Environ 44 × 44 px permettent de viser facilement avec le doigt."
+      "explanation": "Des largeurs fixes en pixels empêchent la page de s'adapter ; viewport, media queries et images fluides sont les bases du responsive."
      },
      {
       "id": "a61b7caf-e465-5ee6-a2a5-821ee6f7d7f8",

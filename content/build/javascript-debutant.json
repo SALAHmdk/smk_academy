@@ -644,7 +644,7 @@
       "correct": [
        "fdfc08f3-3803-5e33-a286-c445b89f6ca6"
       ],
-      "explanation": "1 + 2 + 3 + 4 = 10."
+      "explanation": "La boucle ajoute successivement 1, 2, 3 et 4 à total, qui part de 0 : 1 + 2 + 3 + 4 = 10."
      },
      {
       "id": "3e7682b3-1396-570a-a879-b5f029bd0f3a",
@@ -931,171 +931,172 @@
       "id": "4a6e826c-8d77-5ef7-8b32-f73eb89a9976",
       "position": 4,
       "kind": "single",
-      "prompt": "Que vaut [10, 20, 30][1] ?",
+      "prompt": "Quelle méthode ajoute un élément à la fin d'un tableau ?",
       "code": null,
       "points": 2,
       "options": [
        {
         "id": "4e5a5526-89f7-57dd-938f-265b689a7d6a",
         "position": 1,
-        "label": "10"
+        "label": "pop"
        },
        {
         "id": "32e3d298-cf89-51df-85fa-851c1f208635",
         "position": 2,
-        "label": "20"
+        "label": "push"
        },
        {
         "id": "7c0810d7-0a0e-5a7a-91e4-e09e1dfd6d24",
         "position": 3,
-        "label": "30"
-       },
-       {
-        "id": "11e5341f-021a-5f02-b332-210c358f3e25",
-        "position": 4,
-        "label": "undefined"
-       }
-      ],
-      "correct": [
-       "32e3d298-cf89-51df-85fa-851c1f208635"
-      ],
-      "explanation": "Les indices commencent à 0 : l'indice 1 désigne le deuxième élément, 20."
-     },
-     {
-      "id": "73405982-6245-560f-9c0f-81a71a882584",
-      "position": 5,
-      "kind": "single",
-      "prompt": "Quelle méthode ajoute un élément à la fin d'un tableau ?",
-      "code": null,
-      "points": 2,
-      "options": [
-       {
-        "id": "518a053d-8c1b-53a9-94dc-e40400092d9a",
-        "position": 1,
-        "label": "pop"
-       },
-       {
-        "id": "59539c9f-fa89-5db7-911f-9989473884da",
-        "position": 2,
-        "label": "push"
-       },
-       {
-        "id": "d6290ded-5d9a-5f5b-a784-3a4c49606b04",
-        "position": 3,
         "label": "shift"
        },
        {
-        "id": "dca3cc92-c27a-5df2-995d-7d999d92e3cb",
+        "id": "11e5341f-021a-5f02-b332-210c358f3e25",
         "position": 4,
         "label": "unshift"
        }
       ],
       "correct": [
-       "59539c9f-fa89-5db7-911f-9989473884da"
+       "32e3d298-cf89-51df-85fa-851c1f208635"
       ],
       "explanation": "push ajoute à la fin, pop retire le dernier, unshift ajoute au début."
      },
      {
-      "id": "fa9719ad-037e-5a92-9987-032ae5b04f91",
-      "position": 6,
+      "id": "73405982-6245-560f-9c0f-81a71a882584",
+      "position": 5,
       "kind": "single",
       "prompt": "Que renvoie [1, 2, 3, 4].filter((n) => n % 2 === 0) ?",
       "code": null,
       "points": 2,
       "options": [
        {
-        "id": "baa8c988-3a3a-5f69-a7eb-e78aa64986d6",
+        "id": "518a053d-8c1b-53a9-94dc-e40400092d9a",
         "position": 1,
         "label": "[1, 3]"
        },
        {
-        "id": "5e110af1-0881-5c29-bffb-e0ffa958e0ec",
+        "id": "59539c9f-fa89-5db7-911f-9989473884da",
         "position": 2,
         "label": "[2, 4]"
        },
        {
-        "id": "0239dc4e-13f1-51d9-ab03-109b7575c9e9",
+        "id": "d6290ded-5d9a-5f5b-a784-3a4c49606b04",
         "position": 3,
         "label": "2"
        },
        {
-        "id": "6da68b39-97a1-5c9b-8d53-9e9c02bbc3fe",
+        "id": "dca3cc92-c27a-5df2-995d-7d999d92e3cb",
         "position": 4,
         "label": "[false, true, false, true]"
        }
       ],
       "correct": [
-       "5e110af1-0881-5c29-bffb-e0ffa958e0ec"
+       "59539c9f-fa89-5db7-911f-9989473884da"
       ],
       "explanation": "filter garde les éléments qui vérifient la condition : les nombres pairs 2 et 4."
      },
      {
-      "id": "a158dc7b-c9fe-5d9f-82d2-b9923b398b2c",
-      "position": 7,
+      "id": "fa9719ad-037e-5a92-9987-032ae5b04f91",
+      "position": 6,
       "kind": "single",
       "prompt": "Que renvoie [1, 2, 3].map((n) => n * 10) ?",
       "code": null,
       "points": 2,
       "options": [
        {
-        "id": "24334d88-1f38-5026-ba36-8693fb3cc727",
+        "id": "baa8c988-3a3a-5f69-a7eb-e78aa64986d6",
         "position": 1,
         "label": "[10, 20, 30]"
        },
        {
-        "id": "e92fe0f6-b7c4-525f-9131-c734f652d6df",
+        "id": "5e110af1-0881-5c29-bffb-e0ffa958e0ec",
         "position": 2,
         "label": "60"
        },
        {
-        "id": "06a010a6-bd0a-5418-99dd-e16045ca19f4",
+        "id": "0239dc4e-13f1-51d9-ab03-109b7575c9e9",
         "position": 3,
         "label": "[1, 2, 3]"
        },
        {
-        "id": "7cae37e2-d44a-589c-9c81-a6fbd41cc3bc",
+        "id": "6da68b39-97a1-5c9b-8d53-9e9c02bbc3fe",
         "position": 4,
         "label": "30"
        }
       ],
       "correct": [
-       "24334d88-1f38-5026-ba36-8693fb3cc727"
+       "baa8c988-3a3a-5f69-a7eb-e78aa64986d6"
       ],
       "explanation": "map applique la fonction à chaque élément et renvoie un nouveau tableau de même longueur."
      },
      {
-      "id": "66d51d74-fdda-5297-be61-656d652392ba",
-      "position": 8,
+      "id": "a158dc7b-c9fe-5d9f-82d2-b9923b398b2c",
+      "position": 7,
       "kind": "single",
       "prompt": "Que vaut [5, 10, 15].reduce((s, n) => s + n, 0) ?",
       "code": null,
       "points": 2,
       "options": [
        {
-        "id": "bb6da897-be7a-5894-b02b-18092018bde4",
+        "id": "24334d88-1f38-5026-ba36-8693fb3cc727",
         "position": 1,
         "label": "15"
        },
        {
-        "id": "4ab92587-f84f-5dda-9d20-fd9aa50e9926",
+        "id": "e92fe0f6-b7c4-525f-9131-c734f652d6df",
         "position": 2,
         "label": "30"
        },
        {
-        "id": "8d957519-b777-5741-bced-c6cddd18125a",
+        "id": "06a010a6-bd0a-5418-99dd-e16045ca19f4",
         "position": 3,
         "label": "[5, 15, 30]"
        },
        {
-        "id": "86620ebb-2d7c-5a01-ab50-96bd4fe3dae4",
+        "id": "7cae37e2-d44a-589c-9c81-a6fbd41cc3bc",
         "position": 4,
         "label": "0"
        }
       ],
       "correct": [
-       "4ab92587-f84f-5dda-9d20-fd9aa50e9926"
+       "e92fe0f6-b7c4-525f-9131-c734f652d6df"
       ],
       "explanation": "reduce part de 0 et ajoute chaque élément : 0 + 5 + 10 + 15 = 30."
+     },
+     {
+      "id": "66d51d74-fdda-5297-be61-656d652392ba",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles méthodes renvoient un NOUVEAU tableau sans modifier l'original ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "bb6da897-be7a-5894-b02b-18092018bde4",
+        "position": 1,
+        "label": "map"
+       },
+       {
+        "id": "4ab92587-f84f-5dda-9d20-fd9aa50e9926",
+        "position": 2,
+        "label": "filter"
+       },
+       {
+        "id": "8d957519-b777-5741-bced-c6cddd18125a",
+        "position": 3,
+        "label": "push"
+       },
+       {
+        "id": "86620ebb-2d7c-5a01-ab50-96bd4fe3dae4",
+        "position": 4,
+        "label": "sort"
+       }
+      ],
+      "correct": [
+       "bb6da897-be7a-5894-b02b-18092018bde4",
+       "4ab92587-f84f-5dda-9d20-fd9aa50e9926"
+      ],
+      "explanation": "map et filter créent un nouveau tableau. push et sort modifient le tableau existant : d'où la copie [...tableau] avant un tri."
      },
      {
       "id": "09915ece-787f-5237-ba9a-892045c1416d",
