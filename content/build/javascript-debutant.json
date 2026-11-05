@@ -1,0 +1,1931 @@
+{
+ "course": {
+  "slug": "javascript-debutant",
+  "title": "JavaScript pour débutants",
+  "subtitle": "Le langage du web, pas à pas.",
+  "description": "JavaScript est le langage qui rend les pages web interactives. Cette formation part de zéro : variables, conditions, boucles, fonctions, tableaux et objets, puis manipulation d'une page web (DOM, événements, formulaires) et programmation asynchrone avec fetch. Chaque leçon propose des exemples exécutables et des exercices corrigés ; chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 720,
+  "objectives": [
+   "Maîtriser variables, conditions, boucles et fonctions",
+   "Manipuler tableaux et objets",
+   "Modifier une page web et réagir aux actions de l'utilisateur",
+   "Comprendre l'asynchrone et récupérer des données avec fetch"
+  ],
+  "prerequisites": [
+   "Savoir utiliser un navigateur web",
+   "Notions de HTML conseillées"
+  ],
+  "is_premium": false,
+  "position": 12,
+  "status": "published",
+  "id": "a8ad2e36-75ca-52b2-a5a3-1a7721d30873",
+  "category_slug": "programmation",
+  "topic": "JavaScript",
+  "cover_label": "JS"
+ },
+ "modules": [
+  {
+   "id": "e62ba762-39b3-50b1-bee9-84433d7e8581",
+   "position": 1,
+   "title": "Premiers pas",
+   "description": "Exécuter du JavaScript, utiliser variables, types, opérateurs et chaînes de caractères.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "28ffc9c1-ce29-5403-a546-fbcccaef641e",
+     "slug": "decouvrir-javascript",
+     "title": "Découvrir JavaScript",
+     "summary": "Le rôle de JavaScript, la console, relier un script à une page.",
+     "content_md": "## Qu'est-ce que JavaScript ?\n\nUne page web repose sur trois langages complémentaires :\n\n- **HTML** décrit le contenu (titres, paragraphes, boutons) ;\n- **CSS** définit l'apparence (couleurs, mise en page) ;\n- **JavaScript** ajoute le **comportement** : réagir à un clic, vérifier un formulaire, charger des données sans recharger la page.\n\nJavaScript est exécuté directement par le navigateur : aucune installation n'est nécessaire pour commencer. Il fonctionne aussi en dehors du navigateur, grâce à **Node.js**, pour écrire des serveurs ou des outils.\n\n> Malgré son nom, JavaScript n'a presque rien à voir avec Java. Ce sont deux langages distincts.\n\n## Votre premier programme\n\nOuvrez la **console** de votre navigateur : touche `F12` (ou clic droit → *Inspecter*), puis onglet **Console**. Tapez :\n\n```js\nconsole.log(\"Bonjour, SMK Academy !\");\n```\n\n```text\nBonjour, SMK Academy !\n```\n\n`console.log()` affiche une valeur dans la console. C'est l'outil n°1 pour comprendre ce que fait un programme : vous l'utiliserez tout au long de la formation.\n\n## Où écrire du JavaScript ?\n\nPour des programmes de plus d'une ligne, on écrit le code dans un fichier `.js` relié à une page HTML :\n\n```html\n<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Ma page</title>\n  </head>\n  <body>\n    <h1>Bonjour</h1>\n    <script src=\"app.js\"></script>\n  </body>\n</html>\n```\n\nLa balise `<script src=\"app.js\">` charge le fichier `app.js`. On la place **à la fin du `<body>`** pour que la page soit construite avant que le script ne s'exécute.\n\nPour vous entraîner sans rien installer, vous pouvez aussi utiliser un éditeur en ligne comme **CodePen** ou **JSFiddle**, ou exécuter vos fichiers avec Node.js : `node app.js`.\n\n## Les règles d'écriture\n\n- Une **instruction** se termine par un point-virgule `;`. Il est techniquement facultatif dans la plupart des cas, mais nous l'écrirons toujours, par clarté.\n- JavaScript **distingue les majuscules et les minuscules** : `console.log` fonctionne, `Console.Log` provoque une erreur.\n- Les **commentaires** ne sont pas exécutés :\n\n```js\n// Commentaire sur une ligne\n/* Commentaire\n   sur plusieurs lignes */\nconsole.log(2 + 3); // affiche 5\n```\n\n```text\n5\n```\n\n## Lire un message d'erreur\n\n```js\nconsole.lg(\"test\");\n```\n\nLa console affiche `TypeError: console.lg is not a function`. Une erreur indique **son type**, **un message** et la **ligne** concernée : lisez-la toujours en entier, elle désigne le plus souvent le problème exact (ici, une faute de frappe).\n\n## À retenir\n\n- HTML = contenu, CSS = apparence, JavaScript = comportement.\n- `console.log()` affiche une valeur dans la console (`F12`).\n- Un script se relie à une page avec `<script src=\"app.js\"></script>` à la fin du `<body>`.\n- JavaScript distingue les majuscules ; `//` et `/* */` pour les commentaires.\n\n## Exercices\n\n### Exercice 1 — Affichages\n\nÉcrivez un programme qui affiche votre prénom, puis le résultat de `12 * 4`.\n\n```solution-js\nconsole.log(\"Amina\");\nconsole.log(12 * 4);\n```\n\n```text\nAmina\n48\n```\n\n### Exercice 2 — Trouvez les erreurs\n\nCe code contient deux erreurs : `Console.log(\"Bonjour\")` et `console.log(\"Au revoir)`. Lesquelles ?\n\n```solution-text\n1. « Console » prend une minuscule : console.log, car JavaScript distingue les majuscules.\n2. Le texte \"Au revoir n'est pas fermé : il manque le guillemet final → console.log(\"Au revoir\");\n```",
+     "duration_minutes": 20,
+     "position": 1
+    },
+    {
+     "id": "765b899b-0b79-5852-bd47-c9658e768360",
+     "slug": "variables-types",
+     "title": "Variables et types",
+     "summary": "let, const, nombres, chaînes, booléens et opérateurs.",
+     "content_md": "## Stocker une valeur : les variables\n\nUne **variable** est une boîte nommée qui contient une valeur. On la déclare avec `let` ou `const` :\n\n```js\nlet age = 25;\nconst prenom = \"Sofia\";\nconsole.log(prenom, age);\n```\n\n```text\nSofia 25\n```\n\n- `const` déclare une variable qui **ne sera pas réaffectée** ;\n- `let` déclare une variable dont la valeur **peut changer**.\n\n```js\nlet score = 10;\nscore = 15;          // autorisé avec let\nconsole.log(score);\n```\n\n```text\n15\n```\n\nAvec `const`, `prenom = \"Lucas\"` provoquerait l'erreur `TypeError: Assignment to constant variable.`\n\n> Règle pratique : utilisez **`const` par défaut**, et `let` seulement si la valeur doit changer. Vous rencontrerez aussi `var` dans d'anciens codes : il a des comportements surprenants, ne l'utilisez plus.\n\n## Nommer ses variables\n\n- Lettres, chiffres, `_` et `$`, sans commencer par un chiffre ;\n- par convention, le **camelCase** : `prixTotal`, `nombreEtudiants` ;\n- des noms **explicites** : `prixTtc` plutôt que `p2`.\n\n## Les types de valeurs\n\n| Type | Exemples | Rôle |\n|---|---|---|\n| `number` | `42`, `3.14`, `-7` | nombres entiers ou décimaux |\n| `string` | `\"Bonjour\"`, `'Paris'` | texte |\n| `boolean` | `true`, `false` | vrai ou faux |\n| `undefined` | `undefined` | variable déclarée sans valeur |\n| `null` | `null` | absence volontaire de valeur |\n\nL'opérateur `typeof` indique le type d'une valeur :\n\n```js\nconsole.log(typeof 42);\nconsole.log(typeof \"42\");\nconsole.log(typeof true);\n```\n\n```text\nnumber\nstring\nboolean\n```\n\nAttention : `42` (nombre) et `\"42\"` (texte) sont deux valeurs différentes.\n\n## Les opérateurs arithmétiques\n\n```js\nconsole.log(7 + 2);\nconsole.log(7 - 2);\nconsole.log(7 * 2);\nconsole.log(7 / 2);\nconsole.log(7 % 2);\nconsole.log(2 ** 3);\n```\n\n```text\n9\n5\n14\n3.5\n1\n8\n```\n\n`%` donne le **reste** de la division (7 = 2 × 3 + 1), `**` la puissance. La division `/` donne toujours un résultat décimal.\n\nRaccourcis : `score += 5` équivaut à `score = score + 5` ; `compteur++` ajoute 1.\n\n## Le piège des nombres décimaux\n\n```js\nconsole.log(0.1 + 0.2);\n```\n\n```text\n0.30000000000000004\n```\n\nComme dans la plupart des langages, les décimaux sont stockés de façon approchée. Pour afficher un montant, on arrondit : `(0.1 + 0.2).toFixed(2)` donne le texte `\"0.30\"`.\n\n## À retenir\n\n- `const` par défaut, `let` si la valeur change, jamais `var`.\n- Types de base : `number`, `string`, `boolean`, `undefined`, `null`.\n- `typeof` donne le type ; `42` et `\"42\"` sont différents.\n- `%` = reste, `**` = puissance ; arrondir les montants avec `toFixed`.\n\n## Exercices\n\n### Exercice 1 — Calcul de prix\n\nDéclarez une constante `prixHt` valant 50 et une constante `tva` valant 0.2. Affichez le prix TTC.\n\n```solution-js\nconst prixHt = 50;\nconst tva = 0.2;\nconsole.log(prixHt * (1 + tva));\n```\n\n```text\n60\n```\n\n### Exercice 2 — let ou const ?\n\nUn compteur de visites démarre à 0 et augmente de 1 à chaque visite. Écrivez le code pour trois visites, puis affichez le compteur.\n\n```solution-js\nlet visites = 0;   // let : la valeur change\nvisites++;\nvisites++;\nvisites++;\nconsole.log(visites);\n```\n\n```text\n3\n```\n\n### Exercice 3 — Pair ou impair ?\n\nAffichez le reste de la division de 17 par 2. Que vous indique ce résultat ?\n\n```solution-js\nconsole.log(17 % 2);\n```\n\n```text\n1\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "5efee59f-40b5-5dac-9d6d-dbba2b74efc7",
+     "slug": "chaines",
+     "title": "Travailler avec le texte",
+     "summary": "Méthodes des chaînes, gabarits et conversions.",
+     "content_md": "## Manipuler du texte\n\nUne chaîne de caractères (*string*) s'écrit entre guillemets doubles `\"…\"`, simples `'…'` ou **accents graves** `` `…` ``.\n\n```js\nconst prenom = \"Karim\";\nconsole.log(prenom.length);\nconsole.log(prenom.toUpperCase());\nconsole.log(prenom[0]);\n```\n\n```text\n5\nKARIM\nK\n```\n\n- `.length` donne le nombre de caractères ;\n- `toUpperCase()` / `toLowerCase()` changent la casse ;\n- `chaine[0]` donne le premier caractère (on compte **à partir de 0**).\n\n## Assembler des textes\n\nL'opérateur `+` **concatène** (met bout à bout) deux chaînes :\n\n```js\nconst ville = \"Lyon\";\nconsole.log(\"J'habite à \" + ville + \".\");\n```\n\n```text\nJ'habite à Lyon.\n```\n\nLes **gabarits** (*template literals*), entre accents graves, sont plus lisibles : on insère une valeur avec `${…}`.\n\n```js\nconst nom = \"Emma\";\nconst age = 24;\nconsole.log(`${nom} a ${age} ans.`);\nconsole.log(`Dans 5 ans, ${nom} aura ${age + 5} ans.`);\n```\n\n```text\nEmma a 24 ans.\nDans 5 ans, Emma aura 29 ans.\n```\n\nOn peut placer n'importe quelle expression dans `${…}`, y compris un calcul.\n\n## Méthodes utiles\n\n```js\nconst phrase = \"  Apprendre JavaScript  \";\nconsole.log(phrase.trim());\nconsole.log(phrase.includes(\"Java\"));\nconsole.log(\"a,b,c\".split(\",\"));\nconsole.log(\"SMK\".padStart(6, \"*\"));\n```\n\n```text\nApprendre JavaScript\ntrue\n[ 'a', 'b', 'c' ]\n***SMK\n```\n\n`trim()` supprime les espaces aux extrémités, `includes()` teste la présence d'un texte, `split()` découpe en tableau (module 3).\n\n## Le piège de `+` avec du texte\n\nSi l'un des deux côtés est une chaîne, `+` **concatène** au lieu d'additionner :\n\n```js\nconsole.log(2 + 3);\nconsole.log(\"2\" + 3);\nconsole.log(\"2\" * 3);\n```\n\n```text\n5\n23\n6\n```\n\nLes valeurs saisies dans un formulaire sont **toujours des chaînes**. Pour calculer, convertissez-les avec `Number()` :\n\n```js\nconst saisie = \"42\";\nconsole.log(Number(saisie) + 8);\nconsole.log(Number(\"abc\"));\n```\n\n```text\n50\nNaN\n```\n\n`NaN` (*Not a Number*) signale une conversion impossible. On le teste avec `Number.isNaN(valeur)`.\n\n## À retenir\n\n- `.length`, `toUpperCase()`, `trim()`, `includes()`, `split()`.\n- Les positions commencent à **0**.\n- Gabarits : `` `Bonjour ${prenom}` `` pour insérer des valeurs.\n- `\"2\" + 3` donne `\"23\"` : convertissez avec `Number()` avant de calculer.\n\n## Exercices\n\n### Exercice 1 — Message de bienvenue\n\nAvec `const prenom = \"Lucas\"` et `const formation = \"JavaScript\"`, affichez `Bienvenue Lucas dans la formation JavaScript !` à l'aide d'un gabarit.\n\n```solution-js\nconst prenom = \"Lucas\";\nconst formation = \"JavaScript\";\nconsole.log(`Bienvenue ${prenom} dans la formation ${formation} !`);\n```\n\n```text\nBienvenue Lucas dans la formation JavaScript !\n```\n\n### Exercice 2 — Initiales\n\nAvec `const prenom = \"sofia\"` et `const nom = \"rossi\"`, affichez les initiales en majuscules : `SR`.\n\n```solution-js\nconst prenom = \"sofia\";\nconst nom = \"rossi\";\nconsole.log((prenom[0] + nom[0]).toUpperCase());\n```\n\n```text\nSR\n```\n\n### Exercice 3 — Corrigez le calcul\n\nCe code affiche `1005` au lieu de `105`. Corrigez-le : `const quantite = \"100\"; console.log(quantite + 5);`\n\n```solution-js\nconst quantite = \"100\";\nconsole.log(Number(quantite) + 5);\n```\n\n```text\n105\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "141c1645-57be-569d-99e2-40f4877bae50",
+    "title": "Quiz — Premiers pas",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "ce23ba38-7d19-5b58-9367-0ffebe4f23eb",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel rôle joue JavaScript dans une page web ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "df9129ce-b006-5674-b391-5aa74efdfa8f",
+        "position": 1,
+        "label": "Décrire le contenu"
+       },
+       {
+        "id": "9be85973-921f-559f-8173-32f0199ac1bf",
+        "position": 2,
+        "label": "Définir les couleurs et la mise en page"
+       },
+       {
+        "id": "d51b83aa-8370-5832-a102-66fe95baaf40",
+        "position": 3,
+        "label": "Ajouter le comportement et l'interactivité"
+       },
+       {
+        "id": "ed76250d-9717-5c2e-99e7-c9f1bab5dfd3",
+        "position": 4,
+        "label": "Héberger le site"
+       }
+      ],
+      "correct": [
+       "d51b83aa-8370-5832-a102-66fe95baaf40"
+      ],
+      "explanation": "HTML décrit le contenu, CSS l'apparence, JavaScript le comportement (réagir aux actions, charger des données…)."
+     },
+     {
+      "id": "6768d342-40a5-5e54-8b90-a4dc8374d72d",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que fait console.log(\"Bonjour\") ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b9382242-ba7d-509d-96ae-2429fa08945c",
+        "position": 1,
+        "label": "Affiche une fenêtre d'alerte"
+       },
+       {
+        "id": "4edf3f3a-10c8-5031-9bb8-b4eac4ce165a",
+        "position": 2,
+        "label": "Affiche « Bonjour » dans la console"
+       },
+       {
+        "id": "dfbe0d49-b3f4-5981-9021-516ca10e2c63",
+        "position": 3,
+        "label": "Écrit dans la page HTML"
+       },
+       {
+        "id": "c8d6e501-a93f-5150-a925-44c5fd96816e",
+        "position": 4,
+        "label": "Enregistre un fichier"
+       }
+      ],
+      "correct": [
+       "4edf3f3a-10c8-5031-9bb8-b4eac4ce165a"
+      ],
+      "explanation": "console.log affiche une valeur dans la console des outils de développement."
+     },
+     {
+      "id": "a6df8fdd-fccd-5963-a5e9-ff34b04fc576",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle déclaration choisir pour une valeur qui ne sera jamais réaffectée ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "34033fae-8141-57d1-bdea-fcb2065b156e",
+        "position": 1,
+        "label": "var"
+       },
+       {
+        "id": "4786cac6-7366-5d78-9252-006ca1581073",
+        "position": 2,
+        "label": "let"
+       },
+       {
+        "id": "b31fe35a-4565-58d1-a288-140fb396b8d2",
+        "position": 3,
+        "label": "const"
+       },
+       {
+        "id": "edf2bb68-1535-5bda-8374-d3834e4dd3c4",
+        "position": 4,
+        "label": "static"
+       }
+      ],
+      "correct": [
+       "b31fe35a-4565-58d1-a288-140fb396b8d2"
+      ],
+      "explanation": "const déclare une variable qui ne peut pas être réaffectée. On l'utilise par défaut."
+     },
+     {
+      "id": "a1d962ff-4063-5292-83f0-bd90ffbe7b4a",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Que vaut typeof \"42\" ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a249d3fa-eb0e-5847-b2fa-7cc1334f3e52",
+        "position": 1,
+        "label": "\"number\""
+       },
+       {
+        "id": "3734774f-09ae-5aba-a2a7-a81e318c52cd",
+        "position": 2,
+        "label": "\"string\""
+       },
+       {
+        "id": "0bc486be-e86b-5052-85a9-4a1131296676",
+        "position": 3,
+        "label": "\"boolean\""
+       },
+       {
+        "id": "92cfeb44-76fc-5b3b-aae1-4f37c0917d7a",
+        "position": 4,
+        "label": "\"undefined\""
+       }
+      ],
+      "correct": [
+       "3734774f-09ae-5aba-a2a7-a81e318c52cd"
+      ],
+      "explanation": "Les guillemets font de 42 une chaîne de caractères : typeof renvoie \"string\"."
+     },
+     {
+      "id": "97bdc77a-7e05-5a97-bcb6-6671d324ed20",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que vaut 17 % 5 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1dd2a720-2abc-5823-84b0-7799d9f91d8c",
+        "position": 1,
+        "label": "3.4"
+       },
+       {
+        "id": "bcc18a1c-9df9-50c9-a8ff-9ff5eabfdd0b",
+        "position": 2,
+        "label": "2"
+       },
+       {
+        "id": "381949b6-2305-5a4e-80cd-3b5b0caf7878",
+        "position": 3,
+        "label": "3"
+       },
+       {
+        "id": "c0d61b1f-e14b-574f-a1d3-f3497d6e8a35",
+        "position": 4,
+        "label": "12"
+       }
+      ],
+      "correct": [
+       "bcc18a1c-9df9-50c9-a8ff-9ff5eabfdd0b"
+      ],
+      "explanation": "% donne le reste de la division : 17 = 5 × 3 + 2."
+     },
+     {
+      "id": "d1a07878-2362-5fcf-82b6-683029f7f12e",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Qu'affiche console.log(\"2\" + 3) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3ed6ffb2-df17-5517-bbd5-638ef379e32f",
+        "position": 1,
+        "label": "5"
+       },
+       {
+        "id": "369ea1a0-9355-5f09-8b20-2717d2c545a3",
+        "position": 2,
+        "label": "\"23\" (la chaîne 23)"
+       },
+       {
+        "id": "faaeb2e1-e919-5382-bd1b-59f6eedfb258",
+        "position": 3,
+        "label": "NaN"
+       },
+       {
+        "id": "b7fd7258-9947-5a4d-b535-b5fccd28b617",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "369ea1a0-9355-5f09-8b20-2717d2c545a3"
+      ],
+      "explanation": "Si l'un des opérandes est une chaîne, + concatène : \"2\" + 3 donne \"23\"."
+     },
+     {
+      "id": "0816c46e-6d77-579d-8496-a59028ad732e",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "const nom = \"Emma\";\nconsole.log(`Bonjour ${nom} !`);",
+      "points": 2,
+      "options": [
+       {
+        "id": "3b909f16-6a8c-5988-906a-e5cd10b4fdb0",
+        "position": 1,
+        "label": "Bonjour ${nom} !"
+       },
+       {
+        "id": "8a80fcf1-b528-54e1-b041-9a9f229773f6",
+        "position": 2,
+        "label": "Bonjour Emma !"
+       },
+       {
+        "id": "edf15c7d-72eb-5ae8-8eb2-871f28d71ee2",
+        "position": 3,
+        "label": "Bonjour nom !"
+       },
+       {
+        "id": "e1f9a216-0244-57ff-aab0-0d7e87e9efc0",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "8a80fcf1-b528-54e1-b041-9a9f229773f6"
+      ],
+      "explanation": "Entre accents graves, ${…} insère la valeur de l'expression : Bonjour Emma !"
+     },
+     {
+      "id": "2c40be34-7d13-5d85-8e96-4a37a6af35de",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que vaut \"JavaScript\"[0] ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "9889c80f-100b-50c3-9115-49ecaafb8d34",
+        "position": 1,
+        "label": "\"J\""
+       },
+       {
+        "id": "d1a222c4-c534-59d6-a7c2-c7b44b2a9815",
+        "position": 2,
+        "label": "\"a\""
+       },
+       {
+        "id": "178968ef-05f1-5595-8df0-307ddd26b968",
+        "position": 3,
+        "label": "undefined"
+       },
+       {
+        "id": "15c27837-a691-523d-bbdb-9145465957f9",
+        "position": 4,
+        "label": "\"JavaScript\""
+       }
+      ],
+      "correct": [
+       "9889c80f-100b-50c3-9115-49ecaafb8d34"
+      ],
+      "explanation": "Les positions commencent à 0 : le premier caractère est \"J\"."
+     },
+     {
+      "id": "1c6e24f7-76e8-51d9-ac11-0ea457a6d2f8",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2e21eb15-4f1a-5945-a481-3e359771bb89",
+        "position": 1,
+        "label": "JavaScript distingue les majuscules et les minuscules."
+       },
+       {
+        "id": "f3b93481-99fc-5300-9beb-30ff88ac93e7",
+        "position": 2,
+        "label": "Number(\"abc\") renvoie NaN."
+       },
+       {
+        "id": "1d396be6-344f-59b1-8c74-f751abbff809",
+        "position": 3,
+        "label": "let et const sont équivalents en tout point."
+       },
+       {
+        "id": "e75b1b58-ca4f-5bf4-9961-1f4667ead55c",
+        "position": 4,
+        "label": "// commence un commentaire sur une ligne."
+       }
+      ],
+      "correct": [
+       "2e21eb15-4f1a-5945-a481-3e359771bb89",
+       "f3b93481-99fc-5300-9beb-30ff88ac93e7",
+       "e75b1b58-ca4f-5bf4-9961-1f4667ead55c"
+      ],
+      "explanation": "let permet la réaffectation, contrairement à const : ils ne sont pas équivalents. Les trois autres affirmations sont exactes."
+     },
+     {
+      "id": "4da9f50d-6e32-5177-9efa-5c6b047f1802",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Java et JavaScript sont deux noms du même langage.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "284141ad-57a3-5689-99d8-1ab34a3204d1",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "369d035e-f413-5571-90cb-72bbda515f8a",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "369d035e-f413-5571-90cb-72bbda515f8a"
+      ],
+      "explanation": "Ce sont deux langages différents, malgré la ressemblance des noms."
+     }
+    ]
+   }
+  },
+  {
+   "id": "df067ca2-22d5-50d6-9a40-5e2fa6ef8f7a",
+   "position": 2,
+   "title": "Conditions et boucles",
+   "description": "Prendre des décisions, répéter des instructions et structurer un programme.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "48dc9963-976e-5b33-bfad-b675398e15d4",
+     "slug": "conditions",
+     "title": "Les conditions",
+     "summary": "if, else, comparaisons strictes, opérateurs logiques et ternaire.",
+     "content_md": "## Prendre une décision : `if`\n\n```js\nconst note = 14;\nif (note >= 10) {\n  console.log(\"Module validé\");\n} else {\n  console.log(\"Module à repasser\");\n}\n```\n\n```text\nModule validé\n```\n\nLa condition est écrite **entre parenthèses** ; le bloc à exécuter **entre accolades**. Le `else` est facultatif.\n\nPlusieurs cas s'enchaînent avec `else if` ; le premier cas vrai l'emporte :\n\n```js\nconst note = 17;\nif (note >= 16) {\n  console.log(\"Très bien\");\n} else if (note >= 10) {\n  console.log(\"Validé\");\n} else {\n  console.log(\"À retravailler\");\n}\n```\n\n```text\nTrès bien\n```\n\n## Les comparaisons\n\n| Opérateur | Signification |\n|---|---|\n| `===` | strictement égal (même valeur **et** même type) |\n| `!==` | strictement différent |\n| `<`, `<=`, `>`, `>=` | comparaisons |\n\n```js\nconsole.log(5 === 5);\nconsole.log(5 === \"5\");\nconsole.log(5 == \"5\");\n```\n\n```text\ntrue\nfalse\ntrue\n```\n\n`==` convertit les types avant de comparer, ce qui produit des résultats surprenants (`0 == \"\"` vaut `true`). **Utilisez toujours `===` et `!==`.**\n\n## Combiner des conditions\n\n- `&&` (ET) : les deux conditions doivent être vraies ;\n- `||` (OU) : au moins une ;\n- `!` (NON) : inverse.\n\n```js\nconst age = 20;\nconst aUnBillet = true;\nif (age >= 18 && aUnBillet) {\n  console.log(\"Entrée autorisée\");\n}\n```\n\n```text\nEntrée autorisée\n```\n\n## Valeurs « vraies » et « fausses »\n\nDans une condition, toute valeur est convertie en booléen. Sont considérées comme **fausses** (*falsy*) : `false`, `0`, `\"\"` (chaîne vide), `null`, `undefined` et `NaN`. Toutes les autres sont **vraies** (*truthy*), y compris `\"0\"` et `\" \"`.\n\n```js\nconst email = \"\";\nif (!email) {\n  console.log(\"Veuillez saisir un email\");\n}\n```\n\n```text\nVeuillez saisir un email\n```\n\n## L'opérateur ternaire\n\nPour choisir entre deux valeurs, la forme courte `condition ? siVrai : siFaux` est pratique :\n\n```js\nconst stock = 0;\nconst message = stock > 0 ? \"En stock\" : \"Rupture de stock\";\nconsole.log(message);\n```\n\n```text\nRupture de stock\n```\n\n## À retenir\n\n- `if (condition) { … } else if (…) { … } else { … }`.\n- Toujours `===` et `!==`, jamais `==`.\n- `&&` (et), `||` (ou), `!` (non).\n- Valeurs fausses : `false`, `0`, `\"\"`, `null`, `undefined`, `NaN`.\n- `condition ? a : b` pour choisir une valeur.\n\n## Exercices\n\n### Exercice 1 — Tarif\n\nUn billet coûte 12 €, 8 € pour les moins de 18 ans et les plus de 65 ans. Avec `const age = 70`, affichez le prix.\n\n```solution-js\nconst age = 70;\nlet prix;\nif (age < 18 || age > 65) {\n  prix = 8;\n} else {\n  prix = 12;\n}\nconsole.log(`Prix : ${prix} €`);\n```\n\n```text\nPrix : 8 €\n```\n\n### Exercice 2 — Prédisez\n\nQu'affiche ce code ? `console.log(0 === false); console.log(\"10\" === 10); console.log(Boolean(\"0\"));`\n\n```solution-js\nconsole.log(0 === false);\nconsole.log(\"10\" === 10);\nconsole.log(Boolean(\"0\"));\n```\n\n```text\nfalse\nfalse\ntrue\n```\n\n### Exercice 3 — Ternaire\n\nAvec `const heure = 15`, affichez `Bonjour` avant 18 h et `Bonsoir` ensuite, en une seule ligne.\n\n```solution-js\nconst heure = 15;\nconsole.log(heure < 18 ? \"Bonjour\" : \"Bonsoir\");\n```\n\n```text\nBonjour\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "608de3ac-2b40-51a9-83d7-d79a4444eecb",
+     "slug": "boucles",
+     "title": "Les boucles",
+     "summary": "for, while, for…of, break et continue.",
+     "content_md": "## Répéter : la boucle `for`\n\nUne **boucle** répète un bloc d'instructions. La boucle `for` est idéale quand on connaît le nombre de répétitions :\n\n```js\nfor (let i = 1; i <= 3; i++) {\n  console.log(`Tour ${i}`);\n}\n```\n\n```text\nTour 1\nTour 2\nTour 3\n```\n\nLes trois parties entre parenthèses :\n\n1. `let i = 1` : **initialisation**, exécutée une fois au début ;\n2. `i <= 3` : **condition**, testée avant chaque tour ;\n3. `i++` : **incrémentation**, exécutée après chaque tour.\n\n## Calculer avec une boucle\n\n```js\nlet total = 0;\nfor (let i = 1; i <= 10; i++) {\n  total += i;\n}\nconsole.log(total);\n```\n\n```text\n55\n```\n\nLe schéma « variable à 0, puis ajout à chaque tour » s'appelle un **accumulateur**.\n\n## La boucle `while`\n\n`while` répète **tant que** la condition est vraie, sans nombre de tours fixé à l'avance :\n\n```js\nlet capital = 1000;\nlet annees = 0;\nwhile (capital < 1500) {\n  capital = capital * 1.1;\n  annees++;\n}\nconsole.log(`${annees} ans`);\n```\n\n```text\n5 ans\n```\n\n> Attention à la **boucle infinie** : si la condition ne devient jamais fausse, le programme ne s'arrête pas (et l'onglet du navigateur se fige). Vérifiez toujours que la boucle fait évoluer sa condition.\n\n## Parcourir un texte ou un tableau : `for…of`\n\n```js\nconst villes = [\"Paris\", \"Lyon\", \"Lille\"];\nfor (const ville of villes) {\n  console.log(ville);\n}\n```\n\n```text\nParis\nLyon\nLille\n```\n\n`for…of` parcourt chaque élément, sans gérer d'indice. C'est la forme la plus lisible pour parcourir une liste (module 3).\n\n## Interrompre une boucle\n\n- `break` sort immédiatement de la boucle ;\n- `continue` passe directement au tour suivant.\n\n```js\nfor (let i = 1; i <= 10; i++) {\n  if (i % 2 === 0) continue;   // on saute les nombres pairs\n  if (i > 7) break;            // on s'arrête après 7\n  console.log(i);\n}\n```\n\n```text\n1\n3\n5\n7\n```\n\n## À retenir\n\n- `for (let i = 0; i < n; i++)` pour un nombre de tours connu.\n- `while (condition)` tant qu'une condition est vraie ; attention aux boucles infinies.\n- `for (const element of liste)` pour parcourir une liste.\n- `break` sort de la boucle, `continue` passe au tour suivant.\n\n## Exercices\n\n### Exercice 1 — Table de multiplication\n\nAffichez la table de 7, de `7 x 1 = 7` à `7 x 5 = 35`.\n\n```solution-js\nfor (let i = 1; i <= 5; i++) {\n  console.log(`7 x ${i} = ${7 * i}`);\n}\n```\n\n```text\n7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n```\n\n### Exercice 2 — Compte à rebours\n\nAvec une boucle `while`, affichez 3, 2, 1, puis `Décollage !`.\n\n```solution-js\nlet n = 3;\nwhile (n > 0) {\n  console.log(n);\n  n--;\n}\nconsole.log(\"Décollage !\");\n```\n\n```text\n3\n2\n1\nDécollage !\n```\n\n### Exercice 3 — Compter les voyelles\n\nComptez les voyelles (a, e, i, o, u, y) du mot `\"javascript\"` avec `for…of`.\n\n```solution-js\nlet voyelles = 0;\nfor (const lettre of \"javascript\") {\n  if (\"aeiouy\".includes(lettre)) {\n    voyelles++;\n  }\n}\nconsole.log(voyelles);\n```\n\n```text\n3\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "d6e189cc-f69b-5082-a7b3-17b5b9664214",
+     "slug": "switch-et-programme",
+     "title": "switch et premier programme complet",
+     "summary": "Choisir parmi plusieurs cas, analyser des données, déboguer.",
+     "content_md": "## Choisir parmi plusieurs valeurs : `switch`\n\nQuand une même variable est comparée à plusieurs valeurs précises, `switch` est plus lisible qu'une suite de `else if` :\n\n```js\nconst jour = \"samedi\";\nswitch (jour) {\n  case \"samedi\":\n  case \"dimanche\":\n    console.log(\"Week-end\");\n    break;\n  case \"mercredi\":\n    console.log(\"Milieu de semaine\");\n    break;\n  default:\n    console.log(\"Jour ouvré\");\n}\n```\n\n```text\nWeek-end\n```\n\n- `switch` compare avec `===` ;\n- chaque `case` se termine par `break`, sinon l'exécution **continue** dans le cas suivant ;\n- deux `case` consécutifs sans instruction partagent le même bloc (ici samedi et dimanche) ;\n- `default` traite tous les autres cas.\n\n## Mettre en pratique : un petit programme complet\n\nCombinons variables, conditions et boucles pour analyser une liste de notes.\n\n```js\nconst notes = [12, 8, 15, 19, 10, 6];\nlet somme = 0;\nlet validees = 0;\nlet meilleure = notes[0];\n\nfor (const note of notes) {\n  somme += note;\n  if (note >= 10) validees++;\n  if (note > meilleure) meilleure = note;\n}\n\nconst moyenne = somme / notes.length;\nconsole.log(`Moyenne : ${moyenne.toFixed(1)}`);\nconsole.log(`Notes validées : ${validees} sur ${notes.length}`);\nconsole.log(`Meilleure note : ${meilleure}`);\n```\n\n```text\nMoyenne : 11.7\nNotes validées : 4 sur 6\nMeilleure note : 19\n```\n\nCe programme suit une démarche que vous réutiliserez souvent :\n\n1. **préparer** les variables (accumulateurs, valeur de référence) ;\n2. **parcourir** les données une fois ;\n3. **calculer et afficher** le résultat.\n\n## Déboguer une boucle\n\nQuand une boucle ne donne pas le résultat attendu, affichez l'état des variables à chaque tour :\n\n```js\nlet total = 0;\nfor (let i = 1; i <= 3; i++) {\n  total += i;\n  console.log(`i = ${i}, total = ${total}`);\n}\n```\n\n```text\ni = 1, total = 1\ni = 2, total = 3\ni = 3, total = 6\n```\n\nLes **outils de développement** du navigateur proposent aussi un débogueur : en ajoutant l'instruction `debugger;` dans le code, l'exécution s'arrête à cet endroit et vous pouvez examiner chaque variable (onglet *Sources*).\n\n## Erreurs fréquentes\n\n- `if (note = 10)` : un seul `=` **affecte** la valeur au lieu de comparer. Écrivez `===`.\n- Oublier les accolades : sans `{ }`, seule la première instruction dépend du `if`.\n- Boucle décalée d'un tour : `i < notes.length` parcourt toutes les positions de `0` à `length - 1` ; `i <= notes.length` va une case trop loin.\n\n## À retenir\n\n- `switch` pour comparer une valeur à plusieurs cas ; `break` à la fin de chaque cas.\n- Démarche : préparer → parcourir → calculer.\n- Afficher les variables dans la boucle, ou utiliser `debugger;`.\n- `=` affecte, `===` compare.\n\n## Exercices\n\n### Exercice 1 — Nom du mois\n\nÉcrivez un `switch` qui affiche le nom du mois à partir de son numéro (1, 2 ou 3), et `Autre mois` pour toute autre valeur. Testez avec `const mois = 2`.\n\n```solution-js\nconst mois = 2;\nswitch (mois) {\n  case 1:\n    console.log(\"Janvier\");\n    break;\n  case 2:\n    console.log(\"Février\");\n    break;\n  case 3:\n    console.log(\"Mars\");\n    break;\n  default:\n    console.log(\"Autre mois\");\n}\n```\n\n```text\nFévrier\n```\n\n### Exercice 2 — Statistiques de températures\n\nAvec `const temperatures = [18, 22, 25, 19, 30, 27]`, affichez la température minimale et le nombre de jours à 25 °C ou plus.\n\n```solution-js\nconst temperatures = [18, 22, 25, 19, 30, 27];\nlet minimum = temperatures[0];\nlet joursChauds = 0;\nfor (const t of temperatures) {\n  if (t < minimum) minimum = t;\n  if (t >= 25) joursChauds++;\n}\nconsole.log(`Minimum : ${minimum}`);\nconsole.log(`Jours chauds : ${joursChauds}`);\n```\n\n```text\nMinimum : 18\nJours chauds : 3\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "4af43db4-575a-5a03-ae3c-8840da6b8d8e",
+    "title": "Quiz — Conditions et boucles",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "34145af7-c80a-5684-9eff-deca45ed248b",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que vaut 5 === \"5\" ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "233428f0-2e59-5610-801e-14902c40f5bf",
+        "position": 1,
+        "label": "true"
+       },
+       {
+        "id": "f12cdcf2-57b0-59a5-a961-3b7e9ddea546",
+        "position": 2,
+        "label": "false"
+       },
+       {
+        "id": "5d40e87d-cbbc-51fe-a368-2185472b7183",
+        "position": 3,
+        "label": "undefined"
+       },
+       {
+        "id": "bc79ded5-e50d-550e-8374-60cffb82da16",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "f12cdcf2-57b0-59a5-a961-3b7e9ddea546"
+      ],
+      "explanation": "=== compare la valeur et le type : un nombre n'est pas strictement égal à une chaîne."
+     },
+     {
+      "id": "075175cc-0225-5df8-b1f7-a15047411dc8",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Pourquoi préférer === à == ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7b8cee16-da4c-53da-94a1-f37185a5245e",
+        "position": 1,
+        "label": "=== est plus rapide à écrire"
+       },
+       {
+        "id": "f5ce3bc7-e688-5965-a346-5c8a9f18df24",
+        "position": 2,
+        "label": "== convertit les types avant de comparer, ce qui produit des résultats surprenants"
+       },
+       {
+        "id": "ce7aba8c-93b0-5aea-a974-7a04014f4b8b",
+        "position": 3,
+        "label": "== n'existe pas en JavaScript"
+       },
+       {
+        "id": "ec3a0f1c-1cdd-57fd-84dd-cd1e8ff217ac",
+        "position": 4,
+        "label": "=== fonctionne seulement avec les nombres"
+       }
+      ],
+      "correct": [
+       "f5ce3bc7-e688-5965-a346-5c8a9f18df24"
+      ],
+      "explanation": "== convertit les types (0 == \"\" vaut true) ; === compare sans conversion, de façon prévisible."
+     },
+     {
+      "id": "be3a938e-f77d-55d6-8cec-cf734fdbdeb0",
+      "position": 3,
+      "kind": "multiple",
+      "prompt": "Quelles valeurs sont « fausses » (falsy) dans une condition ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "44bf0b32-914b-5de1-beb4-2e229cb928d5",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "c50e5460-52b3-51f6-8f8e-5df90d2a4b6c",
+        "position": 2,
+        "label": "\"\" (chaîne vide)"
+       },
+       {
+        "id": "4028d0fb-1ecd-5590-8fd8-075e9ec465b8",
+        "position": 3,
+        "label": "\"0\""
+       },
+       {
+        "id": "ae614a76-b171-550d-9db9-c3bfde0b244a",
+        "position": 4,
+        "label": "null"
+       }
+      ],
+      "correct": [
+       "44bf0b32-914b-5de1-beb4-2e229cb928d5",
+       "c50e5460-52b3-51f6-8f8e-5df90d2a4b6c",
+       "ae614a76-b171-550d-9db9-c3bfde0b244a"
+      ],
+      "explanation": "0, \"\", null, undefined, NaN et false sont falsy. La chaîne \"0\" n'est pas vide : elle est truthy."
+     },
+     {
+      "id": "230b4229-1baf-5bcc-b775-a9229ced5f98",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "const a = 4;\nconsole.log(a > 5 ? \"grand\" : \"petit\");",
+      "points": 2,
+      "options": [
+       {
+        "id": "4cb5cd62-06da-5b20-b6e3-d09a56591cd0",
+        "position": 1,
+        "label": "grand"
+       },
+       {
+        "id": "7fa01f57-7812-5565-b8a0-e21d961dca50",
+        "position": 2,
+        "label": "petit"
+       },
+       {
+        "id": "6f128db3-b928-513e-83f9-2dca019deb62",
+        "position": 3,
+        "label": "true"
+       },
+       {
+        "id": "870b5e59-a383-52bf-8f5e-6d852abf2f20",
+        "position": 4,
+        "label": "false"
+       }
+      ],
+      "correct": [
+       "7fa01f57-7812-5565-b8a0-e21d961dca50"
+      ],
+      "explanation": "4 > 5 est faux : l'opérateur ternaire renvoie la seconde valeur, \"petit\"."
+     },
+     {
+      "id": "37e24a29-1424-5886-8098-23d5596371b4",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Combien de fois cette boucle affiche-t-elle un message ?",
+      "code": "for (let i = 0; i < 4; i++) {\n  console.log(i);\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "75512241-2414-5e53-9f62-ca1658d60793",
+        "position": 1,
+        "label": "3"
+       },
+       {
+        "id": "35047ffd-bd88-5f08-99cc-52dd01955567",
+        "position": 2,
+        "label": "4"
+       },
+       {
+        "id": "fa6234d5-8526-5a79-927e-10cc1fe93a00",
+        "position": 3,
+        "label": "5"
+       },
+       {
+        "id": "e5656901-61ae-553c-afd2-82b9e412dc70",
+        "position": 4,
+        "label": "Infiniment"
+       }
+      ],
+      "correct": [
+       "35047ffd-bd88-5f08-99cc-52dd01955567"
+      ],
+      "explanation": "i prend les valeurs 0, 1, 2 et 3 : 4 affichages. La boucle s'arrête quand i vaut 4."
+     },
+     {
+      "id": "86f911c3-42d3-585a-9f20-dcae9267d1cf",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que vaut total à la fin ?",
+      "code": "let total = 0;\nfor (let i = 1; i <= 4; i++) {\n  total += i;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "d0f2e55c-7ce7-578b-8865-e0577c1387bf",
+        "position": 1,
+        "label": "4"
+       },
+       {
+        "id": "9334ac3c-a6bf-530a-b8ba-726450f7146b",
+        "position": 2,
+        "label": "6"
+       },
+       {
+        "id": "fdfc08f3-3803-5e33-a286-c445b89f6ca6",
+        "position": 3,
+        "label": "10"
+       },
+       {
+        "id": "78425c6b-e4bc-5c49-b2f2-ec78ccf95098",
+        "position": 4,
+        "label": "24"
+       }
+      ],
+      "correct": [
+       "fdfc08f3-3803-5e33-a286-c445b89f6ca6"
+      ],
+      "explanation": "1 + 2 + 3 + 4 = 10."
+     },
+     {
+      "id": "3e7682b3-1396-570a-a879-b5f029bd0f3a",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que fait l'instruction break dans une boucle ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1d285291-3f7b-52f5-b1d4-dfbdb02a6a30",
+        "position": 1,
+        "label": "Passe au tour suivant"
+       },
+       {
+        "id": "67e91f5c-22fd-5a14-80ff-9e2c42547745",
+        "position": 2,
+        "label": "Sort immédiatement de la boucle"
+       },
+       {
+        "id": "e6a70b6b-a15b-5f59-88d3-2e010a991c2a",
+        "position": 3,
+        "label": "Recommence la boucle"
+       },
+       {
+        "id": "0afb2297-2e10-5d83-a700-372a84ca20bb",
+        "position": 4,
+        "label": "Provoque une erreur"
+       }
+      ],
+      "correct": [
+       "67e91f5c-22fd-5a14-80ff-9e2c42547745"
+      ],
+      "explanation": "break interrompt la boucle ; continue passe au tour suivant."
+     },
+     {
+      "id": "5740fa53-5e2b-5fb9-8f39-bf335cb12879",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quel est le risque de ce code ?",
+      "code": "let n = 1;\nwhile (n > 0) {\n  n++;\n}",
+      "points": 2,
+      "options": [
+       {
+        "id": "5e8ed01f-aec0-550e-a7cf-b80f54755e5c",
+        "position": 1,
+        "label": "Aucun"
+       },
+       {
+        "id": "cea5c377-1848-5ce8-8275-7ecf8d631301",
+        "position": 2,
+        "label": "Une boucle infinie"
+       },
+       {
+        "id": "8d03f24c-f14b-5c5c-9b5d-ec7834984a8d",
+        "position": 3,
+        "label": "Une erreur de syntaxe"
+       },
+       {
+        "id": "1dbfed1f-e631-58e8-8271-55e1352ece4e",
+        "position": 4,
+        "label": "La boucle ne s'exécute jamais"
+       }
+      ],
+      "correct": [
+       "cea5c377-1848-5ce8-8275-7ecf8d631301"
+      ],
+      "explanation": "n augmente sans cesse et reste supérieur à 0 : la condition ne devient jamais fausse."
+     },
+     {
+      "id": "0ebf09a1-f4f1-5afe-99bd-c47ed61bc09b",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Dans un switch, que se passe-t-il si l'on oublie break à la fin d'un case ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1748ef6f-c41a-5d6e-8e5a-dabf86039590",
+        "position": 1,
+        "label": "Une erreur est levée"
+       },
+       {
+        "id": "a658377e-31cf-5711-b89a-9e0a9a2371da",
+        "position": 2,
+        "label": "L'exécution continue dans le case suivant"
+       },
+       {
+        "id": "c10e8cc4-4086-5bbb-9519-e0443a0ba0d1",
+        "position": 3,
+        "label": "Le switch s'arrête"
+       },
+       {
+        "id": "4614d1c8-be94-51d8-9c93-a8534ef77a8c",
+        "position": 4,
+        "label": "Le default est ignoré"
+       }
+      ],
+      "correct": [
+       "a658377e-31cf-5711-b89a-9e0a9a2371da"
+      ],
+      "explanation": "Sans break, l'exécution « tombe » dans le cas suivant. C'est voulu seulement quand plusieurs cas partagent un même bloc."
+     },
+     {
+      "id": "2fbb62f3-5ab4-53b6-aa80-c1da5bdf7b21",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quelle condition est correcte pour tester si note vaut 10 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2046b44b-442f-5b36-a004-d72ade506456",
+        "position": 1,
+        "label": "if (note = 10)"
+       },
+       {
+        "id": "e03b6b6f-71dc-5d0f-b150-75d922f0bc2a",
+        "position": 2,
+        "label": "if (note === 10)"
+       },
+       {
+        "id": "a2bbfae2-7a71-52c0-ab66-9480301d3a39",
+        "position": 3,
+        "label": "if note === 10"
+       },
+       {
+        "id": "e33573a1-1c27-5e93-ab23-dced9843f460",
+        "position": 4,
+        "label": "if (note => 10)"
+       }
+      ],
+      "correct": [
+       "e03b6b6f-71dc-5d0f-b150-75d922f0bc2a"
+      ],
+      "explanation": "Un seul = affecte la valeur ; il faut === entre parenthèses. => sert à écrire des fonctions fléchées."
+     }
+    ]
+   }
+  },
+  {
+   "id": "0dfcc460-b21c-5d9b-bfcc-39b77777ddbd",
+   "position": 3,
+   "title": "Fonctions, tableaux et objets",
+   "description": "Écrire des fonctions réutilisables et organiser les données.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "f1239cde-8716-5beb-904c-e6876d7a4f87",
+     "slug": "fonctions",
+     "title": "Les fonctions",
+     "summary": "Déclarer, appeler, paramètres, valeur de retour et fonctions fléchées.",
+     "content_md": "## Pourquoi des fonctions ?\n\nUne **fonction** regroupe des instructions sous un nom, pour les réutiliser autant de fois que nécessaire. Elle évite de copier-coller du code et rend le programme plus lisible.\n\n```js\nfunction direBonjour(prenom) {\n  console.log(`Bonjour ${prenom} !`);\n}\n\ndireBonjour(\"Amina\");\ndireBonjour(\"Lucas\");\n```\n\n```text\nBonjour Amina !\nBonjour Lucas !\n```\n\n- `function direBonjour(prenom)` **déclare** la fonction ; `prenom` est un **paramètre** ;\n- `direBonjour(\"Amina\")` **appelle** la fonction ; `\"Amina\"` est l'**argument**.\n\n## Renvoyer un résultat : `return`\n\nUne fonction peut **calculer** une valeur et la renvoyer avec `return`. L'appel est alors remplacé par cette valeur :\n\n```js\nfunction prixTtc(prixHt, taux) {\n  return prixHt * (1 + taux);\n}\n\nconst total = prixTtc(100, 0.2);\nconsole.log(total);\nconsole.log(prixTtc(50, 0.055));\n```\n\n```text\n120\n52.75\n```\n\n`return` **arrête** immédiatement la fonction. Une fonction sans `return` renvoie `undefined`.\n\n> Distinguez bien **afficher** (`console.log`) et **renvoyer** (`return`) : une fonction qui renvoie un résultat est réutilisable dans d'autres calculs ; une fonction qui se contente d'afficher ne l'est pas.\n\n## Paramètres par défaut\n\n```js\nfunction saluer(prenom = \"visiteur\") {\n  return `Bienvenue, ${prenom}`;\n}\nconsole.log(saluer());\nconsole.log(saluer(\"Sofia\"));\n```\n\n```text\nBienvenue, visiteur\nBienvenue, Sofia\n```\n\n## Les fonctions fléchées\n\nLa syntaxe **fléchée** (*arrow function*) est plus courte, très utilisée avec les tableaux :\n\n```js\nconst carre = (n) => n * n;\nconst additionner = (a, b) => a + b;\nconsole.log(carre(4));\nconsole.log(additionner(2, 3));\n```\n\n```text\n16\n5\n```\n\nQuand le corps tient en une expression, le `return` est implicite. Pour plusieurs instructions, on utilise des accolades et un `return` explicite :\n\n```js\nconst mention = (note) => {\n  if (note >= 16) return \"Très bien\";\n  if (note >= 10) return \"Validé\";\n  return \"À retravailler\";\n};\nconsole.log(mention(13));\n```\n\n```text\nValidé\n```\n\n## La portée des variables\n\nUne variable déclarée **dans** une fonction n'existe qu'à l'intérieur de celle-ci :\n\n```js\nfunction calculer() {\n  const resultat = 42;\n  return resultat;\n}\nconsole.log(calculer());\n```\n\n```text\n42\n```\n\nÉcrire `console.log(resultat)` en dehors de la fonction provoquerait `ReferenceError: resultat is not defined`. De même, une variable déclarée dans un bloc `{ }` (`if`, `for`) avec `let` ou `const` n'existe que dans ce bloc.\n\n## À retenir\n\n- `function nom(parametres) { … }` déclare ; `nom(arguments)` appelle.\n- `return` renvoie une valeur et arrête la fonction.\n- Fonctions fléchées : `const f = (x) => x * 2;`\n- Les variables d'une fonction ou d'un bloc n'existent qu'à l'intérieur.\n\n## Exercices\n\n### Exercice 1 — Moyenne de deux notes\n\nÉcrivez une fonction `moyenne(a, b)` qui renvoie la moyenne de deux nombres, puis affichez `moyenne(12, 17)`.\n\n```solution-js\nfunction moyenne(a, b) {\n  return (a + b) / 2;\n}\nconsole.log(moyenne(12, 17));\n```\n\n```text\n14.5\n```\n\n### Exercice 2 — Version fléchée\n\nRéécrivez en fonction fléchée : `function estMajeur(age) { return age >= 18; }`, puis testez avec 16 et 30.\n\n```solution-js\nconst estMajeur = (age) => age >= 18;\nconsole.log(estMajeur(16));\nconsole.log(estMajeur(30));\n```\n\n```text\nfalse\ntrue\n```\n\n### Exercice 3 — Prix soldé\n\nÉcrivez `prixSolde(prix, remise = 10)` qui renvoie le prix après une remise en pourcentage (10 % par défaut). Testez avec 80 puis avec 80 et 25.\n\n```solution-js\nfunction prixSolde(prix, remise = 10) {\n  return prix * (1 - remise / 100);\n}\nconsole.log(prixSolde(80));\nconsole.log(prixSolde(80, 25));\n```\n\n```text\n72\n60\n```",
+     "duration_minutes": 35,
+     "position": 1
+    },
+    {
+     "id": "c4ed4b32-f6ee-5a7a-acaa-d09bcdeb8baf",
+     "slug": "tableaux",
+     "title": "Les tableaux",
+     "summary": "Créer, modifier et parcourir une liste ; map, filter, find, reduce.",
+     "content_md": "## Créer un tableau\n\nUn **tableau** (*array*) est une liste ordonnée de valeurs, écrite entre crochets :\n\n```js\nconst fruits = [\"pomme\", \"banane\", \"kiwi\"];\nconsole.log(fruits.length);\nconsole.log(fruits[0]);\nconsole.log(fruits[fruits.length - 1]);\n```\n\n```text\n3\npomme\nkiwi\n```\n\nComme pour les chaînes, les positions (**indices**) commencent à 0 ; le dernier élément est à l'indice `length - 1`.\n\n## Modifier un tableau\n\n```js\nconst taches = [\"Lire\", \"Coder\"];\ntaches.push(\"Tester\");       // ajoute à la fin\ntaches.unshift(\"Planifier\"); // ajoute au début\nconsole.log(taches);\nconst derniere = taches.pop(); // retire et renvoie le dernier\nconsole.log(derniere, taches);\ntaches[0] = \"Organiser\";       // remplace un élément\nconsole.log(taches);\n```\n\n```text\n[ 'Planifier', 'Lire', 'Coder', 'Tester' ]\nTester [ 'Planifier', 'Lire', 'Coder' ]\n[ 'Organiser', 'Lire', 'Coder' ]\n```\n\nUn tableau déclaré avec `const` peut être **modifié** : `const` empêche seulement de remplacer le tableau entier par un autre.\n\n## Rechercher\n\n```js\nconst villes = [\"Paris\", \"Lyon\", \"Lille\"];\nconsole.log(villes.includes(\"Lyon\"));\nconsole.log(villes.indexOf(\"Lille\"));\nconsole.log(villes.indexOf(\"Nice\"));\n```\n\n```text\ntrue\n2\n-1\n```\n\n`indexOf` renvoie `-1` quand l'élément est absent.\n\n## Les méthodes essentielles : `map`, `filter`, `find`, `reduce`\n\nCes méthodes prennent une **fonction** en argument et l'appliquent à chaque élément. Elles ne modifient pas le tableau d'origine.\n\n```js\nconst prix = [10, 25, 8, 40];\n\nconst prixTtc = prix.map((p) => p * 1.2);          // transforme chaque élément\nconst chers = prix.filter((p) => p > 15);          // garde ceux qui vérifient la condition\nconst premierPetit = prix.find((p) => p < 10);     // premier élément qui vérifie la condition\nconst total = prix.reduce((somme, p) => somme + p, 0); // combine tout en une valeur\n\nconsole.log(prixTtc);\nconsole.log(chers);\nconsole.log(premierPetit);\nconsole.log(total);\n```\n\n```text\n[ 12, 30, 9.6, 48 ]\n[ 25, 40 ]\n8\n83\n```\n\n| Méthode | Renvoie |\n|---|---|\n| `map` | un nouveau tableau de **même longueur**, éléments transformés |\n| `filter` | un nouveau tableau avec **certains** éléments |\n| `find` | le **premier** élément trouvé, ou `undefined` |\n| `reduce` | **une seule valeur** (somme, maximum…) |\n\n`reduce((acc, element) => …, valeurInitiale)` : `acc` (l'accumulateur) part de la valeur initiale et reçoit, à chaque tour, ce que renvoie la fonction.\n\n## Trier\n\n```js\nconst notes = [12, 5, 18, 9];\nconst triees = [...notes].sort((a, b) => a - b);\nconsole.log(triees);\nconsole.log(notes);\n```\n\n```text\n[ 5, 9, 12, 18 ]\n[ 12, 5, 18, 9 ]\n```\n\nDeux pièges : `sort()` **modifie** le tableau (d'où la copie `[...notes]`), et sans fonction de comparaison il trie **comme du texte** (`[10, 9, 1].sort()` donne `[1, 10, 9]`). `(a, b) => a - b` trie les nombres par ordre croissant.\n\n## À retenir\n\n- `[a, b, c]`, indices à partir de 0, `length`.\n- `push` / `pop` à la fin, `unshift` au début, `includes`, `indexOf`.\n- `map` transforme, `filter` sélectionne, `find` cherche, `reduce` combine.\n- `sort((a, b) => a - b)` pour trier des nombres, sur une copie.\n\n## Exercices\n\n### Exercice 1 — Doubler\n\nAvec `const nombres = [1, 2, 3, 4]`, créez un tableau contenant le double de chaque nombre.\n\n```solution-js\nconst nombres = [1, 2, 3, 4];\nconst doubles = nombres.map((n) => n * 2);\nconsole.log(doubles);\n```\n\n```text\n[ 2, 4, 6, 8 ]\n```\n\n### Exercice 2 — Notes validées\n\nAvec `const notes = [8, 14, 11, 6, 17]`, affichez les notes supérieures ou égales à 10, puis leur nombre.\n\n```solution-js\nconst notes = [8, 14, 11, 6, 17];\nconst validees = notes.filter((n) => n >= 10);\nconsole.log(validees);\nconsole.log(validees.length);\n```\n\n```text\n[ 14, 11, 17 ]\n3\n```\n\n### Exercice 3 — Maximum avec reduce\n\nTrouvez la plus grande valeur de `[4, 19, 7, 12]` avec `reduce`.\n\n```solution-js\nconst valeurs = [4, 19, 7, 12];\nconst max = valeurs.reduce((m, v) => (v > m ? v : m), valeurs[0]);\nconsole.log(max);\n// Plus simple : Math.max(...valeurs)\n```\n\n```text\n19\n```",
+     "duration_minutes": 35,
+     "position": 2
+    },
+    {
+     "id": "13480bda-f837-5c69-b8f5-aa40f4578756",
+     "slug": "objets",
+     "title": "Les objets",
+     "summary": "Propriétés, méthodes, tableaux d'objets et JSON.",
+     "content_md": "## Décrire une chose : l'objet\n\nUn **objet** regroupe des informations sous forme de paires **clé : valeur** (appelées *propriétés*) :\n\n```js\nconst etudiant = {\n  prenom: \"Sofia\",\n  age: 23,\n  ville: \"Paris\",\n  inscrite: true,\n};\nconsole.log(etudiant.prenom);\nconsole.log(etudiant[\"ville\"]);\n```\n\n```text\nSofia\nParis\n```\n\nOn lit une propriété avec le **point** (`etudiant.prenom`) ou les **crochets** (`etudiant[\"ville\"]`). Les crochets sont nécessaires quand le nom de la propriété est dans une variable :\n\n```js\nconst etudiant = { prenom: \"Sofia\", ville: \"Paris\" };\nconst champ = \"ville\";\nconsole.log(etudiant[champ]);\nconsole.log(etudiant.telephone);\n```\n\n```text\nParis\nundefined\n```\n\nUne propriété absente vaut `undefined`.\n\n## Modifier un objet\n\n```js\nconst produit = { nom: \"Clavier\", prix: 49 };\nproduit.prix = 39;          // modifier\nproduit.stock = 12;         // ajouter\ndelete produit.stock;       // supprimer\nconsole.log(produit);\n```\n\n```text\n{ nom: 'Clavier', prix: 39 }\n```\n\n## Les méthodes\n\nUne propriété peut contenir une **fonction** : on parle alors de **méthode**. À l'intérieur, `this` désigne l'objet lui-même.\n\n```js\nconst compte = {\n  titulaire: \"Karim\",\n  solde: 100,\n  deposer(montant) {\n    this.solde += montant;\n    return this.solde;\n  },\n};\nconsole.log(compte.deposer(50));\n```\n\n```text\n150\n```\n\n## Les tableaux d'objets\n\nC'est la structure la plus courante dans une application : une liste d'éléments décrits par des objets.\n\n```js\nconst formations = [\n  { titre: \"Python\", heures: 11, gratuite: true },\n  { titre: \"SQL\", heures: 8, gratuite: true },\n  { titre: \"Machine Learning\", heures: 20, gratuite: false },\n];\n\nconst gratuites = formations.filter((f) => f.gratuite).map((f) => f.titre);\nconst totalHeures = formations.reduce((t, f) => t + f.heures, 0);\nconsole.log(gratuites);\nconsole.log(totalHeures);\n```\n\n```text\n[ 'Python', 'SQL' ]\n39\n```\n\nLes méthodes s'enchaînent : `filter` puis `map`.\n\n## Parcourir un objet\n\n```js\nconst scores = { Amina: 16, Lucas: 12, Emma: 18 };\nfor (const [nom, score] of Object.entries(scores)) {\n  console.log(`${nom} : ${score}`);\n}\nconsole.log(Object.keys(scores));\n```\n\n```text\nAmina : 16\nLucas : 12\nEmma : 18\n[ 'Amina', 'Lucas', 'Emma' ]\n```\n\n## JSON : échanger des données\n\n**JSON** (*JavaScript Object Notation*) est le format texte utilisé pour échanger des données avec un serveur. Il ressemble aux objets JavaScript, avec des clés **entre guillemets doubles**.\n\n```js\nconst utilisateur = { nom: \"Emma\", age: 24 };\nconst texte = JSON.stringify(utilisateur);\nconsole.log(texte);\nconst objet = JSON.parse('{\"nom\":\"Lucas\",\"age\":27}');\nconsole.log(objet.age);\n```\n\n```text\n{\"nom\":\"Emma\",\"age\":24}\n27\n```\n\n`JSON.stringify` transforme un objet en texte ; `JSON.parse` fait l'inverse.\n\n## À retenir\n\n- `{ cle: valeur }` ; accès par `objet.cle` ou `objet[\"cle\"]`.\n- Propriété absente → `undefined`.\n- Méthode = fonction dans un objet ; `this` désigne l'objet.\n- Tableaux d'objets + `filter` / `map` / `reduce` : la base des applications.\n- `JSON.stringify` / `JSON.parse` pour convertir en texte et inversement.\n\n## Exercices\n\n### Exercice 1 — Fiche livre\n\nCréez un objet `livre` (titre, auteur, pages), puis affichez `« Le Petit Prince » de Saint-Exupéry, 96 pages`.\n\n```solution-js\nconst livre = { titre: \"Le Petit Prince\", auteur: \"Saint-Exupéry\", pages: 96 };\nconsole.log(`« ${livre.titre} » de ${livre.auteur}, ${livre.pages} pages`);\n```\n\n```text\n« Le Petit Prince » de Saint-Exupéry, 96 pages\n```\n\n### Exercice 2 — Panier\n\nAvec le panier ci-dessous, calculez le total (prix × quantité).\n\n```solution-js\nconst panier = [\n  { produit: \"Stylo\", prix: 2, quantite: 5 },\n  { produit: \"Cahier\", prix: 4, quantite: 3 },\n];\nconst total = panier.reduce((t, ligne) => t + ligne.prix * ligne.quantite, 0);\nconsole.log(total);\n```\n\n```text\n22\n```\n\n### Exercice 3 — Trouver un étudiant\n\nDans `[{ nom: \"Amina\", note: 16 }, { nom: \"Lucas\", note: 9 }]`, trouvez l'objet de Lucas avec `find` et affichez sa note.\n\n```solution-js\nconst etudiants = [{ nom: \"Amina\", note: 16 }, { nom: \"Lucas\", note: 9 }];\nconst lucas = etudiants.find((e) => e.nom === \"Lucas\");\nconsole.log(lucas.note);\n```\n\n```text\n9\n```",
+     "duration_minutes": 35,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "a9d8b421-bc1e-525d-b467-193aab249df1",
+    "title": "Quiz — Fonctions, tableaux et objets",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "0b90952c-253b-51dc-abb5-558941ae8e97",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que renvoie une fonction qui ne contient aucun return ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "00656379-dd70-5287-b182-fff80abb516a",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "e4b90c19-0c4c-517d-9776-0aba6e78a6c0",
+        "position": 2,
+        "label": "null"
+       },
+       {
+        "id": "2c29c545-b9c9-54dc-ba84-290a6421fdf5",
+        "position": 3,
+        "label": "undefined"
+       },
+       {
+        "id": "d9e985cf-5538-5e7a-922e-13ad30aeba43",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "2c29c545-b9c9-54dc-ba84-290a6421fdf5"
+      ],
+      "explanation": "Sans return, une fonction renvoie undefined."
+     },
+     {
+      "id": "6252b17d-c175-5caa-992e-ab0b7c5cb151",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Qu'affiche ce code ?",
+      "code": "const double = (n) => n * 2;\nconsole.log(double(7));",
+      "points": 2,
+      "options": [
+       {
+        "id": "6da03079-411b-58ab-9f80-6802afe30bfe",
+        "position": 1,
+        "label": "7"
+       },
+       {
+        "id": "ca156676-7227-562c-987e-430e7d847b7a",
+        "position": 2,
+        "label": "14"
+       },
+       {
+        "id": "cc214e18-fb66-5495-b92b-7316149b07fe",
+        "position": 3,
+        "label": "undefined"
+       },
+       {
+        "id": "d51a7464-4a86-50c6-ac9a-0bc1a98eb1d9",
+        "position": 4,
+        "label": "n * 2"
+       }
+      ],
+      "correct": [
+       "ca156676-7227-562c-987e-430e7d847b7a"
+      ],
+      "explanation": "Avec une fonction fléchée sur une ligne, le return est implicite : double(7) vaut 14."
+     },
+     {
+      "id": "7617f439-074e-50b1-8fba-3daf672a452a",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle est la différence entre console.log et return dans une fonction ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "9747d56b-a779-5a6a-befd-40dca37cfed5",
+        "position": 1,
+        "label": "Aucune"
+       },
+       {
+        "id": "356c8ff3-d32e-563f-a47d-d1876cb732e1",
+        "position": 2,
+        "label": "console.log affiche, return renvoie une valeur utilisable par le reste du programme"
+       },
+       {
+        "id": "6d922600-afa3-5eee-a832-cc4f49e0d187",
+        "position": 3,
+        "label": "return affiche dans la console"
+       },
+       {
+        "id": "2e27c597-f2c3-55e5-97c9-7007412d3c73",
+        "position": 4,
+        "label": "console.log arrête la fonction"
+       }
+      ],
+      "correct": [
+       "356c8ff3-d32e-563f-a47d-d1876cb732e1"
+      ],
+      "explanation": "console.log se contente d'afficher ; return transmet le résultat à l'appelant, qui peut le réutiliser."
+     },
+     {
+      "id": "4a6e826c-8d77-5ef7-8b32-f73eb89a9976",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Que vaut [10, 20, 30][1] ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e5a5526-89f7-57dd-938f-265b689a7d6a",
+        "position": 1,
+        "label": "10"
+       },
+       {
+        "id": "32e3d298-cf89-51df-85fa-851c1f208635",
+        "position": 2,
+        "label": "20"
+       },
+       {
+        "id": "7c0810d7-0a0e-5a7a-91e4-e09e1dfd6d24",
+        "position": 3,
+        "label": "30"
+       },
+       {
+        "id": "11e5341f-021a-5f02-b332-210c358f3e25",
+        "position": 4,
+        "label": "undefined"
+       }
+      ],
+      "correct": [
+       "32e3d298-cf89-51df-85fa-851c1f208635"
+      ],
+      "explanation": "Les indices commencent à 0 : l'indice 1 désigne le deuxième élément, 20."
+     },
+     {
+      "id": "73405982-6245-560f-9c0f-81a71a882584",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quelle méthode ajoute un élément à la fin d'un tableau ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "518a053d-8c1b-53a9-94dc-e40400092d9a",
+        "position": 1,
+        "label": "pop"
+       },
+       {
+        "id": "59539c9f-fa89-5db7-911f-9989473884da",
+        "position": 2,
+        "label": "push"
+       },
+       {
+        "id": "d6290ded-5d9a-5f5b-a784-3a4c49606b04",
+        "position": 3,
+        "label": "shift"
+       },
+       {
+        "id": "dca3cc92-c27a-5df2-995d-7d999d92e3cb",
+        "position": 4,
+        "label": "unshift"
+       }
+      ],
+      "correct": [
+       "59539c9f-fa89-5db7-911f-9989473884da"
+      ],
+      "explanation": "push ajoute à la fin, pop retire le dernier, unshift ajoute au début."
+     },
+     {
+      "id": "fa9719ad-037e-5a92-9987-032ae5b04f91",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que renvoie [1, 2, 3, 4].filter((n) => n % 2 === 0) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "baa8c988-3a3a-5f69-a7eb-e78aa64986d6",
+        "position": 1,
+        "label": "[1, 3]"
+       },
+       {
+        "id": "5e110af1-0881-5c29-bffb-e0ffa958e0ec",
+        "position": 2,
+        "label": "[2, 4]"
+       },
+       {
+        "id": "0239dc4e-13f1-51d9-ab03-109b7575c9e9",
+        "position": 3,
+        "label": "2"
+       },
+       {
+        "id": "6da68b39-97a1-5c9b-8d53-9e9c02bbc3fe",
+        "position": 4,
+        "label": "[false, true, false, true]"
+       }
+      ],
+      "correct": [
+       "5e110af1-0881-5c29-bffb-e0ffa958e0ec"
+      ],
+      "explanation": "filter garde les éléments qui vérifient la condition : les nombres pairs 2 et 4."
+     },
+     {
+      "id": "a158dc7b-c9fe-5d9f-82d2-b9923b398b2c",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que renvoie [1, 2, 3].map((n) => n * 10) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "24334d88-1f38-5026-ba36-8693fb3cc727",
+        "position": 1,
+        "label": "[10, 20, 30]"
+       },
+       {
+        "id": "e92fe0f6-b7c4-525f-9131-c734f652d6df",
+        "position": 2,
+        "label": "60"
+       },
+       {
+        "id": "06a010a6-bd0a-5418-99dd-e16045ca19f4",
+        "position": 3,
+        "label": "[1, 2, 3]"
+       },
+       {
+        "id": "7cae37e2-d44a-589c-9c81-a6fbd41cc3bc",
+        "position": 4,
+        "label": "30"
+       }
+      ],
+      "correct": [
+       "24334d88-1f38-5026-ba36-8693fb3cc727"
+      ],
+      "explanation": "map applique la fonction à chaque élément et renvoie un nouveau tableau de même longueur."
+     },
+     {
+      "id": "66d51d74-fdda-5297-be61-656d652392ba",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que vaut [5, 10, 15].reduce((s, n) => s + n, 0) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "bb6da897-be7a-5894-b02b-18092018bde4",
+        "position": 1,
+        "label": "15"
+       },
+       {
+        "id": "4ab92587-f84f-5dda-9d20-fd9aa50e9926",
+        "position": 2,
+        "label": "30"
+       },
+       {
+        "id": "8d957519-b777-5741-bced-c6cddd18125a",
+        "position": 3,
+        "label": "[5, 15, 30]"
+       },
+       {
+        "id": "86620ebb-2d7c-5a01-ab50-96bd4fe3dae4",
+        "position": 4,
+        "label": "0"
+       }
+      ],
+      "correct": [
+       "4ab92587-f84f-5dda-9d20-fd9aa50e9926"
+      ],
+      "explanation": "reduce part de 0 et ajoute chaque élément : 0 + 5 + 10 + 15 = 30."
+     },
+     {
+      "id": "09915ece-787f-5237-ba9a-892045c1416d",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Avec const user = { nom: \"Emma\" }, que vaut user.age ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "867d42e3-030e-576b-8051-6636239c85f0",
+        "position": 1,
+        "label": "0"
+       },
+       {
+        "id": "de26bf57-869a-5133-9fd6-efeabc1d8ab2",
+        "position": 2,
+        "label": "null"
+       },
+       {
+        "id": "2228ee9a-df4b-57ad-ad66-9b1090214a2d",
+        "position": 3,
+        "label": "undefined"
+       },
+       {
+        "id": "136c32fc-0842-5af9-b633-0d3fd51a8640",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "2228ee9a-df4b-57ad-ad66-9b1090214a2d"
+      ],
+      "explanation": "Une propriété absente d'un objet vaut undefined (aucune erreur n'est levée)."
+     },
+     {
+      "id": "7ff490ed-3ee0-560b-9acd-06c94d45a1c8",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Que fait JSON.stringify({ a: 1 }) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "26e70126-761e-575a-a97a-c80f7dc206f3",
+        "position": 1,
+        "label": "Il renvoie le texte '{\"a\":1}'"
+       },
+       {
+        "id": "bbb00936-d734-5491-9421-00d5b48ca2cf",
+        "position": 2,
+        "label": "Il renvoie l'objet { a: 1 }"
+       },
+       {
+        "id": "a1ea788f-54ae-520e-ab01-c19680be1215",
+        "position": 3,
+        "label": "Il affiche l'objet"
+       },
+       {
+        "id": "4f8816e7-b450-5d20-99c1-394e5f0e727f",
+        "position": 4,
+        "label": "Il lève une erreur"
+       }
+      ],
+      "correct": [
+       "26e70126-761e-575a-a97a-c80f7dc206f3"
+      ],
+      "explanation": "JSON.stringify convertit un objet en texte au format JSON ; JSON.parse fait l'inverse."
+     }
+    ]
+   }
+  },
+  {
+   "id": "097dc98b-480a-5435-b53e-ad5deea636ad",
+   "position": 4,
+   "title": "Manipuler une page web",
+   "description": "Lire et modifier le DOM, réagir aux événements, gérer un formulaire.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "5125e8a6-5d73-5910-b18f-52355f63d065",
+     "slug": "dom",
+     "title": "Le DOM",
+     "summary": "Sélectionner des éléments, modifier texte, classes et styles.",
+     "content_md": "## Le DOM\n\nQuand le navigateur charge une page HTML, il la transforme en un arbre d'objets : le **DOM** (*Document Object Model*). Chaque balise devient un objet que JavaScript peut lire et modifier. Modifier le DOM modifie **immédiatement** ce qui est affiché.\n\nPour cette leçon, partons de cette page :\n\n```html\n<h1 id=\"titre\">Mes tâches</h1>\n<p class=\"info\">Aucune tâche pour l'instant.</p>\n<ul id=\"liste\">\n  <li>Lire la leçon</li>\n  <li>Faire les exercices</li>\n</ul>\n```\n\n## Sélectionner des éléments\n\n```js\nconst titre = document.querySelector(\"#titre\");       // par identifiant\nconst info = document.querySelector(\".info\");         // premier élément de la classe\nconst items = document.querySelectorAll(\"#liste li\"); // tous les éléments correspondants\nconsole.log(items.length); // 2\n```\n\n`querySelector` et `querySelectorAll` utilisent les **sélecteurs CSS** : `#id`, `.classe`, `balise`, `parent enfant`. `querySelector` renvoie le premier élément trouvé, ou `null` s'il n'y en a aucun.\n\n## Modifier le contenu\n\n```js\ntitre.textContent = \"Ma liste du jour\";\ninfo.textContent = `Vous avez ${items.length} tâches.`;\n```\n\n`textContent` remplace le texte d'un élément.\n\n> Il existe aussi `innerHTML`, qui interprète le texte comme du HTML. **Ne l'utilisez jamais avec une donnée saisie par un utilisateur** : un texte malveillant pourrait injecter du code dans la page (faille XSS). `textContent` est sûr.\n\n## Modifier les classes et les styles\n\nLa bonne pratique consiste à définir l'apparence en CSS et à **ajouter ou retirer des classes** en JavaScript :\n\n```css\n.termine { text-decoration: line-through; color: gray; }\n.cache { display: none; }\n```\n\n```js\nitems[0].classList.add(\"termine\");\ninfo.classList.toggle(\"cache\");      // ajoute la classe si absente, la retire sinon\nconsole.log(items[0].classList.contains(\"termine\")); // true\n```\n\nOn peut aussi modifier un style directement, pour un cas ponctuel :\n\n```js\ntitre.style.color = \"#0B4BD6\";\n```\n\n## Les attributs\n\n```js\nconst lien = document.querySelector(\"a\");\nlien.setAttribute(\"href\", \"https://smk-academy.netlify.app\");\nconsole.log(lien.getAttribute(\"href\"));\nconst image = document.querySelector(\"img\");\nimage.alt = \"Logo SMK Academy\";\n```\n\n## À retenir\n\n- Le DOM est la représentation de la page en objets JavaScript.\n- `document.querySelector(selecteurCss)` et `querySelectorAll(…)`.\n- `textContent` pour le texte ; jamais `innerHTML` avec une saisie utilisateur.\n- `classList.add / remove / toggle / contains` pour l'apparence.\n\n## Exercices\n\n### Exercice 1 — Changer le titre\n\nAvec la page de la leçon, écrivez le code qui remplace le texte du `<h1>` par « Planning » et lui ajoute la classe `important`.\n\n```solution-js\nconst titre = document.querySelector(\"#titre\");\ntitre.textContent = \"Planning\";\ntitre.classList.add(\"important\");\n```\n\n### Exercice 2 — Compter et afficher\n\nAffichez dans le paragraphe `.info` le nombre d'éléments `<li>` de la liste, sous la forme « 2 tâche(s) ».\n\n```solution-js\nconst items = document.querySelectorAll(\"#liste li\");\ndocument.querySelector(\".info\").textContent = `${items.length} tâche(s)`;\n```\n\n### Exercice 3 — Pourquoi pas innerHTML ?\n\nUn développeur écrit `zone.innerHTML = saisieUtilisateur;`. Quel est le risque, et quelle est la correction ?\n\n```solution-text\nSi l'utilisateur saisit du HTML contenant du script (par exemple une balise <img> avec un attribut onerror),\nle navigateur l'exécute : c'est une faille XSS, qui peut voler la session d'autres utilisateurs.\nCorrection : zone.textContent = saisieUtilisateur;  (le texte est affiché tel quel, jamais interprété)\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "a2af95b8-7fc0-55ea-b3da-a9743c9109fd",
+     "slug": "evenements",
+     "title": "Les événements",
+     "summary": "addEventListener, clic, saisie, création d'éléments.",
+     "content_md": "## Réagir aux actions de l'utilisateur\n\nUn **événement** est un signal envoyé par le navigateur : clic, saisie au clavier, envoi d'un formulaire, chargement… On l'écoute avec `addEventListener` :\n\n```html\n<button id=\"bouton\">Cliquez-moi</button>\n<p id=\"compteur\">0 clic</p>\n```\n\n```js\nconst bouton = document.querySelector(\"#bouton\");\nconst compteur = document.querySelector(\"#compteur\");\nlet clics = 0;\n\nbouton.addEventListener(\"click\", () => {\n  clics++;\n  compteur.textContent = `${clics} clic${clics > 1 ? \"s\" : \"\"}`;\n});\n```\n\n`addEventListener(type, fonction)` : la fonction (appelée **gestionnaire**) s'exécute **à chaque fois** que l'événement se produit, et non au moment où le code est lu.\n\n## Les événements courants\n\n| Événement | Déclenché quand… |\n|---|---|\n| `click` | on clique sur l'élément |\n| `input` | la valeur d'un champ change (à chaque frappe) |\n| `change` | la valeur d'un champ est validée (case cochée, liste choisie) |\n| `submit` | un formulaire est envoyé |\n| `keydown` | une touche est enfoncée |\n| `DOMContentLoaded` | la page HTML est entièrement chargée |\n\n## L'objet événement\n\nLe gestionnaire reçoit un objet décrivant l'événement :\n\n```js\nconst champ = document.querySelector(\"#recherche\");\nconst apercu = document.querySelector(\"#apercu\");\n\nchamp.addEventListener(\"input\", (event) => {\n  apercu.textContent = `Vous cherchez : ${event.target.value}`;\n});\n```\n\n`event.target` désigne l'élément concerné ; `.value` contient le texte saisi dans un champ.\n\n```js\ndocument.addEventListener(\"keydown\", (event) => {\n  if (event.key === \"Escape\") {\n    console.log(\"Fermeture de la fenêtre\");\n  }\n});\n```\n\n## Créer et supprimer des éléments\n\n```js\nconst liste = document.querySelector(\"#liste\");\n\nconst nouvel = document.createElement(\"li\");   // crée l'élément\nnouvel.textContent = \"Réviser le quiz\";        // lui donne un texte (sûr)\nliste.append(nouvel);                          // l'ajoute à la fin de la liste\n\nnouvel.remove();                               // le retire de la page\n```\n\n## La délégation d'événements\n\nPour réagir aux clics sur des éléments **créés dynamiquement**, on écoute leur parent une seule fois :\n\n```js\nliste.addEventListener(\"click\", (event) => {\n  if (event.target.tagName === \"LI\") {\n    event.target.classList.toggle(\"termine\");\n  }\n});\n```\n\nTous les `<li>`, présents ou futurs, réagissent au clic, sans ajouter un écouteur à chacun.\n\n## À retenir\n\n- `element.addEventListener(\"click\", fonction)` ; la fonction s'exécute à chaque événement.\n- `click`, `input`, `change`, `submit`, `keydown`.\n- `event.target` désigne l'élément ; `.value` sa valeur.\n- `createElement`, `textContent`, `append`, `remove`.\n- Délégation : un écouteur sur le parent pour tous les enfants.\n\n## Exercices\n\n### Exercice 1 — Afficher / masquer\n\nUn bouton `#toggle` doit afficher ou masquer le paragraphe `#details` à chaque clic (classe CSS `cache`).\n\n```solution-js\nconst toggle = document.querySelector(\"#toggle\");\nconst details = document.querySelector(\"#details\");\ntoggle.addEventListener(\"click\", () => {\n  details.classList.toggle(\"cache\");\n});\n```\n\n### Exercice 2 — Compteur de caractères\n\nSous une zone `<textarea id=\"message\">`, affichez dans `#reste` le nombre de caractères restants sur 280, à chaque frappe.\n\n```solution-js\nconst message = document.querySelector(\"#message\");\nconst reste = document.querySelector(\"#reste\");\nmessage.addEventListener(\"input\", () => {\n  reste.textContent = `${280 - message.value.length} caractères restants`;\n});\n```\n\n### Exercice 3 — Ajouter un élément\n\nAu clic sur `#ajouter`, ajoutez à `#liste` un `<li>` contenant le texte du champ `#tache`, puis videz le champ (ignorez un champ vide).\n\n```solution-js\nconst champ = document.querySelector(\"#tache\");\nconst liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#ajouter\").addEventListener(\"click\", () => {\n  const texte = champ.value.trim();\n  if (!texte) return;\n  const li = document.createElement(\"li\");\n  li.textContent = texte;\n  liste.append(li);\n  champ.value = \"\";\n});\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "5ae54fb9-1edf-5d12-9048-a7862c553681",
+     "slug": "formulaires",
+     "title": "Les formulaires",
+     "summary": "Lire les champs, valider, empêcher l'envoi, afficher les erreurs.",
+     "content_md": "## Intercepter l'envoi d'un formulaire\n\nPar défaut, envoyer un formulaire recharge la page. Pour traiter les données en JavaScript, on écoute l'événement `submit` et on **empêche le comportement par défaut** :\n\n```html\n<form id=\"inscription\" novalidate>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" name=\"email\" type=\"email\" required>\n  <label for=\"age\">Âge</label>\n  <input id=\"age\" name=\"age\" type=\"number\">\n  <button type=\"submit\">S'inscrire</button>\n  <p id=\"erreur\" role=\"alert\"></p>\n</form>\n```\n\n```js\nconst form = document.querySelector(\"#inscription\");\nform.addEventListener(\"submit\", (event) => {\n  event.preventDefault();               // pas de rechargement\n  const donnees = new FormData(form);\n  const email = donnees.get(\"email\").trim();\n  const age = Number(donnees.get(\"age\"));\n  console.log(email, age);\n});\n```\n\n`FormData` lit tous les champs d'un formulaire par leur attribut `name`. Rappel : les valeurs sont des **chaînes**, d'où `Number()`.\n\n## Valider les données\n\nLa validation consiste à vérifier les données **avant** de les utiliser, et à expliquer clairement les erreurs :\n\n```js\nfunction valider(email, age) {\n  const erreurs = [];\n  if (!email.includes(\"@\")) erreurs.push(\"L'adresse email n'est pas valide.\");\n  if (!Number.isInteger(age) || age < 16) erreurs.push(\"Vous devez avoir au moins 16 ans.\");\n  return erreurs;\n}\nconsole.log(valider(\"amina@exemple.fr\", 22));\nconsole.log(valider(\"amina\", 12));\n```\n\n```text\n[]\n[\n  \"L'adresse email n'est pas valide.\",\n  'Vous devez avoir au moins 16 ans.'\n]\n```\n\n(Node.js et la console affichent un tableau sur plusieurs lignes quand il est long.)\n\nSéparer la validation dans une fonction qui **renvoie** la liste des erreurs permet de la tester facilement.\n\n## Afficher les erreurs\n\n```js\nform.addEventListener(\"submit\", (event) => {\n  event.preventDefault();\n  const donnees = new FormData(form);\n  const erreurs = valider(donnees.get(\"email\").trim(), Number(donnees.get(\"age\")));\n  const zone = document.querySelector(\"#erreur\");\n  if (erreurs.length > 0) {\n    zone.textContent = erreurs.join(\" \");\n    return;\n  }\n  zone.textContent = \"\";\n  form.reset();\n  alert(\"Inscription enregistrée !\");\n});\n```\n\nL'attribut `role=\"alert\"` fait lire le message par les lecteurs d'écran : l'erreur est **accessible** à tous.\n\n## La validation intégrée au HTML\n\nLes attributs `required`, `type=\"email\"`, `min`, `max`, `minlength`, `pattern` déclenchent une validation par le navigateur, sans JavaScript. On peut l'interroger :\n\n```js\nconst champEmail = document.querySelector(\"#email\");\nconsole.log(champEmail.checkValidity());      // true ou false\nconsole.log(champEmail.validationMessage);    // message du navigateur\n```\n\nL'attribut `novalidate` sur le formulaire désactive les bulles du navigateur pour afficher vos propres messages.\n\n## La règle de sécurité fondamentale\n\nLa validation en JavaScript améliore le **confort** de l'utilisateur, mais elle **ne protège rien** : n'importe qui peut la contourner (outils de développement, requête directe au serveur). **Le serveur doit toujours revérifier les données.** C'est exactement ce que fait SMK Academy : les notes de vos quiz sont calculées par la base de données, jamais par le navigateur.\n\n## À retenir\n\n- `submit` + `event.preventDefault()` pour traiter le formulaire en JavaScript.\n- `new FormData(form).get(\"name\")` ; les valeurs sont des chaînes.\n- Une fonction de validation qui renvoie la liste des erreurs.\n- Messages d'erreur clairs et accessibles (`role=\"alert\"`).\n- La validation côté navigateur ne remplace jamais celle du serveur.\n\n## Exercices\n\n### Exercice 1 — Fonction de validation\n\nÉcrivez `validerMotDePasse(mdp)` qui renvoie la liste des erreurs : au moins 8 caractères, au moins un chiffre. Testez avec `\"abc\"` puis `\"securite2026\"`.\n\n```solution-js\nfunction validerMotDePasse(mdp) {\n  const erreurs = [];\n  if (mdp.length < 8) erreurs.push(\"8 caractères minimum\");\n  if (!/[0-9]/.test(mdp)) erreurs.push(\"au moins un chiffre\");\n  return erreurs;\n}\nconsole.log(validerMotDePasse(\"abc\"));\nconsole.log(validerMotDePasse(\"securite2026\"));\n```\n\n```text\n[ '8 caractères minimum', 'au moins un chiffre' ]\n[]\n```\n\n### Exercice 2 — Vrai ou faux ?\n\n« Puisque mon formulaire vérifie l'email en JavaScript, mon serveur peut faire confiance aux emails reçus. »\n\n```solution-text\nFaux. La validation côté navigateur se contourne facilement (désactivation du script, outils de\ndéveloppement, envoi direct d'une requête). Le serveur doit toujours revérifier toutes les données reçues.\n```",
+     "duration_minutes": 35,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e400769f-89d0-5eda-88da-797a2e57f684",
+    "title": "Quiz — Manipuler une page web",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "ebdc0a6e-e02b-5e16-adc3-22129a1a4be9",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Qu'est-ce que le DOM ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cb26565b-0d73-5f1c-8190-28fb94eeff62",
+        "position": 1,
+        "label": "Un langage de style"
+       },
+       {
+        "id": "4caf49de-a270-5117-bc36-af0f1599b0e6",
+        "position": 2,
+        "label": "La représentation de la page HTML sous forme d'objets manipulables par JavaScript"
+       },
+       {
+        "id": "e09f41b7-b8c4-5991-b7ed-0cfa332456f4",
+        "position": 3,
+        "label": "Un serveur web"
+       },
+       {
+        "id": "5bc0d6d2-ef08-5d85-9fd1-24bc9f2ad1f5",
+        "position": 4,
+        "label": "Une base de données du navigateur"
+       }
+      ],
+      "correct": [
+       "4caf49de-a270-5117-bc36-af0f1599b0e6"
+      ],
+      "explanation": "Le DOM (Document Object Model) est l'arbre d'objets construit par le navigateur à partir du HTML."
+     },
+     {
+      "id": "ac341882-1f4c-5056-8cb7-5a132ed8cfb9",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle instruction sélectionne l'élément dont l'identifiant est « menu » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "272f79cb-7bc4-5b98-8de4-8f79661bee00",
+        "position": 1,
+        "label": "document.querySelector(\".menu\")"
+       },
+       {
+        "id": "aa0744a9-4f3d-5fad-ae57-94083490074a",
+        "position": 2,
+        "label": "document.querySelector(\"#menu\")"
+       },
+       {
+        "id": "6e37f23e-98cb-55b1-9c89-ec2a826fa274",
+        "position": 3,
+        "label": "document.querySelector(\"menu\")"
+       },
+       {
+        "id": "8da6abd7-b33c-5e94-822d-ef5230756b26",
+        "position": 4,
+        "label": "document.getElement(\"menu\")"
+       }
+      ],
+      "correct": [
+       "aa0744a9-4f3d-5fad-ae57-94083490074a"
+      ],
+      "explanation": "querySelector utilise les sélecteurs CSS : # pour un identifiant, . pour une classe."
+     },
+     {
+      "id": "65c12ed1-1190-512d-bb78-0eb7b597458f",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Pourquoi utiliser textContent plutôt qu'innerHTML pour afficher une saisie utilisateur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3166aa52-5678-5483-9f83-584cda2e633b",
+        "position": 1,
+        "label": "textContent est plus rapide à écrire"
+       },
+       {
+        "id": "b2775566-fb51-5cb2-a6a4-5f333cdcf9d9",
+        "position": 2,
+        "label": "innerHTML interprète le HTML et peut exécuter du code injecté (faille XSS)"
+       },
+       {
+        "id": "2f3d306d-44c5-5c18-b5fd-b653428daae8",
+        "position": 3,
+        "label": "innerHTML ne fonctionne pas dans les listes"
+       },
+       {
+        "id": "e982f9a7-0872-5820-9089-d0147e2e8d9b",
+        "position": 4,
+        "label": "Il n'y a aucune différence"
+       }
+      ],
+      "correct": [
+       "b2775566-fb51-5cb2-a6a4-5f333cdcf9d9"
+      ],
+      "explanation": "textContent affiche le texte tel quel ; innerHTML l'interprète, ce qui ouvre la porte aux injections."
+     },
+     {
+      "id": "62c4753f-3831-5842-a204-5305d693a75f",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Que fait element.classList.toggle(\"actif\") ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ac043495-699b-59d1-ac31-5c43ce844fa9",
+        "position": 1,
+        "label": "Ajoute toujours la classe"
+       },
+       {
+        "id": "1974b9ab-9476-5455-a5a8-8d9a161fc3e1",
+        "position": 2,
+        "label": "Retire toujours la classe"
+       },
+       {
+        "id": "8827f1bd-c154-5cfd-b759-0931aed42667",
+        "position": 3,
+        "label": "Ajoute la classe si elle est absente, la retire sinon"
+       },
+       {
+        "id": "52a58cc9-705c-5512-b931-e62bd388077e",
+        "position": 4,
+        "label": "Vérifie si la classe existe"
+       }
+      ],
+      "correct": [
+       "8827f1bd-c154-5cfd-b759-0931aed42667"
+      ],
+      "explanation": "toggle bascule la présence de la classe ; contains vérifie sa présence."
+     },
+     {
+      "id": "f1d1bae4-bd5a-5f13-9351-d3d2dafe47c6",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quand la fonction passée à addEventListener(\"click\", f) s'exécute-t-elle ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "404da6cc-33d0-5265-b6ab-764a8bb591a4",
+        "position": 1,
+        "label": "Immédiatement"
+       },
+       {
+        "id": "d02e1f28-d382-5857-b6ff-26e6c7df12b2",
+        "position": 2,
+        "label": "À chaque clic sur l'élément"
+       },
+       {
+        "id": "b6ca54dc-1bae-5203-b56f-9ee8942bab2a",
+        "position": 3,
+        "label": "Une seule fois, au premier clic"
+       },
+       {
+        "id": "cb9e3fcb-2984-5c57-95fb-952ec9810e25",
+        "position": 4,
+        "label": "Au chargement de la page"
+       }
+      ],
+      "correct": [
+       "d02e1f28-d382-5857-b6ff-26e6c7df12b2"
+      ],
+      "explanation": "Le gestionnaire est exécuté à chaque fois que l'événement se produit."
+     },
+     {
+      "id": "5324511f-de83-5bb8-be49-bc61595819b0",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Dans un gestionnaire d'événement, que désigne event.target ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "38dfdd1f-0650-5593-82e5-5898dcef3233",
+        "position": 1,
+        "label": "La page entière"
+       },
+       {
+        "id": "c62e35c7-5376-5343-a49e-bce626bc9c9a",
+        "position": 2,
+        "label": "L'élément sur lequel l'événement s'est produit"
+       },
+       {
+        "id": "fbf08819-8aa4-5d49-8fac-1f3358e97fca",
+        "position": 3,
+        "label": "La fonction gestionnaire"
+       },
+       {
+        "id": "70db94b1-afcd-5d7f-be05-ed7e381248a7",
+        "position": 4,
+        "label": "Le formulaire"
+       }
+      ],
+      "correct": [
+       "c62e35c7-5376-5343-a49e-bce626bc9c9a"
+      ],
+      "explanation": "event.target est l'élément concerné par l'événement (bouton cliqué, champ modifié…)."
+     },
+     {
+      "id": "05971869-7a1a-544b-9f8f-a124c8261dd6",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quel événement se déclenche à chaque frappe dans un champ de texte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8af8b91d-8e27-5b1a-aa8c-2e3525bbd742",
+        "position": 1,
+        "label": "click"
+       },
+       {
+        "id": "27df5556-5692-5541-8aab-c01b23374eac",
+        "position": 2,
+        "label": "submit"
+       },
+       {
+        "id": "19f563d0-1c71-5fa9-b077-844c3d012081",
+        "position": 3,
+        "label": "input"
+       },
+       {
+        "id": "c4ff6916-5f3d-59be-a841-e37a1c24cd65",
+        "position": 4,
+        "label": "load"
+       }
+      ],
+      "correct": [
+       "19f563d0-1c71-5fa9-b077-844c3d012081"
+      ],
+      "explanation": "input se déclenche à chaque modification de la valeur ; change seulement à la validation."
+     },
+     {
+      "id": "9bb8d40c-2298-5898-981e-72c2388e2b5e",
+      "position": 8,
+      "kind": "single",
+      "prompt": "À quoi sert event.preventDefault() dans un gestionnaire submit ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2d873128-66fe-558f-a882-cb36138bd7b5",
+        "position": 1,
+        "label": "À vider le formulaire"
+       },
+       {
+        "id": "747553d2-8dc7-58eb-bd41-504e4b35e409",
+        "position": 2,
+        "label": "À empêcher l'envoi et le rechargement par défaut de la page"
+       },
+       {
+        "id": "0a010154-c11a-524c-a9e8-d362120e4a40",
+        "position": 3,
+        "label": "À valider les champs"
+       },
+       {
+        "id": "1a906766-f464-5f3f-a97e-283e37879c64",
+        "position": 4,
+        "label": "À supprimer le formulaire"
+       }
+      ],
+      "correct": [
+       "747553d2-8dc7-58eb-bd41-504e4b35e409"
+      ],
+      "explanation": "preventDefault empêche le comportement par défaut (envoi et rechargement) pour traiter les données en JavaScript."
+     },
+     {
+      "id": "1bfdd14d-4363-59f1-be4e-948aa0972c55",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quelles affirmations sur la validation des formulaires sont exactes ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cc23c3b6-bf2c-550e-91ef-3737bda01ecc",
+        "position": 1,
+        "label": "La validation en JavaScript améliore le confort de l'utilisateur."
+       },
+       {
+        "id": "ce813d29-8153-54db-aaca-2b7f2ed77334",
+        "position": 2,
+        "label": "La validation en JavaScript suffit à protéger le serveur."
+       },
+       {
+        "id": "d7e66445-9cf0-5ba5-9599-703d0ad8fa9c",
+        "position": 3,
+        "label": "Le serveur doit toujours revérifier les données."
+       },
+       {
+        "id": "1b9244a4-0684-5d42-a8fd-a4c72ee9469e",
+        "position": 4,
+        "label": "Les valeurs lues dans un formulaire sont des chaînes de caractères."
+       }
+      ],
+      "correct": [
+       "cc23c3b6-bf2c-550e-91ef-3737bda01ecc",
+       "d7e66445-9cf0-5ba5-9599-703d0ad8fa9c",
+       "1b9244a4-0684-5d42-a8fd-a4c72ee9469e"
+      ],
+      "explanation": "La validation côté navigateur se contourne : seul le serveur peut garantir la validité des données."
+     },
+     {
+      "id": "ea068612-e07d-5338-827b-dc0625ec7680",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quel est l'avantage de la délégation d'événements ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "925d48c5-7ee6-5fa9-98b4-ca65c13c06ba",
+        "position": 1,
+        "label": "Elle accélère le chargement des images"
+       },
+       {
+        "id": "67769e1b-d685-58ff-91ae-ed59a810d2c7",
+        "position": 2,
+        "label": "Un seul écouteur sur le parent gère aussi les éléments ajoutés plus tard"
+       },
+       {
+        "id": "230b80e8-4b5e-5f6e-9a8e-eb33e6f99cb6",
+        "position": 3,
+        "label": "Elle remplace le CSS"
+       },
+       {
+        "id": "44c4a26b-3418-5188-9b3a-23ee0c7eb1aa",
+        "position": 4,
+        "label": "Elle empêche les clics"
+       }
+      ],
+      "correct": [
+       "67769e1b-d685-58ff-91ae-ed59a810d2c7"
+      ],
+      "explanation": "En écoutant le parent, on gère tous les enfants, y compris ceux créés dynamiquement."
+     }
+    ]
+   }
+  },
+  {
+   "id": "87502796-f789-56b4-933c-2b082d47acdc",
+   "position": 5,
+   "title": "L'asynchrone et fetch",
+   "description": "Comprendre l'asynchrone, utiliser les promesses, async/await et fetch, puis mini-projet.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "fdb52e4a-f54d-56dd-a48e-4ef19cc5ecf1",
+     "slug": "asynchrone",
+     "title": "Comprendre l'asynchrone",
+     "summary": "setTimeout, file d'attente et promesses.",
+     "content_md": "## Le problème de l'attente\n\nCertaines opérations prennent du temps : télécharger des données, attendre une réponse d'un serveur, lire un fichier. Si JavaScript attendait sans rien faire, la page entière serait **figée** pendant ce temps. JavaScript lance donc ces opérations et **continue** son travail : c'est la programmation **asynchrone**.\n\n## `setTimeout` : exécuter plus tard\n\n```js\nconsole.log(\"Début\");\nsetTimeout(() => {\n  console.log(\"Deux secondes plus tard\");\n}, 2000);\nconsole.log(\"Fin\");\n```\n\n```text\nDébut\nFin\nDeux secondes plus tard\n```\n\n« Fin » s'affiche **avant** le message différé : `setTimeout` programme la fonction, puis le programme continue immédiatement.\n\nMême avec un délai de 0, la fonction attend que le code en cours soit terminé :\n\n```js\nsetTimeout(() => console.log(\"B\"), 0);\nconsole.log(\"A\");\n```\n\n```text\nA\nB\n```\n\nJavaScript exécute **une seule chose à la fois**. Les fonctions différées sont placées dans une **file d'attente** et exécutées quand le code en cours est terminé.\n\n## Les promesses\n\nUne **promesse** (*Promise*) représente un résultat qui arrivera plus tard. Elle est d'abord **en attente**, puis soit **tenue** (*fulfilled*, avec une valeur), soit **rompue** (*rejected*, avec une erreur).\n\n```js\nfunction attendre(ms) {\n  return new Promise((resolve) => setTimeout(resolve, ms));\n}\n\nattendre(500).then(() => {\n  console.log(\"500 ms écoulées\");\n});\n```\n\n```text\n500 ms écoulées\n```\n\n- `.then(fonction)` s'exécute quand la promesse est tenue ;\n- `.catch(fonction)` s'exécute en cas d'erreur.\n\n```js\nfunction diviser(a, b) {\n  return new Promise((resolve, reject) => {\n    if (b === 0) reject(new Error(\"Division par zéro\"));\n    else resolve(a / b);\n  });\n}\n\ndiviser(10, 2).then((r) => console.log(r));\ndiviser(1, 0).catch((e) => console.log(`Erreur : ${e.message}`));\n```\n\n```text\n5\nErreur : Division par zéro\n```\n\nVous écrirez rarement `new Promise` vous-même : les fonctions du navigateur (comme `fetch`) **renvoient** déjà des promesses. L'essentiel est de savoir les **utiliser**, ce que la leçon suivante simplifie avec `async` / `await`.\n\n## À retenir\n\n- Asynchrone : une opération longue est lancée, le programme continue.\n- `setTimeout(fonction, ms)` exécute plus tard ; le code suivant s'exécute d'abord.\n- Une promesse est en attente, puis tenue (`.then`) ou rompue (`.catch`).\n\n## Exercices\n\n### Exercice 1 — Prédisez l'ordre\n\nDans quel ordre s'affichent les lettres ?\n\n```solution-js\nconsole.log(\"1\");\nsetTimeout(() => console.log(\"2\"), 0);\nconsole.log(\"3\");\n```\n\n```text\n1\n3\n2\n```\n\n### Exercice 2 — Promesse de vérification\n\nÉcrivez une fonction `verifierAge(age)` qui renvoie une promesse tenue avec `\"Accès autorisé\"` si l'âge est supérieur ou égal à 18, rompue avec l'erreur `\"Accès refusé\"` sinon. Testez avec 20 et 15.\n\n```solution-js\nfunction verifierAge(age) {\n  return new Promise((resolve, reject) => {\n    if (age >= 18) resolve(\"Accès autorisé\");\n    else reject(new Error(\"Accès refusé\"));\n  });\n}\nverifierAge(20).then((m) => console.log(m));\nverifierAge(15).catch((e) => console.log(e.message));\n```\n\n```text\nAccès autorisé\nAccès refusé\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "85432564-c11e-52a5-83d0-db76608e8e59",
+     "slug": "async-await-fetch",
+     "title": "async/await et fetch",
+     "summary": "Récupérer des données JSON et gérer les erreurs.",
+     "content_md": "## `async` et `await`\n\n`async` / `await` permet d'écrire du code asynchrone **comme s'il était séquentiel**, sans enchaîner les `.then` :\n\n```js\nconst attendre = (ms) => new Promise((resolve) => setTimeout(resolve, ms));\n\nasync function demo() {\n  console.log(\"Étape 1\");\n  await attendre(300);\n  console.log(\"Étape 2, après 300 ms\");\n}\ndemo();\n```\n\n```text\nÉtape 1\nÉtape 2, après 300 ms\n```\n\n- `async` devant une fonction indique qu'elle contient des opérations asynchrones ; elle renvoie toujours une promesse ;\n- `await` **attend** le résultat d'une promesse avant de passer à la ligne suivante, sans figer la page.\n\n`await` ne s'utilise qu'à l'intérieur d'une fonction `async` (ou au premier niveau d'un module JavaScript).\n\n## Gérer les erreurs : `try` / `catch`\n\n```js\nasync function charger() {\n  try {\n    await Promise.reject(new Error(\"Serveur indisponible\"));\n    console.log(\"Jamais affiché\");\n  } catch (erreur) {\n    console.log(`Problème : ${erreur.message}`);\n  }\n}\ncharger();\n```\n\n```text\nProblème : Serveur indisponible\n```\n\nSi une promesse attendue avec `await` est rompue, l'exécution saute directement dans le bloc `catch`.\n\n## Récupérer des données avec `fetch`\n\n`fetch(url)` envoie une requête HTTP et renvoie une promesse de **réponse**. Le schéma standard :\n\n```js\nasync function chargerUtilisateurs() {\n  try {\n    const reponse = await fetch(\"https://jsonplaceholder.typicode.com/users\");\n    if (!reponse.ok) {\n      throw new Error(`Erreur HTTP ${reponse.status}`);\n    }\n    const utilisateurs = await reponse.json();\n    console.log(`${utilisateurs.length} utilisateurs reçus`);\n    console.log(utilisateurs[0].name);\n  } catch (erreur) {\n    console.log(`Impossible de charger les données : ${erreur.message}`);\n  }\n}\nchargerUtilisateurs();\n```\n\nTrois étapes, trois points d'attention :\n\n1. `await fetch(url)` : attend la réponse du serveur ;\n2. `reponse.ok` : **`fetch` ne lève pas d'erreur pour un code 404 ou 500**, il faut vérifier le statut soi-même ;\n3. `await reponse.json()` : lit le corps de la réponse et le convertit en objet JavaScript.\n\n*JSONPlaceholder* est un service public de démonstration : la requête ci-dessus fonctionne depuis votre navigateur et renvoie dix utilisateurs fictifs.\n\n## Envoyer des données\n\n```js\nasync function creerTache(titre) {\n  const reponse = await fetch(\"https://jsonplaceholder.typicode.com/todos\", {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify({ title: titre, completed: false }),\n  });\n  return reponse.json();\n}\n```\n\n`method` choisit le type de requête, `headers` décrit le format, `body` contient les données en JSON.\n\n## Afficher les données dans la page\n\n```js\nasync function afficherUtilisateurs() {\n  const liste = document.querySelector(\"#utilisateurs\");\n  liste.textContent = \"Chargement…\";\n  try {\n    const reponse = await fetch(\"https://jsonplaceholder.typicode.com/users\");\n    if (!reponse.ok) throw new Error(`Erreur HTTP ${reponse.status}`);\n    const utilisateurs = await reponse.json();\n    liste.textContent = \"\";\n    for (const u of utilisateurs) {\n      const li = document.createElement(\"li\");\n      li.textContent = `${u.name} (${u.email})`;\n      liste.append(li);\n    }\n  } catch (erreur) {\n    liste.textContent = \"Le chargement a échoué. Réessayez plus tard.\";\n  }\n}\n```\n\nPrévoyez toujours trois états : **chargement**, **succès**, **erreur**.\n\n## À retenir\n\n- `async function` + `await promesse` pour un code lisible.\n- `try` / `catch` pour gérer les erreurs.\n- `fetch(url)` → vérifier `reponse.ok` → `await reponse.json()`.\n- `POST` : `method`, `headers`, `body: JSON.stringify(…)`.\n- Afficher les états chargement, succès et erreur.\n\n## Exercices\n\n### Exercice 1 — Réécrire avec async/await\n\nRéécrivez avec `async` / `await` : `attendre(200).then(() => console.log(\"Prêt\"));` (avec la fonction `attendre` de la leçon).\n\n```solution-js\nconst attendre = (ms) => new Promise((resolve) => setTimeout(resolve, ms));\nasync function main() {\n  await attendre(200);\n  console.log(\"Prêt\");\n}\nmain();\n```\n\n```text\nPrêt\n```\n\n### Exercice 2 — Trouvez l'oubli\n\nCe code n'affiche aucune erreur quand l'URL n'existe pas (404). Pourquoi, et comment le corriger ?\n\n```solution-text\nfetch ne rejette sa promesse qu'en cas d'échec réseau ; une réponse 404 ou 500 est considérée comme « reçue ».\nIl faut tester le statut : if (!reponse.ok) throw new Error(`Erreur HTTP ${reponse.status}`);\navant d'appeler reponse.json().\n```\n\n### Exercice 3 — Charger une tâche\n\nÉcrivez une fonction `async` qui charge `https://jsonplaceholder.typicode.com/todos/1` et affiche son titre, avec gestion des erreurs.\n\n```solution-js\nasync function chargerTache() {\n  try {\n    const reponse = await fetch(\"https://jsonplaceholder.typicode.com/todos/1\");\n    if (!reponse.ok) throw new Error(`Erreur HTTP ${reponse.status}`);\n    const tache = await reponse.json();\n    console.log(tache.title);\n  } catch (erreur) {\n    console.log(`Échec : ${erreur.message}`);\n  }\n}\nchargerTache();\n```",
+     "duration_minutes": 35,
+     "position": 2
+    },
+    {
+     "id": "32e45c62-7214-5193-bebc-a214faec3c20",
+     "slug": "mini-projet",
+     "title": "Mini-projet : liste de tâches",
+     "summary": "Une application complète : DOM, événements, tableaux et stockage local.",
+     "content_md": "## Le projet\n\nVous allez construire une **liste de tâches** complète qui mobilise toute la formation :\n\n- ajouter une tâche depuis un formulaire ;\n- cocher une tâche terminée ;\n- supprimer une tâche ;\n- afficher le nombre de tâches restantes ;\n- **conserver les tâches** après un rechargement de la page.\n\nCréez trois fichiers dans un même dossier : `index.html`, `style.css` et `app.js`, puis ouvrez `index.html` dans votre navigateur.\n\n## Étape 1 — La page HTML\n\n```html\n<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Mes tâches</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n  </head>\n  <body>\n    <main>\n      <h1>Mes tâches</h1>\n      <form id=\"formulaire\">\n        <label for=\"champ\">Nouvelle tâche</label>\n        <input id=\"champ\" name=\"titre\" maxlength=\"100\" required>\n        <button type=\"submit\">Ajouter</button>\n      </form>\n      <ul id=\"liste\"></ul>\n      <p id=\"resume\" aria-live=\"polite\"></p>\n    </main>\n    <script src=\"app.js\"></script>\n  </body>\n</html>\n```\n\n## Étape 2 — Un peu de style\n\n```css\nbody { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; }\nform { display: flex; gap: .5rem; flex-wrap: wrap; }\ninput { flex: 1; padding: .5rem; }\nli { display: flex; align-items: center; gap: .5rem; padding: .4rem 0; }\nli.terminee span { text-decoration: line-through; color: gray; }\n```\n\n## Étape 3 — Les données et la logique\n\nLa règle d'or : les **données** (un tableau d'objets) sont la source de vérité ; l'affichage est **recalculé** à partir d'elles à chaque changement.\n\n```js\nlet taches = [];\nlet prochainId = 1;\n\nfunction ajouter(titre) {\n  taches.push({ id: prochainId++, titre, terminee: false });\n}\n\nfunction basculer(id) {\n  taches = taches.map((t) => (t.id === id ? { ...t, terminee: !t.terminee } : t));\n}\n\nfunction supprimer(id) {\n  taches = taches.filter((t) => t.id !== id);\n}\n\nfunction restantes() {\n  return taches.filter((t) => !t.terminee).length;\n}\n\najouter(\"Lire la leçon\");\najouter(\"Faire le quiz\");\nbasculer(taches[0].id);\nconsole.log(taches.map((t) => `${t.titre} : ${t.terminee ? \"faite\" : \"à faire\"}`));\nconsole.log(restantes());\n```\n\n```text\n[ 'Lire la leçon : faite', 'Faire le quiz : à faire' ]\n1\n```\n\n`{ ...t, terminee: !t.terminee }` crée une **copie** de l'objet en inversant `terminee`.\n\nChaque tâche reçoit un identifiant unique grâce au compteur `prochainId`.\n\n> Piège classique : utiliser `Date.now()` comme identifiant. Deux tâches créées dans la même milliseconde (comme ici, l'une après l'autre) reçoivent alors le **même** identifiant, et cocher l'une coche aussi l'autre. Dans une vraie application, utilisez `crypto.randomUUID()`, disponible dans tous les navigateurs récents.\n\n## Étape 4 — L'affichage\n\n```js\nconst liste = document.querySelector(\"#liste\");\nconst resume = document.querySelector(\"#resume\");\n\nfunction afficher() {\n  liste.textContent = \"\";\n  for (const tache of taches) {\n    const li = document.createElement(\"li\");\n    li.dataset.id = tache.id;\n    li.classList.toggle(\"terminee\", tache.terminee);\n\n    const caseACocher = document.createElement(\"input\");\n    caseACocher.type = \"checkbox\";\n    caseACocher.checked = tache.terminee;\n    caseACocher.setAttribute(\"aria-label\", `Marquer « ${tache.titre} » comme terminée`);\n\n    const texte = document.createElement(\"span\");\n    texte.textContent = tache.titre;\n\n    const bouton = document.createElement(\"button\");\n    bouton.textContent = \"Supprimer\";\n\n    li.append(caseACocher, texte, bouton);\n    liste.append(li);\n  }\n  const n = restantes();\n  resume.textContent = n === 0 ? \"Tout est fait !\" : `${n} tâche(s) restante(s)`;\n}\n```\n\n## Étape 5 — Les événements\n\n```js\ndocument.querySelector(\"#formulaire\").addEventListener(\"submit\", (event) => {\n  event.preventDefault();\n  const champ = document.querySelector(\"#champ\");\n  const titre = champ.value.trim();\n  if (!titre) return;\n  ajouter(titre);\n  champ.value = \"\";\n  enregistrer();\n  afficher();\n});\n\nliste.addEventListener(\"click\", (event) => {\n  const li = event.target.closest(\"li\");\n  if (!li) return;\n  const id = Number(li.dataset.id);\n  if (event.target.type === \"checkbox\") basculer(id);\n  else if (event.target.tagName === \"BUTTON\") supprimer(id);\n  else return;\n  enregistrer();\n  afficher();\n});\n```\n\n`closest(\"li\")` remonte jusqu'au `<li>` qui contient l'élément cliqué : c'est la **délégation d'événements**.\n\n## Étape 6 — Conserver les tâches : `localStorage`\n\n`localStorage` stocke du **texte** dans le navigateur, de façon durable, pour ce site uniquement. On y enregistre le tableau en JSON :\n\n```js\nfunction enregistrer() {\n  localStorage.setItem(\"taches\", JSON.stringify(taches));\n}\n\nfunction charger() {\n  try {\n    taches = JSON.parse(localStorage.getItem(\"taches\")) ?? [];\n  } catch {\n    taches = [];\n  }\n  prochainId = Math.max(0, ...taches.map((t) => t.id)) + 1;\n}\n\ncharger();\nafficher();\n```\n\n`??` fournit une valeur par défaut quand la valeur de gauche est `null` ou `undefined` (aucune donnée enregistrée). Le `try` / `catch` protège contre des données corrompues.\n\n> `localStorage` est visible et modifiable par l'utilisateur, et par tout script exécuté sur la page : n'y stockez **jamais** de mot de passe ni de donnée sensible.\n\n## Pour aller plus loin\n\n- ajouter un filtre « Toutes / À faire / Terminées » ;\n- permettre de modifier une tâche par double-clic ;\n- synchroniser les tâches avec un serveur grâce à `fetch` (leçon précédente).\n\n## À retenir\n\n- Les données sont la source de vérité ; l'affichage est recalculé à chaque changement.\n- `createElement` + `textContent` pour un affichage sûr.\n- Délégation d'événements avec `closest`.\n- `localStorage` + `JSON.stringify` / `JSON.parse` pour conserver des données non sensibles.",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "59ec1e34-1ba9-57fb-94e3-30888559b14e",
+    "title": "Quiz — L'asynchrone et fetch",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "4936fcda-94a4-52de-8f7e-7a0ccd00dde6",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Dans quel ordre s'affichent les messages ?",
+      "code": "console.log(\"A\");\nsetTimeout(() => console.log(\"B\"), 0);\nconsole.log(\"C\");",
+      "points": 2,
+      "options": [
+       {
+        "id": "648d5bdb-6b98-5f1a-beb4-bdf429c7c001",
+        "position": 1,
+        "label": "A, B, C"
+       },
+       {
+        "id": "de5c0054-4cfe-5c7f-a617-40b1a215636b",
+        "position": 2,
+        "label": "A, C, B"
+       },
+       {
+        "id": "c4ff9d43-1026-5a74-8bd6-e56633d199c3",
+        "position": 3,
+        "label": "B, A, C"
+       },
+       {
+        "id": "f1ff14ce-52c4-56e7-b9b9-3b2ca2f301b0",
+        "position": 4,
+        "label": "C, B, A"
+       }
+      ],
+      "correct": [
+       "de5c0054-4cfe-5c7f-a617-40b1a215636b"
+      ],
+      "explanation": "Même avec un délai de 0, la fonction différée attend la fin du code en cours : A, C, puis B."
+     },
+     {
+      "id": "d4c9dc17-8074-539e-addb-871269c6d85b",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que représente une promesse (Promise) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "14444dec-9792-5b9e-b665-00f493f00b47",
+        "position": 1,
+        "label": "Une variable constante"
+       },
+       {
+        "id": "afcb282c-96b9-51e1-8ddf-e4468f6ae171",
+        "position": 2,
+        "label": "Un résultat qui sera disponible plus tard, ou une erreur"
+       },
+       {
+        "id": "2ac4ad4e-45b0-5c23-87f9-49545f7e2994",
+        "position": 3,
+        "label": "Une boucle infinie"
+       },
+       {
+        "id": "9f1bf621-00f9-54e8-8b2c-10e0d08ecb0d",
+        "position": 4,
+        "label": "Un événement de clic"
+       }
+      ],
+      "correct": [
+       "afcb282c-96b9-51e1-8ddf-e4468f6ae171"
+      ],
+      "explanation": "Une promesse est d'abord en attente, puis tenue (avec une valeur) ou rompue (avec une erreur)."
+     },
+     {
+      "id": "c2e7c056-7312-5be0-a74a-d9c44af1a7c8",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle méthode s'exécute quand une promesse est rompue ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "abab3e66-136d-582b-9f0a-753d218a16b7",
+        "position": 1,
+        "label": ".then()"
+       },
+       {
+        "id": "51a51000-f048-52d7-94fb-75f906726d4f",
+        "position": 2,
+        "label": ".catch()"
+       },
+       {
+        "id": "494047cd-2b1e-512b-a552-220bd94e71c0",
+        "position": 3,
+        "label": ".finally() uniquement"
+       },
+       {
+        "id": "aba713f6-ee0a-5987-b01d-049c8630b21d",
+        "position": 4,
+        "label": ".resolve()"
+       }
+      ],
+      "correct": [
+       "51a51000-f048-52d7-94fb-75f906726d4f"
+      ],
+      "explanation": ".catch() traite les erreurs ; .then() le résultat d'une promesse tenue."
+     },
+     {
+      "id": "a0a5c6d9-1610-581a-b58c-7495c01aab3d",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Où peut-on utiliser await ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "45b73685-4bc3-5302-ba7a-49b6b41f3fa2",
+        "position": 1,
+        "label": "Partout"
+       },
+       {
+        "id": "59af1c6d-8ac7-5552-b59d-75be53c922fb",
+        "position": 2,
+        "label": "Dans une fonction déclarée async (ou au premier niveau d'un module)"
+       },
+       {
+        "id": "092500ee-a5d5-51d3-943f-aa4663954c6d",
+        "position": 3,
+        "label": "Uniquement dans une boucle"
+       },
+       {
+        "id": "e2c692d7-f9cc-5902-b050-5858d04a142f",
+        "position": 4,
+        "label": "Uniquement avec setTimeout"
+       }
+      ],
+      "correct": [
+       "59af1c6d-8ac7-5552-b59d-75be53c922fb"
+      ],
+      "explanation": "await n'est autorisé que dans une fonction async ou au premier niveau d'un module JavaScript."
+     },
+     {
+      "id": "4eea3d25-355c-5373-8fe4-3a4c2fa3b1ae",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que renvoie fetch(url) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "eedc23b2-7110-54e4-b623-29469aa98705",
+        "position": 1,
+        "label": "Directement les données JSON"
+       },
+       {
+        "id": "f7b3ac75-50dd-5775-b005-d92d71d16a81",
+        "position": 2,
+        "label": "Une promesse de réponse HTTP"
+       },
+       {
+        "id": "5aeb3bf6-315c-5af2-b5ee-2a93a0db9e10",
+        "position": 3,
+        "label": "Le code HTML de la page"
+       },
+       {
+        "id": "9f26a013-556f-5ec8-87e3-fc1c54bc8a58",
+        "position": 4,
+        "label": "Un tableau"
+       }
+      ],
+      "correct": [
+       "f7b3ac75-50dd-5775-b005-d92d71d16a81"
+      ],
+      "explanation": "fetch renvoie une promesse qui se résout en un objet Response ; il faut ensuite appeler reponse.json()."
+     },
+     {
+      "id": "9ba0e619-d8c5-5df6-a7ae-ad77f4bb65e7",
+      "position": 6,
+      "kind": "true_false",
+      "prompt": "fetch rejette automatiquement sa promesse quand le serveur répond 404.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "34f2ba40-663a-57df-93bc-892ede34e96d",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "35d2feb5-42d6-5145-91bd-a477af6cfe4f",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "35d2feb5-42d6-5145-91bd-a477af6cfe4f"
+      ],
+      "explanation": "fetch ne rejette qu'en cas d'échec réseau. Pour un 404 ou un 500, il faut tester reponse.ok soi-même."
+     },
+     {
+      "id": "98a28d23-4aa1-5878-aa3c-603e2f47cc85",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment lire le corps JSON d'une réponse fetch ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f52f2005-1c9f-58b0-8380-513b9b65121d",
+        "position": 1,
+        "label": "reponse.body"
+       },
+       {
+        "id": "4ebcc690-fa70-5f57-84a9-ed59dcbec27c",
+        "position": 2,
+        "label": "await reponse.json()"
+       },
+       {
+        "id": "bb3643b9-70f5-57a2-8a93-3d500a953a8b",
+        "position": 3,
+        "label": "JSON.parse(reponse)"
+       },
+       {
+        "id": "a000b1ca-deb2-5cbe-a537-95992f3cec5c",
+        "position": 4,
+        "label": "reponse.text"
+       }
+      ],
+      "correct": [
+       "4ebcc690-fa70-5f57-84a9-ed59dcbec27c"
+      ],
+      "explanation": "reponse.json() renvoie une promesse du contenu converti en objet ; on l'attend avec await."
+     },
+     {
+      "id": "edcc5a51-b2c1-5d1c-8bce-944dd07202fb",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quel bloc intercepte une erreur levée pendant un await ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5712fb3c-fc6d-5d99-b857-1c8870a155c2",
+        "position": 1,
+        "label": "if / else"
+       },
+       {
+        "id": "8780ec4b-8492-5f15-bd9e-5ce256fe7f51",
+        "position": 2,
+        "label": "try / catch"
+       },
+       {
+        "id": "232a169b-451e-5359-98f3-53eefb8e840a",
+        "position": 3,
+        "label": "switch"
+       },
+       {
+        "id": "333f5705-1f69-5486-9b8c-9227e4235482",
+        "position": 4,
+        "label": "for"
+       }
+      ],
+      "correct": [
+       "8780ec4b-8492-5f15-bd9e-5ce256fe7f51"
+      ],
+      "explanation": "Avec async/await, les erreurs se gèrent avec try / catch."
+     },
+     {
+      "id": "6b6b32d1-0faf-529a-aae7-f579b7f6e3a8",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Que stocke localStorage ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "89cfa70f-4da5-59a2-829b-05e77283026c",
+        "position": 1,
+        "label": "Des objets JavaScript directement"
+       },
+       {
+        "id": "ff385899-56a4-5e54-91d4-5cf021a4c177",
+        "position": 2,
+        "label": "Du texte, propre au site, conservé après rechargement"
+       },
+       {
+        "id": "ec91f3a0-f8a3-5b42-bcbe-07ba532e9fbf",
+        "position": 3,
+        "label": "Des fichiers sur le serveur"
+       },
+       {
+        "id": "e91f8d72-c5e6-5bb0-947a-6821434d6b9b",
+        "position": 4,
+        "label": "Des mots de passe chiffrés"
+       }
+      ],
+      "correct": [
+       "ff385899-56a4-5e54-91d4-5cf021a4c177"
+      ],
+      "explanation": "localStorage stocke des chaînes ; on convertit les objets avec JSON.stringify et JSON.parse."
+     },
+     {
+      "id": "15031a6b-67b1-51eb-a405-765c6c1ecbbd",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quelles données NE doivent PAS être stockées dans localStorage ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ead9cae3-9b95-5e95-a78a-50c6ce357056",
+        "position": 1,
+        "label": "Un mot de passe"
+       },
+       {
+        "id": "563a2497-e5b8-5748-9a88-37fdd6913a4c",
+        "position": 2,
+        "label": "La liste de tâches d'un exercice"
+       },
+       {
+        "id": "6ac305d3-3dda-5927-bc74-5e24a0bcdf0d",
+        "position": 3,
+        "label": "Un jeton d'accès sensible"
+       },
+       {
+        "id": "4ab480e6-55fe-5722-abf9-b6d4058f1080",
+        "position": 4,
+        "label": "Le thème clair ou sombre choisi"
+       }
+      ],
+      "correct": [
+       "ead9cae3-9b95-5e95-a78a-50c6ce357056",
+       "6ac305d3-3dda-5927-bc74-5e24a0bcdf0d"
+      ],
+      "explanation": "localStorage est lisible par tout script de la page : jamais de mot de passe ni de secret. Des préférences ou des données d'exercice conviennent."
+     }
+    ]
+   }
+  }
+ ]
+}
