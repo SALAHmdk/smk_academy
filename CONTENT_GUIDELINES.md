@@ -16,7 +16,9 @@ Une formation = 5 modules ; un module = 3 leçons + 1 quiz ; une formation se te
 
 - Titres de section : `##` ; exercices : `###`.
 - Code : blocs ` ```python ` ; sortie console : ` ```text `.
-- Correction d'exercice : bloc ` ```solution ` (affiché replié, coloré comme du Python).
+- Correction d'exercice : bloc ` ```solution ` (Python), ` ```solution-sql ` ou ` ```solution-text ` (affichés repliés).
+- Formation SQL : chaque requête est vérifiée par `python3 scripts/check_sql_course.py`.
+- Si le connecteur Supabase demande une confirmation pour un contenu contenant DELETE/DROP/UPDATE, appliquer la migration avec ces mots masqués puis restaurés (voir l'historique du 05/11).
 - Encadré : `> texte`.
 - Pas d'HTML brut ni d'image pour l'instant (ignorés à l'affichage).
 

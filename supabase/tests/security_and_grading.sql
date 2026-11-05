@@ -147,7 +147,7 @@ begin
   perform set_config('role', 'anon', true);
   select count(*) into v_count from public.courses;
   report := report || case when v_count >= 3 then 'PASS' else 'FAIL' end || ' visiteur : catalogue visible (' || v_count || ' formations)' || chr(10);
-  select count(*) into v_count from public.modules;
+  select count(*) into v_count from public.modules where course_id = (select id from public.courses where slug = 'python-debutant');
   report := report || case when v_count = 5 then 'PASS' else 'FAIL' end || ' visiteur : plan de cours visible' || chr(10);
   begin
     perform 1 from public.lessons limit 1;

@@ -13,6 +13,16 @@ describe("Markdown des leçons", () => {
     expect(html).toContain("Voir la correction");
   });
 
+  it("colore le SQL, y compris dans les corrections ```solution-sql", () => {
+    const html = renderToStaticMarkup(
+      <Markdown source={"```sql\nSELECT nom FROM etudiants;\n```\n\n```solution-sql\nSELECT * FROM formations WHERE prix > 0;\n```"} />,
+    );
+    expect(html).toContain('data-lang="sql"');
+    expect(html).toContain("hljs-keyword");
+    expect((html.match(/<details class="solution">/g) ?? []).length).toBe(1);
+    expect(html).toMatch(/<details class="solution">[\s\S]*data-lang="sql"[\s\S]*hljs-keyword/);
+  });
+
   it("ignore le HTML brut (pas d'injection de script)", () => {
     const html = renderToStaticMarkup(<Markdown source={"<script>alert(1)</script>\n\nTexte"} />);
     expect(html).not.toContain("<script>");

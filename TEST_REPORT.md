@@ -93,6 +93,16 @@ Compte de test dédié : `e2e@smktech.test` (email confirmé créé directement 
 | Écrans Tarifs, Abonnement, admin Offres / Codes promo / Accès / Paiements (mobile, desktop, sombre, API simulée) | exécuté (captures) | ✅ aucun débordement |
 | Paiement Stripe Checkout réel en mode test (carte 4242…), webhook reçu, Premium activé, résiliation via le portail | préparé | 🟡 après configuration des clés de test |
 
+## Formation « SQL pour débutants » (05/11/2026)
+
+| Test | Type | Résultat |
+|---|---|---|
+| `scripts/check_sql_course.py` : exécution des 110 blocs SQL des leçons et corrections sur la base d'exemple (SQLite) | exécuté | ✅ 103 exécutés, 7 échecs attendus (exemples d'erreurs, syntaxes propres à un SGBD), 0 inattendu |
+| Résultats affichés dans les leçons recalculés par exécution réelle des requêtes | exécuté | ✅ |
+| Contenu en base identique à la source : empreintes MD5 des leçons, résumés, questions, options, explications et positions des bonnes réponses, 5 modules | exécuté | ✅ 30/30 |
+| Notation des 5 quiz : bonnes réponses → 20/20, copie vide → 0/20 ; 15 leçons lisibles après inscription | exécuté (SQL, transaction annulée) | ✅ |
+| Parcours complet dans le navigateur sur le site Netlify | préparé | 🟡 |
+
 ## Restant à tester
 
 | Scénario | État |
