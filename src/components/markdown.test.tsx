@@ -23,6 +23,19 @@ describe("Markdown des leçons", () => {
     expect(html).toMatch(/<details class="solution">[\s\S]*data-lang="sql"[\s\S]*hljs-keyword/);
   });
 
+  it("colore les corrections JavaScript, HTML et CSS", () => {
+    const html = renderToStaticMarkup(
+      <Markdown source={"```solution-js\nconst a = 1;\n```\n\n```solution-html\n<p>Bonjour</p>\n```\n\n```solution-css\np { color: red; }\n```"} />,
+    );
+    expect((html.match(/<details class="solution">/g) ?? []).length).toBe(3);
+    expect(html).toContain('data-lang="js"');
+    expect(html).toContain('data-lang="html"');
+    expect(html).toContain('data-lang="css"');
+    expect(html).toContain("hljs-keyword");
+    expect(html).toContain("hljs-tag");
+    expect(html).not.toContain("<p>Bonjour</p>");
+  });
+
   it("ignore le HTML brut (pas d'injection de script)", () => {
     const html = renderToStaticMarkup(<Markdown source={"<script>alert(1)</script>\n\nTexte"} />);
     expect(html).not.toContain("<script>");

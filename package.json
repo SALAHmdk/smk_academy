@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "check:content": "for c in python_debutant sql_debutant anglais_pro javascript_debutant html_css; do python3 scripts/build_seed.py --content $c --json || exit 1; done && python3 scripts/check_sql_course.py && node scripts/check_js_course.mjs content/build/javascript-debutant.json && node scripts/check_web_course.mjs content/build/html-css.json && git diff --exit-code --stat content/build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

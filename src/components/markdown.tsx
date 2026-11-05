@@ -38,7 +38,7 @@ export function Markdown({ source }: { source: string }) {
     <div className="lesson">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[[rehypeHighlight, { aliases: { python: ["solution"], sql: ["solution-sql"], plaintext: ["solution-text"] }, detect: false }]]}
+        rehypePlugins={[[rehypeHighlight, { aliases: { python: ["solution"], sql: ["solution-sql"], plaintext: ["solution-text"], javascript: ["solution-js"], xml: ["solution-html"], css: ["solution-css"] }, detect: false }]]}
         components={components}
         skipHtml
       >

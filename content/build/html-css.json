@@ -1,0 +1,1932 @@
+{
+ "course": {
+  "slug": "html-css",
+  "title": "HTML et CSS",
+  "subtitle": "Construire et mettre en forme vos premières pages.",
+  "description": "Apprenez à construire des pages web propres, accessibles et adaptées au mobile. HTML pour structurer le contenu (texte, liens, images, tableaux, formulaires), CSS pour la mise en forme (couleurs, typographie, modèle de boîte), puis Flexbox, Grid et le responsive design. La formation se termine par la réalisation d'une page de présentation complète. Chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 600,
+  "objectives": [
+   "Structurer une page en HTML sémantique et accessible",
+   "Créer des tableaux et des formulaires",
+   "Mettre en forme avec CSS et maîtriser le modèle de boîte",
+   "Construire des mises en page avec Flexbox et Grid",
+   "Créer un site adapté au mobile"
+  ],
+  "prerequisites": [
+   "Aucun prérequis",
+   "Un éditeur de texte (Visual Studio Code conseillé) et un navigateur"
+  ],
+  "is_premium": false,
+  "position": 21,
+  "status": "published",
+  "id": "49f813db-77a1-547f-90be-eb65a2f44dff",
+  "category_slug": "developpement-web",
+  "topic": "HTML/CSS",
+  "cover_label": "HTML"
+ },
+ "modules": [
+  {
+   "id": "c6348052-bac6-5098-b5ab-5cf83bb9e37c",
+   "position": 1,
+   "title": "Les bases du HTML",
+   "description": "Structure d'une page, texte, listes, liens, images et HTML sémantique.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "db114de5-4f2b-588c-8452-0a34458d5d26",
+     "slug": "premiere-page",
+     "title": "Votre première page",
+     "summary": "Balises, structure minimale d'une page, attributs et outils du navigateur.",
+     "content_md": "## Comment fonctionne une page web\n\nQuand vous ouvrez un site, votre navigateur télécharge un fichier **HTML** (le contenu et sa structure), des fichiers **CSS** (l'apparence) et souvent du **JavaScript** (le comportement). Il assemble le tout et affiche la page.\n\nHTML (*HyperText Markup Language*) n'est pas un langage de programmation : c'est un **langage de balisage**. On entoure chaque contenu de **balises** qui indiquent sa nature.\n\n```html\n<p>Ceci est un paragraphe.</p>\n```\n\n- `<p>` est la balise **ouvrante**, `</p>` la balise **fermante** ;\n- l'ensemble forme un **élément** ;\n- certains éléments n'ont pas de contenu et pas de balise fermante, comme `<br>` (retour à la ligne) ou `<img>`.\n\n## Préparer son poste de travail\n\n1. Installez un éditeur de code : **Visual Studio Code** est gratuit et très répandu.\n2. Créez un dossier `mon-site`, puis un fichier `index.html`.\n3. Ouvrez ce fichier dans votre navigateur (double-clic). Après chaque modification, enregistrez et rechargez la page (`F5`).\n\n## La structure minimale d'une page\n\n```html\n<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Ma première page</title>\n  </head>\n  <body>\n    <h1>Bonjour !</h1>\n    <p>Bienvenue sur ma première page web.</p>\n  </body>\n</html>\n```\n\n| Élément | Rôle |\n|---|---|\n| `<!DOCTYPE html>` | indique au navigateur qu'il s'agit de HTML moderne |\n| `<html lang=\"fr\">` | racine de la page ; `lang` aide les lecteurs d'écran et les moteurs de recherche |\n| `<head>` | informations sur la page, non affichées dans la page elle-même |\n| `<meta charset=\"utf-8\">` | encodage : indispensable pour les accents |\n| `<meta name=\"viewport\" …>` | adapte l'affichage aux écrans mobiles |\n| `<title>` | titre affiché dans l'onglet et dans les résultats de recherche |\n| `<body>` | tout le contenu visible |\n\n## Les attributs\n\nUne balise ouvrante peut porter des **attributs**, qui précisent l'élément. Ils s'écrivent `nom=\"valeur\"` :\n\n```html\n<a href=\"https://www.example.com\" target=\"_blank\">Visiter le site</a>\n```\n\n## Imbrication et indentation\n\nLes éléments s'emboîtent comme des poupées russes ; un élément ouvert à l'intérieur d'un autre doit être fermé **avant** lui.\n\n```html\n<p>Un mot <strong>important</strong> dans la phrase.</p>\n```\n\n`<p><strong>…</p></strong>` serait incorrect. Indentez votre code (2 espaces par niveau) pour visualiser cette imbrication.\n\n## Les commentaires et les outils du navigateur\n\n```html\n<!-- Ce commentaire n'est pas affiché -->\n```\n\nClic droit sur un élément → **Inspecter** : les outils de développement montrent le HTML réellement interprété. C'est le meilleur moyen de comprendre une page.\n\n## À retenir\n\n- HTML structure le contenu à l'aide de balises : `<p>…</p>`.\n- Squelette : `<!DOCTYPE html>`, `<html lang>`, `<head>` (charset, viewport, title), `<body>`.\n- Les attributs précisent un élément : `href=\"…\"`.\n- Les éléments s'emboîtent sans se chevaucher.\n\n## Exercices\n\n### Exercice 1 — Votre première page\n\nCréez une page dont le titre d'onglet est « Mon CV », qui affiche votre nom en grand titre et une phrase de présentation.\n\n```solution-html\n<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Mon CV</title>\n  </head>\n  <body>\n    <h1>Amina Benali</h1>\n    <p>Développeuse web junior, passionnée par l'accessibilité.</p>\n  </body>\n</html>\n```\n\n### Exercice 2 — Trouvez l'erreur\n\nCe code est mal imbriqué : `<p>Bonjour <em>tout le monde</p></em>`. Corrigez-le.\n\n```solution-html\n<p>Bonjour <em>tout le monde</em></p>\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "ddfbb5d7-51cc-5795-bacd-eed0d3e5238c",
+     "slug": "texte-liens-images",
+     "title": "Texte, listes, liens et images",
+     "summary": "Titres, paragraphes, listes, liens et images accessibles.",
+     "content_md": "## Les titres\n\nHTML propose six niveaux de titres, de `<h1>` (le plus important) à `<h6>` :\n\n```html\n<h1>Recettes de saison</h1>\n<h2>Entrées</h2>\n<h3>Velouté de potiron</h3>\n<h2>Desserts</h2>\n```\n\nRègles essentielles :\n\n- **un seul `<h1>`** par page, qui décrit son sujet ;\n- **ne pas sauter de niveau** (pas de `<h4>` directement sous un `<h2>`) ;\n- choisir un titre pour son **rôle**, jamais pour sa taille : la taille se règle en CSS.\n\nLes lecteurs d'écran utilisent cette hiérarchie pour naviguer, comme une table des matières.\n\n## Paragraphes et mise en valeur\n\n```html\n<p>Le <strong>délai d'inscription</strong> est fixé au 30 juin.</p>\n<p>Ce module est <em>facultatif</em>.<br>Il compte pour 10 % de la note.</p>\n```\n\n- `<strong>` : importance forte (affiché en gras) ;\n- `<em>` : emphase (affichée en italique) ;\n- `<br>` : retour à la ligne à l'intérieur d'un paragraphe (à utiliser avec parcimonie).\n\n## Les listes\n\n```html\n<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>\n\n<ol>\n  <li>Préchauffer le four.</li>\n  <li>Mélanger les ingrédients.</li>\n  <li>Enfourner 30 minutes.</li>\n</ol>\n```\n\n`<ul>` (*unordered list*) pour une liste à puces, `<ol>` (*ordered list*) pour une liste numérotée ; chaque élément dans un `<li>`.\n\n## Les liens\n\n```html\n<a href=\"https://developer.mozilla.org\">Documentation MDN</a>\n<a href=\"contact.html\">Nous contacter</a>\n<a href=\"#tarifs\">Voir les tarifs</a>\n<a href=\"mailto:contact@exemple.fr\">Écrire un email</a>\n```\n\n- une **URL absolue** pointe vers un autre site ;\n- un **chemin relatif** (`contact.html`) pointe vers une page de votre site ;\n- `#tarifs` pointe vers l'élément de la page qui porte `id=\"tarifs\"`.\n\nLe texte du lien doit être **explicite** : « Télécharger le programme (PDF) » plutôt que « cliquez ici ».\n\n## Les images\n\n```html\n<img src=\"images/equipe.jpg\" alt=\"L'équipe SMKTECH réunie devant les bureaux de Paris\" width=\"800\" height=\"533\">\n```\n\n- `src` : chemin de l'image ;\n- `alt` : **texte alternatif**, lu par les lecteurs d'écran et affiché si l'image ne charge pas. Il est obligatoire ; pour une image purement décorative, on écrit `alt=\"\"` ;\n- `width` et `height` réservent la place de l'image et évitent que la page « saute » pendant le chargement.\n\nFormats : **JPEG** ou **WebP** pour les photos, **PNG** pour les images avec transparence, **SVG** pour les logos et icônes.\n\n## À retenir\n\n- Un seul `<h1>`, une hiérarchie de titres sans saut.\n- `<p>`, `<strong>`, `<em>`, `<br>`.\n- `<ul>` / `<ol>` + `<li>`.\n- `<a href>` avec un texte explicite ; `#id` pour un lien interne.\n- `<img>` avec un `alt` pertinent, `width` et `height`.\n\n## Exercices\n\n### Exercice 1 — Corrigez la hiérarchie\n\nCette page utilise deux `<h1>` et saute un niveau : `<h1>Blog</h1> <h1>Article</h1> <h4>Introduction</h4>`. Proposez une hiérarchie correcte.\n\n```solution-html\n<h1>Blog</h1>\n<h2>Article</h2>\n<h3>Introduction</h3>\n```\n\n### Exercice 2 — Une liste de liens\n\nCréez une liste à puces de trois liens : la page d'accueil (`index.html`), la page contact (`contact.html`) et la section `#faq` de la page actuelle.\n\n```solution-html\n<ul>\n  <li><a href=\"index.html\">Accueil</a></li>\n  <li><a href=\"contact.html\">Contact</a></li>\n  <li><a href=\"#faq\">Questions fréquentes</a></li>\n</ul>\n```\n\n### Exercice 3 — Texte alternatif\n\nRédigez un attribut `alt` pour : (a) le logo de l'entreprise SMKTECH, cliquable vers l'accueil ; (b) une simple ligne décorative.\n\n```solution-text\n(a) alt=\"SMKTECH – retour à l'accueil\"   → décrit la fonction du lien, pas l'apparence du logo\n(b) alt=\"\"                                → image décorative : texte vide, ignorée par les lecteurs d'écran\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "7d297eb9-7a8f-5798-a673-934785ef73d2",
+     "slug": "html-semantique",
+     "title": "Le HTML sémantique",
+     "summary": "header, nav, main, article, section, footer ; bloc et en ligne.",
+     "content_md": "## Le HTML sémantique\n\nUne page peut être entièrement construite avec des `<div>` (blocs sans signification). Mais HTML propose des éléments qui décrivent le **rôle** de chaque zone : on parle de HTML **sémantique**.\n\n```html\n<body>\n  <header>\n    <a href=\"/\">SMK Academy</a>\n    <nav aria-label=\"Navigation principale\">\n      <ul>\n        <li><a href=\"/formations\">Formations</a></li>\n        <li><a href=\"/tarifs\">Tarifs</a></li>\n      </ul>\n    </nav>\n  </header>\n\n  <main>\n    <article>\n      <h1>Apprendre le HTML en 2026</h1>\n      <p>Publié le <time datetime=\"2026-11-05\">5 novembre 2026</time></p>\n      <section>\n        <h2>Pourquoi le HTML reste essentiel</h2>\n        <p>…</p>\n      </section>\n    </article>\n    <aside>\n      <h2>À lire aussi</h2>\n      <p>…</p>\n    </aside>\n  </main>\n\n  <footer>\n    <p>© 2026 SMKTECH</p>\n  </footer>\n</body>\n```\n\n| Élément | Rôle |\n|---|---|\n| `<header>` | en-tête (logo, navigation) |\n| `<nav>` | bloc de navigation principal |\n| `<main>` | contenu principal, **un seul par page** |\n| `<article>` | contenu autonome (article, fiche produit, carte) |\n| `<section>` | partie thématique, généralement avec un titre |\n| `<aside>` | contenu complémentaire (encadré, liens connexes) |\n| `<footer>` | pied de page |\n| `<time>` | date ou heure lisible par les machines |\n\n## Pourquoi c'est important\n\n1. **Accessibilité** : les lecteurs d'écran permettent de sauter directement au `<main>` ou à la `<nav>`.\n2. **Référencement** : les moteurs de recherche comprennent mieux la structure.\n3. **Lisibilité du code** : `<nav>` est plus parlant que `<div class=\"menu\">`.\n\n`<div>` (bloc) et `<span>` (en ligne) restent utiles, mais uniquement quand aucun élément sémantique ne convient, typiquement pour la mise en page en CSS.\n\n## Éléments de type bloc et en ligne\n\n- Les éléments **bloc** (`<p>`, `<h1>`, `<ul>`, `<div>`, `<section>`) occupent toute la largeur disponible et commencent sur une nouvelle ligne.\n- Les éléments **en ligne** (`<a>`, `<strong>`, `<em>`, `<span>`, `<img>`) s'insèrent dans le texte.\n\nCe comportement par défaut pourra être modifié en CSS (module 4).\n\n## Valider son code\n\nUn navigateur affiche presque toujours quelque chose, même avec un HTML incorrect : les erreurs passent donc inaperçues. Le validateur officiel du W3C (validator.w3.org) signale les balises mal fermées, les attributs manquants et les imbrications interdites. Prenez l'habitude de l'utiliser.\n\n## À retenir\n\n- `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`.\n- Un seul `<main>` par page.\n- Sémantique = accessibilité + référencement + lisibilité.\n- `<div>` et `<span>` seulement à défaut d'élément plus précis.\n- Bloc : nouvelle ligne, toute la largeur ; en ligne : dans le texte.\n\n## Exercices\n\n### Exercice 1 — Structurez la page\n\nÉcrivez la structure sémantique d'une page de blog : un en-tête avec le nom du blog et une navigation, un article principal avec un titre, et un pied de page.\n\n```solution-html\n<body>\n  <header>\n    <p>Le blog de Lucas</p>\n    <nav aria-label=\"Navigation principale\">\n      <ul>\n        <li><a href=\"index.html\">Accueil</a></li>\n        <li><a href=\"archives.html\">Archives</a></li>\n      </ul>\n    </nav>\n  </header>\n  <main>\n    <article>\n      <h1>Mon premier article</h1>\n      <p>Bienvenue sur mon blog.</p>\n    </article>\n  </main>\n  <footer>\n    <p>© 2026 Lucas Martin</p>\n  </footer>\n</body>\n```\n\n### Exercice 2 — Bloc ou en ligne ?\n\nClassez : `<p>`, `<a>`, `<section>`, `<strong>`, `<ul>`, `<span>`.\n\n```solution-text\nBloc : <p>, <section>, <ul>\nEn ligne : <a>, <strong>, <span>\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "c1187767-cd6e-5026-bbca-cb00bd6a8aec",
+    "title": "Quiz — Les bases du HTML",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "6f472879-17e4-5b8e-b290-f6282caeb340",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel est le rôle de HTML ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "336bae8f-b20e-51d6-8891-1babeb5cd661",
+        "position": 1,
+        "label": "Mettre en forme la page"
+       },
+       {
+        "id": "d93e38d6-b4de-59c8-8b56-f091291bc50f",
+        "position": 2,
+        "label": "Structurer le contenu de la page"
+       },
+       {
+        "id": "a79dbcc8-6774-50a7-9e04-aa067f767fb6",
+        "position": 3,
+        "label": "Rendre la page interactive"
+       },
+       {
+        "id": "2455d23e-1eb9-5975-a7d8-3ac75c64f761",
+        "position": 4,
+        "label": "Héberger le site"
+       }
+      ],
+      "correct": [
+       "d93e38d6-b4de-59c8-8b56-f091291bc50f"
+      ],
+      "explanation": "HTML structure le contenu ; CSS gère l'apparence et JavaScript le comportement."
+     },
+     {
+      "id": "2be16493-d3dc-5e25-a8fa-4b89106bdf4d",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que contient l'élément <head> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "07bb3f37-bdf5-53d8-b439-cd8241ac0046",
+        "position": 1,
+        "label": "Le contenu visible de la page"
+       },
+       {
+        "id": "a1513f33-b665-5642-800c-ff260117b8fc",
+        "position": 2,
+        "label": "Les informations sur la page (titre, encodage…)"
+       },
+       {
+        "id": "10250a8d-3305-596f-9c40-e35eadd987ed",
+        "position": 3,
+        "label": "Le pied de page"
+       },
+       {
+        "id": "e159164b-dbe3-5364-b3cd-758a31f5946c",
+        "position": 4,
+        "label": "Le menu de navigation"
+       }
+      ],
+      "correct": [
+       "a1513f33-b665-5642-800c-ff260117b8fc"
+      ],
+      "explanation": "<head> regroupe les métadonnées (charset, viewport, title…) ; le contenu visible est dans <body>."
+     },
+     {
+      "id": "fb8e6e8a-6f39-5855-9df0-f9a2292a20c6",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Pourquoi écrire <meta charset=\"utf-8\"> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e1186908-5e0a-5c68-bfb5-89805c7e0464",
+        "position": 1,
+        "label": "Pour accélérer la page"
+       },
+       {
+        "id": "397e7ce8-e61f-5fff-9995-36e6ea283339",
+        "position": 2,
+        "label": "Pour afficher correctement les accents et caractères spéciaux"
+       },
+       {
+        "id": "feb7814c-7764-5e8e-b9e1-69f83d745c7d",
+        "position": 3,
+        "label": "Pour le référencement uniquement"
+       },
+       {
+        "id": "695f0309-82e8-5fbd-82d7-55b8710ed2c3",
+        "position": 4,
+        "label": "Pour activer JavaScript"
+       }
+      ],
+      "correct": [
+       "397e7ce8-e61f-5fff-9995-36e6ea283339"
+      ],
+      "explanation": "L'encodage UTF-8 garantit l'affichage correct des caractères accentués et spéciaux."
+     },
+     {
+      "id": "6a47b758-e262-544e-87b7-384c2924e1e4",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Combien de <h1> une page devrait-elle contenir ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5e21836a-37ed-54ea-a3c5-69cce4247e3e",
+        "position": 1,
+        "label": "Aucun"
+       },
+       {
+        "id": "4f37d54a-293c-5109-9e52-9c15aecfe0c2",
+        "position": 2,
+        "label": "Un seul"
+       },
+       {
+        "id": "d96dad66-a7a2-50c0-b180-64a501dc3042",
+        "position": 3,
+        "label": "Un par section"
+       },
+       {
+        "id": "b58f83c3-af58-537c-a001-a0ef4c777fb5",
+        "position": 4,
+        "label": "Autant que nécessaire"
+       }
+      ],
+      "correct": [
+       "4f37d54a-293c-5109-9e52-9c15aecfe0c2"
+      ],
+      "explanation": "Un seul <h1>, qui décrit le sujet de la page ; les sous-parties utilisent <h2>, <h3>…"
+     },
+     {
+      "id": "78cf6470-b8da-5799-810c-55ebe73fe823",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quelle balise crée une liste numérotée ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "96d8281a-e113-5b18-aea1-d1a25000c39a",
+        "position": 1,
+        "label": "<ul>"
+       },
+       {
+        "id": "12c48ced-1085-5290-928c-0d33fb38f1ec",
+        "position": 2,
+        "label": "<ol>"
+       },
+       {
+        "id": "72b884c0-926a-5642-9d15-4a2b7637b1a9",
+        "position": 3,
+        "label": "<li>"
+       },
+       {
+        "id": "8b52a353-755f-5b25-8762-65a419094511",
+        "position": 4,
+        "label": "<list>"
+       }
+      ],
+      "correct": [
+       "12c48ced-1085-5290-928c-0d33fb38f1ec"
+      ],
+      "explanation": "<ol> (ordered list) crée une liste numérotée ; <ul> une liste à puces ; <li> un élément de liste."
+     },
+     {
+      "id": "aedfcbb4-427e-54d0-a682-ee0bad562f3b",
+      "position": 6,
+      "kind": "single",
+      "prompt": "À quoi sert l'attribut alt d'une image ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "22046439-2d07-5327-9727-55c9d235e558",
+        "position": 1,
+        "label": "À donner un titre au survol"
+       },
+       {
+        "id": "83467f25-1ec4-5116-9b6b-dbb57f7ed992",
+        "position": 2,
+        "label": "À fournir un texte alternatif lu par les lecteurs d'écran et affiché si l'image ne charge pas"
+       },
+       {
+        "id": "32f9650f-dd90-5441-9871-0763f046d10e",
+        "position": 3,
+        "label": "À redimensionner l'image"
+       },
+       {
+        "id": "4a175399-4d00-5299-a99d-11cfb4264a88",
+        "position": 4,
+        "label": "À créer un lien"
+       }
+      ],
+      "correct": [
+       "83467f25-1ec4-5116-9b6b-dbb57f7ed992"
+      ],
+      "explanation": "alt est indispensable pour l'accessibilité ; il vaut \"\" pour une image décorative."
+     },
+     {
+      "id": "e0aefeea-2363-5dff-bde4-c443a2fa2632",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quelle imbrication est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b2b7847c-63c0-578a-b3bf-54968b33983a",
+        "position": 1,
+        "label": "<p><em>texte</p></em>"
+       },
+       {
+        "id": "0e6ab2f9-468c-5339-8183-65edd63aa0eb",
+        "position": 2,
+        "label": "<p><em>texte</em></p>"
+       },
+       {
+        "id": "425b2d79-77cf-5738-b6b4-75be603220a1",
+        "position": 3,
+        "label": "<em><p>texte</em></p>"
+       },
+       {
+        "id": "a369dfa6-0e84-5392-be92-fe35cc50db1b",
+        "position": 4,
+        "label": "<p>texte<em></p>"
+       }
+      ],
+      "correct": [
+       "0e6ab2f9-468c-5339-8183-65edd63aa0eb"
+      ],
+      "explanation": "Le dernier élément ouvert doit être le premier fermé."
+     },
+     {
+      "id": "c6027c9e-c2eb-5bde-93eb-320ffb75b686",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que fait le lien <a href=\"#tarifs\">Tarifs</a> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e8616ca6-7e5c-5abb-bb16-d75df1e6b20a",
+        "position": 1,
+        "label": "Ouvre la page tarifs.html"
+       },
+       {
+        "id": "b0298235-5970-5b22-934e-7501511b796a",
+        "position": 2,
+        "label": "Fait défiler jusqu'à l'élément id=\"tarifs\" de la page"
+       },
+       {
+        "id": "8e0149b3-3523-5f3f-af85-784d10a1f57f",
+        "position": 3,
+        "label": "Envoie un email"
+       },
+       {
+        "id": "5247ad80-e95f-562e-b5bd-8e53a2967757",
+        "position": 4,
+        "label": "Rien"
+       }
+      ],
+      "correct": [
+       "b0298235-5970-5b22-934e-7501511b796a"
+      ],
+      "explanation": "#tarifs cible l'élément de la page dont l'identifiant est « tarifs »."
+     },
+     {
+      "id": "4e7cbdf4-e41a-54fa-a015-2d262a200f86",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quels éléments sont sémantiques ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "54a63519-23e6-5b4d-b757-467f35867278",
+        "position": 1,
+        "label": "<header>"
+       },
+       {
+        "id": "e41a320e-8102-549f-841d-68a0fd6649f5",
+        "position": 2,
+        "label": "<div>"
+       },
+       {
+        "id": "443eff7e-2ef9-595b-9109-935ff18f8f97",
+        "position": 3,
+        "label": "<nav>"
+       },
+       {
+        "id": "62249046-a8d8-5452-a341-04f7103f13d5",
+        "position": 4,
+        "label": "<article>"
+       }
+      ],
+      "correct": [
+       "54a63519-23e6-5b4d-b757-467f35867278",
+       "443eff7e-2ef9-595b-9109-935ff18f8f97",
+       "62249046-a8d8-5452-a341-04f7103f13d5"
+      ],
+      "explanation": "<header>, <nav> et <article> décrivent un rôle ; <div> est un bloc générique sans signification."
+     },
+     {
+      "id": "dac7a6f5-6c53-5535-beb8-652e542b1959",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Combien d'éléments <main> une page devrait-elle contenir ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6774ffb2-ffe4-57ea-818d-cb35de7fd815",
+        "position": 1,
+        "label": "Un seul"
+       },
+       {
+        "id": "ac0a59b7-d626-50da-9784-a2b4e9b3a352",
+        "position": 2,
+        "label": "Deux"
+       },
+       {
+        "id": "cc818675-71b9-5b41-b494-0207c129a6ef",
+        "position": 3,
+        "label": "Un par article"
+       },
+       {
+        "id": "d97490ee-901e-530f-a6d4-33a19abcafc9",
+        "position": 4,
+        "label": "Aucun"
+       }
+      ],
+      "correct": [
+       "6774ffb2-ffe4-57ea-818d-cb35de7fd815"
+      ],
+      "explanation": "<main> désigne le contenu principal : il est unique dans la page."
+     }
+    ]
+   }
+  },
+  {
+   "id": "33294ae8-9e0c-5743-b972-1515f9401ca3",
+   "position": 2,
+   "title": "Tableaux, formulaires et accessibilité",
+   "description": "Présenter des données, recueillir des informations et rendre la page utilisable par tous.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "048b66fa-575b-52b3-9011-a59296dfaa90",
+     "slug": "tableaux",
+     "title": "Les tableaux",
+     "summary": "Structure, en-têtes, légende et fusion de cellules.",
+     "content_md": "## Quand utiliser un tableau ?\n\nUn tableau HTML sert à présenter des **données tabulaires** : horaires, tarifs, résultats, comparatifs. Il ne doit **jamais** servir à mettre en page un site (on utilise CSS pour cela).\n\n## Structure d'un tableau\n\n```html\n<table>\n  <caption>Résultats du trimestre</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Module</th>\n      <th scope=\"col\">Note</th>\n      <th scope=\"col\">Statut</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope=\"row\">Python</th>\n      <td>16/20</td>\n      <td>Validé</td>\n    </tr>\n    <tr>\n      <th scope=\"row\">SQL</th>\n      <td>9/20</td>\n      <td>À repasser</td>\n    </tr>\n  </tbody>\n</table>\n```\n\n| Élément | Rôle |\n|---|---|\n| `<table>` | le tableau |\n| `<caption>` | titre du tableau (important pour l'accessibilité) |\n| `<thead>`, `<tbody>`, `<tfoot>` | en-tête, corps, pied |\n| `<tr>` | une ligne (*table row*) |\n| `<th>` | une cellule d'en-tête ; `scope=\"col\"` ou `scope=\"row\"` précise si elle titre une colonne ou une ligne |\n| `<td>` | une cellule de données |\n\nLes attributs `scope` permettent aux lecteurs d'écran d'annoncer, pour chaque cellule, l'en-tête correspondant (« Note : 16/20 »).\n\n## Fusionner des cellules\n\n```html\n<table>\n  <tr>\n    <th scope=\"col\">Jour</th>\n    <th scope=\"col\">Matin</th>\n    <th scope=\"col\">Après-midi</th>\n  </tr>\n  <tr>\n    <th scope=\"row\">Lundi</th>\n    <td colspan=\"2\">Formation toute la journée</td>\n  </tr>\n</table>\n```\n\n`colspan=\"2\"` étend une cellule sur deux colonnes ; `rowspan` sur plusieurs lignes. À utiliser avec modération : les tableaux complexes sont difficiles à lire, surtout sur mobile.\n\n## À retenir\n\n- Tableaux pour les données, jamais pour la mise en page.\n- `<caption>`, `<thead>`, `<tbody>`, `<tr>`, `<th scope>`, `<td>`.\n- `colspan` / `rowspan` pour fusionner, avec modération.\n\n## Exercices\n\n### Exercice 1 — Tableau des tarifs\n\nCréez un tableau avec une légende « Nos offres », deux colonnes (Offre, Prix) et deux lignes : Free à 0 €, Premium à 1 € par mois.\n\n```solution-html\n<table>\n  <caption>Nos offres</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Offre</th>\n      <th scope=\"col\">Prix</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope=\"row\">Free</th>\n      <td>0 €</td>\n    </tr>\n    <tr>\n      <th scope=\"row\">Premium</th>\n      <td>1 € par mois</td>\n    </tr>\n  </tbody>\n</table>\n```\n\n### Exercice 2 — Bon usage ?\n\nUn développeur utilise un tableau à deux colonnes pour placer un menu à gauche et le contenu à droite. Est-ce une bonne pratique ?\n\n```solution-text\nNon. Un tableau doit contenir des données tabulaires. Pour la mise en page, on utilise des éléments\nsémantiques (<nav>, <main>) disposés avec CSS (Flexbox ou Grid). Un tableau de mise en page perturbe\nles lecteurs d'écran et s'adapte mal aux mobiles.\n```",
+     "duration_minutes": 20,
+     "position": 1
+    },
+    {
+     "id": "ec395e08-20ab-5dbf-80f4-c9983fba5156",
+     "slug": "formulaires",
+     "title": "Les formulaires",
+     "summary": "Labels, types de champs, validation intégrée et autocomplétion.",
+     "content_md": "## Le formulaire\n\nUn formulaire recueille des informations : inscription, contact, recherche, paiement.\n\n```html\n<form action=\"/inscription\" method=\"post\">\n  <label for=\"prenom\">Prénom</label>\n  <input id=\"prenom\" name=\"prenom\" type=\"text\" autocomplete=\"given-name\" required>\n\n  <label for=\"email\">Adresse email</label>\n  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n\n  <button type=\"submit\">Créer mon compte</button>\n</form>\n```\n\n- `action` : adresse qui reçoit les données ; `method` : `get` (recherche, données visibles dans l'URL) ou `post` (envoi de données) ;\n- `name` : nom sous lequel la valeur est envoyée ;\n- `<button type=\"submit\">` envoie le formulaire.\n\n## Le label : indispensable\n\nChaque champ doit avoir un `<label>` relié par `for` = `id` du champ :\n\n- le lecteur d'écran annonce le label quand le champ reçoit le focus ;\n- cliquer sur le label place le curseur dans le champ (plus grande zone cliquable, utile sur mobile).\n\n> Un texte d'exemple (`placeholder`) **ne remplace pas** un label : il disparaît dès que l'on commence à écrire et il est souvent trop pâle pour être lu.\n\n## Les types de champs\n\n| Type | Usage | Bénéfice |\n|---|---|---|\n| `text` | texte court | |\n| `email` | adresse email | clavier avec @ sur mobile, vérification du format |\n| `password` | mot de passe | caractères masqués |\n| `tel` | téléphone | clavier numérique sur mobile |\n| `number` | nombre | flèches, `min`, `max`, `step` |\n| `date` | date | sélecteur de date |\n| `checkbox` | case à cocher | choix multiples |\n| `radio` | bouton radio | un seul choix parmi plusieurs (même `name`) |\n\n```html\n<fieldset>\n  <legend>Niveau souhaité</legend>\n  <input id=\"niv-deb\" type=\"radio\" name=\"niveau\" value=\"debutant\" checked>\n  <label for=\"niv-deb\">Débutant</label>\n  <input id=\"niv-int\" type=\"radio\" name=\"niveau\" value=\"intermediaire\">\n  <label for=\"niv-int\">Intermédiaire</label>\n</fieldset>\n\n<label for=\"pays\">Pays</label>\n<select id=\"pays\" name=\"pays\">\n  <option value=\"fr\">France</option>\n  <option value=\"be\">Belgique</option>\n</select>\n\n<label for=\"message\">Message</label>\n<textarea id=\"message\" name=\"message\" rows=\"5\"></textarea>\n\n<input id=\"cgu\" type=\"checkbox\" name=\"cgu\" required>\n<label for=\"cgu\">J'accepte les conditions d'utilisation</label>\n```\n\n`<fieldset>` et `<legend>` regroupent des champs liés, comme des boutons radio.\n\n## La validation intégrée\n\nLe navigateur vérifie automatiquement certains attributs avant l'envoi :\n\n- `required` : champ obligatoire ;\n- `minlength` / `maxlength` : longueur du texte ;\n- `min` / `max` : bornes d'un nombre ou d'une date ;\n- `pattern` : expression régulière (par exemple un code postal à 5 chiffres : `pattern=\"[0-9]{5}\"`).\n\nCette validation améliore l'expérience, mais **le serveur doit toujours revérifier** : n'importe qui peut la contourner.\n\n## `autocomplete` : faire gagner du temps\n\n`autocomplete=\"email\"`, `\"given-name\"`, `\"family-name\"`, `\"tel\"`, `\"postal-code\"`, `\"new-password\"` permettent au navigateur et aux gestionnaires de mots de passe de remplir les champs correctement.\n\n## À retenir\n\n- Chaque champ a un `<label for>` relié à son `id` ; le placeholder ne remplace pas le label.\n- Choisir le bon `type` (email, tel, number, date…).\n- Radios d'un même groupe : même `name`, regroupés dans un `<fieldset>` avec `<legend>`.\n- `required`, `minlength`, `min`, `pattern` ; le serveur revérifie toujours.\n\n## Exercices\n\n### Exercice 1 — Formulaire de contact\n\nCréez un formulaire de contact : nom (obligatoire), email (obligatoire), message (zone de texte, 20 caractères minimum) et un bouton « Envoyer ».\n\n```solution-html\n<form action=\"/contact\" method=\"post\">\n  <label for=\"nom\">Nom</label>\n  <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\" required>\n\n  <label for=\"email\">Adresse email</label>\n  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n\n  <label for=\"message\">Message</label>\n  <textarea id=\"message\" name=\"message\" rows=\"6\" minlength=\"20\" required></textarea>\n\n  <button type=\"submit\">Envoyer</button>\n</form>\n```\n\n### Exercice 2 — Choix unique\n\nAjoutez un choix « Vous êtes : Étudiant / Professionnel » avec des boutons radio correctement regroupés.\n\n```solution-html\n<fieldset>\n  <legend>Vous êtes</legend>\n  <input id=\"statut-etu\" type=\"radio\" name=\"statut\" value=\"etudiant\">\n  <label for=\"statut-etu\">Étudiant</label>\n  <input id=\"statut-pro\" type=\"radio\" name=\"statut\" value=\"professionnel\">\n  <label for=\"statut-pro\">Professionnel</label>\n</fieldset>\n```",
+     "duration_minutes": 35,
+     "position": 2
+    },
+    {
+     "id": "488cb8a0-1789-5d73-a639-5d490f2dd84f",
+     "slug": "accessibilite",
+     "title": "L'accessibilité",
+     "summary": "Règles essentielles, boutons et liens, ARIA et tests.",
+     "content_md": "## Une page pour tout le monde\n\nL'**accessibilité** (souvent abrégée *a11y*) consiste à rendre un site utilisable par tous : personnes aveugles ou malvoyantes (lecteurs d'écran, zoom), personnes qui naviguent au clavier, personnes daltoniennes, mais aussi quelqu'un qui consulte son téléphone en plein soleil. En France, elle est encadrée par le **RGAA** ; à l'international, par les **WCAG**.\n\nBonne nouvelle : la plupart des règles reposent sur un HTML **correct et sémantique**.\n\n## Les règles essentielles\n\n1. **Langue** : `<html lang=\"fr\">`.\n2. **Titres** hiérarchisés, un seul `<h1>`.\n3. **Images** : un `alt` pertinent, ou `alt=\"\"` si décorative.\n4. **Liens** explicites hors contexte : « Lire l'article sur Flexbox » plutôt que « Lire la suite ».\n5. **Formulaires** : un `<label>` pour chaque champ, des messages d'erreur clairs.\n6. **Clavier** : tout doit être utilisable avec `Tab`, `Entrée` et `Espace`. Utilisez de vrais `<button>` et `<a>`, jamais un `<div>` cliquable.\n7. **Contraste** suffisant entre le texte et le fond (au moins 4,5:1 pour le texte courant).\n8. **Ne pas transmettre une information par la couleur seule** : un champ en erreur est rouge **et** accompagné d'un message.\n\n## Bouton ou lien ?\n\n| Élément | Quand l'utiliser |\n|---|---|\n| `<a href=\"…\">` | pour **aller** quelque part (une autre page, une section) |\n| `<button>` | pour **agir** (envoyer, ouvrir un menu, supprimer) |\n\n```html\n<!-- À éviter : invisible au clavier et aux lecteurs d'écran -->\n<div class=\"bouton\" onclick=\"ouvrirMenu()\">Menu</div>\n\n<!-- Correct -->\n<button type=\"button\" aria-expanded=\"false\" aria-controls=\"menu\">Menu</button>\n```\n\n## Les attributs ARIA, avec parcimonie\n\nLes attributs **ARIA** (`aria-label`, `aria-expanded`, `aria-live`…) complètent l'information transmise aux technologies d'assistance, quand le HTML seul ne suffit pas :\n\n```html\n<button type=\"button\" aria-label=\"Fermer la fenêtre\">×</button>\n<p role=\"alert\">Le mot de passe est incorrect.</p>\n```\n\nPremière règle d'ARIA : **si un élément HTML natif fait l'affaire, utilisez-le**. Un `<button>` vaut mieux qu'un `<div role=\"button\">`.\n\n## Tester simplement\n\n- Parcourez la page uniquement au **clavier** (`Tab`, `Maj+Tab`) : voyez-vous toujours où se trouve le focus ?\n- Zoomez à **200 %** : la page reste-t-elle lisible ?\n- Lancez l'audit **Lighthouse** des outils de développement de Chrome (onglet *Lighthouse* → *Accessibility*).\n\n## À retenir\n\n- Accessibilité = HTML sémantique + alternatives textuelles + clavier + contrastes.\n- `<a>` pour naviguer, `<button>` pour agir ; jamais de `<div>` cliquable.\n- ARIA en complément, jamais à la place d'un élément natif.\n- Testez au clavier, au zoom et avec Lighthouse.\n\n## Exercices\n\n### Exercice 1 — Corrigez\n\nRepérez et corrigez les problèmes : `<img src=\"graphique.png\">` puis `<div onclick=\"envoyer()\">Envoyer</div>` puis `<a href=\"cours.html\">Cliquez ici</a>`.\n\n```solution-html\n<img src=\"graphique.png\" alt=\"Ventes 2026 : hausse de 30 % entre janvier et juin\">\n<button type=\"submit\">Envoyer</button>\n<a href=\"cours.html\">Voir le programme du cours</a>\n```\n\n### Exercice 2 — Un message d'erreur accessible\n\nUn champ email en erreur est seulement entouré de rouge. Pourquoi est-ce insuffisant, et que faut-il ajouter ?\n\n```solution-text\nLa couleur seule n'est pas perçue par les personnes daltoniennes ni annoncée par les lecteurs d'écran.\nIl faut ajouter un message texte explicite (par exemple « L'adresse email doit contenir @ »), placé près\ndu champ et annoncé, par exemple avec role=\"alert\" ou relié au champ par aria-describedby.\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "aafaba65-54a9-5407-9183-058f15d4b9f1",
+    "title": "Quiz — Tableaux, formulaires et accessibilité",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "881ef46e-2c5f-516b-baef-da056f1d94be",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Dans un tableau, quelle balise crée une cellule d'en-tête ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "28f657e8-758a-52e1-a52a-b934eaf3af19",
+        "position": 1,
+        "label": "<td>"
+       },
+       {
+        "id": "90e7f813-7be0-522a-bae1-6d698537d1cf",
+        "position": 2,
+        "label": "<th>"
+       },
+       {
+        "id": "8be93308-8e68-5843-bdac-4bd6580e2332",
+        "position": 3,
+        "label": "<tr>"
+       },
+       {
+        "id": "aba1eb18-54b5-5def-9b09-b74102b82304",
+        "position": 4,
+        "label": "<thead>"
+       }
+      ],
+      "correct": [
+       "90e7f813-7be0-522a-bae1-6d698537d1cf"
+      ],
+      "explanation": "<th> crée une cellule d'en-tête ; <td> une cellule de données ; <tr> une ligne."
+     },
+     {
+      "id": "420a9843-8c92-5183-adf4-be6cf9fb6be6",
+      "position": 2,
+      "kind": "single",
+      "prompt": "À quoi sert scope=\"col\" sur un <th> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "228591f6-f6f8-5ca3-b3ae-11559a9e29d1",
+        "position": 1,
+        "label": "À fusionner des colonnes"
+       },
+       {
+        "id": "199e7d0c-cf4a-513c-b7dd-cfc4791707d9",
+        "position": 2,
+        "label": "À indiquer que la cellule est l'en-tête d'une colonne"
+       },
+       {
+        "id": "98ed9881-34c9-5b2a-b92c-2861f1051cfd",
+        "position": 3,
+        "label": "À centrer le texte"
+       },
+       {
+        "id": "8fea4f7c-e9fd-5e35-9017-2f96ba0e6284",
+        "position": 4,
+        "label": "À trier la colonne"
+       }
+      ],
+      "correct": [
+       "199e7d0c-cf4a-513c-b7dd-cfc4791707d9"
+      ],
+      "explanation": "scope permet aux lecteurs d'écran d'associer chaque donnée à son en-tête de colonne ou de ligne."
+     },
+     {
+      "id": "be70756d-a5b3-5015-9d63-944b5fb29656",
+      "position": 3,
+      "kind": "true_false",
+      "prompt": "Un tableau HTML est une bonne solution pour mettre en page un site (menu à gauche, contenu à droite).",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5af6505a-fd31-5c5c-83a8-7c90fc5405bb",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "5d6ea16c-e09e-5df8-a70a-da73ddf63f6c",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "5d6ea16c-e09e-5df8-a70a-da73ddf63f6c"
+      ],
+      "explanation": "Les tableaux sont réservés aux données tabulaires ; la mise en page se fait en CSS."
+     },
+     {
+      "id": "bf4c4739-8603-5da5-b4c5-3ebf6e7a4fad",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Comment relier un <label> à son champ ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b19d5d27-90f0-55f7-9ca7-f56bd656dcf7",
+        "position": 1,
+        "label": "Avec l'attribut name"
+       },
+       {
+        "id": "843d84b8-9a0e-562a-8e4c-eb3a1b144fe8",
+        "position": 2,
+        "label": "Avec for sur le label égal à l'id du champ"
+       },
+       {
+        "id": "45f63720-cc1f-562d-ac3c-393312c80c53",
+        "position": 3,
+        "label": "Avec la même classe"
+       },
+       {
+        "id": "043e7b20-30a0-5a22-ae35-94d75cdf3feb",
+        "position": 4,
+        "label": "En plaçant le label après le champ"
+       }
+      ],
+      "correct": [
+       "843d84b8-9a0e-562a-8e4c-eb3a1b144fe8"
+      ],
+      "explanation": "for=\"email\" sur le label et id=\"email\" sur le champ les relient."
+     },
+     {
+      "id": "6b1f61ff-15dd-5593-a6a6-a5920958daa3",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Pourquoi un placeholder ne remplace-t-il pas un label ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "94c116bf-5a04-507a-8ed4-7e3247685399",
+        "position": 1,
+        "label": "Il est trop long"
+       },
+       {
+        "id": "10ff8e4c-c62e-5df8-a7c7-a2a621e28e95",
+        "position": 2,
+        "label": "Il disparaît dès la saisie et il est souvent peu lisible"
+       },
+       {
+        "id": "b1e480c5-7c22-5935-b1ad-080619e153ab",
+        "position": 3,
+        "label": "Il n'est pas envoyé au serveur"
+       },
+       {
+        "id": "c34e3078-09fd-55a8-83bd-e60cdd81e33f",
+        "position": 4,
+        "label": "Il est interdit en HTML5"
+       }
+      ],
+      "correct": [
+       "10ff8e4c-c62e-5df8-a7c7-a2a621e28e95"
+      ],
+      "explanation": "Le placeholder disparaît quand on écrit et a un faible contraste : un label visible reste indispensable."
+     },
+     {
+      "id": "b05dd0c4-458d-5bd2-ad84-6a78f47d36f9",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Quel type de champ affiche un clavier numérique adapté sur mobile pour un numéro de téléphone ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "d2dde6d1-871e-53c5-86a3-31e949982f57",
+        "position": 1,
+        "label": "text"
+       },
+       {
+        "id": "07088881-6cdf-5ae5-8b44-59e44ed4aedc",
+        "position": 2,
+        "label": "number"
+       },
+       {
+        "id": "07e3c586-51a9-5963-ac87-43c0ff9610e1",
+        "position": 3,
+        "label": "tel"
+       },
+       {
+        "id": "29927151-88b4-5fa1-b2f8-6d1693ce4078",
+        "position": 4,
+        "label": "phone"
+       }
+      ],
+      "correct": [
+       "07e3c586-51a9-5963-ac87-43c0ff9610e1"
+      ],
+      "explanation": "type=\"tel\" affiche le pavé téléphonique ; number est destiné aux quantités."
+     },
+     {
+      "id": "666a2689-2765-5b00-914b-5f54fd415bd5",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment permettre un seul choix parmi plusieurs boutons radio ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7938c971-28f0-531b-97c6-27250dbd4c1f",
+        "position": 1,
+        "label": "Leur donner le même id"
+       },
+       {
+        "id": "7be0e625-1567-5f28-9b61-e56ffd04676e",
+        "position": 2,
+        "label": "Leur donner le même name"
+       },
+       {
+        "id": "1ea3080c-d231-533c-9ee2-5f771ad3ffc1",
+        "position": 3,
+        "label": "Les placer dans une liste"
+       },
+       {
+        "id": "a2062e76-f84d-5030-af4c-cf71bb25e8d1",
+        "position": 4,
+        "label": "Ajouter required"
+       }
+      ],
+      "correct": [
+       "7be0e625-1567-5f28-9b61-e56ffd04676e"
+      ],
+      "explanation": "Les boutons radio d'un même groupe partagent le même name ; l'id, lui, reste unique."
+     },
+     {
+      "id": "260d0634-32dd-5ddd-8659-794c2b8e5a4c",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quel attribut rend un champ obligatoire ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3dafd7fe-ebf6-57b6-ba6a-5626cf15d089",
+        "position": 1,
+        "label": "mandatory"
+       },
+       {
+        "id": "48d00adb-9149-51e5-81ba-d7f966813282",
+        "position": 2,
+        "label": "required"
+       },
+       {
+        "id": "b4ca7c94-71c0-53a6-ba5a-14098063d535",
+        "position": 3,
+        "label": "needed"
+       },
+       {
+        "id": "be4c49e8-82fd-586c-a390-d1c65e2b07d7",
+        "position": 4,
+        "label": "validate"
+       }
+      ],
+      "correct": [
+       "48d00adb-9149-51e5-81ba-d7f966813282"
+      ],
+      "explanation": "required empêche l'envoi tant que le champ est vide."
+     },
+     {
+      "id": "6091c39c-91a5-5130-8149-fe744ab90042",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Pour une action comme « Ouvrir le menu », quel élément utiliser ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ae57b398-ec1e-5811-9a65-479273d6c874",
+        "position": 1,
+        "label": "<div onclick>"
+       },
+       {
+        "id": "1167159f-b00c-59f8-87da-e47028e4d867",
+        "position": 2,
+        "label": "<a href=\"#\">"
+       },
+       {
+        "id": "ef4179b5-737a-5c14-8dc6-afd069946e5d",
+        "position": 3,
+        "label": "<button type=\"button\">"
+       },
+       {
+        "id": "a7a2364f-e295-56a2-bbb1-8d7a3f3ddaf0",
+        "position": 4,
+        "label": "<span>"
+       }
+      ],
+      "correct": [
+       "ef4179b5-737a-5c14-8dc6-afd069946e5d"
+      ],
+      "explanation": "Un <button> est utilisable au clavier et annoncé correctement ; <a> sert à naviguer."
+     },
+     {
+      "id": "049e4cc9-2a95-57e9-a533-a45f49b9ebe0",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quelles pratiques améliorent l'accessibilité ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3b64b09c-081e-5579-97b4-3a502a6c9ec3",
+        "position": 1,
+        "label": "Indiquer une erreur uniquement par la couleur rouge"
+       },
+       {
+        "id": "783853a9-3690-513e-b1ab-45ef72216c6b",
+        "position": 2,
+        "label": "Un label pour chaque champ"
+       },
+       {
+        "id": "3cca8bfe-900a-596b-ac2f-17a4bf4bbd82",
+        "position": 3,
+        "label": "Des liens au texte explicite"
+       },
+       {
+        "id": "6607e136-4dc9-51f4-a303-73adcd23cbfd",
+        "position": 4,
+        "label": "Un contraste suffisant"
+       }
+      ],
+      "correct": [
+       "783853a9-3690-513e-b1ab-45ef72216c6b",
+       "3cca8bfe-900a-596b-ac2f-17a4bf4bbd82",
+       "6607e136-4dc9-51f4-a303-73adcd23cbfd"
+      ],
+      "explanation": "La couleur seule ne suffit pas : il faut aussi un message texte."
+     }
+    ]
+   }
+  },
+  {
+   "id": "2ffd753a-003f-5b47-b0a8-a6976ee3d143",
+   "position": 3,
+   "title": "Les bases du CSS",
+   "description": "Sélecteurs, couleurs, typographie, cascade et modèle de boîte.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "2b0da666-f41d-5a4f-8536-18399b47dd0f",
+     "slug": "premiers-styles",
+     "title": "Premiers styles",
+     "summary": "Relier une feuille de style, règles, sélecteurs et couleurs.",
+     "content_md": "## Relier une feuille de style\n\nLe CSS (*Cascading Style Sheets*) s'écrit dans un fichier séparé, relié dans le `<head>` :\n\n```html\n<link rel=\"stylesheet\" href=\"style.css\">\n```\n\nUn seul fichier CSS peut mettre en forme toutes les pages d'un site : changer une couleur dans ce fichier la change partout.\n\n## Anatomie d'une règle\n\n```css\nh1 {\n  color: #0B4BD6;\n  font-size: 2rem;\n}\n```\n\n- `h1` est le **sélecteur** : il désigne les éléments concernés ;\n- entre accolades, des **déclarations** `propriété: valeur;`.\n\n## Les sélecteurs essentiels\n\n```css\np { line-height: 1.6; }                 /* tous les <p> */\n.alerte { color: #B42318; }             /* les éléments class=\"alerte\" */\n#inscription { max-width: 30rem; }      /* l'élément id=\"inscription\" */\nnav a { text-decoration: none; }        /* les <a> situés dans une <nav> */\nh1, h2, h3 { font-weight: 700; }        /* plusieurs sélecteurs */\na:hover { text-decoration: underline; } /* au survol */\nbutton:focus-visible { outline: 3px solid #0B4BD6; } /* focus clavier */\n```\n\n| Sélecteur | Cible |\n|---|---|\n| `p` | une balise |\n| `.classe` | une classe (réutilisable sur plusieurs éléments) |\n| `#id` | un identifiant (unique dans la page) |\n| `parent enfant` | un descendant |\n| `:hover`, `:focus-visible` | un état (pseudo-classe) |\n\n> Bonne pratique : stylez surtout avec des **classes**. Les identifiants sont trop prioritaires (leçon suivante) et ne sont pas réutilisables.\n\nUne classe s'ajoute dans le HTML ; un élément peut en avoir plusieurs :\n\n```html\n<p class=\"carte carte--mise-en-avant\">Offre Premium</p>\n```\n\n## Les couleurs\n\n```css\n.exemples {\n  color: #0B4BD6;                 /* hexadécimal */\n  background-color: rgb(0 179 134); /* rouge vert bleu */\n  border-color: rgb(0 0 0 / 0.1); /* avec transparence */\n  outline-color: royalblue;       /* nom de couleur */\n}\n```\n\nLe code hexadécimal `#RRGGBB` est le plus utilisé ; `rgb(… / opacité)` permet la transparence.\n\nVérifiez toujours le **contraste** entre le texte et son fond : au moins 4,5:1 pour le texte courant. Les outils de développement de Chrome l'affichent dans le sélecteur de couleur.\n\n## Les commentaires\n\n```css\n/* Les commentaires CSS s'écrivent ainsi */\n```\n\n## À retenir\n\n- `<link rel=\"stylesheet\" href=\"style.css\">` dans le `<head>`.\n- `sélecteur { propriété: valeur; }`.\n- Sélecteurs : balise, `.classe`, `#id`, descendant, `:hover`, `:focus-visible`.\n- Préférer les classes ; vérifier les contrastes.\n\n## Exercices\n\n### Exercice 1 — Premiers styles\n\nÉcrivez le CSS qui met tous les paragraphes en gris foncé (`#333333`) et les liens en bleu `#0B4BD6`, soulignés seulement au survol.\n\n```solution-css\np {\n  color: #333333;\n}\na {\n  color: #0B4BD6;\n  text-decoration: none;\n}\na:hover {\n  text-decoration: underline;\n}\n```\n\n### Exercice 2 — Une classe réutilisable\n\nCréez une classe `.badge` (fond vert `#00B386`, texte blanc) et appliquez-la à un `<span>` « Nouveau ».\n\n```solution-css\n.badge {\n  background-color: #00B386;\n  color: #ffffff;\n}\n```\n\n```solution-html\n<span class=\"badge\">Nouveau</span>\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "da49102f-3a5f-5a5e-998d-9e37f5fed9af",
+     "slug": "typographie-cascade",
+     "title": "Typographie, cascade et spécificité",
+     "summary": "Polices, tailles, unités, héritage et priorité des règles.",
+     "content_md": "## La typographie\n\n```css\nbody {\n  font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif;\n  font-size: 1rem;\n  line-height: 1.6;\n  color: #1d1d1f;\n}\nh1 {\n  font-size: 2.5rem;\n  font-weight: 700;\n  letter-spacing: -0.02em;\n}\n.intro {\n  font-size: 1.25rem;\n  font-style: italic;\n  text-align: center;\n}\n```\n\n- `font-family` : liste de polices, de la préférée à la plus générique (`sans-serif`, `serif`, `monospace`) ;\n- `font-size`, `font-weight` (400 = normal, 700 = gras), `line-height` (interligne, sans unité) ;\n- `text-align`, `text-transform`, `letter-spacing`.\n\nPour une police personnalisée, on utilise un service comme Google Fonts ou la règle `@font-face`.\n\n## Les unités\n\n| Unité | Relative à | Usage typique |\n|---|---|---|\n| `px` | pixel de référence | bordures fines, ombres |\n| `rem` | taille de police de la racine (souvent 16 px) | tailles de texte, espacements |\n| `em` | taille de police de l'élément | espacements proportionnels au texte |\n| `%` | élément parent | largeurs |\n| `vw` / `vh` | 1 % de la largeur / hauteur de la fenêtre | sections plein écran |\n\n> Utilisez `rem` pour les tailles de texte : si l'utilisateur agrandit la police de son navigateur, toute la page suit. Des tailles en `px` ignorent ce réglage.\n\n## L'héritage\n\nCertaines propriétés, surtout celles du texte (`color`, `font-family`, `line-height`), se **transmettent** aux éléments enfants. C'est pourquoi on définit la police une seule fois sur `body`. Les propriétés de boîte (`margin`, `border`, `background`) ne s'héritent pas.\n\n## La cascade et la spécificité\n\nQuand plusieurs règles ciblent le même élément, laquelle s'applique ? Le navigateur compare la **spécificité** des sélecteurs :\n\n| Sélecteur | Poids |\n|---|---|\n| `style=\"…\"` dans le HTML | le plus fort |\n| `#id` | fort |\n| `.classe`, `:hover`, `[attribut]` | moyen |\n| `p`, `h1` (balise) | faible |\n\nÀ spécificité égale, **la dernière règle écrite l'emporte**.\n\n```css\np { color: black; }\n.note { color: green; }\np { color: gray; }\n```\n\n```html\n<p class=\"note\">Quelle couleur ?</p>\n```\n\nCe paragraphe est **vert** : `.note` (une classe) est plus spécifique que `p` (une balise), quel que soit l'ordre. Un `<p>` sans classe serait **gris** : entre les deux règles `p`, la dernière l'emporte.\n\n`!important` force une déclaration, mais rend le CSS très difficile à maintenir : réservez-le aux cas exceptionnels.\n\n## À retenir\n\n- `font-family` avec une police de secours, `line-height` sans unité.\n- `rem` pour le texte et les espacements.\n- Les propriétés de texte s'héritent.\n- Spécificité : style en ligne > `#id` > `.classe` > balise ; à égalité, la dernière règle gagne.\n\n## Exercices\n\n### Exercice 1 — Prédisez la couleur\n\nAvec `#titre { color: red; }` puis `.grand { color: blue; }`, de quelle couleur est `<h1 id=\"titre\" class=\"grand\">` ?\n\n```solution-text\nRouge : un identifiant (#titre) est plus spécifique qu'une classe (.grand), même si la règle .grand est écrite après.\n```\n\n### Exercice 2 — Une base typographique\n\nÉcrivez des règles pour : texte de base en `system-ui` à 1 rem avec un interligne de 1,6 ; titres `h2` à 1,75 rem en gras.\n\n```solution-css\nbody {\n  font-family: system-ui, sans-serif;\n  font-size: 1rem;\n  line-height: 1.6;\n}\nh2 {\n  font-size: 1.75rem;\n  font-weight: 700;\n}\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "90cbc7f1-cb62-57e9-a94c-8c7c89fe5bce",
+     "slug": "modele-de-boite",
+     "title": "Le modèle de boîte",
+     "summary": "Contenu, padding, border, margin et box-sizing.",
+     "content_md": "## Tout est une boîte\n\nChaque élément affiché est une **boîte** composée de quatre zones, de l'intérieur vers l'extérieur :\n\n1. le **contenu** (*content*) : texte, image ;\n2. la **marge intérieure** (*padding*) : l'espace entre le contenu et la bordure ;\n3. la **bordure** (*border*) ;\n4. la **marge extérieure** (*margin*) : l'espace avec les autres éléments.\n\n```css\n.carte {\n  width: 300px;\n  padding: 1.5rem;\n  border: 1px solid #d2d2d7;\n  border-radius: 12px;\n  margin: 1rem auto;\n  background-color: #ffffff;\n}\n```\n\n## Les raccourcis\n\n```css\n.exemple {\n  margin: 10px;                 /* les 4 côtés */\n  margin: 10px 20px;            /* haut-bas | gauche-droite */\n  margin: 10px 20px 30px 40px;  /* haut | droite | bas | gauche (sens des aiguilles d'une montre) */\n  margin-top: 2rem;             /* un seul côté */\n  margin-inline: auto;          /* gauche et droite automatiques : centre un bloc de largeur définie */\n}\n```\n\n## Le piège de la largeur : `box-sizing`\n\nPar défaut, `width` ne s'applique qu'au **contenu** : padding et bordure s'ajoutent. Notre `.carte` de 300 px occupe en réalité 300 + 2 × 24 (padding) + 2 × 1 (bordure) = **350 px**.\n\nLa règle `box-sizing: border-box` intègre padding et bordure dans la largeur : la carte mesure alors exactement 300 px. On l'applique à toute la page, en tête de feuille de style :\n\n```css\n*, *::before, *::after {\n  box-sizing: border-box;\n}\n```\n\n## Bordures, coins et ombres\n\n```css\n.bouton {\n  border: 2px solid #0B4BD6;\n  border-radius: 999px;   /* forme de pilule */\n  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);\n}\n.avatar {\n  border-radius: 50%;      /* cercle (pour une image carrée) */\n}\n```\n\n## Largeurs maximales\n\nPour un texte lisible, une ligne ne devrait pas dépasser 60 à 75 caractères. `max-width` limite la largeur sans empêcher l'élément de rétrécir sur un petit écran :\n\n```css\n.article {\n  max-width: 65ch;     /* environ 65 caractères */\n  margin-inline: auto; /* centré */\n  padding-inline: 1rem;\n}\n```\n\n## Observer les boîtes\n\nDans les outils de développement (**Inspecter**), l'onglet *Calculé* (*Computed*) dessine le modèle de boîte de l'élément sélectionné avec ses dimensions exactes : c'est l'outil idéal pour comprendre un espacement inattendu.\n\n## À retenir\n\n- Contenu → padding → border → margin.\n- Raccourcis : 1, 2 ou 4 valeurs (haut, droite, bas, gauche).\n- `box-sizing: border-box` pour que `width` inclue padding et bordure.\n- `max-width` + `margin-inline: auto` pour centrer un bloc lisible.\n\n## Exercices\n\n### Exercice 1 — Calculez la largeur\n\nSans `box-sizing: border-box`, quelle est la largeur totale (hors margin) de `width: 200px; padding: 20px; border: 5px solid;` ? Et avec ?\n\n```solution-text\nSans border-box : 200 + 2 × 20 + 2 × 5 = 250 px.\nAvec border-box : 200 px (le padding et la bordure sont inclus dans les 200 px).\n```\n\n### Exercice 2 — Une carte\n\nÉcrivez une classe `.carte` : 1,5 rem d'espace intérieur, bordure grise de 1 px, coins arrondis de 16 px, ombre légère, largeur maximale de 24 rem, centrée.\n\n```solution-css\n.carte {\n  max-width: 24rem;\n  margin-inline: auto;\n  padding: 1.5rem;\n  border: 1px solid #d2d2d7;\n  border-radius: 16px;\n  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);\n}\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "b6008e63-299a-59e4-9081-9dbbe0665a86",
+    "title": "Quiz — Les bases du CSS",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "e597c32c-ac77-58f3-bb4d-43b68fe209ff",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Comment relier une feuille de style style.css à une page ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "dbcef40a-8a53-537f-b3b9-466b54cebc28",
+        "position": 1,
+        "label": "<style src=\"style.css\">"
+       },
+       {
+        "id": "4f066a48-c446-5a92-8108-48bc86359bb9",
+        "position": 2,
+        "label": "<link rel=\"stylesheet\" href=\"style.css\">"
+       },
+       {
+        "id": "e228f90c-a2bd-5f15-9929-e50357d0606a",
+        "position": 3,
+        "label": "<css>style.css</css>"
+       },
+       {
+        "id": "7e484e74-bbca-5ff8-8888-11a5ea763bb1",
+        "position": 4,
+        "label": "<script src=\"style.css\">"
+       }
+      ],
+      "correct": [
+       "4f066a48-c446-5a92-8108-48bc86359bb9"
+      ],
+      "explanation": "La balise <link rel=\"stylesheet\" href=\"…\"> se place dans le <head>."
+     },
+     {
+      "id": "fbab23fd-c512-5046-ab39-13719db2ce95",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quel sélecteur cible les éléments ayant la classe « alerte » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e5a5ec7a-d96b-507d-808c-27a9bca5969a",
+        "position": 1,
+        "label": "#alerte"
+       },
+       {
+        "id": "4f8c27ca-a3c1-5dd6-b610-4fb18413c3e6",
+        "position": 2,
+        "label": ".alerte"
+       },
+       {
+        "id": "ab5832b6-3722-5a3d-940a-404cd146635f",
+        "position": 3,
+        "label": "alerte"
+       },
+       {
+        "id": "ff8af03a-5381-550e-8635-0808ea5beaf3",
+        "position": 4,
+        "label": "*alerte"
+       }
+      ],
+      "correct": [
+       "4f8c27ca-a3c1-5dd6-b610-4fb18413c3e6"
+      ],
+      "explanation": "Le point désigne une classe ; le dièse désigne un identifiant."
+     },
+     {
+      "id": "7788248a-f8fe-59dd-bb75-94dbdb62389b",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Avec « p { color: black; } » puis « .note { color: green; } », de quelle couleur est <p class=\"note\"> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6c3935b6-1059-592c-b171-38dd8d435b9d",
+        "position": 1,
+        "label": "Noir"
+       },
+       {
+        "id": "102a94eb-d3f7-57a6-bcfb-f3db747f7ce1",
+        "position": 2,
+        "label": "Vert"
+       },
+       {
+        "id": "10a97c97-9d5d-540b-be01-db33a708a8d8",
+        "position": 3,
+        "label": "Ça dépend du navigateur"
+       },
+       {
+        "id": "28ce7d3d-c648-5987-8f50-43e34d7c269f",
+        "position": 4,
+        "label": "Aucune couleur"
+       }
+      ],
+      "correct": [
+       "102a94eb-d3f7-57a6-bcfb-f3db747f7ce1"
+      ],
+      "explanation": "Une classe est plus spécifique qu'une balise : la règle .note l'emporte."
+     },
+     {
+      "id": "68a2388f-79a1-5fba-b208-d2788e5c8b44",
+      "position": 4,
+      "kind": "single",
+      "prompt": "À spécificité égale, quelle règle s'applique ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "57998667-a62c-517c-9031-403b8b8f207f",
+        "position": 1,
+        "label": "La première écrite"
+       },
+       {
+        "id": "dcb9e8a1-69dd-55a3-86f8-5bd383c1ad82",
+        "position": 2,
+        "label": "La dernière écrite"
+       },
+       {
+        "id": "17f21dad-cccd-5082-85bb-1cb7e27ff563",
+        "position": 3,
+        "label": "La plus courte"
+       },
+       {
+        "id": "3cf7db1f-14ad-59a6-bd2d-17eef4f7edff",
+        "position": 4,
+        "label": "Aucune"
+       }
+      ],
+      "correct": [
+       "dcb9e8a1-69dd-55a3-86f8-5bd383c1ad82"
+      ],
+      "explanation": "C'est le principe de la cascade : à égalité, la dernière règle l'emporte."
+     },
+     {
+      "id": "f7fc6add-d42c-5c91-837d-b809dec964a5",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Quelle unité respecte la taille de police choisie par l'utilisateur dans son navigateur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e1e4e2c2-9abd-57e2-9ebf-30405e809c2c",
+        "position": 1,
+        "label": "px"
+       },
+       {
+        "id": "ed64a34d-90ed-5e40-a3cb-c4e91b262c70",
+        "position": 2,
+        "label": "rem"
+       },
+       {
+        "id": "2832a3e1-065d-56b8-b677-c26a9ad66a27",
+        "position": 3,
+        "label": "cm"
+       },
+       {
+        "id": "e96b5d2e-de2d-5bd7-93d1-4f5bbd89ad99",
+        "position": 4,
+        "label": "pt"
+       }
+      ],
+      "correct": [
+       "ed64a34d-90ed-5e40-a3cb-c4e91b262c70"
+      ],
+      "explanation": "rem dépend de la taille de police de la racine, que l'utilisateur peut modifier."
+     },
+     {
+      "id": "fa0626f2-3a84-5e26-9404-2bd1fca4e856",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Dans quel ordre se trouvent les zones du modèle de boîte, de l'intérieur vers l'extérieur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "85d7a38f-dca0-57ae-ae9e-861037ca793e",
+        "position": 1,
+        "label": "margin, border, padding, contenu"
+       },
+       {
+        "id": "c4cfcfc9-6656-54c0-b60c-efc8fabc1054",
+        "position": 2,
+        "label": "contenu, padding, border, margin"
+       },
+       {
+        "id": "4ba551fc-b73a-540d-9020-bd4ec511c715",
+        "position": 3,
+        "label": "contenu, margin, border, padding"
+       },
+       {
+        "id": "8dfe6cee-d191-5f9f-8661-57d190d3e132",
+        "position": 4,
+        "label": "padding, contenu, border, margin"
+       }
+      ],
+      "correct": [
+       "c4cfcfc9-6656-54c0-b60c-efc8fabc1054"
+      ],
+      "explanation": "Contenu, puis marge intérieure (padding), bordure, et marge extérieure (margin)."
+     },
+     {
+      "id": "4204a14e-8801-5f7f-b551-e28c6729c245",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Sans box-sizing: border-box, quelle est la largeur totale de width: 100px; padding: 10px; border: 2px solid ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4f25648b-9778-58b4-8c01-bf39b3f5ce22",
+        "position": 1,
+        "label": "100 px"
+       },
+       {
+        "id": "2fa3f9cb-1a55-5fe6-80f7-0af0a9407b2f",
+        "position": 2,
+        "label": "112 px"
+       },
+       {
+        "id": "a6efeb6d-89c4-5eaa-b35b-8ab8e8073fe4",
+        "position": 3,
+        "label": "124 px"
+       },
+       {
+        "id": "e3414072-02b7-5ecb-96c1-b8401ec3406e",
+        "position": 4,
+        "label": "120 px"
+       }
+      ],
+      "correct": [
+       "a6efeb6d-89c4-5eaa-b35b-8ab8e8073fe4"
+      ],
+      "explanation": "100 + 2 × 10 + 2 × 2 = 124 px. Avec border-box, l'élément mesurerait 100 px."
+     },
+     {
+      "id": "4ca2d4c7-ee54-5633-bf29-0360fb7f0097",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Que fait margin: 10px 20px; ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "40db1cf8-62d8-5316-af58-7d2eba3b4ad3",
+        "position": 1,
+        "label": "10 px en haut, 20 px en bas"
+       },
+       {
+        "id": "02f88bbf-cc73-5018-a669-5ea8d79bbfce",
+        "position": 2,
+        "label": "10 px en haut et en bas, 20 px à gauche et à droite"
+       },
+       {
+        "id": "7b6bd7de-731e-5aa7-bc9f-92e911f270c2",
+        "position": 3,
+        "label": "10 px à gauche, 20 px à droite"
+       },
+       {
+        "id": "45174aa2-6cf6-5d44-837d-84465efc7176",
+        "position": 4,
+        "label": "10 px partout sauf 20 px en haut"
+       }
+      ],
+      "correct": [
+       "02f88bbf-cc73-5018-a669-5ea8d79bbfce"
+      ],
+      "explanation": "Avec deux valeurs : la première pour haut et bas, la seconde pour gauche et droite."
+     },
+     {
+      "id": "24341b38-aeab-5fc9-836e-d5935247f182",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quelles propriétés s'héritent des parents par défaut ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "77aa1ade-36d6-5b98-b8b7-8f6c3581fc7b",
+        "position": 1,
+        "label": "color"
+       },
+       {
+        "id": "655c9f99-a4a8-5efb-a5ee-c68049c0e4db",
+        "position": 2,
+        "label": "font-family"
+       },
+       {
+        "id": "e2d42f75-264c-51c8-a886-77f6e85c2f3e",
+        "position": 3,
+        "label": "margin"
+       },
+       {
+        "id": "430a404d-745a-567e-bed4-414f721a1b95",
+        "position": 4,
+        "label": "border"
+       }
+      ],
+      "correct": [
+       "77aa1ade-36d6-5b98-b8b7-8f6c3581fc7b",
+       "655c9f99-a4a8-5efb-a5ee-c68049c0e4db"
+      ],
+      "explanation": "Les propriétés de texte (color, font-family, line-height…) s'héritent ; les propriétés de boîte non."
+     },
+     {
+      "id": "b5e266e0-6ee4-5911-82ef-50135d3fadd2",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Quel sélecteur cible un bouton qui a reçu le focus au clavier ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f5ae4ce1-fd2b-5be5-b1d7-a943058ab7b5",
+        "position": 1,
+        "label": "button:hover"
+       },
+       {
+        "id": "e28589a2-265f-59d0-a266-4af9cef8ed7d",
+        "position": 2,
+        "label": "button:focus-visible"
+       },
+       {
+        "id": "6a7a2764-2bcc-5b9f-baaa-7750c073a5b1",
+        "position": 3,
+        "label": "button:active"
+       },
+       {
+        "id": "350c4763-129f-53b1-8814-f57b41bf2e5d",
+        "position": 4,
+        "label": "button::before"
+       }
+      ],
+      "correct": [
+       "e28589a2-265f-59d0-a266-4af9cef8ed7d"
+      ],
+      "explanation": ":focus-visible cible le focus clavier : indispensable pour l'accessibilité."
+     }
+    ]
+   }
+  },
+  {
+   "id": "b32ba70d-3de9-5192-8f62-621c4d32684e",
+   "position": 4,
+   "title": "La mise en page",
+   "description": "display, Flexbox, Grid et positionnement.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "fff70da9-13b7-559e-973d-9b22bc0a61a0",
+     "slug": "flexbox",
+     "title": "Flexbox",
+     "summary": "Aligner et répartir des éléments sur une ligne ou une colonne.",
+     "content_md": "## La propriété `display`\n\n`display` détermine comment un élément se place :\n\n| Valeur | Comportement |\n|---|---|\n| `block` | nouvelle ligne, toute la largeur |\n| `inline` | dans le texte ; `width` et `height` sont ignorés |\n| `inline-block` | dans le texte, mais dimensions respectées |\n| `none` | l'élément n'est pas affiché (ni lu par les lecteurs d'écran) |\n| `flex` | conteneur Flexbox |\n| `grid` | conteneur Grid |\n\n## Flexbox : aligner sur un axe\n\n**Flexbox** dispose les enfants d'un conteneur sur **une ligne** (ou une colonne) et gère leur alignement et leur répartition. C'est l'outil idéal pour une barre de navigation, une rangée de boutons ou une carte.\n\n```html\n<nav class=\"menu\">\n  <a href=\"/\">Accueil</a>\n  <a href=\"/formations\">Formations</a>\n  <a href=\"/tarifs\">Tarifs</a>\n</nav>\n```\n\n```css\n.menu {\n  display: flex;\n  gap: 1rem;\n  justify-content: center;\n  align-items: center;\n}\n```\n\n- `display: flex` sur le **parent** : ses enfants directs deviennent des éléments flexibles ;\n- `gap` : espace entre les éléments ;\n- `justify-content` : répartition sur l'**axe principal** (horizontal par défaut) ;\n- `align-items` : alignement sur l'**axe secondaire** (vertical par défaut).\n\n## Les valeurs de répartition\n\n| `justify-content` | Effet |\n|---|---|\n| `flex-start` | groupés au début |\n| `center` | centrés |\n| `flex-end` | groupés à la fin |\n| `space-between` | premier et dernier aux extrémités, espace égal entre eux |\n| `space-around` / `space-evenly` | espaces répartis autour |\n\nL'en-tête classique « logo à gauche, menu à droite » :\n\n```css\n.entete {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem;\n}\n```\n\n## Changer d'axe et passer à la ligne\n\n```css\n.colonne {\n  display: flex;\n  flex-direction: column; /* empile verticalement */\n  gap: .5rem;\n}\n.galerie {\n  display: flex;\n  flex-wrap: wrap;        /* passe à la ligne s'il manque de place */\n  gap: 1rem;\n}\n```\n\nAvec `flex-direction: column`, les axes s'inversent : `justify-content` agit verticalement, `align-items` horizontalement.\n\n## Faire grandir les éléments\n\n```css\n.recherche {\n  display: flex;\n  gap: .5rem;\n}\n.recherche input {\n  flex: 1;   /* prend toute la place restante */\n}\n```\n\n`flex: 1` dit à l'élément d'occuper l'espace disponible. Si trois éléments ont `flex: 1`, ils se partagent la largeur à parts égales.\n\n## Centrer parfaitement\n\n```css\n.centre {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n}\n```\n\n## À retenir\n\n- `display: flex` sur le parent ; `gap` pour les espaces.\n- `justify-content` (axe principal), `align-items` (axe secondaire).\n- `flex-direction: column`, `flex-wrap: wrap`.\n- `flex: 1` pour occuper l'espace restant.\n\n## Exercices\n\n### Exercice 1 — Barre d'en-tête\n\nÉcrivez le CSS d'un `<header class=\"entete\">` contenant un logo et une `<nav>` : logo à gauche, navigation à droite, alignés verticalement.\n\n```solution-css\n.entete {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 1rem;\n  padding: 1rem 1.5rem;\n}\n```\n\n### Exercice 2 — Trois cartes égales\n\nTrois `.carte` dans un `.rangee` doivent occuper chacune un tiers de la largeur, avec 1,5 rem entre elles, et passer à la ligne sur un écran étroit.\n\n```solution-css\n.rangee {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1.5rem;\n}\n.carte {\n  flex: 1 1 15rem; /* grandit, rétrécit, base de 15rem : passe à la ligne sous ~15rem */\n}\n```",
+     "duration_minutes": 35,
+     "position": 1
+    },
+    {
+     "id": "3b66cb49-bfa7-5975-9ed0-bc44ecdc76bb",
+     "slug": "grid",
+     "title": "CSS Grid",
+     "summary": "Construire des grilles en deux dimensions.",
+     "content_md": "## Grid : deux dimensions\n\nFlexbox gère **un axe** ; **CSS Grid** gère les **lignes et les colonnes à la fois**. C'est l'outil idéal pour une grille de cartes ou la structure générale d'une page.\n\n```css\n.grille {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 1.5rem;\n}\n```\n\n- `grid-template-columns` définit les colonnes ;\n- `fr` (*fraction*) partage l'espace disponible : `1fr 1fr 1fr` = trois colonnes égales, `2fr 1fr` = deux tiers / un tiers ;\n- `gap` espace lignes et colonnes.\n\n`repeat(3, 1fr)` est un raccourci pour `1fr 1fr 1fr`.\n\n## La grille responsive en une ligne\n\n```css\n.catalogue {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));\n  gap: 1.5rem;\n}\n```\n\nCette ligne crée **autant de colonnes que possible**, chacune d'au moins 16 rem : 1 colonne sur un téléphone, 2 sur une tablette, 3 ou 4 sur un ordinateur, sans aucune media query. C'est la technique utilisée pour le catalogue de SMK Academy.\n\n## Placer des éléments\n\nUn élément peut s'étendre sur plusieurs cellules :\n\n```css\n.mise-en-avant {\n  grid-column: span 2;   /* occupe deux colonnes */\n}\n.bandeau {\n  grid-column: 1 / -1;   /* de la première à la dernière ligne de colonne : toute la largeur */\n}\n```\n\n## Les zones nommées\n\nPour la structure d'une page, les **zones nommées** rendent le CSS très lisible :\n\n```css\n.page {\n  display: grid;\n  grid-template-columns: 14rem 1fr;\n  grid-template-areas:\n    \"entete entete\"\n    \"menu   contenu\"\n    \"pied   pied\";\n  min-height: 100vh;\n  gap: 1rem;\n}\n.page > header { grid-area: entete; }\n.page > nav    { grid-area: menu; }\n.page > main   { grid-area: contenu; }\n.page > footer { grid-area: pied; }\n```\n\n## Flexbox ou Grid ?\n\n| Besoin | Outil |\n|---|---|\n| Aligner des éléments sur une ligne (menu, boutons) | Flexbox |\n| Contenu dont la taille dicte la disposition | Flexbox |\n| Grille régulière (cartes, galerie) | Grid |\n| Structure de page en lignes et colonnes | Grid |\n\nLes deux se combinent : une grille de cartes (Grid) dont chaque carte aligne son contenu (Flexbox).\n\n## À retenir\n\n- `display: grid` + `grid-template-columns` + `gap`.\n- `fr` partage l'espace ; `repeat(3, 1fr)`.\n- `repeat(auto-fill, minmax(16rem, 1fr))` : grille responsive sans media query.\n- `grid-column: span 2`, `grid-column: 1 / -1`, zones nommées.\n- Flexbox pour une dimension, Grid pour deux.\n\n## Exercices\n\n### Exercice 1 — Galerie\n\nCréez une galerie `.galerie` de 4 colonnes égales avec 1 rem d'écart.\n\n```solution-css\n.galerie {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 1rem;\n}\n```\n\n### Exercice 2 — Grille automatique\n\nModifiez la galerie pour qu'elle s'adapte seule à la largeur de l'écran, avec des images d'au moins 12 rem.\n\n```solution-css\n.galerie {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));\n  gap: 1rem;\n}\n```\n\n### Exercice 3 — Le bon outil\n\nPour (a) une rangée de trois boutons centrés et (b) un tableau de bord avec un menu latéral et une zone principale, choisissez Flexbox ou Grid.\n\n```solution-text\n(a) Flexbox : une seule dimension (une rangée), justify-content: center.\n(b) Grid : une structure en colonnes (menu + contenu) et en lignes (en-tête, pied).\n```",
+     "duration_minutes": 35,
+     "position": 2
+    },
+    {
+     "id": "51e9a0a4-d1ba-5f43-acd9-d5e956c31d59",
+     "slug": "position",
+     "title": "Positionnement et superposition",
+     "summary": "position relative, absolute, fixed, sticky et z-index.",
+     "content_md": "## La propriété `position`\n\nPar défaut, les éléments suivent le **flux normal** (`position: static`) : ils s'empilent les uns après les autres. `position` permet de sortir de ce flux pour des besoins précis.\n\n| Valeur | Comportement | Usage typique |\n|---|---|---|\n| `static` | flux normal (défaut) | |\n| `relative` | reste dans le flux, peut être décalé ; sert de **référence** aux enfants absolus | conteneur d'un badge |\n| `absolute` | sort du flux, placé par rapport au plus proche ancêtre positionné | badge, icône sur une image |\n| `fixed` | placé par rapport à la fenêtre, ne défile pas | bouton flottant, bannière |\n| `sticky` | normal, puis « collé » quand on atteint un seuil au défilement | en-tête, barre de navigation |\n\nOn place l'élément avec `top`, `right`, `bottom`, `left` (ou `inset`).\n\n## Un badge sur une carte\n\n```html\n<article class=\"carte\">\n  <span class=\"badge\">Nouveau</span>\n  <h3>Formation SQL</h3>\n</article>\n```\n\n```css\n.carte {\n  position: relative;      /* référence pour le badge */\n}\n.badge {\n  position: absolute;\n  top: .75rem;\n  right: .75rem;\n}\n```\n\nSans `position: relative` sur la carte, le badge se placerait par rapport à la page entière.\n\n## Un en-tête collant\n\n```css\n.entete {\n  position: sticky;\n  top: 0;\n  z-index: 10;\n  background-color: rgb(255 255 255 / 0.85);\n  -webkit-backdrop-filter: blur(12px);\n  backdrop-filter: blur(12px);\n}\n```\n\nL'en-tête défile normalement, puis reste en haut de l'écran. `backdrop-filter` floute ce qui passe en dessous (effet « verre dépoli ») ; le préfixe `-webkit-` est nécessaire pour Safari.\n\n## La superposition : `z-index`\n\nQuand des éléments positionnés se chevauchent, `z-index` décide lequel passe au-dessus : la valeur la plus grande l'emporte. Il ne fonctionne que sur les éléments positionnés (ou les enfants d'un conteneur flex ou grid).\n\nConseil : utilisez une petite échelle cohérente (1, 10, 100) plutôt que des valeurs comme 99999.\n\n## Masquer un élément… intelligemment\n\n| Technique | Visible | Lu par un lecteur d'écran |\n|---|---|---|\n| `display: none` | non | non |\n| `visibility: hidden` | non (la place reste réservée) | non |\n| classe « visuellement masquée » | non | **oui** |\n\nLa dernière technique sert à donner une information aux lecteurs d'écran sans l'afficher :\n\n```css\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  overflow: hidden;\n  clip-path: inset(50%);\n  white-space: nowrap;\n}\n```\n\n## À retenir\n\n- `relative` sur le parent, `absolute` sur l'enfant pour placer un élément dans un autre.\n- `sticky` + `top: 0` pour un en-tête collant ; `fixed` pour un élément fixe.\n- `z-index` sur des éléments positionnés, avec une échelle simple.\n- `.sr-only` pour un texte réservé aux lecteurs d'écran.\n\n## Exercices\n\n### Exercice 1 — Bouton flottant\n\nPlacez un bouton `.aide` en bas à droite de l'écran, à 1,5 rem des bords, qui reste visible pendant le défilement.\n\n```solution-css\n.aide {\n  position: fixed;\n  right: 1.5rem;\n  bottom: 1.5rem;\n  z-index: 10;\n}\n```\n\n### Exercice 2 — Pourquoi ça ne marche pas ?\n\nUn `.prix` en `position: absolute; top: 0; right: 0;` se retrouve en haut à droite de la page au lieu de sa carte. Pourquoi ?\n\n```solution-text\nAucun ancêtre n'est positionné : l'élément absolu se place alors par rapport à la page.\nIl faut ajouter position: relative; sur la carte qui le contient.\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "d64a4d69-cf58-5610-91ab-b51b993a4bed",
+    "title": "Quiz — La mise en page",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "5c23f7be-cf2f-582e-b2e2-f0361f328699",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Sur quel élément applique-t-on display: flex ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3008c65d-7820-50a5-9ca6-f23fabcbf23c",
+        "position": 1,
+        "label": "Sur chaque enfant"
+       },
+       {
+        "id": "23cd884d-bc8a-5240-8e60-62ce05349b20",
+        "position": 2,
+        "label": "Sur le conteneur parent"
+       },
+       {
+        "id": "1e5e08d2-56d3-5e26-9baf-864fc49b379e",
+        "position": 3,
+        "label": "Sur le <body> uniquement"
+       },
+       {
+        "id": "bfcbee8e-0731-5d14-98cd-ec1ab2fe19a3",
+        "position": 4,
+        "label": "Sur le <head>"
+       }
+      ],
+      "correct": [
+       "23cd884d-bc8a-5240-8e60-62ce05349b20"
+      ],
+      "explanation": "display: flex s'applique au parent ; ses enfants directs deviennent des éléments flexibles."
+     },
+     {
+      "id": "7976ca52-be13-5561-bc3e-fc5f5d0cb8ac",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle propriété répartit les éléments sur l'axe principal d'un conteneur flex ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "abeb73e0-166c-5bb1-9b1f-cf7a60239ca8",
+        "position": 1,
+        "label": "align-items"
+       },
+       {
+        "id": "ecdd8b1a-6366-5a1b-942a-80bdfab7d23b",
+        "position": 2,
+        "label": "justify-content"
+       },
+       {
+        "id": "7ef32e84-bdce-5dd4-b506-1dd44c43f830",
+        "position": 3,
+        "label": "flex-wrap"
+       },
+       {
+        "id": "8e18d124-c5ad-5164-8ed3-8912e696a038",
+        "position": 4,
+        "label": "text-align"
+       }
+      ],
+      "correct": [
+       "ecdd8b1a-6366-5a1b-942a-80bdfab7d23b"
+      ],
+      "explanation": "justify-content agit sur l'axe principal ; align-items sur l'axe secondaire."
+     },
+     {
+      "id": "041410b7-7f8d-5610-a298-1a0c32723182",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle valeur place un logo à gauche et un menu à droite ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a1ffa347-9425-521c-886e-c5c602689824",
+        "position": 1,
+        "label": "justify-content: center"
+       },
+       {
+        "id": "cd458e1c-978e-5013-a6fb-5af03a51cc6c",
+        "position": 2,
+        "label": "justify-content: space-between"
+       },
+       {
+        "id": "ba3d752e-2393-59ce-8b70-f0de926b4152",
+        "position": 3,
+        "label": "align-items: stretch"
+       },
+       {
+        "id": "cc647d77-cc1f-5ef5-8b56-b59629a909d8",
+        "position": 4,
+        "label": "flex-direction: column"
+       }
+      ],
+      "correct": [
+       "cd458e1c-978e-5013-a6fb-5af03a51cc6c"
+      ],
+      "explanation": "space-between place le premier élément au début, le dernier à la fin."
+     },
+     {
+      "id": "7717f26f-a7e9-57f3-ad3e-d2172ace2960",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Que fait flex: 1 sur un élément flexible ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "0f004748-051b-5910-a767-b78131824f7b",
+        "position": 1,
+        "label": "Il le masque"
+       },
+       {
+        "id": "569774a6-180f-5f79-b829-407168b69a34",
+        "position": 2,
+        "label": "Il occupe l'espace restant disponible"
+       },
+       {
+        "id": "255da083-1fc2-5c44-a179-f09c1fee7d50",
+        "position": 3,
+        "label": "Il le place en premier"
+       },
+       {
+        "id": "39394c51-adb7-5ea6-ae9c-ce902c0b28f3",
+        "position": 4,
+        "label": "Il fixe sa largeur à 1 px"
+       }
+      ],
+      "correct": [
+       "569774a6-180f-5f79-b829-407168b69a34"
+      ],
+      "explanation": "flex: 1 permet à l'élément de grandir pour occuper l'espace disponible."
+     },
+     {
+      "id": "78cce3c3-6c2f-5d6f-8aef-37d4a1502faa",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que signifie grid-template-columns: 2fr 1fr ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b5035713-1d21-53d4-8fc8-f39321499da6",
+        "position": 1,
+        "label": "Deux colonnes de 2 px et 1 px"
+       },
+       {
+        "id": "e03202fe-67fd-50b3-b9e2-ef174ce2802e",
+        "position": 2,
+        "label": "Deux colonnes : deux tiers et un tiers de l'espace"
+       },
+       {
+        "id": "448cb889-50f4-5449-946c-625b6568af62",
+        "position": 3,
+        "label": "Trois colonnes égales"
+       },
+       {
+        "id": "7d682703-7679-5337-979b-c2dba59f7944",
+        "position": 4,
+        "label": "Une colonne de 21 fractions"
+       }
+      ],
+      "correct": [
+       "e03202fe-67fd-50b3-b9e2-ef174ce2802e"
+      ],
+      "explanation": "fr partage l'espace disponible : 2fr + 1fr = 3 parts, soit 2/3 et 1/3."
+     },
+     {
+      "id": "8bd1b566-ca36-5d65-b12f-68c383465814",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que permet repeat(auto-fill, minmax(16rem, 1fr)) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ab4bf006-8db8-5407-a624-b66b37f38b8f",
+        "position": 1,
+        "label": "Une seule colonne fixe"
+       },
+       {
+        "id": "f427cc21-97aa-5d00-a070-222fcb5af24e",
+        "position": 2,
+        "label": "Autant de colonnes que possible, d'au moins 16 rem chacune"
+       },
+       {
+        "id": "6ef27008-2a8b-5331-9991-64d74ee7d8bb",
+        "position": 3,
+        "label": "16 colonnes"
+       },
+       {
+        "id": "dcb2b452-914a-5960-b638-4c91e000a300",
+        "position": 4,
+        "label": "Une grille qui ne change jamais"
+       }
+      ],
+      "correct": [
+       "f427cc21-97aa-5d00-a070-222fcb5af24e"
+      ],
+      "explanation": "La grille crée automatiquement le nombre de colonnes adapté à la largeur disponible."
+     },
+     {
+      "id": "0fcae84e-8e34-5098-bd69-245caf237a61",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Que fait grid-column: 1 / -1 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2cfe0d9d-b1ec-538e-8b47-4c35e28889bd",
+        "position": 1,
+        "label": "Masque l'élément"
+       },
+       {
+        "id": "ec400d66-7226-5d5b-b72c-31c6b5b5be85",
+        "position": 2,
+        "label": "L'étend sur toute la largeur de la grille"
+       },
+       {
+        "id": "c700d8af-d07f-5a04-8768-3a8b9c3b553e",
+        "position": 3,
+        "label": "Le place dans la dernière colonne"
+       },
+       {
+        "id": "5870de16-06ba-53a1-98d7-ef5aa2c00674",
+        "position": 4,
+        "label": "Inverse les colonnes"
+       }
+      ],
+      "correct": [
+       "ec400d66-7226-5d5b-b72c-31c6b5b5be85"
+      ],
+      "explanation": "De la première à la dernière ligne de colonne : l'élément occupe toute la largeur."
+     },
+     {
+      "id": "775b32e3-30ef-5e03-bdde-3e806943876b",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Pour placer un badge dans le coin d'une carte, quelle combinaison utiliser ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "39c0684c-61c6-5b9b-a121-b6c7ed8a263e",
+        "position": 1,
+        "label": "position: absolute sur la carte, relative sur le badge"
+       },
+       {
+        "id": "39fd5725-e0bc-52a1-a16d-a97b0c4199cd",
+        "position": 2,
+        "label": "position: relative sur la carte, absolute sur le badge"
+       },
+       {
+        "id": "1feef40d-5a8c-51f4-9d90-e5e4f610a425",
+        "position": 3,
+        "label": "position: fixed sur les deux"
+       },
+       {
+        "id": "26451e9b-e489-5347-b31d-79d4e8731566",
+        "position": 4,
+        "label": "float: right sur le badge"
+       }
+      ],
+      "correct": [
+       "39fd5725-e0bc-52a1-a16d-a97b0c4199cd"
+      ],
+      "explanation": "Le badge absolu se place par rapport au plus proche ancêtre positionné : la carte en relative."
+     },
+     {
+      "id": "31af5791-6465-5783-9144-510316feaa78",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Quelle valeur garde un en-tête visible en haut de l'écran pendant le défilement, après sa position normale ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2f6437b0-be9f-594d-a8d8-501709a565f0",
+        "position": 1,
+        "label": "position: static"
+       },
+       {
+        "id": "c347d701-e5de-560b-a1b2-eea03b655a3b",
+        "position": 2,
+        "label": "position: sticky; top: 0"
+       },
+       {
+        "id": "d641d011-6f89-5136-a1f9-ce99fab265cc",
+        "position": 3,
+        "label": "position: absolute"
+       },
+       {
+        "id": "4237dcb8-223a-5819-bc87-06b6ec4a0770",
+        "position": 4,
+        "label": "display: block"
+       }
+      ],
+      "correct": [
+       "c347d701-e5de-560b-a1b2-eea03b655a3b"
+      ],
+      "explanation": "sticky laisse l'élément dans le flux, puis le colle en haut une fois le seuil atteint."
+     },
+     {
+      "id": "f122fd23-1524-5616-99b7-086a66072581",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quels cas se prêtent bien à Flexbox ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e152c2d2-ddc7-5904-9ac4-23b7f1222e7f",
+        "position": 1,
+        "label": "Une barre de navigation horizontale"
+       },
+       {
+        "id": "a6201ccf-b24e-55c9-8594-1d3bc125841a",
+        "position": 2,
+        "label": "Une rangée de boutons centrés"
+       },
+       {
+        "id": "90e37369-7bf8-5414-ac19-882dc7af4aea",
+        "position": 3,
+        "label": "Une structure de page en lignes et colonnes avec zones nommées"
+       },
+       {
+        "id": "91a7f93a-6f81-5338-b651-04696d73abb8",
+        "position": 4,
+        "label": "Aligner l'icône et le texte d'un bouton"
+       }
+      ],
+      "correct": [
+       "e152c2d2-ddc7-5904-9ac4-23b7f1222e7f",
+       "a6201ccf-b24e-55c9-8594-1d3bc125841a",
+       "91a7f93a-6f81-5338-b651-04696d73abb8"
+      ],
+      "explanation": "Flexbox gère une dimension ; une structure de page en deux dimensions relève plutôt de Grid."
+     }
+    ]
+   }
+  },
+  {
+   "id": "5dcdf41f-012a-5e68-8135-7553bc742a5b",
+   "position": 5,
+   "title": "Responsive design et projet",
+   "description": "Adapter la page à tous les écrans, variables, transitions et mini-projet.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "84ff7095-bf3a-5cea-9196-a65a0771433f",
+     "slug": "responsive",
+     "title": "Le responsive design",
+     "summary": "Mobile first, media queries, images et unités fluides.",
+     "content_md": "## Un site, tous les écrans\n\nPlus de la moitié des visites se font sur mobile. Un site **responsive** s'adapte à toutes les largeurs d'écran, du téléphone au grand moniteur.\n\nPremière condition, déjà vue au module 1 : la balise viewport dans le `<head>`.\n\n```html\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n```\n\nSans elle, le téléphone affiche la page comme sur un ordinateur, en tout petit.\n\n## Mobile first\n\nLa méthode recommandée consiste à écrire d'abord le CSS **pour le mobile** (une colonne, simple), puis à **ajouter** des règles pour les écrans plus larges :\n\n```css\n.cartes {\n  display: grid;\n  gap: 1rem;                     /* mobile : une colonne */\n}\n\n@media (min-width: 48rem) {      /* à partir de 768 px environ */\n  .cartes {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (min-width: 64rem) {      /* à partir de 1024 px environ */\n  .cartes {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}\n```\n\nUne **media query** `@media (condition) { … }` n'applique ses règles que si la condition est vraie. Avec `min-width`, on part du petit écran et on enrichit progressivement.\n\n## Des tailles fluides\n\n- Largeurs en `%` ou `max-width` plutôt qu'en `px` fixes ;\n- `clamp(min, idéal, max)` pour une taille qui varie entre deux bornes :\n\n```css\nh1 {\n  font-size: clamp(2rem, 1.2rem + 4vw, 4rem);\n}\n```\n\nLe titre mesure au moins 2 rem, au plus 4 rem, et grandit avec la largeur de l'écran entre les deux.\n\n## Des images qui s'adaptent\n\n```css\nimg {\n  max-width: 100%;\n  height: auto;\n}\n```\n\nCes deux lignes empêchent une image de déborder de son conteneur. Pour envoyer une image plus légère aux petits écrans, HTML propose `srcset` :\n\n```html\n<img src=\"photo-800.jpg\"\n     srcset=\"photo-400.jpg 400w, photo-800.jpg 800w, photo-1600.jpg 1600w\"\n     sizes=\"(min-width: 64rem) 50vw, 100vw\"\n     alt=\"Salle de formation SMK Academy\" width=\"800\" height=\"533\" loading=\"lazy\">\n```\n\n`loading=\"lazy\"` ne charge l'image que lorsqu'elle approche de l'écran.\n\n## Les zones tactiles\n\nSur mobile, on vise avec le doigt : les boutons et liens doivent mesurer au moins **44 × 44 px** et être suffisamment espacés.\n\n## Tester\n\nLes outils de développement proposent un **mode appareil** (icône téléphone, ou `Ctrl+Maj+M`) pour simuler différentes largeurs. Testez aussi sur un vrai téléphone : rien ne remplace le doigt.\n\n## À retenir\n\n- Balise viewport obligatoire.\n- Mobile first : CSS de base pour le mobile, `@media (min-width: …)` pour les grands écrans.\n- `max-width`, `%`, `clamp()` pour des tailles fluides.\n- `img { max-width: 100%; height: auto; }`, `srcset`, `loading=\"lazy\"`.\n- Zones tactiles d'au moins 44 px.\n\n## Exercices\n\n### Exercice 1 — Navigation responsive\n\nSur mobile, les liens de `.menu` sont empilés ; à partir de 48 rem, ils sont alignés sur une ligne avec 2 rem d'écart. Écrivez le CSS en mobile first.\n\n```solution-css\n.menu {\n  display: flex;\n  flex-direction: column;\n  gap: .5rem;\n}\n\n@media (min-width: 48rem) {\n  .menu {\n    flex-direction: row;\n    gap: 2rem;\n  }\n}\n```\n\n### Exercice 2 — Titre fluide\n\nÉcrivez une taille de `h1` qui varie entre 1,75 rem et 3,5 rem selon la largeur de l'écran.\n\n```solution-css\nh1 {\n  font-size: clamp(1.75rem, 1rem + 4vw, 3.5rem);\n}\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "95533661-7437-53f7-8492-b76d706d10db",
+     "slug": "variables-transitions",
+     "title": "Variables CSS, thème sombre et transitions",
+     "summary": "Custom properties, prefers-color-scheme et animations sobres.",
+     "content_md": "## Les variables CSS\n\nLes **propriétés personnalisées** (variables CSS) évitent de répéter les mêmes valeurs et rendent un thème facile à modifier :\n\n```css\n:root {\n  --couleur-principale: #0B4BD6;\n  --couleur-succes: #00B386;\n  --texte: #1d1d1f;\n  --fond: #ffffff;\n  --rayon: 14px;\n  --espace: 1rem;\n}\n\n.bouton {\n  background-color: var(--couleur-principale);\n  color: #ffffff;\n  border-radius: var(--rayon);\n  padding: calc(var(--espace) * .75) var(--espace);\n}\n```\n\n- on les déclare avec `--nom` (souvent sur `:root`, la racine de la page) ;\n- on les utilise avec `var(--nom)` ;\n- `calc()` permet de calculer à partir d'elles.\n\nChanger `--couleur-principale` met à jour tous les éléments qui l'utilisent.\n\n## Un thème sombre automatique\n\nLa media query `prefers-color-scheme` détecte le réglage du système de l'utilisateur. Avec des variables, le thème sombre tient en quelques lignes :\n\n```css\n@media (prefers-color-scheme: dark) {\n  :root {\n    --texte: #f5f5f7;\n    --fond: #000000;\n    --couleur-principale: #4C8DFF;\n  }\n}\n\nbody {\n  color: var(--texte);\n  background-color: var(--fond);\n}\n```\n\nEn thème sombre, une couleur vive est souvent éclaircie pour garder un bon contraste sur fond noir.\n\n## Les transitions\n\nUne **transition** anime le passage d'une valeur à une autre, par exemple au survol :\n\n```css\n.carte {\n  transition: transform 200ms ease, box-shadow 200ms ease;\n}\n.carte:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 12px 24px rgb(0 0 0 / 0.12);\n}\n```\n\n- on indique les **propriétés** animées, la **durée** et la **courbe** (`ease`, `ease-out`, `linear`) ;\n- `transform` (déplacement, échelle, rotation) et `opacity` sont les propriétés les plus performantes à animer.\n\n## Respecter les préférences de mouvement\n\nCertaines personnes souffrent de nausées face aux animations. Leur système peut le signaler ; respectez ce choix :\n\n```css\n@media (prefers-reduced-motion: reduce) {\n  *, *::before, *::after {\n    transition-duration: 0.01ms !important;\n    animation-duration: 0.01ms !important;\n  }\n}\n```\n\nC'est l'un des rares usages légitimes de `!important`.\n\n## À retenir\n\n- `:root { --nom: valeur; }` puis `var(--nom)` ; `calc()` pour calculer.\n- `prefers-color-scheme: dark` + variables = thème sombre.\n- `transition: propriété durée courbe` ; animer de préférence `transform` et `opacity`.\n- Respecter `prefers-reduced-motion`.\n\n## Exercices\n\n### Exercice 1 — Un thème en variables\n\nDéclarez trois variables (couleur d'accent, couleur de texte, rayon de 12 px) et utilisez-les dans une classe `.bouton`.\n\n```solution-css\n:root {\n  --accent: #0B4BD6;\n  --texte-inverse: #ffffff;\n  --rayon: 12px;\n}\n.bouton {\n  background-color: var(--accent);\n  color: var(--texte-inverse);\n  border-radius: var(--rayon);\n}\n```\n\n### Exercice 2 — Survol animé\n\nFaites légèrement grossir (`scale(1.03)`) un `.bouton` au survol, en 150 ms.\n\n```solution-css\n.bouton {\n  transition: transform 150ms ease-out;\n}\n.bouton:hover {\n  transform: scale(1.03);\n}\n```",
+     "duration_minutes": 25,
+     "position": 2
+    },
+    {
+     "id": "9dad50f1-e368-54b2-8bfa-a2370aa8a259",
+     "slug": "mini-projet",
+     "title": "Mini-projet : une page de présentation",
+     "summary": "Construire et publier une page complète, accessible et responsive.",
+     "content_md": "## Le projet\n\nVous allez réaliser la **page de présentation d'un formateur indépendant** : responsive, accessible, avec un thème sombre automatique. Elle mobilise toute la formation.\n\nContenu attendu :\n\n1. un en-tête avec le nom et une navigation vers les sections ;\n2. une section d'accroche avec un titre et un bouton d'action ;\n3. une grille de trois formations proposées ;\n4. un formulaire de contact ;\n5. un pied de page.\n\n## Étape 1 — Le HTML\n\n```html\n<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Sofia Rossi – Formatrice data</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n  </head>\n  <body>\n    <header class=\"entete\">\n      <a class=\"logo\" href=\"#\">Sofia Rossi</a>\n      <nav aria-label=\"Navigation principale\">\n        <ul class=\"menu\">\n          <li><a href=\"#formations\">Formations</a></li>\n          <li><a href=\"#contact\">Contact</a></li>\n        </ul>\n      </nav>\n    </header>\n\n    <main>\n      <section class=\"accroche\">\n        <h1>Apprenez la data, simplement.</h1>\n        <p>Des formations courtes et concrètes en SQL, Excel et Power BI.</p>\n        <a class=\"bouton\" href=\"#contact\">Me contacter</a>\n      </section>\n\n      <section id=\"formations\" aria-labelledby=\"titre-formations\">\n        <h2 id=\"titre-formations\">Formations</h2>\n        <div class=\"grille\">\n          <article class=\"carte\">\n            <h3>SQL pour débutants</h3>\n            <p>Interroger une base de données en une journée.</p>\n          </article>\n          <article class=\"carte\">\n            <h3>Excel avancé</h3>\n            <p>Tableaux croisés dynamiques et formules utiles.</p>\n          </article>\n          <article class=\"carte\">\n            <h3>Power BI</h3>\n            <p>Créer un tableau de bord clair et interactif.</p>\n          </article>\n        </div>\n      </section>\n\n      <section id=\"contact\" aria-labelledby=\"titre-contact\">\n        <h2 id=\"titre-contact\">Contact</h2>\n        <form class=\"formulaire\" action=\"https://formspree.io/f/votre-identifiant\" method=\"post\">\n          <label for=\"nom\">Nom</label>\n          <input id=\"nom\" name=\"nom\" autocomplete=\"name\" required>\n          <label for=\"email\">Email</label>\n          <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n          <label for=\"message\">Message</label>\n          <textarea id=\"message\" name=\"message\" rows=\"5\" required></textarea>\n          <button class=\"bouton\" type=\"submit\">Envoyer</button>\n        </form>\n      </section>\n    </main>\n\n    <footer class=\"pied\">\n      <p>© 2026 Sofia Rossi</p>\n    </footer>\n  </body>\n</html>\n```\n\n## Étape 2 — Le CSS\n\n```css\n*, *::before, *::after { box-sizing: border-box; }\n\n:root {\n  --accent: #0B4BD6;\n  --texte: #1d1d1f;\n  --texte-2: #515154;\n  --fond: #ffffff;\n  --fond-2: #f5f5f7;\n  --rayon: 16px;\n}\n\n@media (prefers-color-scheme: dark) {\n  :root {\n    --accent: #4C8DFF;\n    --texte: #f5f5f7;\n    --texte-2: #a1a1a6;\n    --fond: #000000;\n    --fond-2: #1c1c1e;\n  }\n}\n\nbody {\n  margin: 0;\n  font-family: system-ui, sans-serif;\n  line-height: 1.6;\n  color: var(--texte);\n  background-color: var(--fond);\n}\n\nmain > section {\n  max-width: 64rem;\n  margin-inline: auto;\n  padding: 3rem 1.25rem;\n}\n\n.entete {\n  position: sticky;\n  top: 0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: .75rem 1.25rem;\n  background-color: var(--fond);\n  border-bottom: 1px solid var(--fond-2);\n}\n.logo { font-weight: 700; color: var(--texte); text-decoration: none; }\n.menu { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }\n.menu a { color: var(--texte-2); text-decoration: none; }\n.menu a:hover { color: var(--accent); }\n\n.accroche { text-align: center; }\n.accroche h1 { font-size: clamp(2rem, 1.2rem + 4vw, 3.5rem); line-height: 1.1; margin-bottom: .5rem; }\n.accroche p { color: var(--texte-2); font-size: 1.15rem; }\n\n.bouton {\n  display: inline-block;\n  min-height: 44px;\n  padding: .7rem 1.4rem;\n  border: 0;\n  border-radius: 999px;\n  background-color: var(--accent);\n  color: #ffffff;\n  font: inherit;\n  font-weight: 600;\n  text-decoration: none;\n  cursor: pointer;\n  transition: transform 150ms ease-out;\n}\n.bouton:hover { transform: scale(1.03); }\n.bouton:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }\n\n.grille {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));\n  gap: 1.25rem;\n}\n.carte {\n  padding: 1.5rem;\n  border-radius: var(--rayon);\n  background-color: var(--fond-2);\n}\n.carte h3 { margin-top: 0; }\n\n.formulaire { display: grid; gap: .5rem; max-width: 32rem; }\n.formulaire input, .formulaire textarea {\n  font: inherit;\n  padding: .7rem;\n  border: 1px solid var(--texte-2);\n  border-radius: 10px;\n  background-color: var(--fond);\n  color: var(--texte);\n}\n.formulaire button { justify-self: start; margin-top: .5rem; }\n\n.pied { text-align: center; padding: 2rem; color: var(--texte-2); }\n\n@media (prefers-reduced-motion: reduce) {\n  .bouton { transition: none; }\n}\n```\n\n## Étape 3 — Vérifier\n\nAvant de publier, passez cette liste :\n\n- [ ] le validateur HTML du W3C ne signale aucune erreur ;\n- [ ] la page est utilisable au clavier, et le focus est toujours visible ;\n- [ ] l'audit Lighthouse (*Accessibility*) dépasse 90 ;\n- [ ] la page s'affiche correctement de 320 px à 1 440 px de large ;\n- [ ] le thème sombre reste lisible (contrastes).\n\n## Étape 4 — Publier gratuitement\n\nUn site statique (HTML + CSS) se publie gratuitement en quelques minutes : déposez le dossier sur **Netlify Drop** (glisser-déposer), ou publiez-le avec **GitHub Pages** depuis un dépôt GitHub. Vous obtenez une adresse publique à partager.\n\nLe formulaire de cet exemple utilise un service tiers (Formspree) pour recevoir les messages par email ; remplacez `votre-identifiant` par celui fourni lors de votre inscription, ou retirez l'attribut `action` pour un simple exercice.\n\n## À retenir\n\n- Partir d'un HTML sémantique, puis le mettre en forme avec des variables CSS.\n- Grid pour la grille, Flexbox pour l'en-tête, `clamp()` pour le titre.\n- Vérifier : validateur, clavier, Lighthouse, tailles d'écran, thème sombre.\n- Un site statique se publie gratuitement (Netlify, GitHub Pages).",
+     "duration_minutes": 45,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "24636925-5dad-565c-918b-7d2a60563c6e",
+    "title": "Quiz — Responsive design et projet",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "526a6f1b-bede-54ed-92d4-61560b5c2f57",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que permet la balise <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "43b13f08-0d89-5cf9-af13-231b368224d2",
+        "position": 1,
+        "label": "D'accélérer le chargement"
+       },
+       {
+        "id": "d528edde-a8d7-50c4-9d93-1db8add5bdf2",
+        "position": 2,
+        "label": "D'adapter l'affichage à la largeur de l'écran mobile"
+       },
+       {
+        "id": "544af1bf-eb85-511a-a6a7-255515799271",
+        "position": 3,
+        "label": "D'activer le thème sombre"
+       },
+       {
+        "id": "58478fc9-e3ff-55f9-ad08-562f94fc9394",
+        "position": 4,
+        "label": "D'améliorer le référencement uniquement"
+       }
+      ],
+      "correct": [
+       "d528edde-a8d7-50c4-9d93-1db8add5bdf2"
+      ],
+      "explanation": "Sans elle, les téléphones affichent la page comme sur un ordinateur, en réduction."
+     },
+     {
+      "id": "2d1396a9-d710-557c-a0ab-0ceefb104a0d",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Dans une démarche mobile first, quelle media query utilise-t-on surtout ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "47a86c25-9f14-5b13-ab78-145d5a9ef1cb",
+        "position": 1,
+        "label": "@media (max-width: …)"
+       },
+       {
+        "id": "cb1310d2-a71b-579d-9481-05d25e927cde",
+        "position": 2,
+        "label": "@media (min-width: …)"
+       },
+       {
+        "id": "22da1a3b-472d-54a9-bfcd-df0a95850057",
+        "position": 3,
+        "label": "@media print"
+       },
+       {
+        "id": "7c2ebd8f-1959-53bc-8fd1-ee58211fa5cc",
+        "position": 4,
+        "label": "@media (orientation: portrait) uniquement"
+       }
+      ],
+      "correct": [
+       "cb1310d2-a71b-579d-9481-05d25e927cde"
+      ],
+      "explanation": "On écrit d'abord le CSS mobile, puis on enrichit avec min-width pour les écrans plus larges."
+     },
+     {
+      "id": "ab2c768c-4cc5-5d84-860c-3dd34974c330",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Que fait font-size: clamp(2rem, 1rem + 4vw, 4rem) ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e266e19a-fe0a-56d2-8528-033ad005a2b7",
+        "position": 1,
+        "label": "Une taille fixe de 2 rem"
+       },
+       {
+        "id": "77118237-8eae-5c79-8cee-fdd06ed598c5",
+        "position": 2,
+        "label": "Une taille qui varie avec l'écran, entre 2 rem et 4 rem"
+       },
+       {
+        "id": "7762fc7c-46f3-576c-9ffc-70f6c01e1811",
+        "position": 3,
+        "label": "Une taille de 4 rem sur mobile"
+       },
+       {
+        "id": "6a0bfe1d-fee1-5726-994c-c4503e74fe34",
+        "position": 4,
+        "label": "Une erreur"
+       }
+      ],
+      "correct": [
+       "77118237-8eae-5c79-8cee-fdd06ed598c5"
+      ],
+      "explanation": "clamp(min, idéal, max) borne une valeur fluide entre un minimum et un maximum."
+     },
+     {
+      "id": "cf057679-12b8-57e7-a7f1-89360ba8ac7a",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelles règles empêchent une image de déborder de son conteneur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5ff182d2-2792-5bf5-97a4-f4d5a18b2897",
+        "position": 1,
+        "label": "width: 100vw"
+       },
+       {
+        "id": "b84b8ecd-9d32-5636-a740-1927568d7d1e",
+        "position": 2,
+        "label": "max-width: 100%; height: auto;"
+       },
+       {
+        "id": "a99cfc69-af6f-5474-b9fc-f2d61d2c0c4f",
+        "position": 3,
+        "label": "overflow: scroll"
+       },
+       {
+        "id": "cc60fbd9-1873-5f11-bb21-bdc11153648b",
+        "position": 4,
+        "label": "display: none"
+       }
+      ],
+      "correct": [
+       "b84b8ecd-9d32-5636-a740-1927568d7d1e"
+      ],
+      "explanation": "max-width: 100% limite la largeur ; height: auto conserve les proportions."
+     },
+     {
+      "id": "ba968db4-1361-51ae-8aa0-70401f688622",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Que fait loading=\"lazy\" sur une image ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a5a93089-58ac-5b1f-bba7-8bc3e8f3fd5e",
+        "position": 1,
+        "label": "Elle est chargée en basse qualité"
+       },
+       {
+        "id": "17ee0891-4edb-5c31-bbd4-afe2a097bcf5",
+        "position": 2,
+        "label": "Elle n'est chargée que lorsqu'elle approche de l'écran"
+       },
+       {
+        "id": "225d8a2a-3b2f-5424-a557-aa1fd2d66661",
+        "position": 3,
+        "label": "Elle est chargée après 5 secondes"
+       },
+       {
+        "id": "5f26e95e-2ce0-5d71-ba62-69937cd21542",
+        "position": 4,
+        "label": "Elle est masquée"
+       }
+      ],
+      "correct": [
+       "17ee0891-4edb-5c31-bbd4-afe2a097bcf5"
+      ],
+      "explanation": "Le chargement différé économise de la bande passante pour les images hors de l'écran."
+     },
+     {
+      "id": "d0db5d9c-d913-5b96-ba1e-e52d166b8b91",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Comment utilise-t-on une variable CSS déclarée avec --accent: #0B4BD6 ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "173f0c6e-c09c-5b3d-982d-748bb1bdd856",
+        "position": 1,
+        "label": "color: $accent;"
+       },
+       {
+        "id": "6a93a95e-5f3a-5b83-b9d1-714293fe38ee",
+        "position": 2,
+        "label": "color: var(--accent);"
+       },
+       {
+        "id": "c289d760-9f36-5971-bc21-a8921caac4f6",
+        "position": 3,
+        "label": "color: --accent;"
+       },
+       {
+        "id": "7bcd7b4d-29fb-56ad-bf49-d058ceb3b59a",
+        "position": 4,
+        "label": "color: @accent;"
+       }
+      ],
+      "correct": [
+       "6a93a95e-5f3a-5b83-b9d1-714293fe38ee"
+      ],
+      "explanation": "Les propriétés personnalisées se lisent avec var(--nom)."
+     },
+     {
+      "id": "ac46234b-5fb3-5a34-9661-1b2810963f40",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Quelle media query détecte le thème sombre du système ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "b33a2c88-6245-5d58-814c-7e8c516702fa",
+        "position": 1,
+        "label": "@media (theme: dark)"
+       },
+       {
+        "id": "75a78d09-6acc-5025-afbd-1b9b3595f6be",
+        "position": 2,
+        "label": "@media (prefers-color-scheme: dark)"
+       },
+       {
+        "id": "d6461551-9006-526c-b1de-2c9348c886c4",
+        "position": 3,
+        "label": "@media (dark-mode)"
+       },
+       {
+        "id": "ab9af7e3-0e95-5804-a3c7-7945746d6c28",
+        "position": 4,
+        "label": "@media (color: black)"
+       }
+      ],
+      "correct": [
+       "75a78d09-6acc-5025-afbd-1b9b3595f6be"
+      ],
+      "explanation": "prefers-color-scheme reflète le réglage clair ou sombre de l'utilisateur."
+     },
+     {
+      "id": "c1a8c8a6-39a8-5013-b138-439f51f5bb1b",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quelles propriétés sont les plus performantes à animer ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e9f7167-0058-56a1-ada5-d6c28ece441a",
+        "position": 1,
+        "label": "width et height"
+       },
+       {
+        "id": "e8c78be3-7271-5ee4-b151-03d90dc9ce4c",
+        "position": 2,
+        "label": "transform et opacity"
+       },
+       {
+        "id": "38c8c776-667f-595f-a531-c63ef0bba673",
+        "position": 3,
+        "label": "margin et padding"
+       },
+       {
+        "id": "cba5dec8-e370-59b5-82fb-4c546c9fb7cd",
+        "position": 4,
+        "label": "top et left"
+       }
+      ],
+      "correct": [
+       "e8c78be3-7271-5ee4-b151-03d90dc9ce4c"
+      ],
+      "explanation": "transform et opacity sont gérées efficacement par le navigateur, sans recalcul de mise en page."
+     },
+     {
+      "id": "6b0ad655-4550-5c22-b87d-8687a5557c14",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Quelle est la taille minimale recommandée d'une zone tactile ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8983dd11-27ff-5a12-a4dd-abd175e414db",
+        "position": 1,
+        "label": "16 × 16 px"
+       },
+       {
+        "id": "94e15cd4-6dbf-5037-b481-8028a59fa14b",
+        "position": 2,
+        "label": "24 × 24 px"
+       },
+       {
+        "id": "e7877189-d4a8-5bc8-95fa-a609dfe2d466",
+        "position": 3,
+        "label": "44 × 44 px"
+       },
+       {
+        "id": "e9f03889-fd74-5380-bb68-74aeb5fbfc1e",
+        "position": 4,
+        "label": "100 × 100 px"
+       }
+      ],
+      "correct": [
+       "e7877189-d4a8-5bc8-95fa-a609dfe2d466"
+      ],
+      "explanation": "Environ 44 × 44 px permettent de viser facilement avec le doigt."
+     },
+     {
+      "id": "a61b7caf-e465-5ee6-a2a5-821ee6f7d7f8",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "Il faut respecter prefers-reduced-motion en réduisant ou supprimant les animations.",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e9fefefa-d554-544e-8b34-ae242bfe7a52",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "808ee283-8ccf-5f9c-9357-e11347ebbe22",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "e9fefefa-d554-544e-8b34-ae242bfe7a52"
+      ],
+      "explanation": "Certaines personnes sont gênées par les animations : leur réglage système doit être respecté."
+     }
+    ]
+   }
+  }
+ ]
+}
