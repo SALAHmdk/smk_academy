@@ -1,0 +1,1934 @@
+{
+ "course": {
+  "slug": "anglais-professionnel-debutant",
+  "title": "Anglais professionnel — débutant",
+  "subtitle": "Les bases pour communiquer au travail.",
+  "description": "Gagnez en aisance dans les situations professionnelles les plus courantes : vous présenter, présenter votre entreprise, écrire des emails clairs et polis, téléphoner, participer à une réunion ou à une visioconférence et rendre compte de votre activité. Chaque leçon réunit le vocabulaire utile, les points de grammaire indispensables, des modèles prêts à l'emploi et des exercices corrigés ; chaque module se termine par un quiz noté sur 20.",
+  "level": "debutant",
+  "duration_minutes": 480,
+  "objectives": [
+   "Se présenter et présenter son entreprise",
+   "Écrire un email professionnel clair et poli",
+   "Téléphoner et participer à une visioconférence",
+   "Prendre part à une réunion et en résumer les décisions",
+   "Rendre compte de son activité et présenter des chiffres"
+  ],
+  "prerequisites": [
+   "Niveau A1 conseillé (bases de l'anglais courant)"
+  ],
+  "is_premium": false,
+  "position": 3,
+  "status": "published",
+  "id": "56364fc8-3462-511e-a2df-d7bb067b3f03",
+  "category_slug": "langues",
+  "topic": "Anglais",
+  "cover_label": "EN"
+ },
+ "modules": [
+  {
+   "id": "a58a5862-f9de-5cf2-8f8a-73970f93a439",
+   "position": 1,
+   "title": "Se présenter et présenter son entreprise",
+   "description": "Saluer, parler de son poste et de son entreprise, utiliser le présent simple.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "d5a5a270-2621-5f39-bef2-a4f315df52ce",
+     "slug": "se-presenter",
+     "title": "Saluer et se présenter",
+     "summary": "Salutations formelles et informelles, « to be », métiers et présentations.",
+     "content_md": "## Pourquoi cette formation ?\n\nAu travail, l'anglais sert surtout dans des situations prévisibles : se présenter, écrire un email, appeler un fournisseur, participer à une réunion. Bonne nouvelle : ces situations reposent sur un nombre limité d'expressions. Cette formation vous les donne, avec juste ce qu'il faut de grammaire pour les utiliser correctement.\n\n> Conseil : lisez chaque exemple **à voix haute**. Parler, même seul, est le moyen le plus rapide de gagner en aisance.\n\n## Saluer : formel ou informel ?\n\n| Situation | Formel | Plus détendu |\n|---|---|---|\n| Arriver | *Good morning* (jusqu'à midi), *Good afternoon* | *Hi*, *Hello* |\n| Première rencontre | *Pleased to meet you.* / *Nice to meet you.* | *Nice to meet you.* |\n| Demander des nouvelles | *How are you?* | *How's it going?* |\n| Répondre | *Very well, thank you. And you?* | *Fine, thanks. You?* |\n| Partir | *Goodbye. It was a pleasure.* | *Bye! See you soon.* |\n\n*How do you do?* existe encore, mais il est devenu très formel et rare. *Good evening* sert pour saluer le soir ; pour prendre congé le soir, on dit *Have a good evening*. *Good night* signifie « bonne nuit », au moment d'aller dormir.\n\n## Se présenter\n\n```text\nHello, I'm Amina Benali. I'm a project manager at SMKTECH.\nNice to meet you, Amina. I'm David Clark, from the sales team.\n```\n\nLes structures essentielles :\n\n- *I'm* + prénom et nom : **I'm** Amina Benali. (*My name is…* est correct mais plus solennel.)\n- *I'm a / an* + métier : I'm **a** developer, I'm **an** engineer. En anglais, l'article est **obligatoire** devant un métier : on ne dit jamais *I'm developer*.\n- *I work for / at* + entreprise : I work **for** SMKTECH. / I work **at** SMKTECH.\n- *I work in* + service ou secteur : I work **in** marketing, **in** finance, **in** the IT department.\n\n`a` devient `an` devant un **son** voyelle : *an engineer*, *an assistant*, *an hour* (le h ne se prononce pas), mais *a university* (prononcé « you »).\n\n## Le verbe *to be* au présent\n\n| Forme pleine | Contraction | Négation | Question |\n|---|---|---|---|\n| I am | I'm | I'm not | Am I…? |\n| you are | you're | you aren't | Are you…? |\n| he / she / it is | he's / she's / it's | he isn't | Is she…? |\n| we / they are | we're / they're | we aren't | Are they…? |\n\nÀ l'oral et dans les emails courants, on utilise les **contractions**. Les formes pleines restent normales dans un écrit très formel.\n\n## Présenter quelqu'un\n\n```text\nDavid, this is Sofia Rossi, our new data analyst.\nSofia, this is David Clark. He's in charge of our UK clients.\n```\n\nOn présente avec **this is** (et non *he is*) : *This is my colleague, Karim.*\n\n## À retenir\n\n- *Nice to meet you* à la première rencontre ; *Good morning / afternoon* pour un contexte formel.\n- *I'm a / an* + métier : l'article est obligatoire.\n- *work for / at* une entreprise, *work in* un service ou un secteur.\n- *This is…* pour présenter une personne.\n\n## Exercices\n\n### Exercice 1 — Corrigez les erreurs\n\nChaque phrase contient une erreur. Corrigez-la : (a) *I am engineer.* (b) *I work in Google.* (c) *He is my colleague, Karim* (pour le présenter à quelqu'un). (d) *I'm a assistant.*\n\n```solution-text\n(a) I'm an engineer.         → article obligatoire, « an » devant un son voyelle\n(b) I work for / at Google.  → « in » s'emploie pour un service ou un secteur\n(c) This is my colleague, Karim.\n(d) I'm an assistant.\n```\n\n### Exercice 2 — Votre présentation\n\nÉcrivez trois phrases pour vous présenter : votre nom, votre métier, votre entreprise ou votre service.\n\n```solution-text\nExemple de réponse :\nHello, I'm Lucas Martin. I'm an accountant. I work for a small consulting firm in Lyon, in the finance department.\nVérifiez : contraction « I'm », article devant le métier, bonne préposition (for / at / in).\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "def79575-b022-5975-841c-bba4d1bb3606",
+     "slug": "son-poste",
+     "title": "Parler de son poste",
+     "summary": "Présent simple, responsabilités et adverbes de fréquence.",
+     "content_md": "## Parler de son travail au présent simple\n\nPour décrire ce que l'on fait habituellement, l'anglais utilise le **présent simple** :\n\n```text\nI manage a team of five people.\nI prepare the monthly reports.\nShe works in the London office.\n```\n\nLa seule difficulté : à la **3e personne du singulier** (*he, she, it*), on ajoute **-s** au verbe.\n\n| Sujet | Verbe |\n|---|---|\n| I / you / we / they | work, manage, deal with |\n| he / she / it | work**s**, manage**s**, deal**s** with |\n\nCas particuliers : *go → goes*, *do → does*, *have → has*, *watch → watches*, *study → studies*.\n\n## Négation et questions : *do* / *does*\n\n```text\nI don't work on Fridays.          She doesn't speak German.\nDo you travel a lot?              Does he work from home?\n— Yes, I do. / No, I don't.       — Yes, he does. / No, he doesn't.\n```\n\nAprès *does* ou *doesn't*, le verbe reprend sa forme de base : *Does she **work**…?* (et non *works*).\n\n## Décrire ses responsabilités\n\nCes expressions sont incontournables :\n\n- *I'm in charge of* + nom ou verbe en -ing : I'm in charge **of** recruitment. / …of **organising** events.\n- *I'm responsible for* + nom ou verbe en -ing : I'm responsible **for** the budget.\n- *I deal with* + nom : I deal **with** customer complaints.\n- *I report to* + personne : I report **to** the Head of Sales.\n- *My job involves* + verbe en -ing : My job involves **travelling** a lot.\n\n```text\nWhat do you do?\n— I'm a sales assistant. I deal with orders and I answer customer emails.\n  I report to the sales manager.\n```\n\n*What do you do?* signifie « Quel est votre métier ? » ; *What are you doing?* signifie « Que faites-vous en ce moment ? ».\n\n## Dire à quelle fréquence\n\nLes adverbes de fréquence se placent **avant le verbe**, mais **après** *to be* :\n\n| Adverbe | Sens |\n|---|---|\n| always | toujours |\n| usually | d'habitude |\n| often | souvent |\n| sometimes | parfois |\n| rarely | rarement |\n| never | jamais |\n\n```text\nI usually start at 9 a.m.\nWe often have meetings on Monday.\nShe is always on time.\n```\n\nPour une fréquence précise : *every day*, *twice a week*, *once a month*, en fin de phrase.\n\n## À retenir\n\n- Présent simple pour les habitudes et les tâches régulières.\n- **-s** à la 3e personne : *she manages*, *he goes*.\n- *do / does* pour les questions et les négations ; verbe de base ensuite.\n- *in charge of*, *responsible for*, *deal with*, *report to*.\n- Adverbe de fréquence avant le verbe, après *be*.\n\n## Exercices\n\n### Exercice 1 — Conjuguez\n\nMettez le verbe au présent simple : (a) She ___ (manage) the IT team. (b) ___ he ___ (work) on Saturdays? (c) We ___ (not / use) this software. (d) My manager ___ (go) to London twice a month.\n\n```solution-text\n(a) She manages the IT team.\n(b) Does he work on Saturdays?\n(c) We don't use this software.\n(d) My manager goes to London twice a month.\n```\n\n### Exercice 2 — Placez l'adverbe\n\nRemettez dans l'ordre : (a) *late / I / am / never* (b) *answer / usually / emails / I / in the morning* (c) *works / sometimes / she / from home*\n\n```solution-text\n(a) I am never late.                       → après « be »\n(b) I usually answer emails in the morning. → avant le verbe\n(c) She sometimes works from home.\n```\n\n### Exercice 3 — Votre poste\n\nDécrivez votre poste en trois phrases en utilisant *in charge of*, *deal with* et *report to*.\n\n```solution-text\nExemple : I'm in charge of the company website. I deal with requests from the marketing team. I report to the IT manager.\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "8a054163-91a1-5495-9a32-2d26290554a0",
+     "slug": "son-entreprise",
+     "title": "Présenter son entreprise",
+     "summary": "Secteur, activité, taille, « there is / there are » et grands nombres.",
+     "content_md": "## Présenter son entreprise\n\nLors d'un premier contact, on vous demandera souvent : *What does your company do?* Voici une présentation type :\n\n```text\nSMKTECH is a software company. We are based in Paris and we have offices in Lyon and Montreal.\nWe develop e-learning platforms for schools and businesses.\nWe employ around 80 people and our main clients are universities.\n```\n\n## Les expressions clés\n\n| Pour dire… | En anglais |\n|---|---|\n| le secteur | *We're a* software / consulting / logistics *company.* — *We work in* the energy sector. |\n| l'activité | *We develop / sell / provide / manufacture* … |\n| le lieu | *We're based in* Paris. — *Our head office is in* Lyon. |\n| la taille | *We employ* 80 people. — *We have* a team of 80. |\n| les clients | *Our clients are mainly* banks. — *We work with* … |\n| l'histoire | *The company was founded in* 2015. |\n\n*Provide* signifie « fournir » un service : *We provide training*. *Manufacture* : fabriquer en usine.\n\n## *There is* / *There are*\n\nPour dire « il y a » :\n\n```text\nThere is a canteen on the ground floor.\nThere are three meeting rooms on this floor.\nIs there a car park? — Yes, there is. / No, there isn't.\nHow many employees are there? — There are about 200.\n```\n\n*There is* devant un singulier, *there are* devant un pluriel.\n\n## Les grands nombres\n\n| Nombre | Lecture |\n|---|---|\n| 150 | one hundred **and** fifty (britannique) |\n| 2,500 | two thousand five hundred |\n| 1,000,000 | one million |\n| 3.5 million | three point five million |\n\nAttention aux différences avec le français :\n\n- l'anglais sépare les milliers par une **virgule** (2,500) et les décimales par un **point** (3.5) ;\n- *hundred*, *thousand*, *million* ne prennent **pas de -s** après un nombre : *two hundred people* ;\n- *billion* = **milliard** (et non « billion » français).\n\n## L'organisation : les services\n\n| Français | Anglais |\n|---|---|\n| ressources humaines | Human Resources (HR) |\n| comptabilité / finance | Accounting / Finance |\n| service commercial | Sales |\n| service informatique | IT department |\n| recherche et développement | R&D |\n| service client | Customer Service |\n| siège social | head office / headquarters (HQ) |\n| directeur général | CEO, Managing Director |\n\n## À retenir\n\n- *We're a … company. We're based in … We employ …*\n- *There is* + singulier, *there are* + pluriel.\n- Virgule pour les milliers, point pour les décimales ; *two hundred*, sans -s.\n- *billion* = milliard.\n\n## Exercices\n\n### Exercice 1 — There is / there are\n\nComplétez : (a) ___ a printer in the office. (b) ___ 25 people in our team. (c) ___ any parking spaces? (d) ___ only one coffee machine.\n\n```solution-text\n(a) There is a printer in the office.\n(b) There are 25 people in our team.\n(c) Are there any parking spaces?\n(d) There is only one coffee machine.\n```\n\n### Exercice 2 — Lisez les nombres\n\nÉcrivez en toutes lettres : (a) 340 (b) 7,200 (c) 1.8 million (d) 4 billion euros.\n\n```solution-text\n(a) three hundred and forty (britannique) / three hundred forty (américain)\n(b) seven thousand two hundred\n(c) one point eight million\n(d) four billion euros  → quatre milliards d'euros\n```\n\n### Exercice 3 — Présentez une entreprise\n\nPrésentez en quatre phrases une entreprise que vous connaissez : secteur, lieu, activité, taille.\n\n```solution-text\nExemple : Dubois Logistics is a transport company. We're based in Lille. We deliver goods to supermarkets in the north of France. We employ about 120 people.\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e081983f-5194-50c8-811f-521d04b2997f",
+    "title": "Quiz — Se présenter et présenter son entreprise",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "14aff931-cd68-514d-b6d4-5acffa09b693",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quelle phrase est correcte pour indiquer votre métier ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a2abc0c8-b5d9-5a34-8b00-c6b19dee9c74",
+        "position": 1,
+        "label": "I'm engineer."
+       },
+       {
+        "id": "1d0b1f77-98eb-5a49-a64a-f7006b84c21c",
+        "position": 2,
+        "label": "I'm an engineer."
+       },
+       {
+        "id": "0ea991aa-7414-5d52-b262-af4b7a4c571a",
+        "position": 3,
+        "label": "I'm a engineer."
+       },
+       {
+        "id": "420eb41f-ae25-5ddb-a0a5-e952d7bc4100",
+        "position": 4,
+        "label": "I'm the engineer of."
+       }
+      ],
+      "correct": [
+       "1d0b1f77-98eb-5a49-a64a-f7006b84c21c"
+      ],
+      "explanation": "L'article est obligatoire devant un métier, et « a » devient « an » devant un son voyelle : I'm an engineer."
+     },
+     {
+      "id": "28c743f1-26c2-5580-b0a2-deae802b73f1",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Vous rencontrez un client pour la première fois. Que dites-vous ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "48d9e688-1855-5ba8-8352-42df8303fb71",
+        "position": 1,
+        "label": "Nice to meet you."
+       },
+       {
+        "id": "501155bd-592e-5da2-b0c0-b6f446ce613b",
+        "position": 2,
+        "label": "Good night."
+       },
+       {
+        "id": "187f8707-13f8-55b5-8a72-5f4ba2e84e11",
+        "position": 3,
+        "label": "See you soon."
+       },
+       {
+        "id": "b175d867-7ccb-5d61-b854-82beb9353649",
+        "position": 4,
+        "label": "How do you do it?"
+       }
+      ],
+      "correct": [
+       "48d9e688-1855-5ba8-8352-42df8303fb71"
+      ],
+      "explanation": "« Nice to meet you » (ou « Pleased to meet you ») se dit à la première rencontre. « Good night » signifie « bonne nuit »."
+     },
+     {
+      "id": "3ebf0488-48b7-5cbe-bf9b-0b6d88981096",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Complétez : « I work ___ the marketing department. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "2589c3d7-5170-5d18-9ec8-ed1cc55fb8a0",
+        "position": 1,
+        "label": "for"
+       },
+       {
+        "id": "d8034ed6-c229-5a31-a510-f4e0f8a66d68",
+        "position": 2,
+        "label": "at"
+       },
+       {
+        "id": "b7325d1b-a194-5fd9-9bc2-a7cd02aa4f72",
+        "position": 3,
+        "label": "in"
+       },
+       {
+        "id": "0061529a-3eac-5279-8749-2198b4e05624",
+        "position": 4,
+        "label": "on"
+       }
+      ],
+      "correct": [
+       "b7325d1b-a194-5fd9-9bc2-a7cd02aa4f72"
+      ],
+      "explanation": "On travaille « in » un service ou un secteur (in marketing, in finance) et « for / at » une entreprise."
+     },
+     {
+      "id": "77c42d27-6176-5ca7-a360-51bd3a50e7a2",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Comment présenter votre collègue Karim à un client ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a2425380-02fd-5c62-8b12-c6922e4bc020",
+        "position": 1,
+        "label": "He is Karim."
+       },
+       {
+        "id": "30326474-79f0-537f-b151-cef9a35735c3",
+        "position": 2,
+        "label": "This is Karim, my colleague."
+       },
+       {
+        "id": "699276f3-21b0-5fd6-9995-99b0b40d8168",
+        "position": 3,
+        "label": "It's Karim my colleague."
+       },
+       {
+        "id": "b3f25d9e-cb56-5a2d-af37-f8f379d1199e",
+        "position": 4,
+        "label": "Here Karim."
+       }
+      ],
+      "correct": [
+       "30326474-79f0-537f-b151-cef9a35735c3"
+      ],
+      "explanation": "On présente une personne avec « This is… »."
+     },
+     {
+      "id": "684dfc6d-ee56-53c5-8227-ec7f41d00bb3",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Complétez : « She ___ the sales team. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "897d7275-ba17-56eb-8186-5d9bde38361d",
+        "position": 1,
+        "label": "manage"
+       },
+       {
+        "id": "d6f9393b-6e6c-51c6-9b09-26204c2b7110",
+        "position": 2,
+        "label": "manages"
+       },
+       {
+        "id": "4d19fbe0-b2bd-5597-95b1-aaaa82fe8d40",
+        "position": 3,
+        "label": "is manage"
+       },
+       {
+        "id": "20f054c5-fd9b-5220-bd07-41a5d27bbe47",
+        "position": 4,
+        "label": "managing"
+       }
+      ],
+      "correct": [
+       "d6f9393b-6e6c-51c6-9b09-26204c2b7110"
+      ],
+      "explanation": "Au présent simple, la 3e personne du singulier prend un -s : she manages."
+     },
+     {
+      "id": "0a15838e-cc29-586f-8f25-646221ba4b92",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Quelle question est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e53b5c8-9fac-57d8-b6c7-b0db43395bcf",
+        "position": 1,
+        "label": "Does he works in London?"
+       },
+       {
+        "id": "d68a3090-a950-5cc6-89b7-f73f51ac8234",
+        "position": 2,
+        "label": "Do he work in London?"
+       },
+       {
+        "id": "b672ceb8-73d7-548d-a181-f788075839ed",
+        "position": 3,
+        "label": "Does he work in London?"
+       },
+       {
+        "id": "7d34bfd4-6a18-5821-a17d-b0fe7e2ffc47",
+        "position": 4,
+        "label": "Is he work in London?"
+       }
+      ],
+      "correct": [
+       "b672ceb8-73d7-548d-a181-f788075839ed"
+      ],
+      "explanation": "Avec he / she / it, la question se forme avec « does », suivi du verbe à la forme de base : Does he work…?"
+     },
+     {
+      "id": "fc089ff7-7773-577c-a836-2460dbf81b59",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Où placer « always » ? « I ___ check ___ my emails ___ in the morning. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f9bd3fd7-c7f8-5e80-82cc-1efbe89c8991",
+        "position": 1,
+        "label": "Avant « check »"
+       },
+       {
+        "id": "ee333c29-801b-5593-a76b-226b5c4f05e1",
+        "position": 2,
+        "label": "Après « check »"
+       },
+       {
+        "id": "6ac53384-386f-51fc-b875-7b8da8b64a50",
+        "position": 3,
+        "label": "Après « emails »"
+       },
+       {
+        "id": "4c6f080d-e732-5b01-ac76-0139af886290",
+        "position": 4,
+        "label": "En fin de phrase"
+       }
+      ],
+      "correct": [
+       "f9bd3fd7-c7f8-5e80-82cc-1efbe89c8991"
+      ],
+      "explanation": "Un adverbe de fréquence se place avant le verbe principal : I always check my emails in the morning."
+     },
+     {
+      "id": "8a80cb4a-1906-5992-9f1f-c69aab2bc838",
+      "position": 8,
+      "kind": "multiple",
+      "prompt": "Quelles expressions permettent de décrire vos responsabilités ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "8bbec5b9-e443-57f5-b4c7-14ee0e1e593f",
+        "position": 1,
+        "label": "I'm in charge of the budget."
+       },
+       {
+        "id": "8b19d693-5f0d-52fd-8642-e3fafcc8100a",
+        "position": 2,
+        "label": "I'm responsible for the budget."
+       },
+       {
+        "id": "dcdf350a-b3e7-5aad-ac1a-e6e52a43fe47",
+        "position": 3,
+        "label": "I'm charged the budget."
+       },
+       {
+        "id": "be77522f-fedc-5fd9-86ca-5fba6815f884",
+        "position": 4,
+        "label": "I deal with the budget."
+       }
+      ],
+      "correct": [
+       "8bbec5b9-e443-57f5-b4c7-14ee0e1e593f",
+       "8b19d693-5f0d-52fd-8642-e3fafcc8100a",
+       "be77522f-fedc-5fd9-86ca-5fba6815f884"
+      ],
+      "explanation": "« in charge of », « responsible for » et « deal with » décrivent des responsabilités. « I'm charged the budget » n'a pas de sens."
+     },
+     {
+      "id": "ba76f61a-8762-510e-b663-4bb210488e37",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Comment lit-on 3,500 en anglais ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cb8e4f66-2404-554e-bf78-ca774ce561dd",
+        "position": 1,
+        "label": "three point five hundred"
+       },
+       {
+        "id": "e9170173-320c-52a4-9417-b5ea4be9a8b1",
+        "position": 2,
+        "label": "three thousand five hundred"
+       },
+       {
+        "id": "e56f33b9-4037-5d4c-844f-d7de4f07d00e",
+        "position": 3,
+        "label": "three thousands five hundreds"
+       },
+       {
+        "id": "c9b491ae-c9d8-564c-9a10-c0ed064e8552",
+        "position": 4,
+        "label": "thirty-five thousand"
+       }
+      ],
+      "correct": [
+       "e9170173-320c-52a4-9417-b5ea4be9a8b1"
+      ],
+      "explanation": "La virgule sépare les milliers : 3,500 = three thousand five hundred, sans -s à thousand et hundred."
+     },
+     {
+      "id": "8af51966-4ec5-5aef-bc89-dbe737b7f038",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "« One billion » signifie « un milliard ».",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "52378c84-16be-5714-8426-920f4ed9545f",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "2d48f494-4deb-5893-b67c-920eceebe771",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "52378c84-16be-5714-8426-920f4ed9545f"
+      ],
+      "explanation": "En anglais actuel, billion = 1 000 000 000, soit un milliard. Le « billion » français vaut mille fois plus."
+     }
+    ]
+   }
+  },
+  {
+   "id": "68432cd7-1e24-5406-b6dc-92557b887268",
+   "position": 2,
+   "title": "Les emails professionnels",
+   "description": "Structurer un email, demander, relancer, remercier et éviter les faux amis.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "49008a8b-f741-5c10-b7be-64167be23531",
+     "slug": "structure-email",
+     "title": "La structure d'un email",
+     "summary": "Objet, salutations, ouverture, clôture et formules finales.",
+     "content_md": "## La structure d'un email professionnel\n\nUn email efficace est **court**, **poli** et va **droit au but**. Il suit presque toujours la même structure :\n\n```text\nSubject: Meeting on Thursday 14 November\n\nDear Ms Clark,\n\nI am writing to confirm our meeting on Thursday 14 November at 10 a.m.\nPlease find attached the agenda.\n\nI look forward to seeing you.\n\nBest regards,\nAmina Benali\nProject Manager, SMKTECH\n```\n\n1. **Objet** (*subject*) : précis et court.\n2. **Salutation** (*greeting*).\n3. **Ouverture** : la raison de l'email.\n4. **Corps** : l'information ou la demande.\n5. **Clôture** : la suite attendue.\n6. **Formule finale** (*sign-off*) et signature.\n\n## Les salutations\n\n| Situation | Salutation | Formule finale |\n|---|---|---|\n| Destinataire inconnu | *Dear Sir or Madam,* | *Yours faithfully,* (britannique) |\n| Nom connu, ton formel | *Dear Mr Clark, / Dear Ms Rossi,* | *Yours sincerely,* / *Kind regards,* |\n| Ton neutre (le plus courant) | *Dear David,* | *Best regards,* / *Kind regards,* |\n| Collègue proche | *Hi David,* | *Thanks,* / *Best,* |\n\n*Ms* (prononcé « miz ») est la forme neutre pour une femme, que l'on soit mariée ou non : c'est le choix par défaut. *Mrs* désigne une femme mariée, *Miss* une jeune fille : à éviter sauf demande explicite.\n\n> Contrairement au français, on ne recopie pas de longues formules de politesse : « Je vous prie d'agréer… » n'a pas d'équivalent. *Best regards* suffit.\n\n## Ouvrir l'email\n\n- *I am writing to* + verbe : *I am writing to confirm / to ask about / to inform you that…*\n- *I am writing regarding* + nom : *…regarding your order no. 4521.*\n- *Thank you for your email.* / *Thanks for getting back to me.*\n- *Further to our phone call,* … (« Suite à notre appel… »)\n\n## Conclure l'email\n\n- *I look forward to hearing from you.* (« Dans l'attente de votre réponse. »)\n- *I look forward to seeing you.* / *…to working with you.*\n- *Please let me know if you have any questions.*\n- *Please do not hesitate to contact me.*\n\nAttention : *look forward to* est suivi d'un verbe en **-ing** : *I look forward to **hearing** from you* (et non *to hear*).\n\n## Écrire un bon objet\n\n| À éviter | Mieux |\n|---|---|\n| *Question* | *Question about invoice no. 4521* |\n| *Meeting* | *Meeting on Thursday 14 Nov – agenda* |\n| *Urgent!!!* | *Action needed by Friday: contract signature* |\n\n## À retenir\n\n- Objet précis, salutation, raison de l'email, demande, clôture, signature.\n- *Dear* + nom est toujours correct ; *Hi* avec les collègues proches.\n- *Ms* par défaut pour une femme.\n- *I am writing to…* pour ouvrir, *I look forward to hearing from you* pour conclure.\n\n## Exercices\n\n### Exercice 1 — Choisissez la formule\n\nQuelle salutation et quelle formule finale pour : (a) une candidature à une entreprise dont vous ignorez le contact ; (b) un email à une cliente, Sarah Jones, que vous ne connaissez pas encore ; (c) un message à votre collègue Tom.\n\n```solution-text\n(a) Dear Sir or Madam, … Yours faithfully,\n(b) Dear Ms Jones, … Kind regards, (ou Yours sincerely,)\n(c) Hi Tom, … Thanks, / Best,\n```\n\n### Exercice 2 — Corrigez\n\nCorrigez cet email : *Dear Mrs Jones, I write for confirm the meeting. I look forward to see you. Regards.*\n\n```solution-text\nDear Ms Jones,\nI am writing to confirm the meeting.\nI look forward to seeing you.\nBest regards,\n[Prénom Nom]\n\n→ « Ms » par défaut ; « I am writing to » + verbe ; « look forward to » + -ing ; formule finale suivie d'une virgule et de la signature.\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "5d2f9960-e57a-5a44-a003-924af9b047d2",
+     "slug": "demander-relancer",
+     "title": "Demander, relancer, remercier",
+     "summary": "Formules polies, refus diplomatiques et relances.",
+     "content_md": "## Demander poliment\n\nEn anglais professionnel, une demande trop directe paraît impolie. *Send me the report* sonne comme un ordre. On adoucit avec des **modaux** et des formules :\n\n| Niveau | Formule |\n|---|---|\n| Neutre | *Could you send me the report, please?* |\n| Plus poli | *Would you mind sending me the report?* (+ -ing) |\n| Très formel | *I would be grateful if you could send me the report.* |\n| Demander une permission | *Could I / May I ask you a question?* |\n\n*Can you…?* est acceptable entre collègues, mais *Could you…?* est plus sûr dans un email.\n\n## Répondre à une demande\n\n```text\nOf course. I'll send it to you this afternoon.\nI'm afraid I can't attend the meeting on Monday. Would Tuesday suit you?\nUnfortunately, the product is out of stock.\n```\n\n- *I'm afraid…* (« Je crains que… ») adoucit une mauvaise nouvelle.\n- *Unfortunately,…* : malheureusement.\n- *Would … suit you?* / *Would … work for you?* : propose une alternative.\n\n## Relancer sans être insistant\n\n```text\nHi David,\n\nI'm just following up on my email of 4 November about the invoice.\nCould you let me know when the payment will be made?\n\nThanks in advance,\nAmina\n```\n\nFormules utiles :\n\n- *I'm just following up on…* : « Je reviens vers vous au sujet de… ».\n- *Just a quick reminder that…* : petit rappel.\n- *I'm writing to check whether…* : pour vérifier si…\n- *Could you give me an update on…?* : où en est…?\n\n## Remercier et s'excuser\n\n| Pour… | Formule |\n|---|---|\n| remercier | *Thank you for your quick reply.* / *Thanks for your help.* / *Many thanks.* |\n| s'excuser d'un retard | *Sorry for the late reply.* / *Apologies for the delay.* |\n| s'excuser formellement | *We apologise for any inconvenience.* |\n\n*Thank you for* est suivi d'un nom ou d'un verbe en **-ing** : *Thank you for **sending** the documents.*\n\n## À retenir\n\n- *Could you…?*, *Would you mind + -ing?*, *I would be grateful if you could…*\n- *I'm afraid* / *Unfortunately* pour annoncer un refus ou un problème.\n- *I'm just following up on…* pour relancer.\n- *Thank you for* + nom ou -ing.\n\n## Exercices\n\n### Exercice 1 — Rendez polies ces demandes\n\n(a) *Send me the price list.* (b) *Call me tomorrow.* (c) *Change the date of the meeting.*\n\n```solution-text\n(a) Could you send me the price list, please?\n(b) Would you mind calling me tomorrow?\n(c) I would be grateful if you could change the date of the meeting.\n(Plusieurs formules sont possibles : l'essentiel est d'éviter l'impératif seul.)\n```\n\n### Exercice 2 — Écrivez une relance\n\nVous avez envoyé un devis (*quote*) à M. Brown le 2 novembre, sans réponse. Écrivez une relance de trois phrases.\n\n```solution-text\nDear Mr Brown,\n\nI'm just following up on the quote I sent you on 2 November.\nCould you let me know if you have any questions or if you need more information?\n\nKind regards,\n[Prénom Nom]\n```\n\n### Exercice 3 — Refusez poliment\n\nUn client propose une réunion lundi à 9 h ; vous êtes indisponible. Proposez mardi à 14 h.\n\n```solution-text\nI'm afraid I'm not available on Monday at 9 a.m. Would Tuesday at 2 p.m. suit you?\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "34d3ebcd-f0b4-5278-9fec-427e6c7163ba",
+     "slug": "pieces-jointes-rendez-vous",
+     "title": "Pièces jointes, rendez-vous et faux amis",
+     "summary": "Dates, heures, prépositions de temps et pièges de traduction.",
+     "content_md": "## Joindre un document\n\n```text\nPlease find attached the contract.\nI have attached the presentation from yesterday's meeting.\nI'm sending you the file as a PDF.\n```\n\n*Please find attached…* est la formule la plus courante. Un oubli arrive à tout le monde : *Sorry, I forgot to attach the file. Here it is.*\n\n## Fixer un rendez-vous\n\n```text\nAre you available on Thursday morning?\nWould 3 p.m. on Friday work for you?\nI can do Wednesday at 11. Does that suit you?\nLet's say Monday at 10, then. I'll send you an invitation.\n```\n\n## Les dates et les heures\n\n**Dates.** Le britannique écrit *14 November 2026* (lu « the fourteenth of November ») ; l'américain écrit *November 14, 2026* (lu « November fourteenth »). Attention à l'écriture numérique : *04/11/2026* signifie 4 novembre au Royaume-Uni mais **11 avril** aux États-Unis. Dans un email international, écrivez le mois **en lettres**.\n\n**Heures.** Le système sur 12 heures domine à l'oral et à l'écrit courant : *9 a.m.* (matin), *3 p.m.* (après-midi). *Noon* = midi, *midnight* = minuit.\n\n**Prépositions de temps** :\n\n| Préposition | Usage | Exemples |\n|---|---|---|\n| *at* | une heure précise | at 10 a.m., at noon |\n| *on* | un jour, une date | on Monday, on 14 November |\n| *in* | un mois, une année, une partie de la journée | in May, in 2026, in the morning |\n\n## Les faux amis du bureau\n\nCertains mots anglais ressemblent au français mais n'ont **pas le même sens** :\n\n| Anglais | Signifie | « Faux ami » français | En anglais |\n|---|---|---|---|\n| *actually* | en fait | actuellement | *currently* |\n| *eventually* | finalement, au bout du compte | éventuellement | *possibly* |\n| *to assist* | aider | assister (à une réunion) | *to attend* |\n| *a library* | une bibliothèque | une librairie | *a bookshop* |\n| *sensible* | raisonnable | sensible | *sensitive* |\n| *to propose* | proposer (souvent : demander en mariage) | proposer une idée | *to suggest* |\n| *a formation* | une formation… militaire ou géologique | une formation professionnelle | *training* |\n\n> *I attended a training course* = « J'ai suivi une formation ». *I assisted the trainer* = « J'ai aidé le formateur ».\n\n## À retenir\n\n- *Please find attached…* pour une pièce jointe.\n- *Are you available on…? / Would … work for you?* pour un rendez-vous.\n- Mois en lettres dans les emails internationaux ; *at* une heure, *on* un jour, *in* un mois.\n- Attention à *actually*, *eventually*, *assist*, *formation*.\n\n## Exercices\n\n### Exercice 1 — Prépositions\n\nComplétez avec *at*, *on* ou *in* : (a) The meeting is ___ Tuesday ___ 2 p.m. (b) We launched the product ___ 2024. (c) I'm free ___ the afternoon. (d) The deadline is ___ 30 June.\n\n```solution-text\n(a) on Tuesday at 2 p.m.\n(b) in 2024\n(c) in the afternoon\n(d) on 30 June\n```\n\n### Exercice 2 — Faux amis\n\nTraduisez : (a) Actuellement, je travaille sur un nouveau projet. (b) J'ai assisté à la réunion. (c) Je cherche une formation en anglais.\n\n```solution-text\n(a) I'm currently working on a new project.   (et non « actually »)\n(b) I attended the meeting.                    (et non « assisted »)\n(c) I'm looking for an English training course. (et non « formation »)\n```\n\n### Exercice 3 — Email complet\n\nÉcrivez à Mme Lee pour lui envoyer le rapport mensuel en pièce jointe et lui proposer un appel jeudi à 15 h.\n\n```solution-text\nSubject: Monthly report and call on Thursday\n\nDear Ms Lee,\n\nPlease find attached the monthly report.\nWould you be available for a short call on Thursday at 3 p.m. to discuss it?\n\nI look forward to hearing from you.\n\nBest regards,\n[Prénom Nom]\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "e1546543-f466-54bd-96ae-ba1cdf4555da",
+    "title": "Quiz — Les emails professionnels",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "7a1fca9b-84de-519e-8229-27c1010792a2",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Vous écrivez à une femme dont vous connaissez le nom, Sarah Jones. Quelle salutation choisir par défaut ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "40a217fb-e1e9-514a-96cc-80f0b9e903c7",
+        "position": 1,
+        "label": "Dear Mrs Jones,"
+       },
+       {
+        "id": "fcb07ddc-95be-507d-a756-b10e3674b815",
+        "position": 2,
+        "label": "Dear Ms Jones,"
+       },
+       {
+        "id": "fb903a27-963e-5110-8d4b-ad13f2734cf5",
+        "position": 3,
+        "label": "Dear Miss Jones,"
+       },
+       {
+        "id": "05373399-577f-58f4-99bb-bf27cdcd4527",
+        "position": 4,
+        "label": "Dear Sarah Jones Madam,"
+       }
+      ],
+      "correct": [
+       "fcb07ddc-95be-507d-a756-b10e3674b815"
+      ],
+      "explanation": "« Ms » est la forme neutre, indépendante de la situation familiale : c'est le choix par défaut."
+     },
+     {
+      "id": "0dd5aeeb-4a3e-53a5-9835-340fadc1e320",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle phrase est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "39b28798-9a92-524e-bf93-7f4b9e86f4a5",
+        "position": 1,
+        "label": "I look forward to hear from you."
+       },
+       {
+        "id": "c2198279-6d1c-542c-8c13-af8f82ea1e15",
+        "position": 2,
+        "label": "I look forward to hearing from you."
+       },
+       {
+        "id": "4f0719c7-95bf-5264-a405-ba9dcb1e0060",
+        "position": 3,
+        "label": "I look forward hearing you."
+       },
+       {
+        "id": "7630d945-5be1-5088-97ed-1cbfb6223179",
+        "position": 4,
+        "label": "I look forward for hearing from you."
+       }
+      ],
+      "correct": [
+       "c2198279-6d1c-542c-8c13-af8f82ea1e15"
+      ],
+      "explanation": "« look forward to » est suivi d'un verbe en -ing : I look forward to hearing from you."
+     },
+     {
+      "id": "5401a84c-fa88-52cd-8ad2-a8f6a81f8d7d",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle ouverture convient pour expliquer la raison d'un email ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7b4ee233-83c5-5fe4-809c-b37fa49c1c20",
+        "position": 1,
+        "label": "I write for asking…"
+       },
+       {
+        "id": "7f807836-7b56-53df-97bf-e7bd31d7e0b2",
+        "position": 2,
+        "label": "I am writing to ask…"
+       },
+       {
+        "id": "5557913e-d062-540e-a22f-c17da5056182",
+        "position": 3,
+        "label": "I am write to ask…"
+       },
+       {
+        "id": "e4ecc20e-773e-5114-836b-7ada8c1adb00",
+        "position": 4,
+        "label": "I writing to ask…"
+       }
+      ],
+      "correct": [
+       "7f807836-7b56-53df-97bf-e7bd31d7e0b2"
+      ],
+      "explanation": "La formule standard est « I am writing to » + verbe."
+     },
+     {
+      "id": "5ccbdc5b-b8ee-50d3-a8e4-ca32ebf09e96",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle demande est la plus polie ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7b381687-f15a-5e4d-a27c-53ee194ea16b",
+        "position": 1,
+        "label": "Send me the file."
+       },
+       {
+        "id": "ff1e48b6-66bb-5d95-b619-3280fc5198df",
+        "position": 2,
+        "label": "You send me the file."
+       },
+       {
+        "id": "9eacce80-b8cf-5a68-b696-e2b2554ac25d",
+        "position": 3,
+        "label": "Could you send me the file, please?"
+       },
+       {
+        "id": "3155cb8e-af5c-5bdd-92fb-726ffde89984",
+        "position": 4,
+        "label": "I want the file."
+       }
+      ],
+      "correct": [
+       "9eacce80-b8cf-5a68-b696-e2b2554ac25d"
+      ],
+      "explanation": "« Could you…, please? » adoucit la demande. L'impératif seul paraît brusque en anglais professionnel."
+     },
+     {
+      "id": "dad9e0db-b428-52ec-814e-a289017fb82d",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Complétez : « Would you mind ___ the meeting? »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "cc71f963-5cd9-5b65-9b8e-a1e9b562e2cc",
+        "position": 1,
+        "label": "to move"
+       },
+       {
+        "id": "4546aaa9-bdcf-5646-9700-38c8f3b54a0b",
+        "position": 2,
+        "label": "move"
+       },
+       {
+        "id": "f3b51725-5e36-5dcb-be67-295d58adb0cd",
+        "position": 3,
+        "label": "moving"
+       },
+       {
+        "id": "df3c6a2a-2983-50f8-a23e-a963cbaa1e5a",
+        "position": 4,
+        "label": "moved"
+       }
+      ],
+      "correct": [
+       "f3b51725-5e36-5dcb-be67-295d58adb0cd"
+      ],
+      "explanation": "« Would you mind » est suivi d'un verbe en -ing : Would you mind moving the meeting?"
+     },
+     {
+      "id": "69790fd3-2cab-5f5a-a150-cad92cc9deec",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Que signifie « I'm just following up on my email » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "55abb853-ecde-52d8-bea0-caf1cea18b71",
+        "position": 1,
+        "label": "Je vais bientôt vous écrire."
+       },
+       {
+        "id": "67515365-3f1d-5398-b90d-8fae71bd79e0",
+        "position": 2,
+        "label": "Je reviens vers vous au sujet de mon email."
+       },
+       {
+        "id": "2bd0cbf3-5403-5168-84a4-e2a087c1807e",
+        "position": 3,
+        "label": "Je supprime mon email."
+       },
+       {
+        "id": "37e7e666-6027-5d16-83bb-c4c60a22bbbf",
+        "position": 4,
+        "label": "Je transfère mon email."
+       }
+      ],
+      "correct": [
+       "67515365-3f1d-5398-b90d-8fae71bd79e0"
+      ],
+      "explanation": "« follow up on » sert à relancer poliment un message resté sans réponse."
+     },
+     {
+      "id": "e520665e-d66a-5568-a2d0-a79daeb41b19",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment annoncer poliment que vous ne pourrez pas venir ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7aaf2177-0bf4-5f53-9a19-653cd221d057",
+        "position": 1,
+        "label": "I'm afraid I can't attend the meeting."
+       },
+       {
+        "id": "a9d207fb-1485-58f8-a9df-d1996294c0ed",
+        "position": 2,
+        "label": "I don't come."
+       },
+       {
+        "id": "353070bc-5ef4-5f2f-a1b7-5b66ef90530d",
+        "position": 3,
+        "label": "No meeting for me."
+       },
+       {
+        "id": "2877419a-692c-521a-94be-a34c957b4f6b",
+        "position": 4,
+        "label": "I am fear I can't come."
+       }
+      ],
+      "correct": [
+       "7aaf2177-0bf4-5f53-9a19-653cd221d057"
+      ],
+      "explanation": "« I'm afraid… » (« je crains que… ») adoucit une réponse négative."
+     },
+     {
+      "id": "512efdc6-2f37-5785-a08f-e0618df4885d",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Quelle phrase traduit « Actuellement, je travaille à Lyon » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7b8c1500-b125-5c31-a920-aee698440ac3",
+        "position": 1,
+        "label": "Actually, I work in Lyon."
+       },
+       {
+        "id": "8d2f39f0-5ba8-5939-a020-cb3f1ae73e4e",
+        "position": 2,
+        "label": "Currently, I work in Lyon."
+       },
+       {
+        "id": "817cf871-a416-572e-be0d-f420274948fc",
+        "position": 3,
+        "label": "Eventually, I work in Lyon."
+       },
+       {
+        "id": "85425b09-c212-58d2-8d7c-831cafb255ae",
+        "position": 4,
+        "label": "Actual, I work in Lyon."
+       }
+      ],
+      "correct": [
+       "8d2f39f0-5ba8-5939-a020-cb3f1ae73e4e"
+      ],
+      "explanation": "« actually » signifie « en fait ». « Actuellement » se traduit par « currently » ou « at the moment »."
+     },
+     {
+      "id": "b35c37cf-89cb-527d-86b9-ea3da059da00",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Complétez : « The meeting is ___ Monday ___ 10 a.m. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "67ef3986-e4e3-5839-a5d2-dc0d39d08ea5",
+        "position": 1,
+        "label": "in … at"
+       },
+       {
+        "id": "9d6d180d-0767-5051-96cb-e7126831a335",
+        "position": 2,
+        "label": "on … at"
+       },
+       {
+        "id": "85aceac8-80b5-52c7-a158-43b79ba6bf11",
+        "position": 3,
+        "label": "at … on"
+       },
+       {
+        "id": "034f67be-106a-5572-a706-2f658226bb2f",
+        "position": 4,
+        "label": "on … in"
+       }
+      ],
+      "correct": [
+       "9d6d180d-0767-5051-96cb-e7126831a335"
+      ],
+      "explanation": "« on » devant un jour, « at » devant une heure précise."
+     },
+     {
+      "id": "2a17d584-a74b-54da-b5a5-91dc5d128d6e",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quelles phrases annoncent correctement une pièce jointe ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "1f3145e6-208b-543a-989b-66dd302bb3ac",
+        "position": 1,
+        "label": "Please find attached the contract."
+       },
+       {
+        "id": "f2e99c7c-bae0-55ed-a8bd-917e3d9c7d4e",
+        "position": 2,
+        "label": "I have attached the contract."
+       },
+       {
+        "id": "b6e19972-6144-5f66-b232-fbe0d0fa3f45",
+        "position": 3,
+        "label": "Please find enclosed in attachment the contract joined."
+       },
+       {
+        "id": "fc2d5a74-e74c-5aa8-ba32-742b7d415c77",
+        "position": 4,
+        "label": "The contract is attached."
+       }
+      ],
+      "correct": [
+       "1f3145e6-208b-543a-989b-66dd302bb3ac",
+       "f2e99c7c-bae0-55ed-a8bd-917e3d9c7d4e",
+       "fc2d5a74-e74c-5aa8-ba32-742b7d415c77"
+      ],
+      "explanation": "« Please find attached… », « I have attached… » et « … is attached » sont naturels. La troisième phrase est une traduction mot à mot incorrecte."
+     }
+    ]
+   }
+  },
+  {
+   "id": "1fd10b01-1df3-54f5-8a3e-84bb5dc20c38",
+   "position": 3,
+   "title": "Téléphone et visioconférence",
+   "description": "Passer et recevoir un appel, prendre un message, gérer une visioconférence.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "c1981010-8cd0-5228-93bd-be9a2459204a",
+     "slug": "telephoner",
+     "title": "Passer et recevoir un appel",
+     "summary": "Se présenter au téléphone, demander quelqu'un, faire patienter.",
+     "content_md": "## Pourquoi le téléphone est difficile\n\nAu téléphone, on ne voit ni le visage ni les gestes de l'interlocuteur, et l'on ne peut pas relire. C'est justement pour cela que les appels professionnels suivent des **formules très fixes** : les connaître par cœur libère votre attention pour écouter.\n\n## Passer un appel\n\n```text\n— Good morning, Brightline Consulting, Emma speaking. How can I help you?\n— Hello, this is Karim Haddad from SMKTECH. Could I speak to Mr Wilson, please?\n— Just a moment, please. I'll put you through.\n```\n\n- Au téléphone, on dit *This is Karim* (et non *I am Karim*) pour se présenter.\n- *Could I speak to…, please?* : demander quelqu'un.\n- *I'm calling about…* / *I'm calling to…* : annoncer la raison de l'appel.\n\n```text\nI'm calling about your invoice of 3 November.\nI'm calling to confirm our appointment.\n```\n\n## Répondre au téléphone\n\n| Situation | Formule |\n|---|---|\n| Décrocher | *[Entreprise], [prénom] speaking.* |\n| Demander qui appelle | *Who's calling, please?* / *May I ask who's calling?* |\n| Faire patienter | *Hold on, please.* / *Could you hold, please?* |\n| Transférer | *I'll put you through.* |\n| Personne absente | *I'm afraid he's not available at the moment.* / *She's in a meeting.* / *He's out of the office today.* |\n| Proposer un message | *Would you like to leave a message?* / *Can I take a message?* |\n\n## Terminer l'appel\n\n```text\nThank you for calling.\nThanks for your help. Goodbye.\nI'll call you back this afternoon.\n```\n\n*To call back* = rappeler. *To hang up* = raccrocher. *To pick up* = décrocher.\n\n## Une boîte vocale\n\n```text\nHello, this is Amina Benali from SMKTECH. I'm calling about the contract.\nCould you call me back on 01 23 45 67 89? Thank you. Goodbye.\n```\n\nMessage vocal efficace : qui vous êtes, pourquoi vous appelez, comment vous rappeler, en parlant **lentement**, surtout pour les chiffres.\n\n## À retenir\n\n- *This is [nom] from [entreprise].* pour se présenter.\n- *Could I speak to…?*, *I'm calling about…*\n- *Hold on, please. I'll put you through.*\n- *I'm afraid she's not available. Can I take a message?*\n- *call back*, *hang up*, *pick up*.\n\n## Exercices\n\n### Exercice 1 — Remettez le dialogue dans l'ordre\n\n(a) *I'll put you through.* (b) *Good afternoon, Nova Bank, Lisa speaking.* (c) *Hello, this is Tom Reed. Could I speak to Ms Park, please?* (d) *Certainly. Who's calling, please?*\n\n```solution-text\nOrdre : (b) → (c) → (d) → (a)\n(b) Good afternoon, Nova Bank, Lisa speaking.\n(c) Hello, this is Tom Reed. Could I speak to Ms Park, please?\n(d) Certainly. Who's calling, please?   → Lisa fait confirmer le nom avant de transférer\n(a) I'll put you through.\n```\n\n### Exercice 2 — Que dites-vous ?\n\n(a) Vous voulez que la personne patiente. (b) La personne demandée est en réunion. (c) Vous rappellerez demain.\n\n```solution-text\n(a) Could you hold, please? / Hold on, please.\n(b) I'm afraid she's in a meeting at the moment. Can I take a message?\n(c) I'll call you back tomorrow.\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "293bcc12-22c5-5c32-93b5-9378f1347cc9",
+     "slug": "prendre-un-message",
+     "title": "Prendre un message et épeler",
+     "summary": "L'alphabet, épeler un nom ou une adresse email, noter un numéro.",
+     "content_md": "## L'alphabet anglais\n\nÉpeler est indispensable : noms propres, références, adresses email. Certaines lettres sont de vrais pièges pour un francophone :\n\n| Lettre | Prononciation approchée | Piège |\n|---|---|---|\n| A | « éï » | se confond avec E en français |\n| E | « i » | ressemble au I français |\n| I | « aï » | |\n| G | « dji » | |\n| J | « djéï » | G et J sont souvent inversés |\n| R | « ar » | |\n| U | « you » | |\n| W | « double you » | |\n| Y | « waï » | |\n| Z | « zed » (britannique), « zi » (américain) | |\n\nPour éviter les confusions, on précise avec un mot : *B for Bravo*, *M for Mike*, *N for November*.\n\nLes lettres doubles se disent avec *double* : *Morell* → M-O-R-E-**double L**.\n\n## Épeler une adresse email\n\n| Symbole | En anglais |\n|---|---|\n| @ | *at* |\n| . | *dot* |\n| - | *dash* / *hyphen* |\n| _ | *underscore* |\n| minuscules / majuscules | *lower case* / *capital letters* |\n\n```text\nMy email address is a dot benali at smktech dot com.\n→ a.benali@smktech.com\n```\n\n## Les numéros de téléphone\n\nOn lit les chiffres **un par un** : *01 23 45* → « oh one, two three, four five ». Le zéro se dit *oh* (britannique) ou *zero*. Deux chiffres identiques : *double* (britannique) : *44* → « double four ».\n\n## Prendre un message\n\n```text\n— I'm afraid Mr Wilson is out of the office. Can I take a message?\n— Yes, please. Could you ask him to call me back?\n— Of course. Could I have your name, please?\n— It's Karim Haddad. H-A-double D-A-D.\n— And your number?\n— 06 12 34 56 78.\n— Let me read that back to you: oh six, one two, three four, five six, seven eight.\n— That's right.\n— I'll make sure he gets the message.\n```\n\n- *Could you spell that, please?* : pouvez-vous épeler ?\n- *Let me read that back to you.* : je vous relis.\n- *Could you speak more slowly, please?* : plus lentement, s'il vous plaît.\n\n## À retenir\n\n- A « éï », E « i », I « aï » ; G « dji », J « djéï ».\n- *double* pour une lettre ou un chiffre répété.\n- *@ = at*, *. = dot*, *- = dash*.\n- Chiffres lus un par un ; toujours relire (*read back*) un numéro noté.\n\n## Exercices\n\n### Exercice 1 — Écrivez l'adresse\n\nÉcrivez l'adresse dictée : « s dot rossi underscore pro at datamail dot co dot uk ».\n\n```solution-text\ns.rossi_pro@datamail.co.uk\n```\n\n### Exercice 2 — Épelez\n\nÉcrivez comment épeler (a) le nom *Dubois*, (b) le nom *Haddad*, (c) le code *GJ7*.\n\n```solution-text\n(a) D-U-B-O-I-S        → « di, you, bi, oh, aï, ès »\n(b) H-A-double D-A-D   → « éïtch, éï, double di, éï, di »\n(c) G-J-7              → « dji, djéï, seven » (attention à ne pas inverser G et J)\n```\n\n### Exercice 3 — Prenez le message\n\nComplétez : « I'm afraid she's not available. ___ ___ ___ a message? » puis « Could you ___ that, please? » (pour faire épeler).\n\n```solution-text\nCan I take a message?\nCould you spell that, please?\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "a8357311-6e5e-5534-af07-b1ab03ede484",
+     "slug": "visioconference",
+     "title": "Réussir une visioconférence",
+     "summary": "Problèmes techniques, prise de parole et demandes de répétition.",
+     "content_md": "## La visioconférence au quotidien\n\nTeams, Zoom ou Google Meet : la réunion à distance a son propre vocabulaire, en particulier pour les **problèmes techniques**, qui arrivent à tout le monde.\n\n## Les problèmes techniques\n\n| Situation | Phrase |\n|---|---|\n| Le micro est coupé | *I think you're on mute.* / *You're muted.* |\n| Vérifier le son | *Can you hear me?* / *Can everyone hear me?* |\n| L'image ne passe pas | *Your camera is off.* / *I can't see you.* |\n| La connexion est mauvaise | *You're breaking up.* / *The connection is bad.* |\n| L'image est figée | *Your screen is frozen.* |\n| Partager son écran | *Let me share my screen.* / *Can you see my screen?* |\n| Écho | *There's an echo.* |\n| Se reconnecter | *I'll leave and rejoin the call.* |\n\n```text\n— Sorry, I think you're on mute.\n— Oh, sorry! Can you hear me now?\n— Yes, perfectly.\n```\n\n## Prendre la parole et la donner\n\nÀ distance, on se coupe facilement la parole. Quelques formules aident :\n\n- *Can I add something?* / *If I could just add something…*\n- *Sorry, go ahead.* (« Pardon, allez-y. ») quand deux personnes parlent en même temps.\n- *Sorry, I didn't catch that.* : je n'ai pas compris.\n- *Could you repeat that, please?*\n- *Could you say that again more slowly?*\n- *Sorry to interrupt, but…*\n- *Over to you, Sofia.* (« À vous, Sofia. »)\n\n## Comprendre plutôt que faire semblant\n\nNe pas comprendre est normal ; faire semblant est risqué. Reformuler permet de vérifier :\n\n```text\nSo, if I understand correctly, the deadline is next Friday?\nJust to clarify: do you need the report in English or in French?\nWhat do you mean by \"phase two\"?\n```\n\n## Avant et après la réunion\n\n```text\nI'll send you the link to the meeting.\nI'll share the slides after the call.\nThanks, everyone. Have a good day!\n```\n\n## À retenir\n\n- *You're on mute*, *Can you hear me?*, *You're breaking up*, *Your screen is frozen*.\n- *Let me share my screen.*\n- *Sorry, go ahead.* / *Sorry, I didn't catch that.* / *Could you repeat that?*\n- Reformuler avec *So, if I understand correctly…* / *Just to clarify…*\n\n## Exercices\n\n### Exercice 1 — Que dites-vous ?\n\n(a) Votre collègue parle, mais vous ne l'entendez pas et son micro est barré. (b) L'image de votre client ne bouge plus. (c) Vous voulez montrer une présentation. (d) Vous avez commencé à parler en même temps que quelqu'un.\n\n```solution-text\n(a) I think you're on mute.\n(b) I think your screen is frozen.\n(c) Let me share my screen. Can you see it?\n(d) Sorry, go ahead.\n```\n\n### Exercice 2 — Vérifiez une information\n\nVotre manager dit : « The budget meeting has moved to Thursday. » Vous n'êtes pas sûr d'avoir bien entendu le jour. Reformulez pour vérifier.\n\n```solution-text\nSorry, just to clarify: is the budget meeting on Thursday now?\n(ou : So, if I understand correctly, the budget meeting is on Thursday?)\n```",
+     "duration_minutes": 25,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "ba473171-245e-5ea1-bc76-712884674dab",
+    "title": "Quiz — Téléphone et visioconférence",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "1d829e40-e99d-5832-927b-673f15fbb2d6",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Au téléphone, comment vous présentez-vous ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "bb7c35b4-24ac-50f8-89cc-d005f35fbdcd",
+        "position": 1,
+        "label": "I am Karim from SMKTECH."
+       },
+       {
+        "id": "dfa931f4-9fa2-5b44-ba87-8adfc6390380",
+        "position": 2,
+        "label": "This is Karim from SMKTECH."
+       },
+       {
+        "id": "ac18c8be-7ef4-547b-8857-663138438ff7",
+        "position": 3,
+        "label": "Here is Karim of SMKTECH."
+       },
+       {
+        "id": "c0e30d73-e8ec-5a0f-8556-144c499a02ab",
+        "position": 4,
+        "label": "It's me, Karim."
+       }
+      ],
+      "correct": [
+       "dfa931f4-9fa2-5b44-ba87-8adfc6390380"
+      ],
+      "explanation": "Au téléphone, on se présente avec « This is [nom] from [entreprise] »."
+     },
+     {
+      "id": "31766138-0106-55f3-b8b1-167c991637d0",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que signifie « I'll put you through » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "7e2bb529-ad13-55cd-a971-f1ffdf162292",
+        "position": 1,
+        "label": "Je vous rappelle."
+       },
+       {
+        "id": "549b9056-693d-53c5-9e03-1f7f549a38d4",
+        "position": 2,
+        "label": "Je vous transfère."
+       },
+       {
+        "id": "ccf5b07f-0819-565d-91d4-1f9648fb62aa",
+        "position": 3,
+        "label": "Je raccroche."
+       },
+       {
+        "id": "59adb777-bf6f-5e29-bb1c-b8e3d1773b6b",
+        "position": 4,
+        "label": "Je prends un message."
+       }
+      ],
+      "correct": [
+       "549b9056-693d-53c5-9e03-1f7f549a38d4"
+      ],
+      "explanation": "« to put someone through » signifie transférer un appel vers la bonne personne."
+     },
+     {
+      "id": "a619e5aa-e2e0-5653-9cfa-901685d95648",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Comment demander poliment à quelqu'un de patienter ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "9d392811-ce7f-5d29-9867-8c32f0d9e7bc",
+        "position": 1,
+        "label": "Wait."
+       },
+       {
+        "id": "57349bbe-7a74-57f3-9caa-6c257d897ee6",
+        "position": 2,
+        "label": "Could you hold, please?"
+       },
+       {
+        "id": "7fbc792c-11bd-5708-a377-4f00cd65499a",
+        "position": 3,
+        "label": "Stop, please."
+       },
+       {
+        "id": "54771140-aaef-5203-96ef-f0e3ffb52a36",
+        "position": 4,
+        "label": "Keep calm."
+       }
+      ],
+      "correct": [
+       "57349bbe-7a74-57f3-9caa-6c257d897ee6"
+      ],
+      "explanation": "« Could you hold, please? » ou « Hold on, please » sont les formules standard."
+     },
+     {
+      "id": "1405f934-81fc-5a86-959a-c06a62d93f44",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Comment dit-on « raccrocher » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "ddf9afc4-b9b8-5ddb-af3b-0fc9a4076bca",
+        "position": 1,
+        "label": "to hang up"
+       },
+       {
+        "id": "59fce854-d172-50c8-9256-8d4b69b83673",
+        "position": 2,
+        "label": "to pick up"
+       },
+       {
+        "id": "51e869aa-0f8d-5d46-bee1-b75f7aecb6d8",
+        "position": 3,
+        "label": "to call back"
+       },
+       {
+        "id": "584bb735-64c1-50a8-b579-fb2c96c4bee8",
+        "position": 4,
+        "label": "to put through"
+       }
+      ],
+      "correct": [
+       "ddf9afc4-b9b8-5ddb-af3b-0fc9a4076bca"
+      ],
+      "explanation": "« hang up » = raccrocher, « pick up » = décrocher, « call back » = rappeler."
+     },
+     {
+      "id": "83d2b795-1d02-5bcf-9f83-79b7a1b42c4e",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Comment lit-on l'adresse « s.lee@corp.com » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6af09fc4-40c1-59d2-88f1-a6bdf879c4ad",
+        "position": 1,
+        "label": "s point lee arobase corp point com"
+       },
+       {
+        "id": "3e88636d-8388-5002-9445-3cdb0e7c7148",
+        "position": 2,
+        "label": "s dot lee at corp dot com"
+       },
+       {
+        "id": "a46eebfb-0b4f-56c1-84ae-a7e994c44d9b",
+        "position": 3,
+        "label": "s dash lee at corp dash com"
+       },
+       {
+        "id": "c8552f64-581a-57a1-a38d-4282fd3e7161",
+        "position": 4,
+        "label": "s dot lee on corp dot com"
+       }
+      ],
+      "correct": [
+       "3e88636d-8388-5002-9445-3cdb0e7c7148"
+      ],
+      "explanation": "@ se dit « at » et le point « dot »."
+     },
+     {
+      "id": "ad5d3873-0093-5c0e-9954-ef2583036ba1",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Comment prononce-t-on la lettre E en anglais ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "fa9e2cb0-62e9-5e26-973b-71de1826bcf7",
+        "position": 1,
+        "label": "Comme « é »"
+       },
+       {
+        "id": "ac7a34f0-c202-558e-8b8c-f039baeb81e4",
+        "position": 2,
+        "label": "Comme « i »"
+       },
+       {
+        "id": "ac632c88-2e51-5815-b965-661c7f70785d",
+        "position": 3,
+        "label": "Comme « aï »"
+       },
+       {
+        "id": "85b07706-cdc3-54a6-ba5f-7ff24bb8d9a4",
+        "position": 4,
+        "label": "Comme « eu »"
+       }
+      ],
+      "correct": [
+       "ac7a34f0-c202-558e-8b8c-f039baeb81e4"
+      ],
+      "explanation": "E se prononce « i ». Le I anglais se prononce « aï » et le A « éï » : trois pièges classiques."
+     },
+     {
+      "id": "20f496c5-9b6c-5707-aaa7-b4cb95ae80ca",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Comment épeler « Haddad » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "aa8c7ee8-21ee-52a3-89b7-7ed680bf4438",
+        "position": 1,
+        "label": "H-A-D-D-A-D, two D"
+       },
+       {
+        "id": "abc0ddd6-b111-52a5-8c57-01b9166e9154",
+        "position": 2,
+        "label": "H-A-double D-A-D"
+       },
+       {
+        "id": "a0c2b875-7560-5f15-8cbe-bd1d1d7dc1e3",
+        "position": 3,
+        "label": "H-A-D-twice-A-D"
+       },
+       {
+        "id": "1d5d0e05-ea4d-5344-bddd-22da352e9330",
+        "position": 4,
+        "label": "H-A-D-A-D"
+       }
+      ],
+      "correct": [
+       "abc0ddd6-b111-52a5-8c57-01b9166e9154"
+      ],
+      "explanation": "Une lettre répétée se dit « double » : H-A-double D-A-D."
+     },
+     {
+      "id": "724f84ac-506a-5dca-bc3b-c2a96e02eb14",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Le micro de votre collègue est coupé. Que lui dites-vous ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4e11a48c-ff33-53c6-b21a-53fc2fd4357d",
+        "position": 1,
+        "label": "You're frozen."
+       },
+       {
+        "id": "02c757df-9305-5b77-9374-e9d01a5e2c53",
+        "position": 2,
+        "label": "I think you're on mute."
+       },
+       {
+        "id": "f944a9c6-248a-553f-87ba-178efb7bf30e",
+        "position": 3,
+        "label": "You're breaking up."
+       },
+       {
+        "id": "e511f6e9-d0db-5082-a253-469a883c1784",
+        "position": 4,
+        "label": "Your camera is off."
+       }
+      ],
+      "correct": [
+       "02c757df-9305-5b77-9374-e9d01a5e2c53"
+      ],
+      "explanation": "« You're on mute » signifie que le micro est coupé. « Breaking up » désigne une connexion qui coupe."
+     },
+     {
+      "id": "e6d362a5-7c3f-55a2-868b-d0ec45746639",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quelles phrases permettent de demander une répétition ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "53dc7ac2-e63b-5191-806f-6d1d1ab24958",
+        "position": 1,
+        "label": "Sorry, I didn't catch that."
+       },
+       {
+        "id": "a2b1dc8f-75e0-53cb-a529-71a0be44dd61",
+        "position": 2,
+        "label": "Could you repeat that, please?"
+       },
+       {
+        "id": "d6ba04a3-56a5-5ff3-8470-7054af5949bb",
+        "position": 3,
+        "label": "Go ahead."
+       },
+       {
+        "id": "72917b2b-0d06-525d-84a9-bd229e294cc9",
+        "position": 4,
+        "label": "Could you say that again more slowly?"
+       }
+      ],
+      "correct": [
+       "53dc7ac2-e63b-5191-806f-6d1d1ab24958",
+       "a2b1dc8f-75e0-53cb-a529-71a0be44dd61",
+       "72917b2b-0d06-525d-84a9-bd229e294cc9"
+      ],
+      "explanation": "« Go ahead » signifie au contraire « allez-y » : on laisse la parole à l'autre."
+     },
+     {
+      "id": "9b8ef43f-a0da-54ce-b9e8-1034ddcf6113",
+      "position": 10,
+      "kind": "true_false",
+      "prompt": "« Let me read that back to you » signifie « Je vous relis ce que j'ai noté ».",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "f579f177-3a49-560c-a746-4b73f47a30de",
+        "position": 1,
+        "label": "Vrai"
+       },
+       {
+        "id": "22f1c399-a6e5-553e-9e39-d03a318e1a26",
+        "position": 2,
+        "label": "Faux"
+       }
+      ],
+      "correct": [
+       "f579f177-3a49-560c-a746-4b73f47a30de"
+      ],
+      "explanation": "C'est la formule pour vérifier un nom ou un numéro noté pendant un appel."
+     }
+    ]
+   }
+  },
+  {
+   "id": "2f017fe8-a72f-5602-a1ab-9acc475c38dd",
+   "position": 4,
+   "title": "Participer à une réunion",
+   "description": "Organiser une réunion, donner son avis, résumer et répartir les actions.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "72510de9-0f61-5834-bfee-338164661aee",
+     "slug": "organiser-reunion",
+     "title": "Organiser une réunion",
+     "summary": "Proposer un créneau, envoyer un ordre du jour, ouvrir la réunion.",
+     "content_md": "## Proposer une réunion\n\n```text\nHi team,\n\nI'd like to organise a meeting to discuss the new website.\nAre you available on Tuesday 19 November at 10 a.m.? The meeting will last about an hour.\nPlease let me know if this time doesn't work for you.\n\nThanks,\nSofia\n```\n\n- *I'd like to organise / set up / schedule a meeting* : organiser une réunion.\n- *The meeting will last about an hour.* : durée.\n- *Does this time work for you?* / *Is this time convenient?*\n\n## Répondre à une invitation\n\n| Réponse | Formule |\n|---|---|\n| Accepter | *Tuesday at 10 works for me.* / *That's fine with me.* |\n| Refuser | *I'm afraid I can't make it on Tuesday.* |\n| Proposer autre chose | *Could we move it to Wednesday?* / *How about 2 p.m. instead?* |\n| Reporter | *Can we postpone the meeting to next week?* |\n| Annuler | *I'm sorry, but I have to cancel our meeting.* |\n\n*To postpone* = reporter à plus tard ; *to bring forward* = avancer ; *to cancel* = annuler. Attention : *to make it* signifie ici « pouvoir venir ».\n\n## L'ordre du jour\n\nL'ordre du jour se dit *agenda* (faux ami : un agenda papier se dit *diary* en britannique, *planner* en américain).\n\n```text\nAgenda – Website project meeting\n1. Welcome and introductions\n2. Project update\n3. Budget\n4. Next steps\n5. Any other business (AOB)\n```\n\n*AOB* (*any other business*) correspond aux « questions diverses ».\n\n## Ouvrir la réunion\n\n```text\nGood morning, everyone. Thanks for coming.\nLet's get started.\nThe purpose of this meeting is to agree on the budget.\nWe have three items on the agenda.\nFirst, Karim will give us a project update.\n```\n\n- *Let's get started.* / *Shall we begin?*\n- *The purpose / aim of this meeting is to…*\n- *First,… Then,… Finally,…*\n- *Let's move on to the next item.* : passons au point suivant.\n\n## À retenir\n\n- *I'd like to schedule a meeting… Does this time work for you?*\n- *postpone* (reporter), *bring forward* (avancer), *cancel* (annuler), *make it* (pouvoir venir).\n- *agenda* = ordre du jour ; *AOB* = questions diverses.\n- *Let's get started. The purpose of this meeting is to… Let's move on to…*\n\n## Exercices\n\n### Exercice 1 — Choisissez le verbe\n\n*postpone*, *cancel* ou *bring forward* ? (a) La réunion de lundi est déplacée au lundi suivant. (b) Le client ne viendra pas, la réunion n'aura pas lieu. (c) La réunion de vendredi aura lieu jeudi.\n\n```solution-text\n(a) postpone\n(b) cancel\n(c) bring forward\n```\n\n### Exercice 2 — Répondez à une invitation\n\nOn vous invite mercredi à 9 h. Vous n'êtes pas disponible ; proposez 11 h le même jour.\n\n```solution-text\nI'm afraid I can't make it at 9 a.m. on Wednesday. How about 11 a.m. instead?\n```\n\n### Exercice 3 — Ouvrez la réunion\n\nÉcrivez trois phrases pour ouvrir une réunion sur le planning des vacances, avec deux points à l'ordre du jour.\n\n```solution-text\nGood morning, everyone. Thanks for coming. Let's get started.\nThe purpose of this meeting is to organise the holiday schedule.\nWe have two items on the agenda: first, the summer holidays, then the Christmas period.\n```",
+     "duration_minutes": 25,
+     "position": 1
+    },
+    {
+     "id": "4921847a-6f8c-5786-a165-1d29f87eb02f",
+     "slug": "donner-son-avis",
+     "title": "Donner son avis",
+     "summary": "Exprimer son opinion, être d'accord ou non avec diplomatie.",
+     "content_md": "## Donner son avis\n\n| Intensité | Formule |\n|---|---|\n| Neutre | *I think…* / *In my opinion,…* / *From my point of view,…* |\n| Prudente | *It seems to me that…* / *I'm not sure, but I think…* |\n| Ferme | *I'm convinced that…* / *I strongly believe that…* |\n\n```text\nIn my opinion, we should launch the product in March.\nI think the price is too high for our customers.\n```\n\nAttention : *In my opinion* (et non *In my point of view*) ; *I agree* (et non *I am agree*).\n\n## Être d'accord\n\n- *I agree.* / *I agree with you.* / *I completely agree.*\n- *That's a good point.* / *Exactly.* / *You're right.*\n- *I agree with Karim on this.*\n\n## Ne pas être d'accord… avec diplomatie\n\nUn désaccord direct (*No, you're wrong*) est mal perçu dans la plupart des entreprises anglophones. On reconnaît d'abord le point de vue de l'autre :\n\n```text\nI see your point, but I think the deadline is too short.\nThat's true, but have we considered the cost?\nI'm not sure I agree. What about the risks?\nI'm afraid I don't quite agree with you on this.\n```\n\nLa structure « reconnaissance + **but** + argument » est la plus sûre.\n\n## Faire une suggestion\n\n| Formule | Construction |\n|---|---|\n| *Why don't we…?* | + verbe de base : *Why don't we ask the client?* |\n| *How about…?* / *What about…?* | + -ing : *How about postponing the launch?* |\n| *I suggest (that) we…* | + verbe de base : *I suggest we wait.* |\n| *We could…* | + verbe de base : *We could hire a freelancer.* |\n| *Let's…* | + verbe de base : *Let's ask for a second quote.* |\n\nAttention : *I suggest **to** wait* est incorrect ; dites *I suggest **waiting*** ou *I suggest **we wait***.\n\n## Demander l'avis des autres\n\n```text\nWhat do you think, Emma?\nDo you agree, Lucas?\nDoes anyone have any other ideas?\n```\n\n## À retenir\n\n- *I think / In my opinion* ; *I agree* (sans *am*).\n- Désaccord poli : *I see your point, but…* / *That's true, but…*\n- Suggestions : *Why don't we + verbe*, *How about + -ing*, *I suggest we + verbe*.\n- *What do you think?* pour donner la parole.\n\n## Exercices\n\n### Exercice 1 — Corrigez\n\n(a) *I am agree with you.* (b) *In my point of view, it's too expensive.* (c) *I suggest to call the client.* (d) *How about to meet on Friday?*\n\n```solution-text\n(a) I agree with you.\n(b) In my opinion, it's too expensive. / From my point of view, it's too expensive.\n(c) I suggest calling the client. / I suggest we call the client.\n(d) How about meeting on Friday?\n```\n\n### Exercice 2 — Désaccord diplomatique\n\nVotre collègue dit : « We should cancel the project. » Vous n'êtes pas d'accord : le client est satisfait. Répondez poliment.\n\n```solution-text\nI see your point, but I'm not sure that's the best option. The client is very happy with our work so far.\n```\n\n### Exercice 3 — Faites trois suggestions\n\nLe projet est en retard. Proposez trois solutions avec trois structures différentes.\n\n```solution-text\nWhy don't we ask for an extra week?\nHow about adding a developer to the team?\nI suggest we reduce the scope of phase one.\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "2017400d-f94d-5a9f-a345-e9d3496c01f9",
+     "slug": "conclure-reunion",
+     "title": "Conclure et répartir les actions",
+     "summary": "Résumer, « will » et « going to », échéances et prochaines étapes.",
+     "content_md": "## Résumer la discussion\n\nAvant de se quitter, on vérifie que tout le monde a compris la même chose :\n\n```text\nSo, to sum up, we've agreed to launch the website on 1 March.\nLet me summarise the main points.\nSo, the key decisions are: …\n```\n\n## Répartir les actions\n\nUne réunion utile se termine par des **actions** (*action points* ou *action items*) : qui fait quoi, pour quand.\n\n```text\nKarim, could you send the quote to the client by Friday?\nEmma will update the planning.\nI'll book the meeting room for next week.\n```\n\n## *Will* ou *going to* ?\n\nCes deux formes expriment le futur, avec une nuance :\n\n| Forme | Usage | Exemple |\n|---|---|---|\n| *will* + verbe | décision prise **sur le moment**, promesse, offre | *I'll send you the file right now.* |\n| *be going to* + verbe | projet **déjà décidé** | *We're going to hire two developers next year.* |\n\n```text\n— We need someone to write the minutes.\n— I'll do it.                      → décision immédiate\nWe're going to open an office in Montreal in 2027.   → projet prévu\n```\n\nÀ l'oral, *I will* se contracte presque toujours en *I'll*. Négation : *won't* (*will not*).\n\n## Les échéances\n\n- *by Friday* : au plus tard vendredi (échéance).\n- *until Friday* : jusqu'à vendredi (durée).\n- *the deadline is…* : la date limite est…\n- *as soon as possible (ASAP)* : dès que possible.\n- *next week*, *at the end of the month*, *within two days* (sous deux jours).\n\n```text\nPlease send me your comments by Wednesday.   → avant mercredi au plus tard\nThe office is closed until Monday.           → fermé jusqu'à lundi\n```\n\n## Clore la réunion et envoyer le compte rendu\n\n```text\nIs there anything else? — No? Then let's finish here. Thanks, everyone.\nOur next meeting will be on 3 December.\nI'll send the minutes this afternoon.\n```\n\n*The minutes* : le compte rendu de réunion (toujours au pluriel).\n\n## À retenir\n\n- *To sum up,…* / *We've agreed to…*\n- Actions : qui (*Karim*), quoi (*send the quote*), quand (*by Friday*).\n- *will* : décision immédiate ou promesse ; *going to* : projet décidé.\n- *by* = au plus tard ; *until* = jusqu'à.\n- *the minutes* = le compte rendu.\n\n## Exercices\n\n### Exercice 1 — Will ou going to ?\n\n(a) — The printer isn't working. — Don't worry, I ___ (call) the technician. (b) We ___ (move) to a new office in June; the contract is signed. (c) I ___ (send) you the slides after the meeting, I promise.\n\n```solution-text\n(a) I'll call the technician.        → décision sur le moment\n(b) We're going to move…             → projet déjà décidé\n(c) I'll send you the slides…        → promesse\n```\n\n### Exercice 2 — By ou until ?\n\n(a) Please reply ___ Thursday. (b) I'll be on holiday ___ 15 August. (c) The report must be finished ___ the end of the week.\n\n```solution-text\n(a) by Thursday       → échéance\n(b) until 15 August   → durée\n(c) by the end of the week\n```\n\n### Exercice 3 — Rédigez les actions\n\nRésumez en trois actions : Sofia prépare le budget pour lundi ; Lucas appelle le fournisseur demain ; vous envoyez le compte rendu aujourd'hui.\n\n```solution-text\nAction points:\n- Sofia will prepare the budget by Monday.\n- Lucas will call the supplier tomorrow.\n- I'll send the minutes today.\n```",
+     "duration_minutes": 30,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "17271f04-f537-5d76-8c24-6b5289662aab",
+    "title": "Quiz — Participer à une réunion",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "b4509f8b-22f9-5960-9b78-86a105e2094b",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Que signifie « to postpone a meeting » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "324d03ed-9797-5133-85c3-df575fceefb5",
+        "position": 1,
+        "label": "Avancer une réunion"
+       },
+       {
+        "id": "203a662b-b107-59b9-8da5-b8a5d76c208a",
+        "position": 2,
+        "label": "Reporter une réunion"
+       },
+       {
+        "id": "a34d9ece-0efb-5f91-8f16-ebdb1e8a5482",
+        "position": 3,
+        "label": "Annuler une réunion"
+       },
+       {
+        "id": "bb563bf3-b18c-577c-a965-96b37e50b1da",
+        "position": 4,
+        "label": "Organiser une réunion"
+       }
+      ],
+      "correct": [
+       "203a662b-b107-59b9-8da5-b8a5d76c208a"
+      ],
+      "explanation": "« postpone » = reporter à plus tard. « bring forward » = avancer, « cancel » = annuler."
+     },
+     {
+      "id": "2d5d0b00-f741-5632-a4dd-46bc246934f3",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Que désigne « the agenda » dans une réunion ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "c48ee3ff-3f04-5f2d-bdd9-2b4d71c0ed09",
+        "position": 1,
+        "label": "L'agenda papier"
+       },
+       {
+        "id": "b9a1ffd5-8f31-5d5c-9928-7173c3785341",
+        "position": 2,
+        "label": "L'ordre du jour"
+       },
+       {
+        "id": "24a82442-447c-5d27-8090-f8f045cab46c",
+        "position": 3,
+        "label": "Le compte rendu"
+       },
+       {
+        "id": "b616e703-83ad-5730-9628-7939277c7f07",
+        "position": 4,
+        "label": "La salle de réunion"
+       }
+      ],
+      "correct": [
+       "b9a1ffd5-8f31-5d5c-9928-7173c3785341"
+      ],
+      "explanation": "« agenda » est un faux ami : c'est l'ordre du jour. L'agenda personnel se dit « diary » ou « planner »."
+     },
+     {
+      "id": "2d2f7ef7-b31a-5bd6-8c4a-9b56399c3560",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Quelle phrase est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3581e2f4-644e-5abe-a7e4-93b93997d6af",
+        "position": 1,
+        "label": "I am agree with you."
+       },
+       {
+        "id": "3e55b1a0-f907-599e-ac29-85bf957dade4",
+        "position": 2,
+        "label": "I agree with you."
+       },
+       {
+        "id": "aa05a03f-1041-5593-90cc-2fe823dbbcf4",
+        "position": 3,
+        "label": "I'm agreeing you."
+       },
+       {
+        "id": "4a81cfe7-66df-5fdc-a1e4-0b8c82e7b89b",
+        "position": 4,
+        "label": "I agree you."
+       }
+      ],
+      "correct": [
+       "3e55b1a0-f907-599e-ac29-85bf957dade4"
+      ],
+      "explanation": "« agree » est un verbe : I agree (with you). « I am agree » est une erreur fréquente."
+     },
+     {
+      "id": "7abea5b0-bf36-5e5b-904f-f5eefb1bf01e",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Quelle réponse exprime un désaccord poli ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "d8e9815b-485b-5a58-ba4a-041e1a7a30a8",
+        "position": 1,
+        "label": "You're wrong."
+       },
+       {
+        "id": "d77f2714-3661-5ec3-891d-f1a213a9be80",
+        "position": 2,
+        "label": "No."
+       },
+       {
+        "id": "b4ed2bf8-8b00-5138-b48d-a85f9893bcb6",
+        "position": 3,
+        "label": "I see your point, but I think it's too risky."
+       },
+       {
+        "id": "a4373050-38c8-550a-abd7-d5e049251fe3",
+        "position": 4,
+        "label": "That's stupid."
+       }
+      ],
+      "correct": [
+       "b4ed2bf8-8b00-5138-b48d-a85f9893bcb6"
+      ],
+      "explanation": "La structure « reconnaissance + but + argument » est la plus diplomate."
+     },
+     {
+      "id": "65da7090-e4d9-523c-ae8f-14eb044b792c",
+      "position": 5,
+      "kind": "single",
+      "prompt": "Complétez : « How about ___ the deadline? »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "efb81b2d-9f5e-5e55-be01-a3efe698a30b",
+        "position": 1,
+        "label": "to extend"
+       },
+       {
+        "id": "9516085e-c03f-598c-83a5-a66c3b54b003",
+        "position": 2,
+        "label": "extend"
+       },
+       {
+        "id": "e6b76eb0-ef09-5498-8104-fce98540c35e",
+        "position": 3,
+        "label": "extending"
+       },
+       {
+        "id": "2fc15057-7903-55da-bb38-1bf8d935746f",
+        "position": 4,
+        "label": "extended"
+       }
+      ],
+      "correct": [
+       "e6b76eb0-ef09-5498-8104-fce98540c35e"
+      ],
+      "explanation": "« How about » et « What about » sont suivis d'un verbe en -ing."
+     },
+     {
+      "id": "a00defa7-56bc-51c0-a2d8-f285dafcc1b5",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Quelle suggestion est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "940c1612-c111-5b38-a650-903a0746e667",
+        "position": 1,
+        "label": "I suggest to wait."
+       },
+       {
+        "id": "2818621d-591c-5755-bd0a-ef91da0d4857",
+        "position": 2,
+        "label": "I suggest we wait."
+       },
+       {
+        "id": "280d5cbe-9afd-5c7a-9491-59144827c58d",
+        "position": 3,
+        "label": "I suggest that waiting."
+       },
+       {
+        "id": "cee02379-b164-5233-9414-085f0eb4e87c",
+        "position": 4,
+        "label": "I suggest wait us."
+       }
+      ],
+      "correct": [
+       "2818621d-591c-5755-bd0a-ef91da0d4857"
+      ],
+      "explanation": "On dit « I suggest we wait » ou « I suggest waiting », jamais « suggest to »."
+     },
+     {
+      "id": "9d6d551b-feaa-582b-b473-8378f3a00e75",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Votre collègue dit : « We need someone to book the room. » Vous vous proposez. Que dites-vous ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "6e156b28-1807-5656-a4e6-f6d03eb88f50",
+        "position": 1,
+        "label": "I'm going to book it."
+       },
+       {
+        "id": "35b0eb32-80ff-59cd-877c-ded3eeb3314f",
+        "position": 2,
+        "label": "I'll book it."
+       },
+       {
+        "id": "1b374453-5ac1-56e0-b1cd-016120c85b8d",
+        "position": 3,
+        "label": "I book it."
+       },
+       {
+        "id": "7131efa9-be38-5939-8b6c-307e132c09be",
+        "position": 4,
+        "label": "I booked it."
+       }
+      ],
+      "correct": [
+       "35b0eb32-80ff-59cd-877c-ded3eeb3314f"
+      ],
+      "explanation": "Décision prise sur le moment : « will » (I'll book it). « going to » exprime un projet déjà décidé."
+     },
+     {
+      "id": "82950b82-70bf-51c3-bf2e-78fe4065596e",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Complétez : « Please send me your comments ___ Friday. » (au plus tard vendredi)",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "271f3c49-3774-5f13-82c1-bd626f09ed54",
+        "position": 1,
+        "label": "until"
+       },
+       {
+        "id": "34511c30-2a44-5685-a0ed-3ca5ae8d7dcf",
+        "position": 2,
+        "label": "by"
+       },
+       {
+        "id": "525699ab-66a7-564c-8794-3830368f7211",
+        "position": 3,
+        "label": "since"
+       },
+       {
+        "id": "e8bd0d6b-f63f-54b7-bfd3-c3fd49cf88d3",
+        "position": 4,
+        "label": "for"
+       }
+      ],
+      "correct": [
+       "34511c30-2a44-5685-a0ed-3ca5ae8d7dcf"
+      ],
+      "explanation": "« by » indique une échéance (au plus tard). « until » indique une durée (jusqu'à)."
+     },
+     {
+      "id": "648ba6b8-c11a-59e3-83b6-ea54efac8ca4",
+      "position": 9,
+      "kind": "single",
+      "prompt": "Que sont « the minutes » d'une réunion ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "4fa1c634-2b8e-5611-aa7b-4ed31e218b4c",
+        "position": 1,
+        "label": "La durée"
+       },
+       {
+        "id": "c2120eb7-55c9-5533-9ea4-c58009bd0dd9",
+        "position": 2,
+        "label": "Les minutes de retard"
+       },
+       {
+        "id": "5afcda13-ae92-59d2-9043-775480cf7ff8",
+        "position": 3,
+        "label": "Le compte rendu"
+       },
+       {
+        "id": "ae0c6c26-d0fb-5cba-b2ea-cf61116ff2bb",
+        "position": 4,
+        "label": "L'ordre du jour"
+       }
+      ],
+      "correct": [
+       "5afcda13-ae92-59d2-9043-775480cf7ff8"
+      ],
+      "explanation": "« the minutes » désigne le compte rendu écrit d'une réunion."
+     },
+     {
+      "id": "04be27cd-d9b1-5327-8be6-618d9711c594",
+      "position": 10,
+      "kind": "multiple",
+      "prompt": "Quelles phrases permettent d'ouvrir une réunion ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "370ede96-497a-54ea-bd09-52765c1b9338",
+        "position": 1,
+        "label": "Let's get started."
+       },
+       {
+        "id": "f358fef9-2595-5e37-8b2c-e4be47bdbcd5",
+        "position": 2,
+        "label": "The purpose of this meeting is to agree on the budget."
+       },
+       {
+        "id": "bc37d97e-3289-5ac7-861d-b1c333d2326a",
+        "position": 3,
+        "label": "To sum up, we've agreed to…"
+       },
+       {
+        "id": "569552e5-00d9-52a3-81de-08facacc292b",
+        "position": 4,
+        "label": "Thanks for coming."
+       }
+      ],
+      "correct": [
+       "370ede96-497a-54ea-bd09-52765c1b9338",
+       "f358fef9-2595-5e37-8b2c-e4be47bdbcd5",
+       "569552e5-00d9-52a3-81de-08facacc292b"
+      ],
+      "explanation": "« To sum up » sert au contraire à résumer en fin de réunion."
+     }
+    ]
+   }
+  },
+  {
+   "id": "f09711fa-02aa-591a-82a8-c8f3bf0bef44",
+   "position": 5,
+   "title": "Rendre compte de son activité",
+   "description": "Raconter au passé, présenter des chiffres, accueillir un visiteur et mini-projet.",
+   "status": "published",
+   "lessons": [
+    {
+     "id": "f97e880f-ae42-516d-9cb1-41c2d09b49ab",
+     "slug": "parler-du-passe",
+     "title": "Raconter ce qui s'est passé",
+     "summary": "Prétérit, verbes irréguliers courants et marqueurs de temps.",
+     "content_md": "## Le prétérit (past simple)\n\nPour parler d'une action **terminée** à un moment **passé précis** (hier, la semaine dernière, en 2024), l'anglais utilise le **prétérit**.\n\n**Verbes réguliers** : on ajoute **-ed**.\n\n```text\nI finished the report yesterday.\nWe contacted the client last week.\nShe worked in London in 2023.\n```\n\nOrthographe : *plan → planned*, *stop → stopped* (consonne doublée), *study → studied*, *arrive → arrived*.\n\n**Négation et question** : *did* / *didn't* + verbe de base, à toutes les personnes.\n\n```text\nI didn't receive your email.\nDid you call the supplier? — Yes, I did. / No, I didn't.\n```\n\nAprès *did*, le verbe reste à la base : *Did you **send**…?* (et non *sent*).\n\n## Les verbes irréguliers les plus utiles au bureau\n\n| Base | Prétérit | Sens |\n|---|---|---|\n| be | was / were | être |\n| have | had | avoir |\n| go | went | aller |\n| do | did | faire |\n| make | made | faire, fabriquer |\n| send | sent | envoyer |\n| meet | met | rencontrer |\n| write | wrote | écrire |\n| speak | spoke | parler |\n| take | took | prendre |\n| get | got | obtenir, recevoir |\n| give | gave | donner |\n| buy | bought | acheter |\n| sell | sold | vendre |\n| leave | left | partir, quitter |\n| begin | began | commencer |\n| think | thought | penser |\n| find | found | trouver |\n\n*Was* avec *I / he / she / it*, *were* avec *you / we / they* : *The meeting **was** long. The results **were** good.*\n\n## Les marqueurs de temps\n\n*yesterday*, *last week / month / year*, *two days ago* (il y a deux jours), *in 2024*, *on Monday*, *this morning* (si la matinée est terminée).\n\n```text\nI met the new client two days ago.\nLast month, we sold 500 licences.\n```\n\n*Ago* se place **après** la durée : *three weeks ago* = il y a trois semaines.\n\n## Faire un compte rendu\n\n```text\nLast week was very busy. On Monday, I met the new client from Lyon.\nOn Tuesday, I wrote the proposal and I sent it on Wednesday.\nUnfortunately, we didn't receive the signed contract, so I called them on Friday.\n```\n\n## À retenir\n\n- Prétérit : action terminée à un moment passé précis.\n- Réguliers en **-ed** ; irréguliers à apprendre (*went, sent, met, wrote…*).\n- *did / didn't* + verbe de base pour les questions et les négations.\n- *ago* après la durée : *two days ago*.\n\n## Exercices\n\n### Exercice 1 — Conjuguez au prétérit\n\n(a) We ___ (meet) the investors last Tuesday. (b) I ___ (not / have) time to finish. (c) ___ you ___ (send) the invoice? (d) The presentation ___ (be) excellent.\n\n```solution-text\n(a) We met the investors last Tuesday.\n(b) I didn't have time to finish.\n(c) Did you send the invoice?\n(d) The presentation was excellent.\n```\n\n### Exercice 2 — Corrigez\n\n(a) *I sended the file yesterday.* (b) *Did you went to the meeting?* (c) *I met him ago two weeks.*\n\n```solution-text\n(a) I sent the file yesterday.          → « send » est irrégulier\n(b) Did you go to the meeting?           → verbe de base après « did »\n(c) I met him two weeks ago.             → « ago » après la durée\n```\n\n### Exercice 3 — Votre semaine\n\nRacontez votre semaine passée en quatre phrases, avec au moins deux verbes irréguliers et une négation.\n\n```solution-text\nExemple : Last week, I went to a training session in Paris. I met colleagues from the Lyon office. We wrote a new procedure together. I didn't have time to answer all my emails.\n```",
+     "duration_minutes": 30,
+     "position": 1
+    },
+    {
+     "id": "d46ea4e1-619b-52e6-8fd6-ea59b11b0f83",
+     "slug": "presenter-des-chiffres",
+     "title": "Présenter des chiffres et des résultats",
+     "summary": "Hausses, baisses, pourcentages et present perfect.",
+     "content_md": "## Décrire une évolution\n\n| Hausse | Baisse | Stabilité |\n|---|---|---|\n| *to increase*, *to rise* (rose, risen), *to go up*, *to grow* (grew, grown) | *to decrease*, *to fall* (fell, fallen), *to go down*, *to drop* | *to remain stable*, *to stay the same* |\n\nLes noms correspondants : *an increase*, *a rise*, *growth* ; *a decrease*, *a fall*, *a drop*.\n\n```text\nSales increased by 10% in March.\nOur costs fell from €50,000 to €45,000.\nThe number of users remained stable.\n```\n\n## *By*, *from*, *to* : les prépositions qui comptent\n\n- *increase **by** 10%* : augmenter **de** 10 % (l'écart).\n- *increase **to** 10%* : augmenter **jusqu'à** 10 % (le niveau final).\n- *from 200 **to** 250* : de 200 à 250.\n- *an increase **of** 10%* : avec un nom, on emploie *of*.\n\n```text\nProfits rose by 5%.          → l'écart est de 5 points\nProfits rose to €2 million.   → le niveau atteint est 2 millions\n```\n\n## Nuancer : adjectifs et adverbes\n\n*a slight increase* / *increased slightly* (légèrement), *a sharp fall* / *fell sharply* (fortement), *a steady rise* / *rose steadily* (régulièrement), *a significant drop* (importante).\n\n## Pourcentages, fractions et montants\n\n| Écrit | Oral |\n|---|---|\n| 25% | *twenty-five per cent* |\n| 0.5% | *zero point five per cent* / *half a per cent* |\n| ½, ¼, ¾ | *a half*, *a quarter*, *three quarters* |\n| €2.5m | *two point five million euros* |\n| $300k | *three hundred thousand dollars* |\n\nEn anglais, le symbole monétaire se place **avant** le nombre (*€50*), mais se lit **après** (« fifty euros »).\n\n## Le present perfect pour un bilan\n\nQuand le résultat compte **maintenant**, sans date précise, on emploie le **present perfect** : *have / has* + participe passé.\n\n```text\nWe have increased our sales this year.        → l'année n'est pas finie\nI have finished the report.                   → il est prêt maintenant\nOur team has grown since January.             → depuis janvier, jusqu'à aujourd'hui\n```\n\nComparez :\n\n- *We **opened** an office in Lyon **in 2024**.* → date précise : prétérit.\n- *We **have opened** three offices **since 2024**.* → bilan jusqu'à aujourd'hui : present perfect.\n\n*Since* + point de départ (*since January*) ; *for* + durée (*for two years*).\n\n## À retenir\n\n- *increase / rise / grow* ; *decrease / fall / drop* ; *remain stable*.\n- *by* = l'écart, *to* = le niveau atteint, *an increase of* avec un nom.\n- *slightly*, *sharply*, *steadily* pour nuancer.\n- Prétérit avec une date précise ; present perfect pour un bilan sans date ou avec *since / for*.\n\n## Exercices\n\n### Exercice 1 — By, to ou of ?\n\n(a) Sales rose ___ 8% (l'écart). (b) The price went up ___ €120 (le prix final). (c) We saw an increase ___ 15%. (d) Costs fell ___ €30,000 ___ €25,000.\n\n```solution-text\n(a) by 8%\n(b) to €120\n(c) an increase of 15%\n(d) from €30,000 to €25,000\n```\n\n### Exercice 2 — Décrivez le graphique\n\nLes ventes sont passées de 1 000 unités en janvier à 1 300 en juin. Décrivez-le en une phrase, puis donnez le pourcentage.\n\n```solution-text\nSales increased from 1,000 units in January to 1,300 units in June.\nThat's an increase of 30%. (ou : Sales rose by 30%.)\n```\n\n### Exercice 3 — Prétérit ou present perfect ?\n\n(a) We ___ (sign) the contract last Monday. (b) I ___ (work) here since 2022. (c) Our revenue ___ (grow) a lot this year.\n\n```solution-text\n(a) We signed the contract last Monday.   → date précise : prétérit\n(b) I have worked here since 2022.        → since : present perfect\n(c) Our revenue has grown a lot this year. → bilan, année en cours\n```",
+     "duration_minutes": 30,
+     "position": 2
+    },
+    {
+     "id": "f680eb73-b4e0-52b6-b0d0-b8910b2f8dfe",
+     "slug": "accueil-mini-projet",
+     "title": "Accueillir un visiteur et mini-projet",
+     "summary": "Small talk, puis une journée complète en anglais : email, appel, réunion.",
+     "content_md": "## Accueillir un visiteur\n\n```text\n— Good morning, you must be Mr Wilson. I'm Amina Benali. Welcome to SMKTECH.\n— Good morning. Nice to meet you.\n— Did you find us easily?\n— Yes, no problem. The directions were very clear.\n— Great. Can I get you something to drink? A coffee, some water?\n— A coffee would be lovely, thank you.\n— Please have a seat. Ms Rossi will be with you in a moment.\n```\n\n- *Welcome to…* / *Please have a seat.*\n- *Can I get you something to drink?* / *Would you like a coffee?*\n- *Did you find us easily?* / *How was your journey / flight?*\n- *Let me take your coat.* / *Let me show you around.* (faire visiter)\n\n## Le small talk\n\nLes quelques minutes de conversation légère avant une réunion comptent beaucoup dans le monde anglophone. On reste sur des sujets **neutres** :\n\n| Sujets sûrs | À éviter |\n|---|---|\n| le voyage, la météo, la ville, le week-end, un événement sportif | salaire, religion, politique, âge, vie privée |\n\n```text\nIs this your first time in Paris?\nWhat did you think of the conference?\nDid you have a good weekend?\nThe weather is lovely today, isn't it?\n```\n\nRépondez toujours par plus qu'un *yes* ou *no* : *Yes, it's my second time. I came last year for a trade fair.*\n\n## Mini-projet : une journée en anglais\n\nCe mini-projet mobilise toute la formation. Vous êtes chargé(e) de projet chez SMKTECH ; un nouveau client, **Ms Laura Grant** (Brightline Consulting, Londres), souhaite une démonstration de votre plateforme.\n\n### Étape 1 — L'email\n\nÉcrivez un email à Ms Grant : remerciez-la de son intérêt, proposez une visioconférence jeudi 21 novembre à 15 h (heure de Paris) et joignez la brochure.\n\n```solution-text\nSubject: Demo of our e-learning platform – Thursday 21 November\n\nDear Ms Grant,\n\nThank you for your interest in our e-learning platform.\nI would be happy to give you a demo. Would Thursday 21 November at 3 p.m. (Paris time) suit you?\nPlease find attached our brochure.\n\nI look forward to hearing from you.\n\nBest regards,\n[Prénom Nom]\nProject Manager, SMKTECH\n```\n\n### Étape 2 — L'appel\n\nMs Grant appelle ; vous décrochez. Elle ne peut pas jeudi et propose vendredi à 10 h. Écrivez vos répliques : décrocher, accepter, confirmer l'adresse email pour l'invitation (*l.grant@brightline.co.uk*).\n\n```solution-text\n— Good morning, SMKTECH, [prénom] speaking.\n— (Ms Grant explains she can't make it on Thursday and suggests Friday at 10 a.m.)\n— No problem. Friday at 10 a.m. works for me.\n— Could I just check your email address for the invitation? Is it l dot grant at brightline dot co dot uk?\n— (She confirms.)\n— Perfect. I'll send you the invitation this afternoon. Thank you for calling. Goodbye.\n```\n\n### Étape 3 — La réunion\n\nEn visioconférence : ouvrez la réunion, présentez l'ordre du jour (présentation de SMKTECH, démonstration, tarifs), puis concluez avec deux actions.\n\n```solution-text\nGood morning, Laura. Thanks for joining. Can you hear me well? — Great.\nThe purpose of this meeting is to show you our platform.\nWe have three items on the agenda: first, a short presentation of SMKTECH, then a demo, and finally our prices.\n…\nSo, to sum up: I'll send you a quote by Tuesday, and you'll share it with your team.\nThank you very much for your time. Have a good day!\n```\n\n### Étape 4 — Le compte rendu\n\nÉcrivez à votre manager un compte rendu de trois phrases au prétérit.\n\n```solution-text\nHi David,\n\nI had a video call with Laura Grant from Brightline Consulting this morning. I showed her the platform and she was very interested in the reporting features. I'm going to send her a quote by Tuesday.\n\nBest,\n[Prénom]\n```\n\n## Et après ?\n\nVous disposez maintenant des structures essentielles pour travailler en anglais. Pour progresser : écoutez chaque jour quelques minutes d'anglais professionnel (podcasts, vidéos d'entreprise), relisez vos emails à voix haute et réutilisez les formules de cette formation. Les parcours **Anglais B1** et **Anglais B2** de SMK Academy approfondiront la grammaire et la compréhension orale.\n\n## À retenir\n\n- Accueil : *Welcome to…*, *Please have a seat*, *Can I get you something to drink?*\n- Small talk sur des sujets neutres ; répondez avec plus qu'un mot.\n- Une situation professionnelle se prépare : email → appel → réunion → compte rendu.",
+     "duration_minutes": 40,
+     "position": 3
+    }
+   ],
+   "quiz": {
+    "id": "940c5a7e-9b5e-5653-841b-caa5279f4308",
+    "title": "Quiz — Rendre compte de son activité",
+    "pass_mark": 10,
+    "questions": [
+     {
+      "id": "719a9ce1-7c70-5407-996e-e6eeb762d945",
+      "position": 1,
+      "kind": "single",
+      "prompt": "Quel est le prétérit de « send » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e2ddcc09-0563-5174-80e8-99aa4ff10924",
+        "position": 1,
+        "label": "sended"
+       },
+       {
+        "id": "1c1f8b5d-c174-53ad-9ecf-68c5920ea3b9",
+        "position": 2,
+        "label": "sent"
+       },
+       {
+        "id": "78a96f57-428e-59fa-9479-ab039fd3539c",
+        "position": 3,
+        "label": "sand"
+       },
+       {
+        "id": "77a4f87c-2b19-56f1-b6a3-e3ec64678c52",
+        "position": 4,
+        "label": "sending"
+       }
+      ],
+      "correct": [
+       "1c1f8b5d-c174-53ad-9ecf-68c5920ea3b9"
+      ],
+      "explanation": "« send » est irrégulier : send – sent – sent."
+     },
+     {
+      "id": "97866fac-a489-5557-9295-496eae4b61d3",
+      "position": 2,
+      "kind": "single",
+      "prompt": "Quelle question est correcte ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "a68dd027-6158-5d68-b849-f55e2d088a21",
+        "position": 1,
+        "label": "Did you sent the file?"
+       },
+       {
+        "id": "10690c9c-2e67-5dfb-b43b-e2c6d355fd37",
+        "position": 2,
+        "label": "Did you send the file?"
+       },
+       {
+        "id": "469d5cb7-75db-5aae-9ef5-200213cbc434",
+        "position": 3,
+        "label": "Do you sent the file?"
+       },
+       {
+        "id": "c69e6480-3fa8-54e3-a4dc-ff52bcd8a834",
+        "position": 4,
+        "label": "Sent you the file?"
+       }
+      ],
+      "correct": [
+       "10690c9c-2e67-5dfb-b43b-e2c6d355fd37"
+      ],
+      "explanation": "Après « did », le verbe reste à la forme de base : Did you send…?"
+     },
+     {
+      "id": "87a0411f-4767-5b81-9f19-0bc33820a340",
+      "position": 3,
+      "kind": "single",
+      "prompt": "Comment dit-on « il y a trois jours » ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "eaf4a112-ea7c-5b5c-83f4-b4b9b189ab8f",
+        "position": 1,
+        "label": "ago three days"
+       },
+       {
+        "id": "e32bccb9-adaf-5864-9c78-c3d3721cf74f",
+        "position": 2,
+        "label": "three days ago"
+       },
+       {
+        "id": "962daab9-ec1c-5b69-a09f-90bd43c2691a",
+        "position": 3,
+        "label": "since three days"
+       },
+       {
+        "id": "27f84f63-008b-59dc-b283-7718fd93d706",
+        "position": 4,
+        "label": "there are three days"
+       }
+      ],
+      "correct": [
+       "e32bccb9-adaf-5864-9c78-c3d3721cf74f"
+      ],
+      "explanation": "« ago » se place après la durée : three days ago."
+     },
+     {
+      "id": "780e6051-2be0-5398-b05d-db5493a00865",
+      "position": 4,
+      "kind": "single",
+      "prompt": "Complétez : « The results ___ very good last year. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e4ec78c5-0d98-595e-bb10-9503b4ad4c2b",
+        "position": 1,
+        "label": "was"
+       },
+       {
+        "id": "ed55abb8-a962-56a8-9091-3ee07b2d3031",
+        "position": 2,
+        "label": "were"
+       },
+       {
+        "id": "ef577e62-eea7-5faa-8f3a-fc3e70146737",
+        "position": 3,
+        "label": "are"
+       },
+       {
+        "id": "e1e9b762-03dc-5b21-8ab3-99678fce6aeb",
+        "position": 4,
+        "label": "been"
+       }
+      ],
+      "correct": [
+       "ed55abb8-a962-56a8-9091-3ee07b2d3031"
+      ],
+      "explanation": "« results » est pluriel : were. « was » s'emploie avec I / he / she / it."
+     },
+     {
+      "id": "983163dc-4515-5caa-8a6e-e3a388fe5872",
+      "position": 5,
+      "kind": "single",
+      "prompt": "« Sales rose by 10% » signifie :",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "3afa233a-db7b-5647-87df-f167fff8e75e",
+        "position": 1,
+        "label": "Les ventes ont atteint 10 %."
+       },
+       {
+        "id": "e8c54836-3701-5d06-8370-0d4b79a58aa3",
+        "position": 2,
+        "label": "Les ventes ont augmenté de 10 %."
+       },
+       {
+        "id": "addc7b07-5096-5fab-b733-dbb22b44a2ef",
+        "position": 3,
+        "label": "Les ventes ont baissé de 10 %."
+       },
+       {
+        "id": "58df51a7-7df9-57a1-9f9a-043e5191862d",
+        "position": 4,
+        "label": "Les ventes sont stables à 10 %."
+       }
+      ],
+      "correct": [
+       "e8c54836-3701-5d06-8370-0d4b79a58aa3"
+      ],
+      "explanation": "« by » indique l'écart : une hausse de 10 %. « rose to 10% » indiquerait le niveau atteint."
+     },
+     {
+      "id": "11752696-3ad8-58a1-976e-b70ea7899fa2",
+      "position": 6,
+      "kind": "single",
+      "prompt": "Quel verbe exprime une baisse ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "e10e1b72-5fab-5f60-bd18-d305e88d4b98",
+        "position": 1,
+        "label": "to rise"
+       },
+       {
+        "id": "6651e27a-9133-5d16-b8f1-821039523dba",
+        "position": 2,
+        "label": "to grow"
+       },
+       {
+        "id": "1ff47dfb-27b7-5bae-bb94-51230b4a1558",
+        "position": 3,
+        "label": "to fall"
+       },
+       {
+        "id": "d23e5f72-eafa-5f21-b2bb-529659d71cca",
+        "position": 4,
+        "label": "to increase"
+       }
+      ],
+      "correct": [
+       "1ff47dfb-27b7-5bae-bb94-51230b4a1558"
+      ],
+      "explanation": "« fall » (fell, fallen) exprime une baisse ; les trois autres expriment une hausse."
+     },
+     {
+      "id": "04378964-0448-57ce-a504-cc9a4fec8e90",
+      "position": 7,
+      "kind": "single",
+      "prompt": "Complétez : « I ___ here since 2022. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "5722dd5c-eb4d-53b2-a0a2-4eaaaa8c58dd",
+        "position": 1,
+        "label": "work"
+       },
+       {
+        "id": "5aad9a36-65b9-5696-9f54-787ebe946884",
+        "position": 2,
+        "label": "worked"
+       },
+       {
+        "id": "a2995c31-38dd-56ad-b4bf-7e7ce1a9ffdd",
+        "position": 3,
+        "label": "have worked"
+       },
+       {
+        "id": "7117e047-931f-5475-99a3-6bc3ad0a7201",
+        "position": 4,
+        "label": "am working since"
+       }
+      ],
+      "correct": [
+       "a2995c31-38dd-56ad-b4bf-7e7ce1a9ffdd"
+      ],
+      "explanation": "Avec « since » (depuis un point de départ jusqu'à aujourd'hui), on emploie le present perfect : I have worked."
+     },
+     {
+      "id": "c0bc9acb-af77-5756-83a2-13cc23aa8925",
+      "position": 8,
+      "kind": "single",
+      "prompt": "Complétez : « We ___ the contract last Monday. »",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "bb0a1f90-e55c-56f7-bc13-6532082f50d1",
+        "position": 1,
+        "label": "have signed"
+       },
+       {
+        "id": "bb14a769-4755-57f2-9971-dd5003c9939c",
+        "position": 2,
+        "label": "signed"
+       },
+       {
+        "id": "1e5c164c-ac4c-5701-9743-1a2d8110ab38",
+        "position": 3,
+        "label": "sign"
+       },
+       {
+        "id": "a56e7139-426a-5797-ac90-2d9f187bd96a",
+        "position": 4,
+        "label": "has signed"
+       }
+      ],
+      "correct": [
+       "bb14a769-4755-57f2-9971-dd5003c9939c"
+      ],
+      "explanation": "Avec une date précise et terminée (last Monday), on emploie le prétérit : signed."
+     },
+     {
+      "id": "c3b48c05-298e-5095-b44f-4ec4b8822497",
+      "position": 9,
+      "kind": "multiple",
+      "prompt": "Quels sujets conviennent au small talk professionnel ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "64ba40ad-0c51-5c68-9160-524b7ff2cdb6",
+        "position": 1,
+        "label": "Le voyage du visiteur"
+       },
+       {
+        "id": "e1a55ca8-b4ed-5df6-8499-e72677f8f813",
+        "position": 2,
+        "label": "Le salaire de la personne"
+       },
+       {
+        "id": "877b7c4a-8ba1-54fc-8981-3a1dcc44f65c",
+        "position": 3,
+        "label": "La météo"
+       },
+       {
+        "id": "ad23f4bc-1c64-5aca-b978-2018ce4a9c4d",
+        "position": 4,
+        "label": "Le week-end"
+       }
+      ],
+      "correct": [
+       "64ba40ad-0c51-5c68-9160-524b7ff2cdb6",
+       "877b7c4a-8ba1-54fc-8981-3a1dcc44f65c",
+       "ad23f4bc-1c64-5aca-b978-2018ce4a9c4d"
+      ],
+      "explanation": "Le voyage, la météo et le week-end sont des sujets neutres. Le salaire, la politique ou la religion sont à éviter."
+     },
+     {
+      "id": "96b9e5f2-a2ff-568b-b287-2c78c353f1fe",
+      "position": 10,
+      "kind": "single",
+      "prompt": "Comment proposer une boisson à un visiteur ?",
+      "code": null,
+      "points": 2,
+      "options": [
+       {
+        "id": "993c67a4-068b-53c4-a670-754dd8918557",
+        "position": 1,
+        "label": "You want a coffee?"
+       },
+       {
+        "id": "fecd5e7f-0e7f-50c4-a6f1-2ae2e6990076",
+        "position": 2,
+        "label": "Can I get you something to drink?"
+       },
+       {
+        "id": "c1ce0c42-4d5a-5835-8e1c-2834eff5ebcd",
+        "position": 3,
+        "label": "Drink something."
+       },
+       {
+        "id": "4a763c8c-9acf-5d30-a7db-501ea5841626",
+        "position": 4,
+        "label": "Do you drink?"
+       }
+      ],
+      "correct": [
+       "fecd5e7f-0e7f-50c4-a6f1-2ae2e6990076"
+      ],
+      "explanation": "« Can I get you something to drink? » ou « Would you like a coffee? » sont naturels et polis."
+     }
+    ]
+   }
+  }
+ ]
+}
